@@ -1,0 +1,42 @@
+/*
+Theme Name: Explora México Child
+Theme URI: https://exploramexicotours.com
+Description: Child theme de Hello Elementor para Explora México Tours. Sistema de tokens y plantillas custom.
+Author: Fabian Valdez
+Author URI: https://exploramexicotours.com
+Template: hello-elementor
+Version: 1.0.3
+Text Domain: explora-mexico-child
+*/
+
+/* ============================================
+   TOKENS DE MARCA — Explora México Tours
+   ============================================ */
+:root {
+  /* Paleta principal */
+  --emt-azul-profundo: #003366;
+  --emt-azul-brillante: #0057B8;
+
+  /* Colores de acento */
+  --emt-rosa: #E91E63;
+  --emt-turquesa: #009FAE;
+  --emt-naranja: #F28C00;
+  --emt-coral: #E63946;
+  --emt-verde: #8BC34A;
+
+  /* Neutros */
+  --emt-blanco: #FFFFFF;
+  --emt-gris-claro: #F4F6F8;
+  --emt-gris-medio: #B0B5BD;
+  --emt-gris-oscuro: #1F2937;
+
+  /* Tipografía */
+  --emt-font-display: 'Poppins', system-ui, sans-serif;
+  --emt-font-body: 'Inter', system-ui, sans-serif;
+}
+
+/* Estilos globales mínimos (se ampliará al construir el sitio completo) */
+body.emt {
+  font-family: var(--emt-font-body);
+  color: var(--emt-gris-oscuro);
+}

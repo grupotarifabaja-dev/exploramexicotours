@@ -1,0 +1,132 @@
+# ============================================
+# WORDPRESS · Lo que NO se versiona
+# ============================================
+
+# Core de WordPress (se instala fresco en cada entorno)
+/wp-admin/
+/wp-includes/
+/wp-*.php
+/index.php
+/license.txt
+/readme.html
+/xmlrpc.php
+/wp-config.php
+/wp-config-sample.php
+
+# Configuración local
+.htaccess
+.user.ini
+
+# Uploads del cliente (se respaldan aparte, no en Git)
+/wp-content/uploads/
+/wp-content/backups/
+/wp-content/upgrade/
+/wp-content/cache/
+/wp-content/wflogs/
+
+# Plugins de terceros (se instalan aparte, no se versionan)
+/wp-content/plugins/
+!/wp-content/plugins/.gitkeep
+
+# Themes que NO son nuestros (solo versionamos explora-mexico-child)
+/wp-content/themes/*
+!/wp-content/themes/explora-mexico-child/
+!/wp-content/themes/.gitkeep
+
+# mu-plugins externos
+/wp-content/mu-plugins/
+
+# ============================================
+# IDE / Editores
+# ============================================
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.iml
+.project
+.buildpath
+.settings/
+
+# ============================================
+# Sistema operativo
+# ============================================
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.Spotlight-V100
+.Trashes
+
+# ============================================
+# Logs y archivos temporales
+# ============================================
+*.log
+*.tmp
+*.swp
+*.swo
+*~
+.tmp/
+tmp/
+
+# Logs de WordPress
+debug.log
+error_log
+/wp-content/debug.log
+
+# ============================================
+# Dependencias y build
+# ============================================
+node_modules/
+vendor/
+composer.lock
+package-lock.json
+yarn.lock
+.npm
+.yarn-cache/
+
+# Build artifacts
+/dist/
+/build/
+*.min.js.map
+*.min.css.map
+
+# ============================================
+# Secrets y credenciales
+# ============================================
+.env
+.env.local
+.env.*.local
+*.key
+*.pem
+*.p12
+*.pfx
+secrets/
+credentials/
+
+# ============================================
+# Backups y dumps
+# ============================================
+*.sql
+*.sql.gz
+*.tar
+*.tar.gz
+*.zip
+!docs/branding/*.zip
+
+# Backups locales
+*.bak
+*.backup
+*-backup-*
+*-bkp-*
+
+# ============================================
+# Específico del proyecto
+# ============================================
+
+# Notas locales
+NOTAS.md
+TODO.local.md
+SCRATCH.md

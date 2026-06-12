@@ -1,0 +1,693 @@
+/* ============================================
+   EMT — UNDER CONSTRUCTION STYLES
+   Sistema visual refinado: más contraste, jerarquía
+   y nitidez en elementos clave.
+   ============================================ */
+
+body.emt-under-construction {
+  background: #FFFFFF;
+  color: #1F2937;
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.emt-under-construction * { margin: 0; padding: 0; box-sizing: border-box; }
+.emt-under-construction html { scroll-behavior: smooth; }
+
+/* ============================================
+   CAPAS DE FONDO — más contraste, más controlado
+   ============================================ */
+.emt-bg-image {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  filter: blur(4px) saturate(1.2);
+  opacity: 0.45;
+  transform: scale(1.08);
+  pointer-events: none;
+}
+.emt-bg-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+    rgba(255, 255, 255, 0.65) 0%,
+    rgba(255, 255, 255, 0.78) 40%,
+    rgba(255, 255, 255, 0.92) 100%);
+}
+
+.bg-deco {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+.bg-deco::before, .bg-deco::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.28;
+  mix-blend-mode: multiply;
+}
+.bg-deco::before {
+  width: 480px; height: 480px;
+  background: var(--emt-rosa);
+  top: -120px; right: -100px;
+}
+.bg-deco::after {
+  width: 560px; height: 560px;
+  background: var(--emt-turquesa);
+  bottom: -180px; left: -140px;
+}
+.bg-deco span {
+  position: absolute;
+  width: 360px; height: 360px;
+  border-radius: 50%;
+  background: var(--emt-naranja);
+  filter: blur(80px);
+  opacity: 0.14;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: multiply;
+}
+
+.emt-under-construction .container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* ============================================
+   HEADER — estructura sólida con CTA visible
+   ============================================ */
+.emt-under-construction .site-header {
+  position: relative;
+  z-index: 5;
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(0, 51, 102, 0.08);
+  border-radius: 18px;
+  margin: 1rem 0 1.5rem;
+  padding: 0 1.5rem;
+  box-shadow: 0 4px 20px rgba(0, 51, 102, 0.06);
+}
+.emt-under-construction .nav {
+  width: 100%;
+  padding: 0.7rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.25rem;
+}
+.emt-under-construction .logo {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  line-height: 0;
+}
+.emt-under-construction .logo img {
+  height: 68px;
+  width: auto;
+  display: block;
+  max-width: 260px;
+  object-fit: contain;
+}
+.emt-under-construction .nav-status {
+  position: relative;
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--emt-azul-profundo);
+  font-weight: 700;
+  background: linear-gradient(
+    110deg,
+    rgba(0, 87, 184, 0.10) 0%,
+    rgba(0, 87, 184, 0.10) 40%,
+    rgba(233, 30, 99, 0.18) 50%,
+    rgba(0, 87, 184, 0.10) 60%,
+    rgba(0, 87, 184, 0.10) 100%
+  );
+  background-size: 250% 100%;
+  padding: 0.5rem 0.95rem;
+  border-radius: 999px;
+  overflow: hidden;
+  animation: emtBadgeShimmer 3.5s ease-in-out infinite;
+}
+.emt-under-construction .nav-status::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  border: 1.5px solid var(--emt-naranja);
+  opacity: 0;
+  animation: emtBadgeHalo 2.4s ease-out infinite;
+  pointer-events: none;
+}
+.emt-under-construction .nav-status-text {
+  position: relative;
+  z-index: 1;
+}
+.emt-under-construction .pulse {
+  position: relative;
+  width: 8px; height: 8px;
+  background: var(--emt-naranja);
+  border-radius: 50%;
+  flex-shrink: 0;
+  z-index: 1;
+  animation: emtPulse 1.8s infinite;
+}
+@keyframes emtPulse {
+  0%, 100% {
+    opacity: 1; transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(242, 140, 0, 0.6);
+  }
+  50% {
+    opacity: 0.8; transform: scale(1.25);
+    box-shadow: 0 0 0 6px rgba(242, 140, 0, 0);
+  }
+}
+@keyframes emtBadgeShimmer {
+  0%, 100% { background-position: 100% 50%; }
+  50% { background-position: 0% 50%; }
+}
+@keyframes emtBadgeHalo {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1.15);
+    opacity: 0;
+  }
+}
+@media (max-width: 720px) {
+  .emt-under-construction .logo img { height: 54px; max-width: 200px; }
+  .emt-under-construction .nav-status {
+    font-size: 0.62rem;
+    padding: 0.4rem 0.75rem;
+    letter-spacing: 0.08em;
+  }
+}
+@media (max-width: 480px) {
+  .emt-under-construction .nav-status-text { display: none; }
+  .emt-under-construction .nav-status {
+    padding: 0.5rem;
+    width: 32px;
+    height: 32px;
+    justify-content: center;
+  }
+}
+
+/* ============================================
+   HERO — caja sutil para anclar el título
+   ============================================ */
+.emt-under-construction .hero {
+  padding: 2.5rem 0 2.5rem;
+  text-align: center;
+  position: relative;
+}
+.emt-under-construction .hero-content {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 24px;
+  padding: 2.5rem 2rem 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 20px 50px rgba(0, 51, 102, 0.08);
+}
+.emt-under-construction .eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--emt-rosa);
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+}
+.emt-under-construction .hero h1 {
+  font-family: var(--emt-font-display);
+  font-size: clamp(2.3rem, 5.5vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  margin: 0 0 1.5rem;
+  color: var(--emt-azul-profundo);
+}
+.emt-under-construction .accent-magenta { color: var(--emt-rosa); }
+.emt-under-construction .accent-turquesa { color: var(--emt-turquesa); }
+.emt-under-construction .accent-naranja { color: var(--emt-naranja); }
+
+.emt-under-construction .hero-sub {
+  font-size: 1.1rem;
+  color: var(--emt-gris-oscuro);
+  max-width: 580px;
+  margin: 0 auto;
+  line-height: 1.65;
+  opacity: 0.9;
+}
+
+/* Línea de confianza */
+.emt-under-construction .trust-line {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin: 1.5rem auto 0;
+  padding: 0.55rem 1.25rem;
+  background: rgba(0, 51, 102, 0.06);
+  border-radius: 999px;
+  font-size: 0.85rem;
+  color: var(--emt-azul-profundo);
+  font-weight: 600;
+}
+.emt-under-construction .trust-line svg {
+  color: var(--emt-naranja);
+  fill: var(--emt-naranja);
+  flex-shrink: 0;
+}
+
+/* Stamps con más protagonismo y nitidez */
+.emt-under-construction .stamps {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.75rem;
+}
+.emt-under-construction .stamps-img {
+  max-width: 100%;
+  width: auto;
+  height: 88px;
+  object-fit: contain;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  filter:
+    drop-shadow(0 8px 16px rgba(0, 51, 102, 0.18))
+    drop-shadow(0 2px 4px rgba(0, 51, 102, 0.08));
+}
+.emt-under-construction .stamps-img:hover {
+  transform: translateY(-3px) scale(1.02);
+}
+@media (max-width: 640px) {
+  .emt-under-construction .stamps-img { height: 60px; }
+}
+
+/* Counter */
+.emt-under-construction .counter {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1.75rem auto 2rem;
+  flex-wrap: wrap;
+}
+.emt-under-construction .counter-item {
+  background: #FFFFFF;
+  border: 2px solid var(--emt-gris-claro);
+  border-radius: 14px;
+  padding: 1.2rem 1.5rem;
+  min-width: 120px;
+  transition: all 0.3s;
+  box-shadow: 0 4px 12px rgba(0, 51, 102, 0.04);
+}
+.emt-under-construction .counter-item:hover {
+  border-color: var(--emt-azul-brillante);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 30px rgba(0, 87, 184, 0.14);
+}
+.emt-under-construction .counter-value {
+  font-family: var(--emt-font-display);
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--emt-azul-profundo);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+}
+.emt-under-construction .counter-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--emt-gris-medio);
+  font-weight: 600;
+}
+.emt-under-construction .counter-item:nth-child(1) .counter-value { color: var(--emt-rosa); }
+.emt-under-construction .counter-item:nth-child(2) .counter-value { color: var(--emt-turquesa); }
+.emt-under-construction .counter-item:nth-child(3) .counter-value { color: var(--emt-naranja); }
+.emt-under-construction .counter-item:nth-child(4) .counter-value { color: var(--emt-verde); }
+
+/* CTA */
+.emt-under-construction .cta-group {
+  display: flex;
+  gap: 0.85rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.emt-under-construction .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1.05rem 2.2rem;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border: 2px solid transparent;
+  cursor: pointer;
+  font-family: var(--emt-font-body);
+}
+.emt-under-construction .btn-primary {
+  background: var(--emt-rosa);
+  color: #FFFFFF;
+  box-shadow: 0 6px 18px rgba(233, 30, 99, 0.35);
+}
+.emt-under-construction .btn-primary:hover {
+  background: #d11757;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(233, 30, 99, 0.5);
+}
+.emt-under-construction .btn-ghost {
+  background: rgba(255, 255, 255, 0.7);
+  color: var(--emt-azul-brillante);
+  border-color: var(--emt-azul-brillante);
+  backdrop-filter: blur(6px);
+}
+.emt-under-construction .btn-ghost:hover {
+  background: var(--emt-azul-brillante);
+  color: #FFFFFF;
+}
+
+/* ============================================
+   DESTINOS — cards más sólidas y consistentes
+   ============================================ */
+.emt-under-construction .destinations { padding: 2.5rem 0 3rem; }
+.emt-under-construction .section-header { text-align: center; margin-bottom: 2.5rem; }
+.emt-under-construction .section-eyebrow {
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--emt-turquesa);
+  font-weight: 700;
+  margin-bottom: 0.9rem;
+}
+.emt-under-construction .section-title {
+  font-family: var(--emt-font-display);
+  font-size: clamp(1.9rem, 4vw, 2.6rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  max-width: 720px;
+  margin: 0 auto 0.9rem;
+  color: var(--emt-azul-profundo);
+  line-height: 1.15;
+}
+.emt-under-construction .section-title .accent { color: var(--emt-rosa); }
+.emt-under-construction .section-subtitle {
+  font-size: 1rem;
+  color: var(--emt-gris-oscuro);
+  opacity: 0.75;
+  max-width: 580px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.emt-under-construction .dest-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+.emt-under-construction .dest-card {
+  position: relative;
+  aspect-ratio: 4/5;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(0, 51, 102, 0.12);
+  display: flex;
+  flex-direction: column;
+}
+.emt-under-construction .dest-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 50px rgba(0, 51, 102, 0.22);
+}
+.emt-under-construction .dest-card-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.emt-under-construction .dest-card:hover .dest-card-bg { transform: scale(1.1); }
+
+/* Overlay más fuerte y uniforme - asegura legibilidad sobre cualquier foto */
+.emt-under-construction .dest-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0, 25, 51, 0.95) 0%,
+    rgba(0, 25, 51, 0.85) 30%,
+    rgba(0, 25, 51, 0.45) 60%,
+    rgba(0, 25, 51, 0.15) 85%,
+    rgba(0, 25, 51, 0.05) 100%
+  );
+  z-index: 1;
+}
+
+/* Badge de ubicación arriba */
+.emt-under-construction .dest-card-meta {
+  position: absolute;
+  top: 1.25rem;
+  left: 1.25rem;
+  z-index: 3;
+  display: inline-block;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  font-weight: 700;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.emt-under-construction .dest-card-content {
+  position: relative;
+  margin-top: auto;
+  padding: 1.5rem 1.5rem 1.5rem;
+  z-index: 2;
+}
+.emt-under-construction .dest-card-title {
+  font-family: var(--emt-font-display);
+  font-size: 1.85rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+.emt-under-construction .dest-card-desc {
+  font-size: 0.92rem;
+  color: rgba(255, 255, 255, 0.92);
+  line-height: 1.55;
+  margin-bottom: 1.1rem;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+.emt-under-construction .dest-card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.1rem;
+  background: var(--emt-rosa);
+  color: #FFFFFF;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  box-shadow: 0 4px 14px rgba(233, 30, 99, 0.4);
+  transition: all 0.3s;
+}
+.emt-under-construction .dest-card:hover .dest-card-cta {
+  background: var(--emt-naranja);
+  box-shadow: 0 6px 18px rgba(242, 140, 0, 0.5);
+}
+
+/* ============================================
+   CREDENCIALES — más compacto y con título
+   ============================================ */
+.emt-under-construction .credentials {
+  padding: 2.5rem 2rem;
+  background: rgba(244, 246, 248, 0.7);
+  backdrop-filter: blur(6px);
+  border-radius: 24px;
+  margin: 1rem 0 2rem;
+  border: 1px solid rgba(0, 51, 102, 0.06);
+}
+.emt-under-construction .creds-header {
+  text-align: center;
+  margin-bottom: 1.75rem;
+}
+.emt-under-construction .creds-title {
+  font-family: var(--emt-font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--emt-azul-profundo);
+  margin-top: 0.4rem;
+  letter-spacing: -0.01em;
+}
+.emt-under-construction .creds-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+.emt-under-construction .cred-item { text-align: center; }
+.emt-under-construction .cred-logo {
+  height: 56px;
+  width: auto;
+  max-width: 160px;
+  object-fit: contain;
+  opacity: 0.85;
+  transition: opacity 0.3s, transform 0.3s;
+}
+.emt-under-construction .cred-logo:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+@media (max-width: 640px) {
+  .emt-under-construction .cred-logo { height: 44px; max-width: 130px; }
+  .emt-under-construction .creds-grid { gap: 1.75rem; }
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.emt-under-construction footer {
+  padding: 2.5rem 0 2rem;
+  text-align: center;
+}
+.emt-under-construction .footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+.emt-under-construction .footer-text {
+  font-size: 0.85rem;
+  color: var(--emt-gris-medio);
+}
+.emt-under-construction .footer-links {
+  display: flex;
+  gap: 1.5rem;
+}
+.emt-under-construction .footer-links a {
+  color: var(--emt-azul-brillante);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+.emt-under-construction .footer-links a:hover { color: var(--emt-rosa); }
+.emt-under-construction .footer-tagline {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(0, 51, 102, 0.08);
+  font-family: var(--emt-font-display);
+  font-size: 0.95rem;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.emt-under-construction .footer-tagline span:nth-child(1) { color: var(--emt-rosa); }
+.emt-under-construction .footer-tagline span:nth-child(2) { color: var(--emt-turquesa); }
+.emt-under-construction .footer-tagline span:nth-child(3) { color: var(--emt-naranja); }
+.emt-under-construction .footer-tagline span:nth-child(4) { color: var(--emt-verde); }
+
+/* ============================================
+   WHATSAPP FLOTANTE
+   ============================================ */
+.emt-under-construction .wa-float {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  width: 60px;
+  height: 60px;
+  background: #25d366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 30px rgba(37, 211, 102, 0.45);
+  transition: transform 0.3s;
+  z-index: 100;
+  text-decoration: none;
+}
+.emt-under-construction .wa-float:hover { transform: scale(1.1) rotate(5deg); }
+.emt-under-construction .wa-float svg { width: 30px; height: 30px; fill: white; }
+.emt-under-construction .wa-float::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid #25d366;
+  opacity: 0.5;
+  animation: waPulse 2s infinite;
+}
+@keyframes waPulse {
+  0% { transform: scale(1); opacity: 0.5; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+
+/* ============================================
+   ANIMACIONES
+   ============================================ */
+.emt-under-construction .fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: emtFadeIn 0.9s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+.emt-under-construction .fade-in-d1 { animation-delay: 0.1s; }
+.emt-under-construction .fade-in-d2 { animation-delay: 0.25s; }
+.emt-under-construction .fade-in-d3 { animation-delay: 0.4s; }
+.emt-under-construction .fade-in-d4 { animation-delay: 0.55s; }
+.emt-under-construction .fade-in-d5 { animation-delay: 0.7s; }
+@keyframes emtFadeIn {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 640px) {
+  .emt-under-construction .container { padding: 0 1.25rem; }
+  .emt-under-construction .hero { padding: 1.5rem 0 2rem; }
+  .emt-under-construction .hero-content { padding: 1.75rem 1.25rem 1.5rem; border-radius: 20px; }
+  .emt-under-construction .footer-content { flex-direction: column; }
+  .emt-under-construction .credentials { padding: 1.75rem 1.25rem; }
+  .emt-under-construction .nav { padding: 0.6rem 0; }
+  .emt-under-construction .destinations { padding: 1.5rem 0 2rem; }
+}
