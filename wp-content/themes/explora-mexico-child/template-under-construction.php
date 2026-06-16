@@ -11,8 +11,8 @@ $wa_url        = 'https://wa.me/' . $wa_number;
 $lead_endpoint = esc_url_raw( rest_url( 'emt/v1/lead' ) );
 $nonce         = wp_create_nonce( 'wp_rest' );
 
-// Logo: URL absoluta del logo. Si quieres cambiarlo, edita esta línea o súbelo a la biblioteca de medios y reemplaza la URL.
-$logo_url      = 'https://exploramexicotours.com/wp-content/uploads/2026/05/explora-logo.png';
+// Assets de marca: servidos desde el propio theme (assets/images/) para portabilidad.
+$logo_url      = get_stylesheet_directory_uri() . '/assets/images/explora-logo.png';
 $bg_image_url  = 'https://exploramexicotours.com/wp-content/uploads/2026/05/ChatGPT-Image-19-may-2026-18_39_51.png';
 ?>
 <!DOCTYPE html>
@@ -58,7 +58,7 @@ $bg_image_url  = 'https://exploramexicotours.com/wp-content/uploads/2026/05/Chat
 
   <section class="hero">
     <div class="stamps fade-in">
-      <img src="https://exploramexicotours.com/wp-content/uploads/2026/05/logos-impresor.png" alt="Iconos Explora México Tours" class="stamps-img" />
+      <img src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/images/logos-impresor.png" alt="Iconos Explora México Tours" class="stamps-img" />
     </div>
 
     <div class="hero-content fade-in fade-in-d1">
@@ -153,14 +153,14 @@ $bg_image_url  = 'https://exploramexicotours.com/wp-content/uploads/2026/05/Chat
     <div class="creds-grid">
       <div class="cred-item">
         <a href="https://amavoccidente.org/agencia/amavgdl35/" target="_blank" rel="noopener noreferrer">
-          <img src="https://exploramexicotours.com/wp-content/uploads/2026/05/amav.png" alt="AMAV Occidente · Agencia GDL35" class="cred-logo" />
+          <img src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/images/amav.png" alt="AMAV Occidente · Agencia GDL35" class="cred-logo" />
         </a>
       </div>
       <div class="cred-item">
-        <img src="https://exploramexicotours.com/wp-content/uploads/2026/05/moderniza.png" alt="Moderniza SECTUR" class="cred-logo" />
+        <img src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/images/moderniza.png" alt="Moderniza SECTUR" class="cred-logo" />
       </div>
       <div class="cred-item">
-        <img src="https://exploramexicotours.com/wp-content/uploads/2026/05/logos-impresor-1.png" alt="AMTAVE" class="cred-logo" />
+        <img src="<?php echo esc_url( get_stylesheet_directory_uri() ); ?>/assets/images/logos-impresor-1.png" alt="AMTAVE" class="cred-logo" />
       </div>
     </div>
   </section>
