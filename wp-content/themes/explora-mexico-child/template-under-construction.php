@@ -12,8 +12,8 @@ $lead_endpoint = esc_url_raw( rest_url( 'emt/v1/lead' ) );
 $nonce         = wp_create_nonce( 'wp_rest' );
 
 // Logo: URL absoluta del logo. Si quieres cambiarlo, edita esta línea o súbelo a la biblioteca de medios y reemplaza la URL.
-$logo_url      = 'https://exploramexicotour.supratecnia.com/wp-content/uploads/2026/05/explora-logo.png';
-$bg_image_url  = 'https://exploramexicotour.supratecnia.com/wp-content/uploads/2026/05/ChatGPT-Image-19-may-2026-18_39_51.png';
+$logo_url      = 'https://exploramexicotours.com/wp-content/uploads/2026/05/explora-logo.png';
+$bg_image_url  = 'https://exploramexicotours.com/wp-content/uploads/2026/05/ChatGPT-Image-19-may-2026-18_39_51.png';
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -58,7 +58,7 @@ $bg_image_url  = 'https://exploramexicotour.supratecnia.com/wp-content/uploads/2
 
   <section class="hero">
     <div class="stamps fade-in">
-      <img src="https://exploramexicotour.supratecnia.com/wp-content/uploads/2026/05/logos-impresor.png" alt="Iconos Explora México Tours" class="stamps-img" />
+      <img src="https://exploramexicotours.com/wp-content/uploads/2026/05/logos-impresor.png" alt="Iconos Explora México Tours" class="stamps-img" />
     </div>
 
     <div class="hero-content fade-in fade-in-d1">
@@ -104,7 +104,7 @@ $bg_image_url  = 'https://exploramexicotour.supratecnia.com/wp-content/uploads/2
 
     <div class="dest-grid">
       <a href="<?php echo esc_url( $wa_url ); ?>?text=Quiero%20info%20del%20tour%20Xantolo" class="dest-card">
-        <div class="dest-card-bg" style="background-image: url('https://exploramexicotour.supratecnia.com/wp-content/uploads/2026/05/xantolo.jpg');"></div>
+        <div class="dest-card-bg" style="background-image: url('https://exploramexicotours.com/wp-content/uploads/2026/05/xantolo.jpg');"></div>
         <div class="dest-card-content">
           <div class="dest-card-meta">Día de Muertos · Huasteca</div>
           <div class="dest-card-title">Xantolo</div>
@@ -114,7 +114,7 @@ $bg_image_url  = 'https://exploramexicotour.supratecnia.com/wp-content/uploads/2
       </a>
 
       <a href="<?php echo esc_url( $wa_url ); ?>?text=Quiero%20info%20del%20tour%20a%20Tequila" class="dest-card">
-        <div class="dest-card-bg" style="background-image: url('https://exploramexicotour.supratecnia.com/wp-content/uploads/2026/05/tequila.jpg');"></div>
+        <div class="dest-card-bg" style="background-image: url('https://exploramexicotours.com/wp-content/uploads/2026/05/tequila.jpg');"></div>
         <div class="dest-card-content">
           <div class="dest-card-meta">Pueblo Mágico · Jalisco</div>
           <div class="dest-card-title">Tequila</div>
@@ -124,7 +124,7 @@ $bg_image_url  = 'https://exploramexicotour.supratecnia.com/wp-content/uploads/2
       </a>
 
       <a href="<?php echo esc_url( $wa_url ); ?>?text=Quiero%20info%20del%20tour%20a%20La%20Paz" class="dest-card">
-        <div class="dest-card-bg" style="background-image: url('https://exploramexicotour.supratecnia.com/wp-content/uploads/2026/05/la-paz.jpg');"></div>
+        <div class="dest-card-bg" style="background-image: url('https://exploramexicotours.com/wp-content/uploads/2026/05/la-paz.jpg');"></div>
         <div class="dest-card-content">
           <div class="dest-card-meta">Mar de Cortés · Baja California Sur</div>
           <div class="dest-card-title">La Paz</div>
@@ -134,7 +134,7 @@ $bg_image_url  = 'https://exploramexicotour.supratecnia.com/wp-content/uploads/2
       </a>
 
       <a href="<?php echo esc_url( $wa_url ); ?>?text=Quiero%20info%20del%20tour%20al%20Cañón%20de%20Comala" class="dest-card">
-        <div class="dest-card-bg" style="background-image: url('https://exploramexicotour.supratecnia.com/wp-content/uploads/2026/05/canon-de-comala.jpg');"></div>
+        <div class="dest-card-bg" style="background-image: url('https://exploramexicotours.com/wp-content/uploads/2026/05/canon-de-comala.jpg');"></div>
         <div class="dest-card-content">
           <div class="dest-card-meta">Aventura · Colima</div>
           <div class="dest-card-title">Cañón de Comala</div>
@@ -153,14 +153,14 @@ $bg_image_url  = 'https://exploramexicotour.supratecnia.com/wp-content/uploads/2
     <div class="creds-grid">
       <div class="cred-item">
         <a href="https://amavoccidente.org/agencia/amavgdl35/" target="_blank" rel="noopener noreferrer">
-          <img src="https://exploramexicotour.supratecnia.com/wp-content/uploads/2026/05/amav.png" alt="AMAV Occidente · Agencia GDL35" class="cred-logo" />
+          <img src="https://exploramexicotours.com/wp-content/uploads/2026/05/amav.png" alt="AMAV Occidente · Agencia GDL35" class="cred-logo" />
         </a>
       </div>
       <div class="cred-item">
-        <img src="https://exploramexicotour.supratecnia.com/wp-content/uploads/2026/05/moderniza.png" alt="Moderniza SECTUR" class="cred-logo" />
+        <img src="https://exploramexicotours.com/wp-content/uploads/2026/05/moderniza.png" alt="Moderniza SECTUR" class="cred-logo" />
       </div>
       <div class="cred-item">
-        <img src="https://exploramexicotour.supratecnia.com/wp-content/uploads/2026/05/logos-impresor-1.png" alt="AMTAVE" class="cred-logo" />
+        <img src="https://exploramexicotours.com/wp-content/uploads/2026/05/logos-impresor-1.png" alt="AMTAVE" class="cred-logo" />
       </div>
     </div>
   </section>
