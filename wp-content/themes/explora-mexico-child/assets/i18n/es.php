@@ -11,6 +11,7 @@ return array(
     // CTAs
     'reservar_ahora'       => 'Reservar ahora',
     'reservar_whatsapp'    => 'Reservar por WhatsApp',
+    'wa_msg_default'       => 'Hola, me interesa información de un tour',
     'ver_tour'             => 'Ver tour',
     'ver_mas'              => 'Ver más',
     'ver_todos'            => 'Ver todos',
