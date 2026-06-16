@@ -45,6 +45,8 @@ return array(
     'blog'                 => 'Blog',
     'contacto'             => 'Contact',
     'nosotros'             => 'About us',
+    'inicio'               => 'Home',
+    'tours'                => 'Tours',
 
     // Footer
     'footer_desc'          => 'Over 20 years crafting authentic travel experiences across Jalisco and all of Mexico.',

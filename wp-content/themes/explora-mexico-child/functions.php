@@ -25,3 +25,4 @@ require_once $emt_inc . 'taxonomies.php';
 require_once $emt_inc . 'acf-fields.php';
 require_once $emt_inc . 'i18n.php';
 require_once $emt_inc . 'security.php';
+require_once $emt_inc . 'template-helpers.php';
