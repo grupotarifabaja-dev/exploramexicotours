@@ -1,0 +1,22 @@
+# El repo almacena texto con LF; Git normaliza al hacer commit.
+# Evita ruido CRLF/LF al trabajar entre Windows y Mac.
+* text=auto eol=lf
+
+# Tipos de texto explícitos -> LF
+*.php  text eol=lf
+*.css  text eol=lf
+*.js   text eol=lf
+*.md   text eol=lf
+*.json text eol=lf
+*.txt  text eol=lf
+*.svg  text eol=lf
+
+# Binarios: que Git NO los toque
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.ico  binary
+*.webp binary
+*.zip  binary
+*.pdf  binary
