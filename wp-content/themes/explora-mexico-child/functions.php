@@ -9,6 +9,7 @@
  *   - inc/cpts.php                Custom Post Types (tour, asesor)
  *   - inc/taxonomies.php          Taxonomías (destino, categoria, experiencia, especialidad, idioma)
  *   - inc/acf-fields.php          Campos ACF (tour, asesor, Options page) por código
+ *   - inc/i18n.php                Sistema bilingüe nativo ES/EN (routing /en/, helpers, hreflang)
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit;
@@ -21,3 +22,4 @@ require_once $emt_inc . 'lead-capture.php';
 require_once $emt_inc . 'cpts.php';
 require_once $emt_inc . 'taxonomies.php';
 require_once $emt_inc . 'acf-fields.php';
+require_once $emt_inc . 'i18n.php';
