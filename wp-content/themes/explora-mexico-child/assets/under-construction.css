@@ -93,8 +93,9 @@ body.emt-under-construction {
    HEADER — estructura sólida con CTA visible
    ============================================ */
 .emt-under-construction .site-header {
-  position: relative;
-  z-index: 5;
+  position: sticky;
+  top: 1rem;
+  z-index: 50;
   backdrop-filter: blur(12px);
   background: rgba(255, 255, 255, 0.85);
   border: 1px solid rgba(0, 51, 102, 0.08);
