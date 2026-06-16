@@ -57,6 +57,15 @@ return array(
 
     // Home / templates
     'saltar_contenido'     => 'Skip to content',
+    'categorias'           => 'Categories',
+    'tours_sub'            => 'Explore all our experiences across Mexico.',
+    'buscar'               => 'Search…',
+    'todas'                => 'All',
+    'precio_max'           => 'Max price',
+    'aplicar_filtros'      => 'Apply filters',
+    'limpiar_filtros'      => 'Clear filters',
+    'resultados_n'         => '%d results',
+    'paginacion'           => 'Pagination',
     'hero_eyebrow'         => 'Your next adventure starts here',
     'hero_title'           => 'Discover Mexico with the locals who know it',
     'hero_sub'             => 'Over 20 years crafting authentic experiences across Jalisco and all of Mexico.',

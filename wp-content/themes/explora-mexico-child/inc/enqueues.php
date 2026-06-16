@@ -88,5 +88,10 @@ function emt_enqueue_template_assets() {
             wp_enqueue_style( "emt-tpl-$m", "$uri/assets/css/$m.css", array( 'emt-tokens' ), $ver );
         }
     }
+
+    if ( ( is_post_type_archive( 'tour' ) || is_tax( array( 'tour_destino', 'tour_categoria', 'tour_experiencia' ) ) )
+        && file_exists( "$dir/assets/js/filter-bar.js" ) ) {
+        wp_enqueue_script( 'emt-filter-bar', "$uri/assets/js/filter-bar.js", array(), $ver, true );
+    }
 }
 add_action( 'wp_enqueue_scripts', 'emt_enqueue_template_assets' );

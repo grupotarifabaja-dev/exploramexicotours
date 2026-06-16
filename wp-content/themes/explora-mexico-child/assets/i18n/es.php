@@ -57,6 +57,15 @@ return array(
 
     // Home / plantillas
     'saltar_contenido'     => 'Saltar al contenido',
+    'categorias'           => 'Categorías',
+    'tours_sub'            => 'Explora todas nuestras experiencias por México.',
+    'buscar'               => 'Buscar…',
+    'todas'                => 'Todas',
+    'precio_max'           => 'Precio máximo',
+    'aplicar_filtros'      => 'Aplicar filtros',
+    'limpiar_filtros'      => 'Limpiar filtros',
+    'resultados_n'         => '%d resultados',
+    'paginacion'           => 'Paginación',
     'hero_eyebrow'         => 'Tu próxima aventura comienza aquí',
     'hero_title'           => 'Descubre México con quien lo conoce',
     'hero_sub'             => 'Más de 20 años creando experiencias auténticas por Jalisco y todo México.',
