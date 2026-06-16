@@ -3,7 +3,7 @@
 **Proyecto:** Sitio web Explora México Tours (EMT)
 **Cliente:** Explora México Tours · Guadalajara, Jalisco
 **Propuesta:** P-10688-EMT
-**Versión del documento:** 1.1
+**Versión del documento:** 1.2
 **Fecha:** Junio 2026
 **Stack base:** WordPress + Hello Elementor parent + `explora-mexico-child`
 **Plazo:** 4 semanas
@@ -79,6 +79,12 @@ EMT vende dos tipos de productos:
 - **SSL:** Let's Encrypt con renovación automática
 - **CDN/Seguridad:** Cloudflare gratis al frente
 - **Correos:** Google Workspace separado (NO en el servidor)
+
+> **Nota v1.2 — Realidad de infraestructura (corrección):** en producción el servidor Hetzner **NO usa CloudPanel/Nginx** como se especifica arriba. Corre **Coolify** (PaaS self-hosted) con **Traefik** como proxy, y el sitio vive en **contenedores Docker** (`wordpress:latest` + `mariadb:11`). Implicaciones:
+> - **Deploy:** Coolify permite **auto-deploy desde GitHub** (push → build → release). Falta definir el pipeline `dev`→staging / `main`→producción ↔ Coolify (pendiente, ver §18 v1.2).
+> - **Persistencia:** uploads, `wp-config` y la BD viven en **volúmenes Docker** (p. ej. `…_wordpress-files`), no en filesystem tradicional (`/var/www` no existe). Lo que deba sobrevivir a un redeploy va en un volumen montado.
+> - **Dependencias de entorno:** plugins como **ACF Pro** son dependencia del **entorno/imagen del contenedor**, no del repo (no se versionan en Git); deben instalarse/activarse dentro del contenedor. El theme registra CPTs/taxonomías/campos ACF por código, pero asume ACF Pro presente.
+> - **Acceso SSH a producción:** solo por **llave** (no contraseña).
 
 ### 2.2 WordPress
 
@@ -1442,6 +1448,45 @@ chore(deps): actualizar Hello Elementor a 3.x
 **Decisiones bloqueantes para Fase A (ninguna):**
 - Ni Place ID ni respuesta de Peek detienen el inicio
 - Claude Code puede arrancar inmediatamente con Fase A (cimientos) — ver §14
+
+### v1.2 — Cierre de Fase A · Cimientos (junio 2026)
+
+Decisiones de construcción tomadas durante la Fase A (ver PR #2). Todas verificadas en entorno local (Local by Flywheel) antes del merge a `dev`.
+
+**Corrección de infraestructura (ver §2.1):**
+- Producción corre **Coolify + Docker** (WordPress + MariaDB en contenedores, Traefik proxy), **no CloudPanel/Nginx**. Implicaciones de deploy, persistencia de volúmenes y ACF Pro como dependencia de entorno documentadas en §2.1.
+
+**CPT `asesor` (el §6.2 no especificaba el registro):**
+- `has_archive => 'asesores'`, `rewrite slug => 'asesores'`, `supports => [title, thumbnail, excerpt, revisions]`, `menu_icon => dashicons-businessperson`, `menu_position => 6`, `show_in_rest => true`.
+
+**Slugs de URL de taxonomías (el §6.3 no los definía):**
+- `tour_destino → destino`, `tour_categoria → categoria-tour` (evita choque con la `category` nativa de WP), `tour_experiencia → experiencia`, `asesor_especialidad → especialidad`, `asesor_idioma → idioma`.
+- Todas con `show_in_rest => true` y `show_admin_column => true`.
+
+**Campos ACF (§6.1/§6.2/§6.4 — registrados por código con `acf_add_local_field_group`):**
+- Organizados en **pestañas (tabs)** para usabilidad (no estaba en el doc).
+- Tipos inferidos donde el doc era ambiguo: `dificultad` select (`facil`/`moderada`/`alta`, valores ascii con labels acentuados, default `facil`); `idiomas` checkbox (`es`/`en`/`fr`/`otros`, default `["es"]`); `excerpt_en` textarea, `descripcion_en` wysiwyg; `true_false` con `ui:1`; `tour_relacionados` `return_format:id, max:4`; imágenes `return_format:array`.
+- Prefijo de field keys: `field_emt_{cpt}_` para tour/asesor; **`field_emt_config_`** para la Options page (el §3.3 solo definía `{cpt}`).
+- Conteos finales (sin contar tabs): **tour = 30** (23 base + 7 gemelos `_en`), **config = 22**, **asesor = 11**.
+- Los 3 grupos son **locales** (`local => php`): no editables desde la UI de ACF.
+
+**i18n — routing bilingüe (§10):**
+- Estrategia **strip-prefix (Opción A)**: el prefijo `/en/` se retira en `do_parse_request` y WP resuelve la ruta restante con sus reglas normales → cubre páginas, CPTs, taxonomías y archivos uniformemente.
+- **Motivo del cambio:** el snippet del §10.1 (`add_rewrite_rule('^en/(.+?)/?$', '…pagename=$matches[1]')`) **rompía con CPTs/taxonomías** (solo resolvía Páginas estáticas → 404 para `/en/tours/…`), contradiciendo el §7.1 ("árbol replicado con prefijo"). El §10.1 queda **reemplazado** por strip-prefix.
+- `emt_current_lang()` captura el path **original** en `$GLOBALS['emt_request_path']` al cargar el módulo, en vez de leer `$_SERVER['REQUEST_URI']` en vivo (el strip-prefix lo modifica). Mismo comportamiento, más robusto.
+- Se conservó la regla `^en/?$ → index.php?lang=en` registrada (+ flush en `after_switch_theme`) como artefacto/fallback.
+
+**Seguridad — división theme vs servidor (§11.1):**
+- **En el theme** (`inc/security.php`): ocultar versión de WP (generator + `?ver` del core, surgical), deshabilitar XML-RPC autenticado + quitar `X-Pingback`, headers `X-Frame-Options`/`X-Content-Type-Options`/`Referrer-Policy` vía `send_headers`, quitar RSD/wlwmanifest/shortlink, forzar `DISALLOW_FILE_EDIT`.
+- **Diferido a servidor (Nginx/Cloudflare):** `Content-Security-Policy` (requiere mapear recursos externos), `Strict-Transport-Security` (HSTS), bloqueo total de `xmlrpc.php` (el filtro del theme solo cubre métodos autenticados).
+
+**A6 cubierto en A4:** la Options page "Configuración EMT" se implementó dentro del bloque de ACF.
+
+**Pendientes anotados para fases futuras:**
+- Definir el **pipeline de deploy Coolify ↔ GitHub** (auto-deploy `dev`→staging, `main`→producción).
+- **CSP** y **HSTS** a nivel servidor/Cloudflare (cuando el sitio esté completo y los recursos externos mapeados).
+- **Bloqueo total de `xmlrpc.php`** vía regla Nginx (`deny`), complementando el filtro del theme.
+- **Roles custom (§11.3):** Tour Manager y Asesor Manager (CRUD restringido a su CPT) — no entraban en A7.
 
 ### (próximas decisiones aquí)
 
