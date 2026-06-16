@@ -8,6 +8,7 @@
  *   - inc/lead-capture.php        Endpoint REST de leads + panel admin "Leads EMT"
  *   - inc/cpts.php                Custom Post Types (tour, asesor)
  *   - inc/taxonomies.php          Taxonomías (destino, categoria, experiencia, especialidad, idioma)
+ *   - inc/acf-fields.php          Campos ACF (tour, asesor, Options page) por código
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit;
@@ -19,3 +20,4 @@ require_once $emt_inc . 'under-construction.php';
 require_once $emt_inc . 'lead-capture.php';
 require_once $emt_inc . 'cpts.php';
 require_once $emt_inc . 'taxonomies.php';
+require_once $emt_inc . 'acf-fields.php';
