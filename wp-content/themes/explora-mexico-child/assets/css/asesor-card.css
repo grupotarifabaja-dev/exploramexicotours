@@ -1,0 +1,64 @@
+/* ============================================================
+   ASESOR CARD (doc maestro §8.4) — emt-asesor-card
+   ============================================================ */
+.emt-asesor-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--emt-blanco);
+  border: 1px solid var(--emt-color-border);
+  border-radius: var(--emt-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--emt-shadow-sm);
+  transition: transform var(--emt-transition-base), box-shadow var(--emt-transition-base);
+}
+.emt-asesor-card:hover { transform: translateY(-4px); box-shadow: var(--emt-shadow-lg); }
+
+.emt-asesor-card__media { display: block; aspect-ratio: 3 / 4; overflow: hidden; }
+.emt-asesor-card__photo { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.emt-asesor-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--emt-spacing-sm);
+  padding: var(--emt-spacing-lg);
+  flex: 1;
+}
+.emt-asesor-card__name { font-family: var(--emt-font-display); font-size: var(--emt-fs-md); font-weight: var(--emt-fw-semibold); margin: 0; }
+.emt-asesor-card__name a { color: var(--emt-azul-profundo); text-decoration: none; }
+.emt-asesor-card__role { color: var(--emt-color-text-muted); font-size: var(--emt-fs-sm); margin: 0; }
+
+.emt-asesor-card__langs,
+.emt-asesor-card__specs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--emt-spacing-xs);
+}
+.emt-asesor-card__lang {
+  font-size: var(--emt-fs-xs);
+  font-weight: var(--emt-fw-semibold);
+  color: var(--emt-azul-profundo);
+  background: var(--emt-gris-claro);
+  border: 1px solid var(--emt-color-border);
+  padding: 0.1rem 0.5rem;
+  border-radius: var(--emt-radius-sm);
+}
+.emt-asesor-card__spec {
+  font-size: var(--emt-fs-xs);
+  color: var(--emt-turquesa);
+  background: rgba(0, 159, 174, 0.1);
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--emt-radius-pill);
+}
+
+.emt-asesor-card__actions {
+  margin-top: auto;
+  display: flex;
+  gap: var(--emt-spacing-sm);
+  padding-top: var(--emt-spacing-sm);
+}
+.emt-asesor-card__actions .emt-btn { flex: 1; font-size: var(--emt-fs-xs); padding: 0.5rem 0.75rem; }
+.emt-btn--whatsapp { background: #25D366; color: var(--emt-blanco); }
+.emt-btn--whatsapp:hover { background: #1da851; transform: translateY(-1px); }

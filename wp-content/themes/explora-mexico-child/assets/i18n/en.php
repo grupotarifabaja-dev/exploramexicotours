@@ -14,6 +14,7 @@ return array(
     'ver_tour'             => 'View tour',
     'ver_mas'              => 'See more',
     'ver_todos'            => 'See all',
+    'ver_perfil'           => 'View profile',
     'cotizar_grupo'        => 'Get a group quote',
     'contactar'            => 'Contact',
     'leer_mas'             => 'Read more',
