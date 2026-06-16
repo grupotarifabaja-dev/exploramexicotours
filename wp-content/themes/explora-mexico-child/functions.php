@@ -6,6 +6,8 @@
  *   - inc/enqueues.php           Estilos (parent + child)
  *   - inc/under-construction.php  Modo under construction
  *   - inc/lead-capture.php        Endpoint REST de leads + panel admin "Leads EMT"
+ *   - inc/cpts.php                Custom Post Types (tour, asesor)
+ *   - inc/taxonomies.php          Taxonomías (destino, categoria, experiencia, especialidad, idioma)
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit;
@@ -15,3 +17,5 @@ $emt_inc = get_stylesheet_directory() . '/inc/';
 require_once $emt_inc . 'enqueues.php';
 require_once $emt_inc . 'under-construction.php';
 require_once $emt_inc . 'lead-capture.php';
+require_once $emt_inc . 'cpts.php';
+require_once $emt_inc . 'taxonomies.php';
