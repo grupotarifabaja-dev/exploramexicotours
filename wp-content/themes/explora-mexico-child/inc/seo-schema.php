@@ -52,3 +52,32 @@ function emt_tour_schema() {
 
     echo '<script type="application/ld+json">' . wp_json_encode( $schema ) . '</script>' . "\n";
 }
+
+add_action( 'wp_head', 'emt_asesor_schema', 5 );
+function emt_asesor_schema() {
+    if ( ! is_singular( 'asesor' ) ) {
+        return;
+    }
+    $id     = get_the_ID();
+    $schema = array(
+        '@context' => 'https://schema.org',
+        '@type'    => 'Person',
+        'name'     => get_the_title( $id ),
+        'worksFor' => array(
+            '@type' => 'TravelAgency',
+            'name'  => 'Explora México Tours',
+        ),
+    );
+    if ( function_exists( 'get_field' ) ) {
+        $puesto = get_field( 'puesto', $id );
+        $tel    = get_field( 'telefono', $id );
+        $email  = get_field( 'email', $id );
+        if ( $puesto ) { $schema['jobTitle'] = $puesto; }
+        if ( $tel )    { $schema['telephone'] = $tel; }
+        if ( $email )  { $schema['email'] = $email; }
+    }
+    if ( has_post_thumbnail( $id ) ) {
+        $schema['image'] = get_the_post_thumbnail_url( $id, 'full' );
+    }
+    echo '<script type="application/ld+json">' . wp_json_encode( $schema ) . '</script>' . "\n";
+}

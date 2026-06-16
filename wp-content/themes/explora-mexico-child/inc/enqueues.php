@@ -93,5 +93,9 @@ function emt_enqueue_template_assets() {
         && file_exists( "$dir/assets/js/filter-bar.js" ) ) {
         wp_enqueue_script( 'emt-filter-bar', "$uri/assets/js/filter-bar.js", array(), $ver, true );
     }
+
+    if ( is_singular( 'asesor' ) && file_exists( "$dir/assets/js/asesor-qr.js" ) ) {
+        wp_enqueue_script( 'emt-asesor-qr', "$uri/assets/js/asesor-qr.js", array(), $ver, true );
+    }
 }
 add_action( 'wp_enqueue_scripts', 'emt_enqueue_template_assets' );

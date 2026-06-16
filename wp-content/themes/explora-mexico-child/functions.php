@@ -27,3 +27,4 @@ require_once $emt_inc . 'i18n.php';
 require_once $emt_inc . 'security.php';
 require_once $emt_inc . 'template-helpers.php';
 require_once $emt_inc . 'seo-schema.php';
+require_once $emt_inc . 'asesor-functions.php';
