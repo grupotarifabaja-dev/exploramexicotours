@@ -53,3 +53,40 @@ function emt_enqueue_site_assets() {
     }
 }
 add_action( 'wp_enqueue_scripts', 'emt_enqueue_site_assets' );
+
+/**
+ * CSS específico por plantilla (Fase C). Solo fuera del under construction.
+ */
+function emt_enqueue_template_assets() {
+    if ( defined( 'EMT_UNDER_CONSTRUCTION' ) && EMT_UNDER_CONSTRUCTION
+        && ! is_admin() && ! current_user_can( 'manage_options' ) ) {
+        return;
+    }
+    $dir = get_stylesheet_directory();
+    $uri = get_stylesheet_directory_uri();
+    $ver = wp_get_theme()->get( 'Version' );
+
+    $map = array();
+    if ( is_front_page() ) {
+        $map[] = 'home';
+    }
+    if ( is_post_type_archive( 'tour' ) || is_tax( array( 'tour_destino', 'tour_categoria', 'tour_experiencia' ) ) ) {
+        $map[] = 'tour-archive';
+    }
+    if ( is_singular( 'tour' ) ) {
+        $map[] = 'tour-single';
+    }
+    if ( is_post_type_archive( 'asesor' ) ) {
+        $map[] = 'asesor-archive';
+    }
+    if ( is_singular( 'asesor' ) ) {
+        $map[] = 'asesor-single';
+    }
+
+    foreach ( $map as $m ) {
+        if ( file_exists( "$dir/assets/css/$m.css" ) ) {
+            wp_enqueue_style( "emt-tpl-$m", "$uri/assets/css/$m.css", array( 'emt-tokens' ), $ver );
+        }
+    }
+}
+add_action( 'wp_enqueue_scripts', 'emt_enqueue_template_assets' );

@@ -55,6 +55,20 @@ return array(
     'aviso_privacidad'     => 'Privacy notice',
     'terminos'             => 'Terms & conditions',
 
+    // Home / templates
+    'saltar_contenido'     => 'Skip to content',
+    'hero_eyebrow'         => 'Your next adventure starts here',
+    'hero_title'           => 'Discover Mexico with the locals who know it',
+    'hero_sub'             => 'Over 20 years crafting authentic experiences across Jalisco and all of Mexico.',
+    'destinos_destacados'  => 'Must-see destinations',
+    'tours_imperdibles'    => 'Unmissable tours',
+    'explora_experiencia'  => 'Explore by experience',
+    'trust_anios'          => 'Years traveling',
+    'trust_tours'          => 'Active tours',
+    'trust_destinos'       => 'Destinations',
+    'trust_viajeros'       => 'Happy travelers',
+    'cta_grupos_title'     => 'Traveling as a group? Get a custom quote',
+
     // States
     'cargando'             => 'Loading…',
     'sin_resultados'       => 'No results',
