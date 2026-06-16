@@ -44,6 +44,13 @@ return array(
     'contacto'             => 'Contact',
     'nosotros'             => 'About us',
 
+    // Footer
+    'footer_desc'          => 'Over 20 years crafting authentic travel experiences across Jalisco and all of Mexico.',
+    'enlaces_rapidos'      => 'Quick links',
+    'legales'              => 'Legal',
+    'aviso_privacidad'     => 'Privacy notice',
+    'terminos'             => 'Terms & conditions',
+
     // States
     'cargando'             => 'Loading…',
     'sin_resultados'       => 'No results',

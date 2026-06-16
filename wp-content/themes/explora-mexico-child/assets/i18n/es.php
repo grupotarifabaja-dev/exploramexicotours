@@ -44,6 +44,13 @@ return array(
     'contacto'             => 'Contacto',
     'nosotros'             => 'Nosotros',
 
+    // Footer
+    'footer_desc'          => 'Más de 20 años creando experiencias de viaje auténticas por Jalisco y todo México.',
+    'enlaces_rapidos'      => 'Enlaces rápidos',
+    'legales'              => 'Legales',
+    'aviso_privacidad'     => 'Aviso de privacidad',
+    'terminos'             => 'Términos y condiciones',
+
     // Estados
     'cargando'             => 'Cargando…',
     'sin_resultados'       => 'Sin resultados',
