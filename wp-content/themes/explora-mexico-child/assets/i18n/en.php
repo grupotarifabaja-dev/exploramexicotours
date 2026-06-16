@@ -17,6 +17,7 @@ return array(
     'ver_todos'            => 'See all',
     'ver_perfil'           => 'View profile',
     'cotizar_grupo'        => 'Get a group quote',
+    'solicitar_cotizacion' => 'Request a quote',
     'contactar'            => 'Contact',
     'leer_mas'             => 'Read more',
 

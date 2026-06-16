@@ -17,6 +17,7 @@ return array(
     'ver_todos'            => 'Ver todos',
     'ver_perfil'           => 'Ver perfil',
     'cotizar_grupo'        => 'Cotizar grupo',
+    'solicitar_cotizacion' => 'Solicitar cotización',
     'contactar'            => 'Contactar',
     'leer_mas'             => 'Leer más',
 
