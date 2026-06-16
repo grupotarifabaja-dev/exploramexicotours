@@ -1,0 +1,95 @@
+/* ============================================================
+   MEGA-MENÚ (doc maestro §7.3) — BEM emt-mega
+   ============================================================ */
+.emt-mega {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 100%;
+  background: var(--emt-blanco);
+  border-top: 1px solid var(--emt-color-border);
+  box-shadow: var(--emt-shadow-lg);
+  z-index: var(--emt-z-mega);
+  padding: var(--emt-spacing-xl) 0;
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+  transition: opacity var(--emt-transition-base), transform var(--emt-transition-base);
+}
+.emt-mega.is-open {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.emt-mega[hidden] { display: block; } /* visibilidad por .is-open, no por hidden */
+
+.emt-mega__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: var(--emt-spacing-lg);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.emt-mega__link {
+  display: block;
+  text-decoration: none;
+  color: var(--emt-azul-profundo);
+  border-radius: var(--emt-radius-md);
+  overflow: hidden;
+  transition: transform var(--emt-transition-fast);
+}
+.emt-mega__link:hover { transform: translateY(-3px); }
+.emt-mega__img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background-size: cover;
+  background-position: center;
+  border-radius: var(--emt-radius-md);
+}
+.emt-mega__img--placeholder {
+  background: linear-gradient(135deg, var(--emt-turquesa), var(--emt-azul-brillante));
+  opacity: 0.85;
+}
+.emt-mega__name {
+  display: block;
+  font-family: var(--emt-font-display);
+  font-weight: var(--emt-fw-semibold);
+  font-size: var(--emt-fs-sm);
+  padding: var(--emt-spacing-sm) var(--emt-spacing-xs);
+}
+
+/* Panel lineal (experiencias) */
+.emt-mega__linear {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--emt-spacing-sm);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.emt-mega__chip {
+  display: inline-block;
+  text-decoration: none;
+  font-family: var(--emt-font-display);
+  font-size: var(--emt-fs-sm);
+  font-weight: var(--emt-fw-medium);
+  color: var(--emt-azul-profundo);
+  background: var(--emt-gris-claro);
+  padding: var(--emt-spacing-sm) var(--emt-spacing-md);
+  border-radius: var(--emt-radius-pill);
+  transition: background var(--emt-transition-fast), color var(--emt-transition-fast);
+}
+.emt-mega__chip:hover {
+  background: var(--emt-turquesa);
+  color: var(--emt-blanco);
+}
+.emt-mega__empty {
+  color: var(--emt-color-text-muted);
+  font-size: var(--emt-fs-sm);
+}
+
+@media (max-width: 719px) {
+  .emt-mega { display: none !important; } /* en móvil se usa el drawer */
+}

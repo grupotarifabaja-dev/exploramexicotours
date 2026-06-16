@@ -34,6 +34,9 @@ return array(
     'tours_relacionados'   => 'Tours relacionados',
 
     // Navegación
+    'a_donde_ir'           => '¿A dónde ir?',
+    'que_tour'             => '¿Qué tour?',
+    'menu'                 => 'Menú',
     'destinos'             => 'Destinos',
     'experiencias'         => 'Experiencias',
     'asesores'             => 'Asesores',

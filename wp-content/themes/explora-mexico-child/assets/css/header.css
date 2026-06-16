@@ -1,0 +1,174 @@
+/* ============================================================
+   HEADER (doc maestro §7.3 / §8.1) — BEM emt-header
+   ============================================================ */
+.emt-header {
+  position: sticky;
+  top: 0;
+  z-index: var(--emt-z-header);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--emt-color-border);
+  transition: box-shadow var(--emt-transition-base), background var(--emt-transition-base);
+}
+.emt-header.is-scrolled {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: var(--emt-shadow-md);
+}
+.emt-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--emt-spacing-lg);
+  min-height: 72px;
+}
+.emt-header__logo img {
+  display: block;
+  height: 44px;
+  width: auto;
+}
+
+/* Navegación principal */
+.emt-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--emt-spacing-xs);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.emt-nav__link,
+.emt-nav__trigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--emt-font-display);
+  font-size: var(--emt-fs-sm);
+  font-weight: var(--emt-fw-medium);
+  color: var(--emt-azul-profundo);
+  background: none;
+  border: 0;
+  cursor: pointer;
+  padding: var(--emt-spacing-sm) var(--emt-spacing-md);
+  border-radius: var(--emt-radius-pill);
+  text-decoration: none;
+  transition: background var(--emt-transition-fast), color var(--emt-transition-fast);
+}
+.emt-nav__link:hover,
+.emt-nav__trigger:hover,
+.emt-nav__trigger[aria-expanded="true"] {
+  background: var(--emt-gris-claro);
+  color: var(--emt-azul-brillante);
+}
+.emt-nav__caret {
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: rotate(45deg) translateY(-2px);
+  transition: transform var(--emt-transition-fast);
+}
+.emt-nav__trigger[aria-expanded="true"] .emt-nav__caret {
+  transform: rotate(-135deg) translateY(-2px);
+}
+
+/* Acciones */
+.emt-header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--emt-spacing-md);
+}
+.emt-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--emt-font-display);
+  font-weight: var(--emt-fw-semibold);
+  font-size: var(--emt-fs-sm);
+  padding: 0.6rem 1.25rem;
+  border-radius: var(--emt-radius-pill);
+  text-decoration: none;
+  border: 0;
+  cursor: pointer;
+  transition: transform var(--emt-transition-fast), background var(--emt-transition-fast);
+}
+.emt-btn--cta {
+  background: var(--emt-color-cta);
+  color: var(--emt-blanco);
+}
+.emt-btn--cta:hover {
+  background: var(--emt-color-cta-hover);
+  transform: translateY(-1px);
+}
+
+/* Hamburguesa (oculta en desktop) */
+.emt-header__burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+.emt-header__burger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--emt-azul-profundo);
+  transition: transform var(--emt-transition-fast), opacity var(--emt-transition-fast);
+}
+.emt-header__burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.emt-header__burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.emt-header__burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Drawer móvil */
+.emt-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100dvh;
+  width: min(82vw, 360px);
+  background: var(--emt-blanco);
+  z-index: var(--emt-z-drawer);
+  padding: var(--emt-spacing-3xl) var(--emt-spacing-xl);
+  box-shadow: var(--emt-shadow-xl);
+  transform: translateX(100%);
+  transition: transform var(--emt-transition-base);
+}
+.emt-drawer.is-open { transform: translateX(0); }
+.emt-drawer[hidden] { display: block; } /* controlado por transform, no por hidden visual */
+.emt-drawer__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--emt-spacing-sm); }
+.emt-drawer__link {
+  display: block;
+  font-family: var(--emt-font-display);
+  font-size: var(--emt-fs-md);
+  font-weight: var(--emt-fw-medium);
+  color: var(--emt-azul-profundo);
+  text-decoration: none;
+  padding: var(--emt-spacing-md) 0;
+  border-bottom: 1px solid var(--emt-color-border);
+}
+.emt-drawer__overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 51, 102, 0.4);
+  z-index: var(--emt-z-drawer);
+  opacity: 0;
+  transition: opacity var(--emt-transition-base);
+}
+.emt-drawer__overlay.is-open { opacity: 1; }
+
+/* Responsive: < 720px (md) colapsa a hamburguesa */
+@media (max-width: 719px) {
+  .emt-header__nav { display: none; }
+  .emt-btn--cta { display: none; }
+  .emt-header__burger { display: flex; }
+}
+@media (min-width: 720px) {
+  .emt-drawer,
+  .emt-drawer__overlay { display: none !important; }
+}
