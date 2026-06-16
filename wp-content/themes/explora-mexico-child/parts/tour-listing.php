@@ -101,9 +101,12 @@ $difs       = array( 'facil' => 'Fácil', 'moderada' => 'Moderada', 'alta' => 'A
                     <?php emt_render_tour_card( get_the_ID() ); ?>
                 <?php endwhile; ?>
             </div>
-            <nav class="emt-pagination" aria-label="<?php echo esc_attr( emt_t( 'paginacion' ) ); ?>">
-                <?php echo wp_kses_post( paginate_links( array( 'total' => $query->max_num_pages, 'current' => $paged, 'mid_size' => 1 ) ) ); ?>
-            </nav>
+            <?php $emt_pag = paginate_links( array( 'total' => $query->max_num_pages, 'current' => $paged, 'mid_size' => 1 ) ); ?>
+            <?php if ( $emt_pag ) : ?>
+                <nav class="emt-pagination" aria-label="<?php echo esc_attr( emt_t( 'paginacion' ) ); ?>">
+                    <?php echo wp_kses_post( $emt_pag ); ?>
+                </nav>
+            <?php endif; ?>
         <?php else : ?>
             <p class="emt-listing__empty"><?php echo esc_html( emt_t( 'sin_resultados' ) ); ?></p>
         <?php endif; wp_reset_postdata(); ?>
