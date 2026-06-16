@@ -43,6 +43,8 @@ return array(
     'destinos'             => 'Destinations',
     'experiencias'         => 'Experiences',
     'asesores'             => 'Advisors',
+    'especialidades'       => 'Specialties',
+    'nuestro_equipo'       => 'Our team of advisors',
     'blog'                 => 'Blog',
     'contacto'             => 'Contact',
     'nosotros'             => 'About us',

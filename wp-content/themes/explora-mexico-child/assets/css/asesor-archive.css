@@ -1,0 +1,29 @@
+/* ============================================================
+   ASESOR ARCHIVE / directorio (doc maestro §8.4)
+   ============================================================ */
+.emt-asesor-archive { padding-block: var(--emt-spacing-2xl) var(--emt-spacing-4xl); }
+
+.emt-asesor-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--emt-spacing-xl);
+  align-items: flex-end;
+  background: var(--emt-gris-claro);
+  padding: var(--emt-spacing-lg);
+  border-radius: var(--emt-radius-lg);
+  margin-bottom: var(--emt-spacing-2xl);
+}
+.emt-asesor-filters .emt-filters__group { border: 0; padding: 0; margin: 0; }
+.emt-asesor-filters legend { font-family: var(--emt-font-display); font-weight: var(--emt-fw-semibold); color: var(--emt-azul-profundo); margin-bottom: var(--emt-spacing-sm); }
+.emt-asesor-filters .emt-filters__opt { display: inline-flex; align-items: center; gap: 4px; margin-right: var(--emt-spacing-md); font-size: var(--emt-fs-sm); }
+
+.emt-asesores-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--emt-spacing-lg);
+}
+@media (min-width: 600px)  { .emt-asesores-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .emt-asesores-grid { grid-template-columns: repeat(4, 1fr); } }
