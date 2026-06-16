@@ -11,9 +11,11 @@ return array(
     // CTAs
     'reservar_ahora'       => 'Reservar ahora',
     'reservar_whatsapp'    => 'Reservar por WhatsApp',
+    'wa_msg_default'       => 'Hola, me interesa información de un tour',
     'ver_tour'             => 'Ver tour',
     'ver_mas'              => 'Ver más',
     'ver_todos'            => 'Ver todos',
+    'ver_perfil'           => 'Ver perfil',
     'cotizar_grupo'        => 'Cotizar grupo',
     'contactar'            => 'Contactar',
     'leer_mas'             => 'Leer más',
@@ -34,12 +36,24 @@ return array(
     'tours_relacionados'   => 'Tours relacionados',
 
     // Navegación
+    'a_donde_ir'           => '¿A dónde ir?',
+    'que_tour'             => '¿Qué tour?',
+    'menu'                 => 'Menú',
     'destinos'             => 'Destinos',
     'experiencias'         => 'Experiencias',
     'asesores'             => 'Asesores',
     'blog'                 => 'Blog',
     'contacto'             => 'Contacto',
     'nosotros'             => 'Nosotros',
+    'inicio'               => 'Inicio',
+    'tours'                => 'Tours',
+
+    // Footer
+    'footer_desc'          => 'Más de 20 años creando experiencias de viaje auténticas por Jalisco y todo México.',
+    'enlaces_rapidos'      => 'Enlaces rápidos',
+    'legales'              => 'Legales',
+    'aviso_privacidad'     => 'Aviso de privacidad',
+    'terminos'             => 'Términos y condiciones',
 
     // Estados
     'cargando'             => 'Cargando…',

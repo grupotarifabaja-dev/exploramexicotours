@@ -1,0 +1,107 @@
+/* ============================================================
+   TOUR CARD (doc maestro §3.4 BEM, §8.2) — emt-tour-card
+   ============================================================ */
+.emt-tour-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--emt-blanco);
+  border: 1px solid var(--emt-color-border);
+  border-radius: var(--emt-radius-lg);
+  overflow: hidden;
+  box-shadow: var(--emt-shadow-sm);
+  transition: transform var(--emt-transition-base), box-shadow var(--emt-transition-base);
+}
+.emt-tour-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--emt-shadow-lg);
+}
+
+.emt-tour-card__media {
+  position: relative;
+  display: block;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+}
+.emt-tour-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--emt-transition-slow);
+}
+.emt-tour-card:hover .emt-tour-card__image { transform: scale(1.06); }
+
+.emt-tour-card__badge {
+  position: absolute;
+  top: var(--emt-spacing-md);
+  left: var(--emt-spacing-md);
+  font-size: var(--emt-fs-xs);
+  font-weight: var(--emt-fw-semibold);
+  font-family: var(--emt-font-display);
+  color: var(--emt-blanco);
+  background: var(--emt-turquesa);
+  padding: 0.25rem 0.6rem;
+  border-radius: var(--emt-radius-pill);
+}
+.emt-tour-card__flags {
+  position: absolute;
+  bottom: var(--emt-spacing-md);
+  left: var(--emt-spacing-md);
+  right: var(--emt-spacing-md);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--emt-spacing-xs);
+}
+.emt-tour-card__flag {
+  font-size: var(--emt-fs-xs);
+  font-weight: var(--emt-fw-semibold);
+  color: var(--emt-blanco);
+  padding: 0.2rem 0.55rem;
+  border-radius: var(--emt-radius-pill);
+  backdrop-filter: blur(4px);
+}
+.emt-tour-card__flag--ok { background: rgba(139, 195, 74, 0.92); }
+.emt-tour-card__flag--pickup { background: rgba(242, 140, 0, 0.92); }
+
+.emt-tour-card__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--emt-spacing-sm);
+  padding: var(--emt-spacing-lg);
+  flex: 1;
+}
+.emt-tour-card__title {
+  font-family: var(--emt-font-display);
+  font-size: var(--emt-fs-md);
+  font-weight: var(--emt-fw-semibold);
+  line-height: var(--emt-lh-snug);
+  margin: 0;
+}
+.emt-tour-card__title a { color: var(--emt-azul-profundo); text-decoration: none; }
+.emt-tour-card__title a:hover { color: var(--emt-azul-brillante); }
+.emt-tour-card__meta { color: var(--emt-color-text-muted); font-size: var(--emt-fs-sm); margin: 0; }
+.emt-tour-card__tags { display: flex; flex-wrap: wrap; gap: var(--emt-spacing-xs); margin: 0; }
+.emt-tour-card__tag {
+  font-size: var(--emt-fs-xs);
+  color: var(--emt-azul-brillante);
+  background: var(--emt-gris-claro);
+  padding: 0.15rem 0.5rem;
+  border-radius: var(--emt-radius-sm);
+}
+
+.emt-tour-card__footer {
+  margin-top: auto;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--emt-spacing-sm);
+  padding-top: var(--emt-spacing-sm);
+  border-top: 1px solid var(--emt-color-border);
+}
+.emt-tour-card__price { margin: 0; display: flex; flex-direction: column; }
+.emt-tour-card__price-label { font-size: var(--emt-fs-xs); color: var(--emt-color-text-muted); }
+.emt-tour-card__price-value { font-family: var(--emt-font-display); font-weight: var(--emt-fw-bold); color: var(--emt-azul-profundo); font-size: var(--emt-fs-md); }
+
+/* Botón secundario (azul) usado por la card */
+.emt-btn--secondary { background: var(--emt-azul-brillante); color: var(--emt-blanco); }
+.emt-btn--secondary:hover { background: var(--emt-azul-profundo); transform: translateY(-1px); }

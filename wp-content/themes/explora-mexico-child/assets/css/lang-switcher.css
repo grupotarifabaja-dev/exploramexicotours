@@ -1,0 +1,26 @@
+/* ============================================================
+   LANG SWITCHER (doc maestro §10.3) — emt-lang
+   ============================================================ */
+.emt-lang {
+  display: inline-flex;
+  align-items: center;
+  background: var(--emt-gris-claro);
+  border-radius: var(--emt-radius-pill);
+  padding: 3px;
+}
+.emt-lang__opt {
+  font-family: var(--emt-font-display);
+  font-size: var(--emt-fs-xs);
+  font-weight: var(--emt-fw-semibold);
+  color: var(--emt-color-text-muted);
+  text-decoration: none;
+  padding: 0.3rem 0.7rem;
+  border-radius: var(--emt-radius-pill);
+  line-height: 1;
+  transition: background var(--emt-transition-fast), color var(--emt-transition-fast);
+}
+.emt-lang__opt:hover { color: var(--emt-azul-profundo); }
+.emt-lang__opt.is-active {
+  background: var(--emt-azul-profundo);
+  color: var(--emt-blanco);
+}

@@ -1,0 +1,159 @@
+<?php
+/**
+ * Helpers de renderizado y plantillas (doc maestro §14·B7, §7.4).
+ *
+ * Provee:
+ *   - emt_render_tour_card( $tour )
+ *   - emt_render_asesor_card( $asesor )
+ *   - emt_get_image_or_placeholder( $post_id, $size )
+ *   - emt_format_price( $amount, $currency )
+ *   - emt_breadcrumbs() (+ JSON-LD BreadcrumbList)
+ */
+
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+/**
+ * Renderiza una tarjeta de tour incluyendo parts/tour-card.php.
+ *
+ * @param int|WP_Post $tour ID o post del tour.
+ * @return void Imprime el HTML de la tarjeta.
+ */
+function emt_render_tour_card( $tour ) {
+    $emt_card_tour = $tour; // visible para el partial vía scope del include
+    include get_stylesheet_directory() . '/parts/tour-card.php';
+}
+
+/**
+ * Renderiza una tarjeta de asesor incluyendo parts/asesor-card.php.
+ *
+ * @param int|WP_Post $asesor ID o post del asesor.
+ * @return void Imprime el HTML de la tarjeta.
+ */
+function emt_render_asesor_card( $asesor ) {
+    $emt_card_asesor = $asesor;
+    include get_stylesheet_directory() . '/parts/asesor-card.php';
+}
+
+/**
+ * Devuelve la URL de la imagen destacada del post o un placeholder del theme.
+ *
+ * @param int    $post_id ID del post.
+ * @param string $size    Tamaño de imagen registrado.
+ * @return string URL de imagen (real o placeholder).
+ */
+function emt_get_image_or_placeholder( $post_id, $size = 'large' ) {
+    if ( has_post_thumbnail( $post_id ) ) {
+        $url = get_the_post_thumbnail_url( $post_id, $size );
+        if ( $url ) {
+            return $url;
+        }
+    }
+    return get_stylesheet_directory_uri() . '/assets/images/placeholders/placeholder.svg';
+}
+
+/**
+ * Formatea un precio. MXN sin decimales (doc maestro §6.1).
+ *
+ * @param int|float|string $amount   Monto.
+ * @param string           $currency Código de moneda (default MXN).
+ * @return string Precio formateado (p. ej. "$1,899 MXN") o '' si no hay monto.
+ */
+function emt_format_price( $amount, $currency = 'MXN' ) {
+    if ( $amount === '' || $amount === null ) {
+        return '';
+    }
+    $decimals = ( $currency === 'MXN' ) ? 0 : 2;
+    return '$' . number_format_i18n( (float) $amount, $decimals ) . ' ' . $currency;
+}
+
+/**
+ * Construye la lista de crumbs según el contexto actual (doc maestro §7.4).
+ *
+ * @return array<int,array{name:string,url:string}>
+ */
+function emt_get_breadcrumb_items() {
+    $lang   = function_exists( 'emt_current_lang' ) ? emt_current_lang() : 'es';
+    $prefix = ( $lang === 'en' ) ? '/en' : '';
+    $items  = array();
+
+    $items[] = array(
+        'name' => function_exists( 'emt_t' ) ? emt_t( 'inicio' ) : 'Inicio',
+        'url'  => home_url( $prefix . '/' ),
+    );
+
+    if ( is_singular( 'tour' ) ) {
+        $items[] = array( 'name' => emt_t( 'tours' ), 'url' => home_url( $prefix . '/tours/' ) );
+        $terms = get_the_terms( get_the_ID(), 'tour_destino' );
+        if ( $terms && ! is_wp_error( $terms ) ) {
+            $tl = get_term_link( $terms[0] );
+            $items[] = array( 'name' => $terms[0]->name, 'url' => is_wp_error( $tl ) ? '#' : $tl );
+        }
+        $items[] = array( 'name' => get_the_title(), 'url' => get_permalink() );
+    } elseif ( is_post_type_archive( 'tour' ) ) {
+        $items[] = array( 'name' => emt_t( 'tours' ), 'url' => home_url( $prefix . '/tours/' ) );
+    } elseif ( is_tax( array( 'tour_destino', 'tour_categoria', 'tour_experiencia' ) ) ) {
+        $items[] = array( 'name' => emt_t( 'tours' ), 'url' => home_url( $prefix . '/tours/' ) );
+        $term = get_queried_object();
+        if ( $term && isset( $term->name ) ) {
+            $items[] = array( 'name' => $term->name, 'url' => '' );
+        }
+    } elseif ( is_singular( 'asesor' ) ) {
+        $items[] = array( 'name' => emt_t( 'asesores' ), 'url' => home_url( $prefix . '/asesores/' ) );
+        $items[] = array( 'name' => get_the_title(), 'url' => get_permalink() );
+    } elseif ( is_post_type_archive( 'asesor' ) ) {
+        $items[] = array( 'name' => emt_t( 'asesores' ), 'url' => home_url( $prefix . '/asesores/' ) );
+    } elseif ( is_singular( 'post' ) ) {
+        $items[] = array( 'name' => emt_t( 'blog' ), 'url' => home_url( $prefix . '/blog/' ) );
+        $items[] = array( 'name' => get_the_title(), 'url' => get_permalink() );
+    } elseif ( is_singular() || is_page() ) {
+        $items[] = array( 'name' => get_the_title(), 'url' => get_permalink() );
+    }
+
+    return $items;
+}
+
+/**
+ * Imprime los breadcrumbs (nav accesible) + JSON-LD BreadcrumbList (§7.4, §9.5).
+ *
+ * @return void
+ */
+function emt_breadcrumbs() {
+    $items = emt_get_breadcrumb_items();
+    if ( count( $items ) < 2 ) {
+        return; // en el home no se muestran
+    }
+
+    echo '<nav class="emt-breadcrumbs" aria-label="Breadcrumb"><ol class="emt-breadcrumbs__list">';
+    $last = count( $items ) - 1;
+    foreach ( $items as $i => $c ) {
+        $is_last = ( $i === $last );
+        echo '<li class="emt-breadcrumbs__item">';
+        if ( ! $is_last && ! empty( $c['url'] ) ) {
+            printf( '<a href="%s">%s</a>', esc_url( $c['url'] ), esc_html( $c['name'] ) );
+        } else {
+            printf( '<span aria-current="page">%s</span>', esc_html( $c['name'] ) );
+        }
+        echo '</li>';
+    }
+    echo '</ol></nav>';
+
+    // JSON-LD BreadcrumbList
+    $list = array();
+    foreach ( $items as $i => $c ) {
+        $entry = array(
+            '@type'    => 'ListItem',
+            'position' => $i + 1,
+            'name'     => $c['name'],
+        );
+        if ( ! empty( $c['url'] ) ) {
+            $entry['item'] = $c['url'];
+        }
+        $list[] = $entry;
+    }
+    $schema = array(
+        '@context'        => 'https://schema.org',
+        '@type'           => 'BreadcrumbList',
+        'itemListElement' => $list,
+    );
+    echo '<script type="application/ld+json">' . wp_json_encode( $schema ) . '</script>';
+}
