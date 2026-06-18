@@ -1,0 +1,64 @@
+/* ============================================================
+   HOME (doc maestro §8.1) — front-page
+   ============================================================ */
+.emt-main { display: block; }
+
+.emt-hero {
+  background: linear-gradient(135deg, var(--emt-azul-profundo), var(--emt-azul-brillante));
+  color: var(--emt-blanco);
+  padding-block: var(--emt-spacing-4xl);
+}
+.emt-hero__inner { max-width: var(--emt-container-narrow); text-align: center; }
+.emt-hero__eyebrow { text-transform: uppercase; letter-spacing: 0.08em; font-size: var(--emt-fs-sm); color: var(--emt-turquesa); margin: 0 0 var(--emt-spacing-sm); }
+.emt-hero__title { font-family: var(--emt-font-display); font-size: var(--emt-fs-3xl); font-weight: var(--emt-fw-black); line-height: var(--emt-lh-tight); margin: 0 0 var(--emt-spacing-md); }
+.emt-hero__sub { font-size: var(--emt-fs-md); line-height: var(--emt-lh-relaxed); opacity: 0.92; margin: 0 auto var(--emt-spacing-xl); max-width: 56ch; }
+.emt-hero__cta { display: flex; gap: var(--emt-spacing-md); justify-content: center; flex-wrap: wrap; }
+
+.emt-home-section { padding-block: var(--emt-spacing-3xl); }
+.emt-home-section--alt { background: var(--emt-gris-claro); }
+.emt-section-head { text-align: center; margin-bottom: var(--emt-spacing-2xl); }
+.emt-section-head__eyebrow { text-transform: uppercase; letter-spacing: 0.08em; font-size: var(--emt-fs-sm); color: var(--emt-turquesa); }
+.emt-section-head__title { font-family: var(--emt-font-display); font-size: var(--emt-fs-2xl); font-weight: var(--emt-fw-bold); color: var(--emt-azul-profundo); margin: var(--emt-spacing-xs) 0 0; }
+
+.emt-destinos-grid,
+.emt-tours-grid,
+.emt-exp-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: var(--emt-spacing-lg);
+}
+.emt-destinos-grid { grid-template-columns: repeat(2, 1fr); }
+.emt-tours-grid { grid-template-columns: 1fr; }
+.emt-exp-grid { grid-template-columns: repeat(2, 1fr); }
+@media (min-width: 720px) {
+  .emt-destinos-grid { grid-template-columns: repeat(3, 1fr); }
+  .emt-tours-grid { grid-template-columns: repeat(2, 1fr); }
+  .emt-exp-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@media (min-width: 1024px) {
+  .emt-tours-grid { grid-template-columns: repeat(3, 1fr); }
+  .emt-exp-grid { grid-template-columns: repeat(6, 1fr); }
+}
+
+.emt-destino-card { position: relative; border-radius: var(--emt-radius-lg); overflow: hidden; aspect-ratio: 3 / 4; }
+.emt-destino-card a { display: block; height: 100%; text-decoration: none; }
+.emt-destino-card__bg { position: absolute; inset: 0; background: linear-gradient(135deg, var(--emt-turquesa), var(--emt-azul-brillante)); transition: transform var(--emt-transition-base); }
+.emt-destino-card:hover .emt-destino-card__bg { transform: scale(1.08); }
+.emt-destino-card__name { position: absolute; left: var(--emt-spacing-md); bottom: var(--emt-spacing-md); color: var(--emt-blanco); font-family: var(--emt-font-display); font-weight: var(--emt-fw-bold); font-size: var(--emt-fs-lg); }
+
+.emt-exp-card { display: block; text-align: center; text-decoration: none; padding: var(--emt-spacing-lg); border: 1px solid var(--emt-color-border); border-radius: var(--emt-radius-md); color: var(--emt-azul-profundo); font-family: var(--emt-font-display); font-weight: var(--emt-fw-medium); transition: background var(--emt-transition-fast), color var(--emt-transition-fast); }
+.emt-exp-card:hover { background: var(--emt-turquesa); color: var(--emt-blanco); }
+
+.emt-trust { background: var(--emt-azul-profundo); color: var(--emt-blanco); padding-block: var(--emt-spacing-2xl); }
+.emt-trust__grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--emt-spacing-xl); text-align: center; }
+@media (min-width: 720px) { .emt-trust__grid { grid-template-columns: repeat(4, 1fr); } }
+.emt-trust__num { display: block; font-family: var(--emt-font-display); font-size: var(--emt-fs-3xl); font-weight: var(--emt-fw-black); color: var(--emt-turquesa); line-height: 1; }
+.emt-trust__label { font-size: var(--emt-fs-sm); opacity: 0.85; }
+
+.emt-cta-banner { background: linear-gradient(135deg, var(--emt-rosa), var(--emt-naranja)); color: var(--emt-blanco); padding-block: var(--emt-spacing-3xl); }
+.emt-cta-banner__inner { display: flex; flex-direction: column; gap: var(--emt-spacing-lg); align-items: center; text-align: center; }
+.emt-cta-banner__title { font-family: var(--emt-font-display); font-size: var(--emt-fs-xl); font-weight: var(--emt-fw-bold); margin: 0; }
+.emt-cta-banner .emt-btn--cta { background: var(--emt-blanco); color: var(--emt-rosa); }
+

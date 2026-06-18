@@ -1,0 +1,58 @@
+/* ============================================================
+   BREADCRUMBS (doc maestro §7.4) — emt-breadcrumbs
+   El markup es un <ol> (correcto para Schema BreadcrumbList);
+   aquí solo se estiliza como línea horizontal con separadores.
+   ============================================================ */
+.emt-breadcrumbs {
+  margin: var(--emt-spacing-md) 0;
+  font-size: var(--emt-fs-sm);
+  line-height: var(--emt-lh-normal);
+}
+.emt-breadcrumbs__list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--emt-spacing-xs) var(--emt-spacing-sm);
+  list-style: none;   /* sin viñetas ni números */
+  margin: 0;
+  padding: 0;
+  counter-reset: none;
+}
+.emt-breadcrumbs__item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--emt-spacing-sm);
+  color: var(--emt-color-text-muted);
+}
+/* Separador › antes de cada item salvo el primero */
+.emt-breadcrumbs__item:not(:first-child)::before {
+  content: "\203A"; /* › */
+  color: var(--emt-gris-medio);
+  font-weight: var(--emt-fw-normal);
+}
+.emt-breadcrumbs__item a {
+  color: var(--emt-color-link);
+  text-decoration: none;
+  transition: color var(--emt-transition-fast);
+}
+.emt-breadcrumbs__item a:hover {
+  color: var(--emt-azul-profundo);
+  text-decoration: underline;
+}
+/* Item actual (último): muted, no clickeable (es un <span>) */
+.emt-breadcrumbs [aria-current="page"] {
+  color: var(--emt-color-text-muted);
+  font-weight: var(--emt-fw-medium);
+}
+
+/* Responsive: en pantallas chicas, scroll horizontal antes que romper layout */
+@media (max-width: 480px) {
+  .emt-breadcrumbs__list {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .emt-breadcrumbs__list::-webkit-scrollbar { display: none; }
+  .emt-breadcrumbs__item { white-space: nowrap; }
+}

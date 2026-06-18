@@ -45,11 +45,17 @@
 
     var isDesktop = function () { return window.matchMedia('(min-width: 720px)').matches; };
 
+    // Cierre con retardo cancelable: evita que el menú se cierre al cruzar el
+    // hueco entre el disparador y el panel (clásico bug del mega-menú).
+    var closeTimer = null;
+    function cancelClose() { if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; } }
+    function scheduleClose() { cancelClose(); closeTimer = setTimeout(closeAll, 250); }
+
     triggers.forEach(function (trigger) {
       var key = trigger.getAttribute('data-mega-trigger');
       var item = trigger.closest('.emt-nav__item');
 
-      // Click / tap: alterna (sirve para desktop y como fallback)
+      // Click / tap: alterna (sirve para desktop y como fallback en móvil)
       trigger.addEventListener('click', function (e) {
         e.preventDefault();
         if (openKey === key) { closeAll(); } else { open(key); }
@@ -57,9 +63,15 @@
 
       // Hover en desktop
       if (item) {
-        item.addEventListener('mouseenter', function () { if (isDesktop()) { open(key); } });
-        item.addEventListener('mouseleave', function () { if (isDesktop()) { closeAll(); } });
+        item.addEventListener('mouseenter', function () { if (isDesktop()) { cancelClose(); open(key); } });
+        item.addEventListener('mouseleave', function () { if (isDesktop()) { scheduleClose(); } });
       }
+    });
+
+    // Mantener abierto al pasar el cursor del disparador al panel; cerrar al salir de él.
+    panels.forEach(function (panel) {
+      panel.addEventListener('mouseenter', function () { if (isDesktop()) { cancelClose(); } });
+      panel.addEventListener('mouseleave', function () { if (isDesktop()) { scheduleClose(); } });
     });
 
     // Cerrar con Escape y al hacer click fuera

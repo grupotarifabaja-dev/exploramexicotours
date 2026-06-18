@@ -1,0 +1,48 @@
+/* ============================================================
+   TOUR ARCHIVE / TAXONOMÍAS (doc maestro §8.2)
+   ============================================================ */
+.emt-archive-hero {
+  background: linear-gradient(135deg, var(--emt-azul-profundo), var(--emt-azul-brillante));
+  color: var(--emt-blanco);
+  padding-block: var(--emt-spacing-2xl);
+}
+.emt-archive-hero__title { font-family: var(--emt-font-display); font-size: var(--emt-fs-2xl); font-weight: var(--emt-fw-bold); margin: var(--emt-spacing-sm) 0 0; }
+.emt-archive-hero__sub { opacity: 0.9; margin: var(--emt-spacing-xs) 0 0; }
+
+.emt-listing {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--emt-spacing-xl);
+  padding-block: var(--emt-spacing-2xl);
+}
+@media (min-width: 1024px) {
+  .emt-listing { grid-template-columns: 260px 1fr; align-items: start; }
+}
+
+/* Filtros */
+.emt-filters {
+  display: flex;
+  flex-direction: column;
+  gap: var(--emt-spacing-lg);
+  background: var(--emt-gris-claro);
+  padding: var(--emt-spacing-lg);
+  border-radius: var(--emt-radius-lg);
+}
+@media (min-width: 1024px) { .emt-filters { position: sticky; top: 90px; } }
+.emt-filters__search input { width: 100%; padding: var(--emt-spacing-sm) var(--emt-spacing-md); border: 1px solid var(--emt-color-border); border-radius: var(--emt-radius-md); }
+.emt-filters__group { border: 0; padding: 0; margin: 0; }
+.emt-filters__group legend { font-family: var(--emt-font-display); font-weight: var(--emt-fw-semibold); color: var(--emt-azul-profundo); margin-bottom: var(--emt-spacing-sm); }
+.emt-filters__opt { display: flex; align-items: center; gap: var(--emt-spacing-sm); font-size: var(--emt-fs-sm); padding: 2px 0; cursor: pointer; }
+.emt-filters__group input[type="number"] { width: 100%; padding: var(--emt-spacing-sm); border: 1px solid var(--emt-color-border); border-radius: var(--emt-radius-md); }
+.emt-filters__actions { display: flex; flex-direction: column; gap: var(--emt-spacing-sm); }
+.emt-filters__clear { text-align: center; font-size: var(--emt-fs-sm); color: var(--emt-color-text-muted); text-decoration: underline; }
+
+.emt-listing__count { font-size: var(--emt-fs-sm); color: var(--emt-color-text-muted); margin: 0 0 var(--emt-spacing-lg); }
+.emt-tours-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr; gap: var(--emt-spacing-lg); }
+@media (min-width: 600px)  { .emt-tours-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .emt-tours-grid { grid-template-columns: repeat(3, 1fr); } }
+
+.emt-pagination { display: flex; gap: var(--emt-spacing-xs); justify-content: center; margin-top: var(--emt-spacing-2xl); flex-wrap: wrap; }
+.emt-pagination .page-numbers { display: inline-flex; min-width: 40px; height: 40px; align-items: center; justify-content: center; border-radius: var(--emt-radius-md); border: 1px solid var(--emt-color-border); text-decoration: none; color: var(--emt-azul-profundo); padding: 0 var(--emt-spacing-sm); }
+.emt-pagination .page-numbers.current { background: var(--emt-azul-profundo); color: var(--emt-blanco); border-color: var(--emt-azul-profundo); }
+.emt-listing__empty { padding: var(--emt-spacing-2xl); text-align: center; color: var(--emt-color-text-muted); }
