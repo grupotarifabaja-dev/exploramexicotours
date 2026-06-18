@@ -48,7 +48,12 @@ function emt_get_image_or_placeholder( $post_id, $size = 'large' ) {
             return $url;
         }
     }
-    return get_stylesheet_directory_uri() . '/assets/images/placeholders/placeholder.svg';
+    $ph_file = get_stylesheet_directory() . '/assets/images/placeholders/placeholder.svg';
+    $ph_url  = get_stylesheet_directory_uri() . '/assets/images/placeholders/placeholder.svg';
+    if ( file_exists( $ph_file ) ) {
+        $ph_url .= '?v=' . filemtime( $ph_file ); // cache-bust al cambiar el placeholder
+    }
+    return $ph_url;
 }
 
 /**

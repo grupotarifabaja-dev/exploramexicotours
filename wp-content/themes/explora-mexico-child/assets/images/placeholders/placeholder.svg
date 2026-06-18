@@ -1,14 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img" aria-label="Imagen no disponible">
-  <defs>
-    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#009FAE"/>
-      <stop offset="1" stop-color="#0057B8"/>
-    </linearGradient>
-  </defs>
-  <rect width="800" height="1000" fill="url(#g)"/>
-  <g fill="#FFFFFF" opacity="0.85">
-    <circle cx="400" cy="430" r="70"/>
-    <path d="M250 640c0-83 67-150 150-150s150 67 150 150z"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1000" role="img" aria-label="Foto pendiente">
+  <rect width="800" height="1000" fill="#E7EAEE"/>
+  <g fill="#AEB4BD">
+    <circle cx="400" cy="410" r="135"/>
+    <path d="M180 800c0-121 99-220 220-220s220 99 220 220z"/>
   </g>
-  <text x="400" y="820" font-family="Poppins, sans-serif" font-size="40" font-weight="600" fill="#FFFFFF" opacity="0.9" text-anchor="middle">Explora México Tours</text>
 </svg>
