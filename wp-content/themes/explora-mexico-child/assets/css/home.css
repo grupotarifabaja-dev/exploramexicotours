@@ -62,5 +62,3 @@
 .emt-cta-banner__title { font-family: var(--emt-font-display); font-size: var(--emt-fs-xl); font-weight: var(--emt-fw-bold); margin: 0; }
 .emt-cta-banner .emt-btn--cta { background: var(--emt-blanco); color: var(--emt-rosa); }
 
-.emt-skip-link { position: absolute; left: -9999px; }
-.emt-skip-link:focus { left: var(--emt-spacing-md); top: var(--emt-spacing-md); z-index: 2000; background: var(--emt-blanco); padding: var(--emt-spacing-sm) var(--emt-spacing-md); border-radius: var(--emt-radius-sm); }

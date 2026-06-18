@@ -46,6 +46,8 @@
   font-size: var(--emt-fs-sm);
   font-weight: var(--emt-fw-medium);
   color: var(--emt-azul-profundo);
+  -webkit-appearance: none; /* anula el botón nativo de Hello (reset.css) */
+  appearance: none;
   background: none;
   border: 0;
   cursor: pointer;
@@ -59,6 +61,10 @@
 .emt-nav__trigger[aria-expanded="true"] {
   background: var(--emt-gris-claro);
   color: var(--emt-azul-brillante);
+}
+.emt-nav__trigger:focus-visible {
+  outline: 2px solid var(--emt-azul-brillante);
+  outline-offset: 2px;
 }
 .emt-nav__caret {
   width: 8px;
@@ -88,6 +94,8 @@
   padding: 0.6rem 1.25rem;
   border-radius: var(--emt-radius-pill);
   text-decoration: none;
+  -webkit-appearance: none; /* sirve también para <button class="emt-btn"> (anula reset de Hello) */
+  appearance: none;
   border: 0;
   cursor: pointer;
   transition: transform var(--emt-transition-fast), background var(--emt-transition-fast);
@@ -101,7 +109,7 @@
   transform: translateY(-1px);
 }
 
-/* Hamburguesa (oculta en desktop) */
+/* Hamburguesa (oculta en desktop; visible solo <720px) */
 .emt-header__burger {
   display: none;
   flex-direction: column;
@@ -110,8 +118,11 @@
   height: 44px;
   align-items: center;
   justify-content: center;
+  -webkit-appearance: none;
+  appearance: none;
   background: none;
   border: 0;
+  box-shadow: none;
   cursor: pointer;
 }
 .emt-header__burger span {
@@ -161,6 +172,28 @@
   transition: opacity var(--emt-transition-base);
 }
 .emt-drawer__overlay.is-open { opacity: 1; }
+
+/* Skip-link accesible (site-wide): oculto hasta recibir foco por teclado */
+.emt-skip-link {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.emt-skip-link:focus {
+  left: var(--emt-spacing-md);
+  top: var(--emt-spacing-md);
+  width: auto;
+  height: auto;
+  z-index: 2000;
+  background: var(--emt-blanco);
+  color: var(--emt-azul-profundo);
+  padding: var(--emt-spacing-sm) var(--emt-spacing-md);
+  border-radius: var(--emt-radius-sm);
+  box-shadow: var(--emt-shadow-md);
+}
 
 /* Responsive: < 720px (md) colapsa a hamburguesa */
 @media (max-width: 719px) {
