@@ -17,13 +17,5 @@
 .emt-asesor-filters legend { font-family: var(--emt-font-display); font-weight: var(--emt-fw-semibold); color: var(--emt-azul-profundo); margin-bottom: var(--emt-spacing-sm); }
 .emt-asesor-filters .emt-filters__opt { display: inline-flex; align-items: center; gap: 4px; margin-right: var(--emt-spacing-md); font-size: var(--emt-fs-sm); }
 
-.emt-asesores-grid {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--emt-spacing-lg);
-}
-@media (min-width: 600px)  { .emt-asesores-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1024px) { .emt-asesores-grid { grid-template-columns: repeat(4, 1fr); } }
+/* .emt-asesores-grid vive en asesor-card.css (site-wide), para que sea
+   consistente en el directorio y en "otros asesores" del perfil. */

@@ -13,14 +13,15 @@
 }
 .emt-asesor-card:hover { transform: translateY(-4px); box-shadow: var(--emt-shadow-lg); }
 
-.emt-asesor-card__media { display: block; aspect-ratio: 3 / 4; overflow: hidden; }
+/* Foto con altura acotada (compacta, no 3:4 a pantalla completa) */
+.emt-asesor-card__media { display: block; height: 300px; overflow: hidden; }
 .emt-asesor-card__photo { width: 100%; height: 100%; object-fit: cover; display: block; }
 
 .emt-asesor-card__body {
   display: flex;
   flex-direction: column;
   gap: var(--emt-spacing-sm);
-  padding: var(--emt-spacing-lg);
+  padding: var(--emt-spacing-md);
   flex: 1;
 }
 .emt-asesor-card__name { font-family: var(--emt-font-display); font-size: var(--emt-fs-md); font-weight: var(--emt-fw-semibold); margin: 0; }
@@ -62,3 +63,14 @@
 .emt-asesor-card__actions .emt-btn { flex: 1; font-size: var(--emt-fs-xs); padding: 0.5rem 0.75rem; }
 .emt-btn--whatsapp { background: #25D366; color: var(--emt-blanco); }
 .emt-btn--whatsapp:hover { background: #1da851; transform: translateY(-1px); }
+
+/* Grid de cards (usado en el directorio y en "otros asesores" del perfil).
+   Responsive y site-wide para que sea consistente en ambos contextos. */
+.emt-asesores-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--emt-spacing-lg);
+}
