@@ -40,6 +40,17 @@ return array(
     'por_persona'          => 'por persona',
     'tours_relacionados'   => 'Tours relacionados',
 
+    // Precios por ocupación
+    'precios'              => 'Precios',
+    'ocupacion'            => 'Ocupación',
+    'precio_persona'       => 'Precio por persona',
+    'disponibilidad'       => 'Disponibilidad',
+    'ocup_doble'           => 'Doble',
+    'ocup_triple'          => 'Triple',
+    'ocup_cuadruple'       => 'Cuádruple',
+    'ocup_menor'           => 'Menor (6-12)',
+    'asientos'             => 'asientos',
+
     // Navegación
     'a_donde_ir'           => '¿A dónde ir?',
     'que_tour'             => '¿Qué tour?',

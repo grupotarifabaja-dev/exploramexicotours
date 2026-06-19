@@ -65,3 +65,12 @@
 
 .emt-tour-related { margin-top: var(--emt-spacing-3xl); }
 .emt-tour-related h2 { font-family: var(--emt-font-display); font-size: var(--emt-fs-lg); color: var(--emt-azul-profundo); margin: 0 0 var(--emt-spacing-lg); text-align: center; }
+
+/* Tabla de precios por ocupación */
+.emt-precios-tabla { width: 100%; border-collapse: collapse; font-size: var(--emt-fs-sm); }
+.emt-precios-tabla th,
+.emt-precios-tabla td { text-align: left; padding: var(--emt-spacing-sm) var(--emt-spacing-md); border-bottom: 1px solid var(--emt-color-border); }
+.emt-precios-tabla thead th { font-family: var(--emt-font-display); font-weight: var(--emt-fw-semibold); color: var(--emt-azul-profundo); font-size: var(--emt-fs-xs); text-transform: uppercase; letter-spacing: 0.04em; }
+.emt-precios-tabla tbody tr:last-child td { border-bottom: 0; }
+.emt-precios-tabla__precio { font-weight: var(--emt-fw-semibold); color: var(--emt-azul-profundo); white-space: nowrap; }
+.emt-precios-nota { font-size: var(--emt-fs-sm); color: var(--emt-color-text-muted); margin-top: var(--emt-spacing-sm); }
