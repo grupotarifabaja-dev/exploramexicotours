@@ -36,7 +36,8 @@ function emt_acf_register_field_groups() {
     if ( ! function_exists( 'acf_add_local_field_group' ) ) return;
 
     /* =========================================================
-       GRUPO 1 — TOUR · DATOS  (§6.1)
+       GRUPO 1 — TOUR · DATOS  (§6.1 + precios por ocupación, v1.3)
+       40 campos no-tab (30 base + 10 de precios por ocupación).
        ========================================================= */
     acf_add_local_field_group( array(
         'key'    => 'group_emt_tour',
@@ -45,8 +46,20 @@ function emt_acf_register_field_groups() {
 
             // --- Tab: Precio y duración ---
             array( 'key' => 'field_emt_tour_tab_precio', 'label' => 'Precio y duración', 'name' => '', 'type' => 'tab', 'placement' => 'top' ),
-            array( 'key' => 'field_emt_tour_precio_desde', 'label' => 'Precio desde (MXN)', 'name' => 'precio_desde', 'type' => 'number', 'required' => 1, 'instructions' => 'MXN sin decimales' ),
+            array( 'key' => 'field_emt_tour_precio_desde', 'label' => 'Precio desde (MXN)', 'name' => 'precio_desde', 'type' => 'number', 'required' => 0, 'instructions' => 'Se autocalcula como el menor de los 4 precios por ocupación si lo dejas vacío. Captura un valor solo para forzar un override manual.' ),
             array( 'key' => 'field_emt_tour_precio_desde_usd', 'label' => 'Precio desde (USD)', 'name' => 'precio_desde_usd', 'type' => 'number', 'required' => 0, 'instructions' => 'Para extranjeros' ),
+
+            // Precios por ocupación — campos FIJOS (no repeater) + disponibilidad (asientos).
+            array( 'key' => 'field_emt_tour_precio_dbl', 'label' => 'Precio Doble (DBL)', 'name' => 'precio_dbl', 'type' => 'number', 'required' => 0, 'wrapper' => array( 'width' => '60' ) ),
+            array( 'key' => 'field_emt_tour_disp_dbl', 'label' => 'Disponibilidad DBL', 'name' => 'disp_dbl', 'type' => 'number', 'required' => 0, 'instructions' => 'Asientos', 'wrapper' => array( 'width' => '40' ) ),
+            array( 'key' => 'field_emt_tour_precio_tpl', 'label' => 'Precio Triple (TPL)', 'name' => 'precio_tpl', 'type' => 'number', 'required' => 0, 'wrapper' => array( 'width' => '60' ) ),
+            array( 'key' => 'field_emt_tour_disp_tpl', 'label' => 'Disponibilidad TPL', 'name' => 'disp_tpl', 'type' => 'number', 'required' => 0, 'instructions' => 'Asientos', 'wrapper' => array( 'width' => '40' ) ),
+            array( 'key' => 'field_emt_tour_precio_cuadpl', 'label' => 'Precio Cuádruple (CuADPL)', 'name' => 'precio_cuadpl', 'type' => 'number', 'required' => 0, 'wrapper' => array( 'width' => '60' ) ),
+            array( 'key' => 'field_emt_tour_disp_cuadpl', 'label' => 'Disponibilidad CuADPL', 'name' => 'disp_cuadpl', 'type' => 'number', 'required' => 0, 'instructions' => 'Asientos', 'wrapper' => array( 'width' => '40' ) ),
+            array( 'key' => 'field_emt_tour_precio_menor', 'label' => 'Precio Menor 6-12', 'name' => 'precio_menor', 'type' => 'number', 'required' => 0, 'wrapper' => array( 'width' => '60' ) ),
+            array( 'key' => 'field_emt_tour_disp_menor', 'label' => 'Disponibilidad Menor', 'name' => 'disp_menor', 'type' => 'number', 'required' => 0, 'instructions' => 'Asientos', 'wrapper' => array( 'width' => '40' ) ),
+            array( 'key' => 'field_emt_tour_precio_nota', 'label' => 'Nota de precios', 'name' => 'precio_nota', 'type' => 'textarea', 'rows' => 2, 'required' => 0, 'instructions' => 'Observaciones (p. ej. "máximo 4 por habitación incluyendo menores").' ),
+            array( 'key' => 'field_emt_tour_fecha_viaje', 'label' => 'Fecha del viaje', 'name' => 'fecha_viaje', 'type' => 'text', 'required' => 0, 'instructions' => 'P. ej. "30 octubre – 1 noviembre 2026".' ),
             array( 'key' => 'field_emt_tour_duracion_texto', 'label' => 'Duración (texto)', 'name' => 'duracion_texto', 'type' => 'text', 'required' => 1, 'instructions' => '"1 día", "3 días/2 noches"' ),
             array( 'key' => 'field_emt_tour_duracion_horas', 'label' => 'Duración (horas)', 'name' => 'duracion_horas', 'type' => 'number', 'required' => 0, 'instructions' => 'Para filtros' ),
             array( 'key' => 'field_emt_tour_dificultad', 'label' => 'Dificultad', 'name' => 'dificultad', 'type' => 'select', 'required' => 1, 'choices' => array( 'facil' => 'Fácil', 'moderada' => 'Moderada', 'alta' => 'Alta' ), 'default_value' => 'facil', 'return_format' => 'value' ),
