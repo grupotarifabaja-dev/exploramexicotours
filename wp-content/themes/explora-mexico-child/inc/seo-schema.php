@@ -41,7 +41,18 @@ function emt_tour_schema() {
     if ( $images ) {
         $schema['image'] = array_values( array_unique( $images ) );
     }
-    if ( ! empty( $precio ) ) {
+    $ocup = function_exists( 'emt_tour_precios' ) ? emt_tour_precios( $id ) : array();
+    if ( count( $ocup ) > 1 ) {
+        $vals = array_map( function ( $r ) { return $r['precio']; }, $ocup );
+        $schema['offers'] = array(
+            '@type'         => 'AggregateOffer',
+            'priceCurrency' => 'MXN',
+            'lowPrice'      => (string) (int) min( $vals ),
+            'highPrice'     => (string) (int) max( $vals ),
+            'offerCount'    => count( $ocup ),
+            'url'           => get_permalink( $id ),
+        );
+    } elseif ( ! empty( $precio ) ) {
         $schema['offers'] = array(
             '@type'         => 'Offer',
             'price'         => (string) $precio,
