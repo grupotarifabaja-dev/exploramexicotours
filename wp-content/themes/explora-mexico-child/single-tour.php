@@ -64,7 +64,7 @@ while ( have_posts() ) :
                 <ul class="emt-tour-hero__meta">
                     <?php if ( $destino ) : ?><li>📍 <?php echo esc_html( $destino ); ?></li><?php endif; ?>
                     <?php if ( $duracion ) : ?><li>⏱ <?php echo esc_html( $duracion ); ?></li><?php endif; ?>
-                    <?php if ( $dificultad ) : ?><li><?php echo esc_html( emt_t( 'dificultad' ) . ': ' . $dificultad ); ?></li><?php endif; ?>
+                    <?php if ( $dificultad ) : ?><li><?php echo esc_html( emt_t( 'dificultad' ) . ': ' . emt_t( $dificultad ) ); ?></li><?php endif; ?>
                     <?php if ( $fecha ) : ?><li>📅 <?php echo esc_html( $fecha ); ?></li><?php endif; ?>
                 </ul>
                 <div class="emt-tour-hero__flags">
