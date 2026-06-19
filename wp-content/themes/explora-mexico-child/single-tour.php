@@ -32,6 +32,9 @@ while ( have_posts() ) :
     $politica  = emt_get_field( 'politica_cancelacion', $id );
     $mapa      = get_field( 'mapa_embed', $id );
     $relacion  = get_field( 'tour_relacionados', $id );
+    $fecha     = get_field( 'fecha_viaje', $id );
+    $precios   = function_exists( 'emt_tour_precios' ) ? emt_tour_precios( $id ) : array();
+    $precio_nota = get_field( 'precio_nota', $id );
 
     $destinos  = get_the_terms( $id, 'tour_destino' );
     $destino   = ( $destinos && ! is_wp_error( $destinos ) ) ? $destinos[0]->name : '';
@@ -61,7 +64,8 @@ while ( have_posts() ) :
                 <ul class="emt-tour-hero__meta">
                     <?php if ( $destino ) : ?><li>📍 <?php echo esc_html( $destino ); ?></li><?php endif; ?>
                     <?php if ( $duracion ) : ?><li>⏱ <?php echo esc_html( $duracion ); ?></li><?php endif; ?>
-                    <?php if ( $dificultad ) : ?><li><?php echo esc_html( emt_t( 'dificultad' ) . ': ' . $dificultad ); ?></li><?php endif; ?>
+                    <?php if ( $dificultad ) : ?><li><?php echo esc_html( emt_t( 'dificultad' ) . ': ' . emt_t( $dificultad ) ); ?></li><?php endif; ?>
+                    <?php if ( $fecha ) : ?><li>📅 <?php echo esc_html( $fecha ); ?></li><?php endif; ?>
                 </ul>
                 <div class="emt-tour-hero__flags">
                     <?php if ( $garantia ) : ?><span class="emt-flag emt-flag--ok"><?php echo esc_html( emt_t( 'salida_garantizada' ) ); ?></span><?php endif; ?>
@@ -73,6 +77,33 @@ while ( have_posts() ) :
                 <!-- Columna principal -->
                 <div class="emt-tour-main">
                     <div class="emt-tour-desc"><?php the_content(); ?></div>
+
+                    <?php if ( $precios ) : ?>
+                        <section class="emt-tour-precios">
+                            <h2><?php echo esc_html( emt_t( 'precios' ) ); ?></h2>
+                            <table class="emt-precios-tabla">
+                                <thead>
+                                    <tr>
+                                        <th><?php echo esc_html( emt_t( 'ocupacion' ) ); ?></th>
+                                        <th><?php echo esc_html( emt_t( 'precio_persona' ) ); ?></th>
+                                        <th><?php echo esc_html( emt_t( 'disponibilidad' ) ); ?></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ( $precios as $row ) : ?>
+                                        <tr>
+                                            <td><?php echo esc_html( emt_t( $row['label'] ) ); ?></td>
+                                            <td class="emt-precios-tabla__precio"><?php echo esc_html( emt_format_price( $row['precio'] ) ); ?></td>
+                                            <td><?php echo $row['disp'] > 0 ? esc_html( $row['disp'] . ' ' . emt_t( 'asientos' ) ) : '—'; ?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                            <?php if ( $precio_nota ) : ?>
+                                <p class="emt-precios-nota"><?php echo esc_html( $precio_nota ); ?></p>
+                            <?php endif; ?>
+                        </section>
+                    <?php endif; ?>
 
                     <?php if ( is_array( $itin ) && $itin ) : ?>
                         <section class="emt-tour-itin">

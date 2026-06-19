@@ -29,6 +29,9 @@ return array(
     'desde'                => 'From',
     'duracion'             => 'Duration',
     'dificultad'           => 'Difficulty',
+    'facil'                => 'Easy',
+    'moderada'             => 'Moderate',
+    'alta'                 => 'Challenging',
     'idiomas'              => 'Languages',
     'punto_salida'         => 'Departure point',
     'incluye'              => 'Included',
@@ -39,6 +42,17 @@ return array(
     'pickup_hotel'         => 'Hotel pickup',
     'por_persona'          => 'per person',
     'tours_relacionados'   => 'Related tours',
+
+    // Pricing by occupancy
+    'precios'              => 'Pricing',
+    'ocupacion'            => 'Occupancy',
+    'precio_persona'       => 'Price per person',
+    'disponibilidad'       => 'Availability',
+    'ocup_doble'           => 'Double',
+    'ocup_triple'          => 'Triple',
+    'ocup_cuadruple'       => 'Quad',
+    'ocup_menor'           => 'Child (6-12)',
+    'asientos'             => 'seats',
 
     // Navigation
     'a_donde_ir'           => 'Where to go?',
