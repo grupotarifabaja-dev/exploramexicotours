@@ -76,13 +76,21 @@
       var $msg = $(form).find('[data-form-msg]');
       $(form).find('.emt-field--error').removeClass('emt-field--error');
 
-      // Validación de obligatorios.
-      var ok = true;
-      $(form).find('[name="titulo"],[name="duracion_texto"]').each(function () {
-        if (!$(this).val().trim()) { $(this).closest('.emt-field').addClass('emt-field--error'); ok = false; }
+      // Validación de obligatorios SIN perder lo capturado (no se resetea nada).
+      // Borrador: solo el título. Publicar: título + duración.
+      var required = (pendingStatus === 'publish') ? ['titulo', 'duracion_texto'] : ['titulo'];
+      var $firstErr = null;
+      required.forEach(function (name) {
+        var $f = $(form).find('[name="' + name + '"]');
+        if (!$f.val() || !$f.val().trim()) {
+          $f.closest('.emt-field').addClass('emt-field--error');
+          if (!$firstErr) { $firstErr = $f; }
+        }
       });
-      if (!ok) {
-        $msg.attr('class', 'emt-panel-form__msg emt-panel-form__msg--err').text('Revisa los campos obligatorios.');
+      if ($firstErr) {
+        $msg.attr('class', 'emt-panel-form__msg emt-panel-form__msg--err').text('Revisa los campos marcados (tus datos se conservan).');
+        $firstErr.trigger('focus');
+        if ($firstErr[0] && $firstErr[0].scrollIntoView) { $firstErr[0].scrollIntoView({ behavior: 'smooth', block: 'center' }); }
         return;
       }
 

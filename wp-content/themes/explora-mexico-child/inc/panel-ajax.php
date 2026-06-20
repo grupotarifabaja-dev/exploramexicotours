@@ -25,13 +25,14 @@ function emt_panel_save_tour() {
     if ( $titulo === '' ) {
         wp_send_json_error( array( 'msg' => 'El título es obligatorio.', 'field' => 'titulo' ), 400 );
     }
-    if ( sanitize_text_field( wp_unslash( $_POST['duracion_texto'] ?? '' ) ) === '' ) {
-        wp_send_json_error( array( 'msg' => 'La duración es obligatoria.', 'field' => 'duracion_texto' ), 400 );
-    }
 
     $status = ( ( $_POST['status'] ?? '' ) === 'publish' ) ? 'publish' : 'draft';
     if ( $status === 'publish' && ! current_user_can( 'publish_tours' ) ) {
         $status = 'draft';
+    }
+    // Solo al publicar exigimos duración; el borrador puede guardarse parcial.
+    if ( $status === 'publish' && sanitize_text_field( wp_unslash( $_POST['duracion_texto'] ?? '' ) ) === '' ) {
+        wp_send_json_error( array( 'msg' => 'La duración es obligatoria para publicar.', 'field' => 'duracion_texto' ), 400 );
     }
 
     $desc = wp_kses_post( wp_unslash( $_POST['descripcion'] ?? '' ) );

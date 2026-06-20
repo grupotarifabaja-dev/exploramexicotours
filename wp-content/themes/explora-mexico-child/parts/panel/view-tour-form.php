@@ -47,7 +47,7 @@ $itin_ico= array( 'salida' => 'Salida', 'parada' => 'Parada', 'comida' => 'Comid
     </div>
 </div>
 
-<form id="emt-tour-form" data-post-id="<?php echo (int) $post_id; ?>">
+<form id="emt-tour-form" data-post-id="<?php echo (int) $post_id; ?>" novalidate>
 
     <div class="emt-panel-form__section">
         <h2>Datos básicos</h2>
