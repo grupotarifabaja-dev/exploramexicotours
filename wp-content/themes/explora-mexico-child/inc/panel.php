@@ -40,6 +40,17 @@ function emt_panel_can() {
 function emt_panel_is_request() {
     return (bool) get_query_var( 'emt_panel' );
 }
+
+/* Ocultar la admin bar de WP en el panel y para el rol Gestor EMT (no usan wp-admin). */
+add_filter( 'show_admin_bar', function ( $show ) {
+    if ( emt_panel_is_request() ) {
+        return false;
+    }
+    if ( function_exists( 'emt_is_gestor' ) && emt_is_gestor() ) {
+        return false;
+    }
+    return $show;
+} );
 function emt_panel_view_part( $name ) {
     $file = get_stylesheet_directory() . '/parts/panel/' . $name . '.php';
     if ( file_exists( $file ) ) { include $file; }
