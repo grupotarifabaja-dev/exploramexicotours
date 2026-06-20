@@ -31,3 +31,4 @@ require_once $emt_inc . 'asesor-functions.php';
 require_once $emt_inc . 'tour-functions.php';
 require_once $emt_inc . 'roles.php';
 require_once $emt_inc . 'panel.php';
+require_once $emt_inc . 'panel-ajax.php';
