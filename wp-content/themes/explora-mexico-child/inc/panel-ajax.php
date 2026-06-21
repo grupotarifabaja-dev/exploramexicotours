@@ -252,3 +252,33 @@ add_action( 'wp_ajax_emt_panel_delete_asesor', function () {
     wp_trash_post( $id );
     wp_send_json_success( array( 'msg' => 'Asesor enviado a la papelera.' ) );
 } );
+
+/* ============================================================
+   Guardar configuración del sitio (options page emt-config)  — P5
+   Acceso: misma capability que da entrada al panel (edit_tours).
+   ============================================================ */
+add_action( 'wp_ajax_emt_panel_save_config', 'emt_panel_save_config' );
+function emt_panel_save_config() {
+    emt_panel_guard( 'edit_tours' );
+
+    // Contacto.
+    update_field( 'wa_number', preg_replace( '/\D/', '', (string) wp_unslash( $_POST['wa_number'] ?? '' ) ), 'option' );
+    update_field( 'telefono_oficina', sanitize_text_field( wp_unslash( $_POST['telefono_oficina'] ?? '' ) ), 'option' );
+    update_field( 'email_reservas', sanitize_email( wp_unslash( $_POST['email_reservas'] ?? '' ) ), 'option' );
+    update_field( 'email_contacto', sanitize_email( wp_unslash( $_POST['email_contacto'] ?? '' ) ), 'option' );
+    update_field( 'direccion_fiscal', sanitize_textarea_field( wp_unslash( $_POST['direccion_fiscal'] ?? '' ) ), 'option' );
+
+    // Redes sociales.
+    foreach ( array( 'redes_facebook', 'redes_instagram', 'redes_tiktok', 'redes_youtube' ) as $f ) {
+        update_field( $f, esc_url_raw( wp_unslash( $_POST[ $f ] ?? '' ) ), 'option' );
+    }
+
+    // Textos del sitio: hero estacional.
+    update_field( 'hero_seasonal_active', empty( $_POST['hero_seasonal_active'] ) ? 0 : 1, 'option' );
+    update_field( 'hero_seasonal_title', sanitize_text_field( wp_unslash( $_POST['hero_seasonal_title'] ?? '' ) ), 'option' );
+    update_field( 'hero_seasonal_subtitle', sanitize_textarea_field( wp_unslash( $_POST['hero_seasonal_subtitle'] ?? '' ) ), 'option' );
+    update_field( 'hero_seasonal_cta_text', sanitize_text_field( wp_unslash( $_POST['hero_seasonal_cta_text'] ?? '' ) ), 'option' );
+    update_field( 'hero_seasonal_cta_url', esc_url_raw( wp_unslash( $_POST['hero_seasonal_cta_url'] ?? '' ) ), 'option' );
+
+    wp_send_json_success( array( 'msg' => 'Configuración guardada.' ) );
+}
