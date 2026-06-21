@@ -76,7 +76,7 @@ $tours = get_posts( array(
                         <div class="emt-panel__row-actions">
                             <a class="emt-panel__btn emt-panel__btn--sm" href="<?php echo esc_url( emt_panel_url( 'tours/editar/' . $tid . '/' ) ); ?>">Editar</a>
                             <a class="emt-panel__btn emt-panel__btn--sm" href="<?php echo esc_url( get_permalink( $tid ) ); ?>" target="_blank" rel="noopener">Ver</a>
-                            <button type="button" class="emt-panel__btn emt-panel__btn--sm emt-panel__btn--danger" data-emt-delete-tour="<?php echo (int) $tid; ?>" data-title="<?php echo esc_attr( get_the_title( $tid ) ); ?>">Eliminar</button>
+                            <button type="button" class="emt-panel__btn emt-panel__btn--sm emt-panel__btn--danger" data-emt-delete="emt_panel_delete_tour" data-id="<?php echo (int) $tid; ?>" data-title="<?php echo esc_attr( get_the_title( $tid ) ); ?>">Eliminar</button>
                         </div>
                     </td>
                 </tr>

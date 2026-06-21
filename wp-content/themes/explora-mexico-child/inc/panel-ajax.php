@@ -154,3 +154,101 @@ add_action( 'wp_ajax_emt_panel_delete_tour', function () {
     wp_trash_post( $id );
     wp_send_json_success( array( 'msg' => 'Tour enviado a la papelera.' ) );
 } );
+
+/* ============================================================
+   Guardar asesor (alta o edición)  — P4
+   ============================================================ */
+add_action( 'wp_ajax_emt_panel_save_asesor', 'emt_panel_save_asesor' );
+function emt_panel_save_asesor() {
+    emt_panel_guard( 'edit_asesores' );
+
+    $post_id = isset( $_POST['post_id'] ) ? (int) $_POST['post_id'] : 0;
+    $nombre  = sanitize_text_field( wp_unslash( $_POST['titulo'] ?? '' ) );
+    if ( $nombre === '' ) {
+        wp_send_json_error( array( 'msg' => 'El nombre es obligatorio.', 'field' => 'titulo' ), 400 );
+    }
+
+    $status = ( ( $_POST['status'] ?? '' ) === 'publish' ) ? 'publish' : 'draft';
+    if ( $status === 'publish' && ! current_user_can( 'publish_asesores' ) ) {
+        $status = 'draft';
+    }
+    // Solo al publicar exigimos los datos de ficha; el borrador puede guardarse parcial.
+    if ( $status === 'publish' ) {
+        $obligatorios = array( 'puesto' => 'el puesto', 'bio_corta' => 'la bio corta', 'telefono' => 'el teléfono', 'whatsapp' => 'el WhatsApp', 'email' => 'el email' );
+        foreach ( $obligatorios as $f => $lbl ) {
+            if ( sanitize_text_field( wp_unslash( $_POST[ $f ] ?? '' ) ) === '' ) {
+                wp_send_json_error( array( 'msg' => 'Para publicar falta ' . $lbl . '.', 'field' => $f ), 400 );
+            }
+        }
+    }
+
+    $data = array(
+        'post_type'    => 'asesor',
+        'post_title'   => $nombre,
+        'post_excerpt' => sanitize_textarea_field( wp_unslash( $_POST['bio_corta'] ?? '' ) ),
+        'post_status'  => $status,
+    );
+
+    if ( $post_id ) {
+        if ( get_post_type( $post_id ) !== 'asesor' || ! current_user_can( 'edit_post', $post_id ) ) {
+            wp_send_json_error( array( 'msg' => 'No puedes editar este asesor.' ), 403 );
+        }
+        $data['ID'] = $post_id;
+        wp_update_post( $data );
+    } else {
+        $post_id = wp_insert_post( $data, true );
+        if ( is_wp_error( $post_id ) ) {
+            wp_send_json_error( array( 'msg' => 'No se pudo guardar.' ), 500 );
+        }
+    }
+
+    // Texto.
+    update_field( 'puesto', sanitize_text_field( wp_unslash( $_POST['puesto'] ?? '' ) ), $post_id );
+    update_field( 'puesto_en', sanitize_text_field( wp_unslash( $_POST['puesto_en'] ?? '' ) ), $post_id );
+    update_field( 'bio_corta', sanitize_textarea_field( wp_unslash( $_POST['bio_corta'] ?? '' ) ), $post_id );
+    update_field( 'bio_corta_en', sanitize_textarea_field( wp_unslash( $_POST['bio_corta_en'] ?? '' ) ), $post_id );
+    update_field( 'telefono', sanitize_text_field( wp_unslash( $_POST['telefono'] ?? '' ) ), $post_id );
+    update_field( 'whatsapp', preg_replace( '/\D/', '', (string) wp_unslash( $_POST['whatsapp'] ?? '' ) ), $post_id );
+    update_field( 'email', sanitize_email( wp_unslash( $_POST['email'] ?? '' ) ), $post_id );
+    update_field( 'linkedin', esc_url_raw( wp_unslash( $_POST['linkedin'] ?? '' ) ), $post_id );
+    update_field( 'instagram', esc_url_raw( wp_unslash( $_POST['instagram'] ?? '' ) ), $post_id );
+    update_field( 'activo', empty( $_POST['activo'] ) ? 0 : 1, $post_id );
+    $orden = $_POST['orden'] ?? '';
+    update_field( 'orden', ( $orden === '' ) ? '' : (int) $orden, $post_id );
+
+    // Foto -> imagen destacada.
+    $foto = (int) ( $_POST['foto'] ?? 0 );
+    if ( $foto ) {
+        set_post_thumbnail( $post_id, $foto );
+    } else {
+        delete_post_thumbnail( $post_id );
+    }
+
+    // Taxonomías (tags por nombre, separadas por coma): idiomas y especialidades.
+    foreach ( array( 'idiomas' => 'asesor_idioma', 'especialidades' => 'asesor_especialidad' ) as $field => $tax ) {
+        $raw   = sanitize_text_field( wp_unslash( $_POST[ $field ] ?? '' ) );
+        $names = array_values( array_filter( array_map( 'trim', explode( ',', $raw ) ) ) );
+        wp_set_object_terms( $post_id, $names, $tax, false );
+    }
+
+    wp_send_json_success( array(
+        'id'      => $post_id,
+        'status'  => get_post_status( $post_id ),
+        'msg'     => ( $status === 'publish' ) ? 'Asesor publicado.' : 'Borrador guardado.',
+        'editUrl' => emt_panel_url( 'asesores/editar/' . $post_id . '/' ),
+        'listUrl' => emt_panel_url( 'asesores/' ),
+    ) );
+}
+
+/* ============================================================
+   Eliminar asesor (a la papelera)  — P4
+   ============================================================ */
+add_action( 'wp_ajax_emt_panel_delete_asesor', function () {
+    emt_panel_guard( 'delete_asesores' );
+    $id = (int) ( $_POST['id'] ?? 0 );
+    if ( ! $id || get_post_type( $id ) !== 'asesor' || ! current_user_can( 'delete_post', $id ) ) {
+        wp_send_json_error( array( 'msg' => 'No puedes eliminar este asesor.' ), 403 );
+    }
+    wp_trash_post( $id );
+    wp_send_json_success( array( 'msg' => 'Asesor enviado a la papelera.' ) );
+} );

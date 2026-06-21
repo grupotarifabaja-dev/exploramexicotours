@@ -143,6 +143,14 @@
 .emt-gallery__item img { width: 100%; height: 100%; object-fit: cover; }
 .emt-gallery__item button { position: absolute; top: 2px; right: 2px; background: rgba(0,0,0,0.6); color: #fff; border: 0; border-radius: 50%; width: 20px; height: 20px; cursor: pointer; line-height: 1; }
 
+/* Avatar redondo en la tabla de asesores */
+.emt-panel__thumb--round { width: 42px; height: 42px; border-radius: 50%; }
+
+/* Imagen única (foto de asesor) */
+.emt-image__preview { width: 110px; height: 110px; border-radius: var(--emt-radius-md); border: 1px dashed var(--emt-color-border); background: var(--emt-gris-claro); overflow: hidden; display: flex; align-items: center; justify-content: center; margin-bottom: var(--emt-spacing-sm); }
+.emt-image__preview img { width: 100%; height: 100%; object-fit: cover; }
+.emt-image__actions { display: flex; gap: var(--emt-spacing-sm); align-items: center; }
+
 /* Barra de guardado */
 .emt-panel-form__bar { position: sticky; bottom: 0; background: var(--emt-blanco); border-top: 1px solid var(--emt-color-border); padding: var(--emt-spacing-md) var(--emt-spacing-lg); display: flex; gap: var(--emt-spacing-md); justify-content: flex-end; align-items: center; margin: var(--emt-spacing-lg) calc(-1 * var(--emt-spacing-2xl)) calc(-1 * var(--emt-spacing-2xl)); }
 .emt-panel-form__msg { margin-right: auto; font-size: var(--emt-fs-sm); }

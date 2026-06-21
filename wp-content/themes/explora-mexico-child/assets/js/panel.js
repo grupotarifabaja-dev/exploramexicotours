@@ -39,6 +39,28 @@
       $(this).closest('[data-row]').remove();
     });
 
+    /* ---------- Imagen única (foto de asesor) vía wp.media ---------- */
+    $(document).on('click', '[data-image-add]', function (e) {
+      e.preventDefault();
+      if (typeof wp === 'undefined' || !wp.media) { return; }
+      var $wrap = $(this).closest('[data-image]');
+      var frame = wp.media({ title: 'Selecciona una foto', multiple: false, library: { type: 'image' } });
+      frame.on('select', function () {
+        var a = frame.state().get('selection').first().toJSON();
+        var thumb = (a.sizes && a.sizes.thumbnail) ? a.sizes.thumbnail.url : a.url;
+        $wrap.find('[data-image-preview]').html('<img src="' + thumb + '" alt="" />');
+        $wrap.find('[data-image-input]').val(a.id);
+        $wrap.find('[data-image-remove]').show();
+      });
+      frame.open();
+    });
+    $(document).on('click', '[data-image-remove]', function () {
+      var $wrap = $(this).closest('[data-image]');
+      $wrap.find('[data-image-preview]').empty();
+      $wrap.find('[data-image-input]').val('');
+      $(this).hide();
+    });
+
     /* ---------- Galería (librería de medios de WP) ---------- */
     $(document).on('click', '[data-gallery-add]', function (e) {
       e.preventDefault();
@@ -64,24 +86,33 @@
       $(this).closest('.emt-gallery__item').remove();
     });
 
-    /* ---------- Guardado del tour ---------- */
+    /* ---------- Guardado de formularios del panel (tour / asesor / config) ----------
+       Genérico vía atributos data- en el <form>:
+         data-ajax-action       acción admin-ajax
+         data-required-draft     campos obligatorios al guardar borrador (coma)
+         data-required-publish   campos obligatorios al publicar (coma)
+       Nunca resetea lo capturado: si falta un obligatorio, marca y enfoca el campo. */
     var pendingStatus = 'draft';
-    $(document).on('click', '#emt-tour-form [data-save]', function () {
+    $(document).on('click', '[data-emt-form] [data-save]', function () {
       pendingStatus = $(this).data('save');
     });
 
-    $(document).on('submit', '#emt-tour-form', function (e) {
+    function reqList(form, status) {
+      var attr = (status === 'publish') ? 'required-publish' : 'required-draft';
+      var raw = ($(form).data(attr) || '').toString();
+      return raw.split(',').map(function (s) { return s.trim(); }).filter(Boolean);
+    }
+
+    $(document).on('submit', '[data-emt-form]', function (e) {
       e.preventDefault();
       var form = this;
-      var $msg = $(form).find('[data-form-msg]');
-      $(form).find('.emt-field--error').removeClass('emt-field--error');
+      var $form = $(form);
+      var $msg = $form.find('[data-form-msg]');
+      $form.find('.emt-field--error').removeClass('emt-field--error');
 
-      // Validación de obligatorios SIN perder lo capturado (no se resetea nada).
-      // Borrador: solo el título. Publicar: título + duración.
-      var required = (pendingStatus === 'publish') ? ['titulo', 'duracion_texto'] : ['titulo'];
       var $firstErr = null;
-      required.forEach(function (name) {
-        var $f = $(form).find('[name="' + name + '"]');
+      reqList(form, pendingStatus).forEach(function (name) {
+        var $f = $form.find('[name="' + name + '"]');
         if (!$f.val() || !$f.val().trim()) {
           $f.closest('.emt-field').addClass('emt-field--error');
           if (!$firstErr) { $firstErr = $f; }
@@ -95,24 +126,29 @@
       }
 
       var data = new FormData(form);
-      data.append('action', 'emt_panel_save_tour');
+      data.append('action', $form.data('ajax-action'));
       data.append('nonce', EMTPanel.nonce);
-      data.append('post_id', $(form).data('post-id') || 0);
+      data.append('post_id', $form.data('post-id') || 0);
       data.append('status', pendingStatus);
 
       $msg.attr('class', 'emt-panel-form__msg').text('Guardando…');
-      $(form).find('[data-save]').prop('disabled', true);
+      $form.find('[data-save]').prop('disabled', true);
 
       $.ajax({ url: EMTPanel.ajax, method: 'POST', data: data, processData: false, contentType: false })
         .done(function (res) {
           if (res && res.success) {
-            $msg.attr('class', 'emt-panel-form__msg emt-panel-form__msg--ok').text(res.data.msg + ' Redirigiendo…');
-            window.location.href = res.data.editUrl;
+            var okMsg = (res.data && res.data.msg) ? res.data.msg : 'Guardado.';
+            if (res.data && res.data.editUrl) {
+              $msg.attr('class', 'emt-panel-form__msg emt-panel-form__msg--ok').text(okMsg + ' Redirigiendo…');
+              window.location.href = res.data.editUrl;
+            } else {
+              $msg.attr('class', 'emt-panel-form__msg emt-panel-form__msg--ok').text(okMsg);
+            }
           } else {
             var m = (res && res.data && res.data.msg) ? res.data.msg : 'No se pudo guardar.';
             $msg.attr('class', 'emt-panel-form__msg emt-panel-form__msg--err').text(m);
             if (res && res.data && res.data.field) {
-              $(form).find('[name="' + res.data.field + '"]').closest('.emt-field').addClass('emt-field--error');
+              $form.find('[name="' + res.data.field + '"]').closest('.emt-field').addClass('emt-field--error');
             }
           }
         })
@@ -120,17 +156,19 @@
           $msg.attr('class', 'emt-panel-form__msg emt-panel-form__msg--err').text('Error de conexión.');
         })
         .always(function () {
-          $(form).find('[data-save]').prop('disabled', false);
+          $form.find('[data-save]').prop('disabled', false);
         });
     });
 
-    /* ---------- Eliminar tour ---------- */
-    $(document).on('click', '[data-emt-delete-tour]', function () {
-      var id = $(this).data('emt-delete-tour');
-      var title = $(this).data('title') || 'este tour';
+    /* ---------- Eliminar (tour / asesor) a la papelera ----------
+       data-emt-delete="<acción ajax>"  data-id  data-title */
+    $(document).on('click', '[data-emt-delete]', function () {
+      var action = $(this).data('emt-delete');
+      var id = $(this).data('id');
+      var title = $(this).data('title') || 'este elemento';
       if (!window.confirm('¿Enviar "' + title + '" a la papelera?')) { return; }
       var $row = $(this).closest('tr');
-      $.post(EMTPanel.ajax, { action: 'emt_panel_delete_tour', nonce: EMTPanel.nonce, id: id })
+      $.post(EMTPanel.ajax, { action: action, nonce: EMTPanel.nonce, id: id })
         .done(function (res) {
           if (res && res.success) { $row.fadeOut(200, function () { $(this).remove(); }); }
           else { window.alert((res && res.data && res.data.msg) || 'No se pudo eliminar.'); }
