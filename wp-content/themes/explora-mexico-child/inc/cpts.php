@@ -25,6 +25,8 @@ function emt_register_cpts() {
         'menu_icon'     => 'dashicons-palmtree',
         'menu_position' => 5,
         'show_in_rest'  => true,
+        'capability_type' => array( 'tour', 'tours' ),
+        'map_meta_cap'    => true,
     ) );
 
     // CPT: asesor (§6.2)
@@ -43,6 +45,8 @@ function emt_register_cpts() {
         'menu_icon'     => 'dashicons-businessperson',
         'menu_position' => 6,
         'show_in_rest'  => true,
+        'capability_type' => array( 'asesor', 'asesores' ),
+        'map_meta_cap'    => true,
     ) );
 }
 
