@@ -1,6 +1,6 @@
 # Seeder de datos reales — Explora México Tours
 
-Carga el contenido **real** de EMT en una instalación de WordPress: **2 tours** (con
+Carga el contenido **real** de EMT en una instalación de WordPress: **8 tours** (con
 fotos) y **3 asesores**. Pensado para poblar entornos nuevos (local/staging) con
 datos representativos — por ejemplo, para capturas de las guías del cliente o para
 QA del front.
@@ -21,11 +21,17 @@ seeders/datos-reales/
 
 | Tipo | Elementos | Notas |
 |------|-----------|-------|
-| Tours | Xantolo · Día de Muertos en la Huasteca Potosina (4 fotos) · Día de Muertos en Michoacán (1 foto) | Estado `publish`. `peek_url` queda en `#` hasta tener los enlaces de reserva. |
+| Tours con precio | Xantolo · Huasteca Potosina (desde $5,245) · Día de Muertos en Michoacán (desde $4,099) | Estado `publish`. |
+| Tours sin precio | Día de Muertos en Mixquic (CDMX) · Barrancas del Cobre (Chihuahua) · Oaxaca Ciudad · Oaxaca y sus Playas · Explora Chiapas · Ciudades Coloniales (Querétaro–Guanajuato–Michoacán) | `precio_desde = null` → la ficha/tarjetas/panel muestran **"Consultar precio"**. |
 | Asesores | Samantha Arellano · Alma Aréchiga · Magdiel Muñoz | **Sin foto** (no incluidas en el paquete de origen). |
 
+`peek_url` queda en `#` hasta tener los enlaces de reserva. La primera foto de cada
+tour es la imagen destacada; el resto, la galería.
+
 Crea automáticamente los términos de taxonomía que falten (destinos, categorías,
-experiencias, idiomas y especialidades) y **reutiliza** los que ya existan.
+experiencias, idiomas y especialidades) y **reutiliza** los que ya existan. Destinos
+nuevos que crea: Ciudad de México, Chihuahua, Oaxaca, Chiapas y
+"Querétaro – Guanajuato – Michoacán".
 
 ## Cómo ejecutarlo
 

@@ -150,7 +150,9 @@ function emt_seed_datos_reales( $opts = array() ) {
         update_field( 'titulo_en', $t['titulo_en'] ?? '', $post_id );
         update_field( 'descripcion_en', $t['descripcion_breve_en'] ?? '', $post_id );
         update_field( 'excerpt_en', $t['descripcion_breve_en'] ?? '', $post_id );
-        update_field( 'precio_desde', isset( $t['precio_desde'] ) ? (float) $t['precio_desde'] : '', $post_id );
+        // precio_desde puede ser null (tours "sin precio" -> se muestra "Consultar precio").
+        $precio_in = $t['precio_desde'] ?? null;
+        update_field( 'precio_desde', ( $precio_in === null || $precio_in === '' ) ? '' : (float) $precio_in, $post_id );
         update_field( 'precio_nota', $t['precio_nota'] ?? '', $post_id );
         update_field( 'duracion_texto', $t['duracion_texto'] ?? '', $post_id );
         update_field( 'duracion_horas', isset( $t['duracion_horas'] ) ? (float) $t['duracion_horas'] : '', $post_id );
