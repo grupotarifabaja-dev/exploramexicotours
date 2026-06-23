@@ -69,7 +69,7 @@ while ( have_posts() ) :
                 $lb_data = array_map( function ( $im ) { return array( 'src' => $im['full'], 'alt' => $im['alt'] ); }, $imgs );
                 ?>
                 <div class="emt-tour-gallery" data-gallery>
-                    <button type="button" class="emt-tour-gallery__main" data-gallery-open="0" aria-label="<?php echo esc_attr( emt_t( 'ver_galeria' ) ); ?>">
+                    <button type="button" class="emt-tour-gallery__main" data-gallery-open="0" aria-label="<?php echo esc_attr( emt_t( 'ver_galeria' ) ); ?>" style="--hero-img:url('<?php echo esc_url( $imgs[0]['display'] ); ?>')">
                         <img src="<?php echo esc_url( $imgs[0]['display'] ); ?>" alt="<?php echo esc_attr( $imgs[0]['alt'] ?: $titulo ); ?>" />
                     </button>
                     <?php if ( count( $imgs ) > 1 ) : ?>

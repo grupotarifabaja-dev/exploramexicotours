@@ -5,15 +5,22 @@
 
 .emt-tour-hero { margin-bottom: var(--emt-spacing-xl); }
 .emt-tour-gallery { display: grid; gap: var(--emt-spacing-sm); margin-bottom: var(--emt-spacing-lg); }
-/* Galería: las fotos se muestran COMPLETAS (object-fit: contain) sobre un fondo
-   neutro, respetando orientaciones mixtas. El recorte fuerte se elimina; la vista
-   a tamaño grande y sin recorte se da en el lightbox. */
-.emt-tour-gallery__main { display: block; width: 100%; padding: 0; border: 0; cursor: zoom-in; background: var(--emt-gris-claro); border-radius: var(--emt-radius-lg); overflow: hidden; }
-.emt-tour-gallery__main img { display: block; width: 100%; height: 440px; max-height: 50vh; object-fit: contain; }
+/* Hero de la galería: la foto destacada se muestra COMPLETA (object-fit: contain)
+   sobre un "blurred backdrop" — una copia ampliada y desenfocada de la propia foto
+   que llena el contenedor. Así no hay franjas vacías de color ni recorte de la
+   imagen, con orientaciones mixtas (vertical/horizontal). */
+.emt-tour-gallery__main { position: relative; display: block; width: 100%; padding: 0; border: 0; cursor: zoom-in; background: var(--emt-gris-claro); border-radius: var(--emt-radius-lg); overflow: hidden; }
+.emt-tour-gallery__main::before {
+  content: ""; position: absolute; inset: 0; z-index: 0;
+  background-image: var(--hero-img); background-size: cover; background-position: center;
+  filter: blur(28px) brightness(0.9) saturate(1.1); transform: scale(1.15);
+}
+.emt-tour-gallery__main img { position: relative; z-index: 1; display: block; width: 100%; height: 440px; max-height: 50vh; object-fit: contain; }
+/* Miniaturas: cuadrícula uniforme con recorte cover (cuadritos parejos). */
 .emt-tour-gallery__thumbs { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: var(--emt-spacing-sm); }
-.emt-tour-gallery__thumb { display: block; padding: 0; border: 0; cursor: zoom-in; background: var(--emt-gris-claro); border-radius: var(--emt-radius-md); overflow: hidden; aspect-ratio: 4 / 3; transition: transform 0.15s ease; }
+.emt-tour-gallery__thumb { display: block; padding: 0; border: 0; cursor: zoom-in; background: var(--emt-gris-claro); border-radius: var(--emt-radius-md); overflow: hidden; aspect-ratio: 1 / 1; transition: transform 0.15s ease; }
 .emt-tour-gallery__thumb:hover { transform: scale(1.03); }
-.emt-tour-gallery__thumb img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.emt-tour-gallery__thumb img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .emt-tour-gallery__main:focus-visible, .emt-tour-gallery__thumb:focus-visible { outline: 3px solid var(--emt-azul-brillante); outline-offset: 2px; }
 
 /* Lightbox */
