@@ -57,6 +57,45 @@ function emt_get_image_or_placeholder( $post_id, $size = 'large' ) {
 }
 
 /**
+ * Imagen de una card de destino, con cascada de respaldo:
+ *   1) campo ACF 'imagen_destino' del término,
+ *   2) foto destacada de un tour publicado de ese destino,
+ *   3) '' (el CSS deja el degradado actual).
+ *
+ * @param WP_Term $term   Término de tour_destino.
+ * @param string  $size   Tamaño de imagen.
+ * @return string URL de imagen o '' si no hay ninguna.
+ */
+function emt_destino_image_url( $term, $size = 'medium_large' ) {
+    if ( function_exists( 'get_field' ) ) {
+        $img = get_field( 'imagen_destino', $term );
+        if ( is_array( $img ) ) {
+            return $img['sizes'][ $size ] ?? $img['url'] ?? '';
+        }
+    }
+    // Respaldo: foto destacada de un tour del destino.
+    $tours = get_posts( array(
+        'post_type'      => 'tour',
+        'posts_per_page' => 1,
+        'fields'         => 'ids',
+        'no_found_rows'  => true,
+        'meta_key'       => '_thumbnail_id',
+        'tax_query'      => array( array(
+            'taxonomy' => 'tour_destino',
+            'field'    => 'term_id',
+            'terms'    => $term->term_id,
+        ) ),
+    ) );
+    if ( $tours ) {
+        $url = get_the_post_thumbnail_url( $tours[0], $size );
+        if ( $url ) {
+            return $url;
+        }
+    }
+    return '';
+}
+
+/**
  * Formatea un precio. MXN sin decimales (doc maestro §6.1).
  *
  * @param int|float|string $amount   Monto.

@@ -13,8 +13,25 @@ $emt_prefix = ( $emt_lang === 'en' ) ? '/en' : '';
 get_header();
 ?>
 
-<!-- 1. Hero institucional (hero estacional configurable: Fase D) -->
-<section class="emt-hero">
+<!-- 1. Hero institucional con video de fondo (configurable en Configuración) -->
+<?php
+// Fondo del hero: video > imagen de respaldo > degradado azul (nunca se rompe).
+$hero_video  = function_exists( 'get_field' ) ? get_field( 'hero_bg_video', 'option' ) : null;
+$hero_poster = function_exists( 'get_field' ) ? get_field( 'hero_bg_poster', 'option' ) : null;
+$hero_video_url  = is_array( $hero_video ) ? ( $hero_video['url'] ?? '' ) : '';
+$hero_video_mime = is_array( $hero_video ) ? ( $hero_video['mime_type'] ?? 'video/mp4' ) : 'video/mp4';
+$hero_poster_url = is_array( $hero_poster ) ? ( $hero_poster['url'] ?? '' ) : '';
+$hero_has_media  = ( $hero_video_url || $hero_poster_url );
+?>
+<section class="emt-hero<?php echo $hero_has_media ? ' emt-hero--media' : ''; ?>">
+    <?php if ( $hero_video_url ) : ?>
+        <video class="emt-hero__media emt-hero__video" muted loop playsinline preload="none"
+               <?php if ( $hero_poster_url ) : ?>poster="<?php echo esc_url( $hero_poster_url ); ?>"<?php endif; ?>
+               data-hero-video data-src="<?php echo esc_url( $hero_video_url ); ?>" data-type="<?php echo esc_attr( $hero_video_mime ); ?>" aria-hidden="true"></video>
+    <?php elseif ( $hero_poster_url ) : ?>
+        <div class="emt-hero__media emt-hero__poster" style="background-image:url('<?php echo esc_url( $hero_poster_url ); ?>')" aria-hidden="true"></div>
+    <?php endif; ?>
+    <?php if ( $hero_has_media ) : ?><span class="emt-hero__overlay" aria-hidden="true"></span><?php endif; ?>
     <div class="emt-container emt-hero__inner">
         <p class="emt-hero__eyebrow"><?php echo esc_html( emt_t( 'hero_eyebrow' ) ); ?></p>
         <h1 class="emt-hero__title"><?php echo esc_html( emt_t( 'hero_title' ) ); ?></h1>
@@ -38,10 +55,13 @@ if ( $destinos && ! is_wp_error( $destinos ) ) : ?>
         </header>
         <ul class="emt-destinos-grid">
             <?php foreach ( $destinos as $d ) :
-                $link = get_term_link( $d ); ?>
-                <li class="emt-destino-card">
+                $link = get_term_link( $d );
+                $img  = function_exists( 'emt_destino_image_url' ) ? emt_destino_image_url( $d ) : '';
+                ?>
+                <li class="emt-destino-card<?php echo $img ? ' emt-destino-card--has-img' : ''; ?>">
                     <a href="<?php echo esc_url( is_wp_error( $link ) ? '#' : $link ); ?>">
-                        <span class="emt-destino-card__bg" aria-hidden="true"></span>
+                        <span class="emt-destino-card__bg"<?php if ( $img ) : ?> style="background-image:url('<?php echo esc_url( $img ); ?>')"<?php endif; ?> aria-hidden="true"></span>
+                        <span class="emt-destino-card__overlay" aria-hidden="true"></span>
                         <span class="emt-destino-card__name"><?php echo esc_html( $d->name ); ?></span>
                     </a>
                 </li>

@@ -39,16 +39,25 @@
       $(this).closest('[data-row]').remove();
     });
 
-    /* ---------- Imagen única (foto de asesor) vía wp.media ---------- */
+    /* ---------- Medio único (foto de asesor, imagen/poster o video) vía wp.media ----------
+       El tipo se define con data-media-type en el contenedor [data-image]
+       ('image' por defecto; 'video' para el video del hero). */
     $(document).on('click', '[data-image-add]', function (e) {
       e.preventDefault();
       if (typeof wp === 'undefined' || !wp.media) { return; }
       var $wrap = $(this).closest('[data-image]');
-      var frame = wp.media({ title: 'Selecciona una foto', multiple: false, library: { type: 'image' } });
+      var type = $wrap.data('media-type') || 'image';
+      var frame = wp.media({ title: 'Selecciona un archivo', multiple: false, library: { type: type } });
       frame.on('select', function () {
         var a = frame.state().get('selection').first().toJSON();
-        var thumb = (a.sizes && a.sizes.thumbnail) ? a.sizes.thumbnail.url : a.url;
-        $wrap.find('[data-image-preview]').html('<img src="' + thumb + '" alt="" />');
+        var preview;
+        if (type === 'video') {
+          preview = '<video src="' + a.url + '" muted playsinline preload="metadata"></video>';
+        } else {
+          var thumb = (a.sizes && a.sizes.thumbnail) ? a.sizes.thumbnail.url : a.url;
+          preview = '<img src="' + thumb + '" alt="" />';
+        }
+        $wrap.find('[data-image-preview]').html(preview);
         $wrap.find('[data-image-input]').val(a.id);
         $wrap.find('[data-image-remove]').show();
       });

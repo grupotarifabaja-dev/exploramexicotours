@@ -273,6 +273,12 @@ function emt_panel_save_config() {
         update_field( $f, esc_url_raw( wp_unslash( $_POST[ $f ] ?? '' ) ), 'option' );
     }
 
+    // Hero de portada: video de fondo + imagen de respaldo (IDs de adjuntos).
+    $hero_video_id  = (int) ( $_POST['hero_bg_video'] ?? 0 );
+    $hero_poster_id = (int) ( $_POST['hero_bg_poster'] ?? 0 );
+    update_field( 'hero_bg_video', $hero_video_id ?: '', 'option' );
+    update_field( 'hero_bg_poster', $hero_poster_id ?: '', 'option' );
+
     // Textos del sitio: hero estacional.
     update_field( 'hero_seasonal_active', empty( $_POST['hero_seasonal_active'] ) ? 0 : 1, 'option' );
     update_field( 'hero_seasonal_title', sanitize_text_field( wp_unslash( $_POST['hero_seasonal_title'] ?? '' ) ), 'option' );

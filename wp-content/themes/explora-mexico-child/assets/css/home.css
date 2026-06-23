@@ -4,11 +4,20 @@
 .emt-main { display: block; }
 
 .emt-hero {
+  position: relative;
+  overflow: hidden;
+  /* Degradado azul como base: respaldo final si no hay video ni imagen. */
   background: linear-gradient(135deg, var(--emt-azul-profundo), var(--emt-azul-brillante));
   color: var(--emt-blanco);
   padding-block: var(--emt-spacing-4xl);
 }
-.emt-hero__inner { max-width: var(--emt-container-narrow); text-align: center; }
+/* Capas de fondo del hero (video o imagen de respaldo). */
+.emt-hero__media { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; border: 0; }
+.emt-hero__poster { background-size: cover; background-position: center; }
+/* Overlay oscuro para legibilidad del texto blanco sobre cualquier frame. */
+.emt-hero__overlay { position: absolute; inset: 0; z-index: 1; background: linear-gradient(180deg, rgba(0, 20, 45, 0.45), rgba(0, 20, 45, 0.62)); }
+.emt-hero--media { min-height: 58vh; display: flex; align-items: center; }
+.emt-hero__inner { position: relative; z-index: 2; max-width: var(--emt-container-narrow); margin-inline: auto; text-align: center; }
 .emt-hero__eyebrow { text-transform: uppercase; letter-spacing: 0.08em; font-size: var(--emt-fs-sm); color: var(--emt-turquesa); margin: 0 0 var(--emt-spacing-sm); }
 .emt-hero__title { font-family: var(--emt-font-display); font-size: var(--emt-fs-3xl); font-weight: var(--emt-fw-black); line-height: var(--emt-lh-tight); margin: 0 0 var(--emt-spacing-md); }
 .emt-hero__sub { font-size: var(--emt-fs-md); line-height: var(--emt-lh-relaxed); opacity: 0.92; margin: 0 auto var(--emt-spacing-xl); max-width: 56ch; }
@@ -44,9 +53,12 @@
 
 .emt-destino-card { position: relative; border-radius: var(--emt-radius-lg); overflow: hidden; aspect-ratio: 3 / 4; }
 .emt-destino-card a { display: block; height: 100%; text-decoration: none; }
-.emt-destino-card__bg { position: absolute; inset: 0; background: linear-gradient(135deg, var(--emt-turquesa), var(--emt-azul-brillante)); transition: transform var(--emt-transition-base); }
+/* Fondo: degradado turquesa por defecto; cuando hay imagen, se pinta por estilo inline. */
+.emt-destino-card__bg { position: absolute; inset: 0; background: linear-gradient(135deg, var(--emt-turquesa), var(--emt-azul-brillante)); background-size: cover; background-position: center; transition: transform var(--emt-transition-base); }
 .emt-destino-card:hover .emt-destino-card__bg { transform: scale(1.08); }
-.emt-destino-card__name { position: absolute; left: var(--emt-spacing-md); bottom: var(--emt-spacing-md); color: var(--emt-blanco); font-family: var(--emt-font-display); font-weight: var(--emt-fw-bold); font-size: var(--emt-fs-lg); }
+/* Overlay para que el nombre se lea sobre la foto. */
+.emt-destino-card__overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0, 20, 45, 0.7), rgba(0, 20, 45, 0.05) 55%); }
+.emt-destino-card__name { position: absolute; z-index: 1; left: var(--emt-spacing-md); right: var(--emt-spacing-md); bottom: var(--emt-spacing-md); color: var(--emt-blanco); font-family: var(--emt-font-display); font-weight: var(--emt-fw-bold); font-size: var(--emt-fs-lg); text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4); }
 
 .emt-exp-card { display: block; text-align: center; text-decoration: none; padding: var(--emt-spacing-lg); border: 1px solid var(--emt-color-border); border-radius: var(--emt-radius-md); color: var(--emt-azul-profundo); font-family: var(--emt-font-display); font-weight: var(--emt-fw-medium); transition: background var(--emt-transition-fast), color var(--emt-transition-fast); }
 .emt-exp-card:hover { background: var(--emt-turquesa); color: var(--emt-blanco); }
