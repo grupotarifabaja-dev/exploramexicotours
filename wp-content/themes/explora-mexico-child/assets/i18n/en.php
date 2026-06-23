@@ -28,6 +28,12 @@ return array(
     // Tour labels
     'desde'                => 'From',
     'consultar_precio'     => 'Price upon request',
+    'galeria'              => 'Photo gallery',
+    'ver_galeria'          => 'View photo gallery',
+    'ver_foto'             => 'View photo',
+    'cerrar'               => 'Close',
+    'anterior'             => 'Previous',
+    'siguiente'            => 'Next',
     'duracion'             => 'Duration',
     'dificultad'           => 'Difficulty',
     'facil'                => 'Easy',

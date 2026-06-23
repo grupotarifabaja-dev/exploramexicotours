@@ -47,18 +47,41 @@ while ( have_posts() ) :
 
             <!-- Hero -->
             <header class="emt-tour-hero">
-                <div class="emt-tour-gallery">
-                    <?php
-                    $main = has_post_thumbnail( $id ) ? get_the_post_thumbnail_url( $id, 'large' ) : ( ! empty( $galeria[0]['url'] ) ? $galeria[0]['url'] : emt_get_image_or_placeholder( $id, 'large' ) );
-                    ?>
-                    <img class="emt-tour-gallery__main" src="<?php echo esc_url( $main ); ?>" alt="<?php echo esc_attr( $titulo ); ?>" />
-                    <?php if ( is_array( $galeria ) && count( $galeria ) > 1 ) : ?>
+                <?php
+                // Lista normalizada de imágenes de la galería para mostrar y para el lightbox.
+                $imgs = array();
+                if ( is_array( $galeria ) ) {
+                    foreach ( $galeria as $g ) {
+                        $full = $g['url'] ?? '';
+                        if ( ! $full ) { continue; }
+                        $imgs[] = array(
+                            'thumb'   => $g['sizes']['medium'] ?? $full,
+                            'display' => $g['sizes']['large'] ?? $full,
+                            'full'    => $full,
+                            'alt'     => $g['alt'] ?? '',
+                        );
+                    }
+                }
+                if ( empty( $imgs ) ) {
+                    $main = has_post_thumbnail( $id ) ? get_the_post_thumbnail_url( $id, 'large' ) : emt_get_image_or_placeholder( $id, 'large' );
+                    $imgs[] = array( 'thumb' => $main, 'display' => $main, 'full' => $main, 'alt' => $titulo );
+                }
+                $lb_data = array_map( function ( $im ) { return array( 'src' => $im['full'], 'alt' => $im['alt'] ); }, $imgs );
+                ?>
+                <div class="emt-tour-gallery" data-gallery>
+                    <button type="button" class="emt-tour-gallery__main" data-gallery-open="0" aria-label="<?php echo esc_attr( emt_t( 'ver_galeria' ) ); ?>">
+                        <img src="<?php echo esc_url( $imgs[0]['display'] ); ?>" alt="<?php echo esc_attr( $imgs[0]['alt'] ?: $titulo ); ?>" />
+                    </button>
+                    <?php if ( count( $imgs ) > 1 ) : ?>
                         <div class="emt-tour-gallery__thumbs">
-                            <?php foreach ( array_slice( $galeria, 0, 4 ) as $g ) : ?>
-                                <img src="<?php echo esc_url( $g['sizes']['thumbnail'] ?? $g['url'] ); ?>" alt="" loading="lazy" />
+                            <?php foreach ( $imgs as $i => $im ) : ?>
+                                <button type="button" class="emt-tour-gallery__thumb" data-gallery-open="<?php echo (int) $i; ?>" aria-label="<?php echo esc_attr( emt_t( 'ver_foto' ) . ' ' . ( $i + 1 ) ); ?>">
+                                    <img src="<?php echo esc_url( $im['thumb'] ); ?>" alt="<?php echo esc_attr( $im['alt'] ); ?>" loading="lazy" />
+                                </button>
                             <?php endforeach; ?>
                         </div>
                     <?php endif; ?>
+                    <script type="application/json" data-gallery-data><?php echo wp_json_encode( $lb_data ); ?></script>
                 </div>
                 <h1 class="emt-tour-hero__title"><?php echo esc_html( $titulo ); ?></h1>
                 <ul class="emt-tour-hero__meta">
@@ -181,6 +204,17 @@ while ( have_posts() ) :
             <?php endif; ?>
         </div>
     </article>
+
+    <!-- Lightbox de galería (controlado por assets/js/tour-gallery.js) -->
+    <div class="emt-lightbox" data-lightbox hidden role="dialog" aria-modal="true" aria-label="<?php echo esc_attr( emt_t( 'galeria' ) ); ?>">
+        <button type="button" class="emt-lightbox__close" data-lb-close aria-label="<?php echo esc_attr( emt_t( 'cerrar' ) ); ?>">&times;</button>
+        <button type="button" class="emt-lightbox__nav emt-lightbox__nav--prev" data-lb-prev aria-label="<?php echo esc_attr( emt_t( 'anterior' ) ); ?>">&#8249;</button>
+        <figure class="emt-lightbox__stage">
+            <img class="emt-lightbox__img" data-lb-img src="" alt="" />
+        </figure>
+        <button type="button" class="emt-lightbox__nav emt-lightbox__nav--next" data-lb-next aria-label="<?php echo esc_attr( emt_t( 'siguiente' ) ); ?>">&#8250;</button>
+        <div class="emt-lightbox__counter" data-lb-counter aria-live="polite"></div>
+    </div>
     <?php
 endwhile;
 

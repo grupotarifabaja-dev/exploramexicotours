@@ -28,6 +28,12 @@ return array(
     // Etiquetas de tour
     'desde'                => 'Desde',
     'consultar_precio'     => 'Consultar precio',
+    'galeria'              => 'Galería de fotos',
+    'ver_galeria'          => 'Ver galería de fotos',
+    'ver_foto'             => 'Ver foto',
+    'cerrar'               => 'Cerrar',
+    'anterior'             => 'Anterior',
+    'siguiente'            => 'Siguiente',
     'duracion'             => 'Duración',
     'dificultad'           => 'Dificultad',
     'facil'                => 'Fácil',
