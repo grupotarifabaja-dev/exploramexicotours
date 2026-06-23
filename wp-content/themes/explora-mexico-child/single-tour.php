@@ -157,6 +157,8 @@ while ( have_posts() ) :
                     <div class="emt-reserve-card">
                         <?php if ( ! empty( $precio ) ) : ?>
                             <p class="emt-reserve-card__price"><span><?php echo esc_html( emt_t( 'desde' ) ); ?></span><strong><?php echo esc_html( emt_format_price( $precio ) ); ?></strong></p>
+                        <?php else : ?>
+                            <p class="emt-reserve-card__price emt-reserve-card__price--consultar"><strong><?php echo esc_html( emt_t( 'consultar_precio' ) ); ?></strong></p>
                         <?php endif; ?>
                         <?php if ( $peek ) : ?>
                             <a href="<?php echo esc_url( $peek ); ?>" class="emt-btn emt-btn--cta emt-btn--peek" data-tour-id="<?php echo esc_attr( $id ); ?>" data-tour-title="<?php echo esc_attr( $titulo ); ?>" target="_blank" rel="noopener"><?php echo esc_html( emt_t( 'reservar_ahora' ) ); ?></a>

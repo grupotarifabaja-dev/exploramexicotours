@@ -84,6 +84,10 @@ $classes = apply_filters( 'emt_tour_card_classes', array( 'emt-tour-card' ), $id
                     <span class="emt-tour-card__price-label"><?php echo esc_html( emt_t( 'desde' ) ); ?></span>
                     <span class="emt-tour-card__price-value"><?php echo esc_html( function_exists( 'emt_format_price' ) ? emt_format_price( $precio ) : number_format_i18n( (float) $precio ) . ' MXN' ); ?></span>
                 </p>
+            <?php else : ?>
+                <p class="emt-tour-card__price emt-tour-card__price--consultar">
+                    <span class="emt-tour-card__price-value"><?php echo esc_html( emt_t( 'consultar_precio' ) ); ?></span>
+                </p>
             <?php endif; ?>
             <a class="emt-btn emt-btn--secondary emt-tour-card__cta" href="<?php echo esc_url( $permalink ); ?>"><?php echo esc_html( emt_t( 'ver_tour' ) ); ?> →</a>
         </div>

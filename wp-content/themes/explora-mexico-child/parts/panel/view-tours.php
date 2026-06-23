@@ -69,7 +69,7 @@ $tours = get_posts( array(
                         </div>
                     </td>
                     <td><?php echo esc_html( $destino ); ?></td>
-                    <td><?php echo $precio ? esc_html( emt_format_price( $precio ) ) : '—'; ?></td>
+                    <td><?php echo $precio ? esc_html( emt_format_price( $precio ) ) : '<span class="emt-panel__muted">Consultar precio</span>'; ?></td>
                     <td><?php echo $durac ? esc_html( $durac ) : '—'; ?></td>
                     <td><span class="emt-panel__status emt-panel__status--<?php echo esc_attr( $st_cls ); ?>"><?php echo esc_html( $st_lbl ); ?></span></td>
                     <td>

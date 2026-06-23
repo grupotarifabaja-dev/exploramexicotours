@@ -27,6 +27,7 @@ return array(
 
     // Tour labels
     'desde'                => 'From',
+    'consultar_precio'     => 'Price upon request',
     'duracion'             => 'Duration',
     'dificultad'           => 'Difficulty',
     'facil'                => 'Easy',

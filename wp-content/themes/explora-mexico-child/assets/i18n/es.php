@@ -27,6 +27,7 @@ return array(
 
     // Etiquetas de tour
     'desde'                => 'Desde',
+    'consultar_precio'     => 'Consultar precio',
     'duracion'             => 'Duración',
     'dificultad'           => 'Dificultad',
     'facil'                => 'Fácil',
