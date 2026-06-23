@@ -1,0 +1,93 @@
+{
+  "tours": [
+    {
+      "titulo": "Xantolo · Día de Muertos en la Huasteca Potosina",
+      "titulo_en": "Xantolo · Day of the Dead in the Huasteca Potosina",
+      "slug": "xantolo-dia-de-muertos-huasteca",
+      "destino": "San Luis Potosí",
+      "categoria": "Cultural",
+      "experiencias": ["Día de Muertos", "Aventura y naturaleza", "Cultura"],
+      "descripcion_breve": "Déjate sorprender por los escenarios acuáticos de la Huasteca Potosina y la festividad del Xantolo (día de muertos) que se celebra con ofrendas, altares, música, baile y gastronomía creando una atmósfera de respeto, alegría y memoria.",
+      "descripcion_breve_en": "Be amazed by the water landscapes of the Huasteca Potosina and the Xantolo festival (Day of the Dead) celebrated with offerings, altars, music, dance and gastronomy, creating an atmosphere of respect, joy and memory.",
+      "precio_desde": 5245,
+      "precio_nota": "Menor 6-12. Adulto desde $6,019 (TPL) / $6,389 (DBL)",
+      "duracion_texto": "3 días / 2 noches",
+      "duracion_horas": 72,
+      "dificultad": "moderada",
+      "idiomas": ["es", "en"],
+      "punto_salida": "Av. Cruz del Sur 2371, Jardines de la Cruz, CP 44950, Guadalajara, Jalisco",
+      "salida_garantizada": true,
+      "pickup_hotel": false,
+      "fecha_viaje": "30 octubre – 1 noviembre 2026",
+      "fotos": ["huasteca-puente-flores.jpg", "huasteca-tamul-1.jpg", "huasteca-cascada.jpg", "huasteca-rafting.jpg"],
+      "incluye": [
+        "Transporte en van, servicio compartido",
+        "Seguro de viajero en transporte",
+        "Traslados acordes a itinerario",
+        "2 noches de alojamiento Hotel 3*",
+        "Admisiones en sitios a visitar",
+        "Guía local",
+        "Chaleco salvavidas, remo y panga en Cascada de Tamul",
+        "Chaleco y llanta para tubbing en Cascada El Meco",
+        "Asistencia de staff durante el viaje",
+        "IVA"
+      ],
+      "no_incluye": [
+        "Alimentos y bebidas",
+        "Renta de chalecos en Minas Viejas y Micos",
+        "Actividad de salto de cascadas en Micos",
+        "Festival de Las Ánimas en Tamasopo (evento nocturno)",
+        "Seguro por actividades de naturaleza"
+      ],
+      "itinerario": [
+        {"dia": 1, "titulo": "Guadalajara – Cascadas de Tamasopo – Ciudad Valles", "descripcion": "05:00 hrs salida del punto de encuentro con destino a Cascadas de Tamasopo. Arribo y tiempo libre para disfrutar de los escenarios naturales. Alojamiento en Ciudad Valles."},
+        {"dia": 2, "titulo": "Ciudad Valles – El Meco – Minas Viejas – Micos", "descripcion": "Visita a Cascada El Meco para tubbing, Cascada de Minas Viejas y Cascadas de Micos para fotografías. Por la noche, centro de Ciudad Valles para admirar altares y ofrendas del Xantolo."},
+        {"dia": 3, "titulo": "Ciudad Valles – Cascada de Tamul – Guadalajara", "descripcion": "Visita a la Cascada de Tamul y la Cueva del Agua. Al finalizar, regreso a Guadalajara. Fin de servicios."}
+      ],
+      "politica_cancelacion": "Cancelaciones con penalización del 30% del valor del viaje. Entre 45 y 30 días antes: 80% de penalización. Entre 29 y 0 días: 100% de penalización. No show el día del viaje: 100% de penalidad, sin reembolso. Explora México Tours podrá cancelar el viaje si no se completa el mínimo de personas, con reembolso total al cliente."
+    },
+    {
+      "titulo": "Día de Muertos en Michoacán",
+      "titulo_en": "Day of the Dead in Michoacán",
+      "slug": "dia-de-muertos-michoacan",
+      "destino": "Michoacán",
+      "categoria": "Cultural",
+      "experiencias": ["Día de Muertos", "Cultura"],
+      "descripcion_breve": "Dentro del conjunto de manifestaciones culturales de Michoacán destacan las relacionadas con el Día de Muertos, particularmente en las comunidades indígenas Purépecha, un ritual con profunda significación más allá de su vistosidad.",
+      "descripcion_breve_en": "Among Michoacán's cultural expressions, those related to the Day of the Dead stand out, particularly in the indigenous Purépecha communities — a ritual with deep meaning beyond its visual beauty.",
+      "precio_desde": 4099,
+      "precio_nota": "Menor 6-12. Adulto desde $4,179 (CuADPL) / $4,859 (DBL)",
+      "duracion_texto": "3 días / 2 noches",
+      "duracion_horas": 72,
+      "dificultad": "moderada",
+      "idiomas": ["es", "en"],
+      "punto_salida": "Av. Cruz del Sur 2371, Jardines de la Cruz, CP 44950, Guadalajara, Jalisco",
+      "salida_garantizada": true,
+      "pickup_hotel": false,
+      "fecha_viaje": "31 octubre – 2 noviembre 2026",
+      "fotos": ["michoacan-trajes.jpg"],
+      "incluye": [
+        "Transporte en van, servicio compartido",
+        "Seguro de viajero en transporte",
+        "Traslados acordes a itinerario",
+        "2 noches de alojamiento particular 3*",
+        "Embarcación para visita a Isla de Janitzio",
+        "Asistencia de staff durante el viaje",
+        "IVA"
+      ],
+      "no_incluye": [
+        "Alimentos y bebidas",
+        "Paseo en tranvía en el centro de Morelia",
+        "Admisión a museos y zonas arqueológicas",
+        "Propinas",
+        "Seguro de gastos médicos de viaje"
+      ],
+      "itinerario": [
+        {"dia": 1, "titulo": "Guadalajara – Morelia", "descripcion": "06:00 hrs salida con destino a Capula, tiempo libre para desayuno y compras de artesanías. Visita a Isla de Janitzio. Por la tarde, regreso a Morelia para alojamiento."},
+        {"dia": 2, "titulo": "Morelia – Zona lacustre de Pátzcuaro – Morelia", "descripcion": "Visita a Tzurumútaro y su cementerio decorado con cempasúchil, Pátzcuaro y la Plaza Vasco de Quiroga, Tzintzuntzan con Las Yácatas y el Ex convento de Santa Ana. Medianoche, regreso a Morelia."},
+        {"dia": 3, "titulo": "Morelia – Guadalajara", "descripcion": "Mañana libre para el centro de la ciudad, museos o tranvía. Después de la comida, regreso a Guadalajara. Fin de servicios."}
+      ],
+      "politica_cancelacion": "Cancelaciones con penalización del 30% del valor del viaje. Entre 45 y 30 días antes: 80% de penalización. Entre 29 y 0 días: 100% de penalización. No show el día del viaje: 100% de penalidad, sin reembolso. Explora México Tours podrá cancelar el viaje si no se completa el mínimo de personas, con reembolso total al cliente."
+    }
+  ]
+}
