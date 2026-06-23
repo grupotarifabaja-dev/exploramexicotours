@@ -114,5 +114,9 @@ function emt_enqueue_template_assets() {
     if ( is_singular( 'asesor' ) && file_exists( "$dir/assets/js/asesor-qr.js" ) ) {
         wp_enqueue_script( 'emt-asesor-qr', "$uri/assets/js/asesor-qr.js", array(), emt_asset_ver( "$dir/assets/js/asesor-qr.js" ), true );
     }
+
+    if ( is_singular( 'tour' ) && file_exists( "$dir/assets/js/tour-gallery.js" ) ) {
+        wp_enqueue_script( 'emt-tour-gallery', "$uri/assets/js/tour-gallery.js", array(), emt_asset_ver( "$dir/assets/js/tour-gallery.js" ), true );
+    }
 }
 add_action( 'wp_enqueue_scripts', 'emt_enqueue_template_assets', 20 );

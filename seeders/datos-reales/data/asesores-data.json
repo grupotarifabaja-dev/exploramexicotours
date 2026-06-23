@@ -1,0 +1,49 @@
+{
+  "asesores": [
+    {
+      "nombre": "Samantha Arellano",
+      "slug": "samantha-arellano",
+      "puesto": "Ejecutiva de Ventas",
+      "puesto_en": "Sales Executive",
+      "bio_corta": "Egresada de la licenciatura en Turismo por la Universidad de Guadalajara, con especialidad en desarrollo de proyectos. Cuenta con un Diplomado en Innovación Empresarial y Emprendimiento por la Universidad Autónoma de Guadalajara.",
+      "bio_corta_en": "Graduate in Tourism from the University of Guadalajara, specializing in project development. She holds a Diploma in Business Innovation and Entrepreneurship from the Autonomous University of Guadalajara.",
+      "telefono": "+52 33 3810 3475",
+      "whatsapp": "523310480670",
+      "email": "samantha.arellano@exploramexicotours.com",
+      "idiomas": ["Español", "Inglés"],
+      "especialidades": ["Tours nacionales", "Grupos"],
+      "activo": true,
+      "orden": 1
+    },
+    {
+      "nombre": "Alma Aréchiga",
+      "slug": "alma-arechiga",
+      "puesto": "Ejecutiva de Ventas",
+      "puesto_en": "Sales Executive",
+      "bio_corta": "Egresada de la licenciatura en Turismo por la Universidad de Guadalajara, con especialidad en negocios.",
+      "bio_corta_en": "Graduate in Tourism from the University of Guadalajara, specializing in business.",
+      "telefono": "+52 33 3810 3475",
+      "whatsapp": "523315704250",
+      "email": "reserva@exploramexicotours.com",
+      "idiomas": ["Español", "Inglés", "Italiano"],
+      "especialidades": ["Tours nacionales", "MICE"],
+      "activo": true,
+      "orden": 2
+    },
+    {
+      "nombre": "Magdiel Muñoz",
+      "slug": "magdiel-munoz",
+      "puesto": "Ejecutivo de Ventas",
+      "puesto_en": "Sales Executive",
+      "bio_corta": "Egresado de la licenciatura en Turismo por la Universidad de Guadalajara, con especialidad en guía de turistas.",
+      "bio_corta_en": "Graduate in Tourism from the University of Guadalajara, specializing in tour guiding.",
+      "telefono": "+52 33 3810 3475",
+      "whatsapp": "523321852075",
+      "email": "ventas@exploramexicotours.com",
+      "idiomas": ["Español", "Inglés"],
+      "especialidades": ["Tours Jalisco", "Familiar"],
+      "activo": true,
+      "orden": 3
+    }
+  ]
+}

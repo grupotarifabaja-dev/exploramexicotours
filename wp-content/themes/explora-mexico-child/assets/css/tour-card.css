@@ -101,6 +101,7 @@
 .emt-tour-card__price { margin: 0; display: flex; flex-direction: column; }
 .emt-tour-card__price-label { font-size: var(--emt-fs-xs); color: var(--emt-color-text-muted); }
 .emt-tour-card__price-value { font-family: var(--emt-font-display); font-weight: var(--emt-fw-bold); color: var(--emt-azul-profundo); font-size: var(--emt-fs-md); }
+.emt-tour-card__price--consultar .emt-tour-card__price-value { font-size: var(--emt-fs-base); color: var(--emt-azul-brillante); }
 
 /* Botón secundario (azul) usado por la card */
 .emt-btn--secondary { background: var(--emt-azul-brillante); color: var(--emt-blanco); }

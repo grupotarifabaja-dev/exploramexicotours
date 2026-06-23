@@ -1,0 +1,565 @@
+{
+    "tours": [
+        {
+            "titulo": "Xantolo · Día de Muertos en la Huasteca Potosina",
+            "titulo_en": "Xantolo · Day of the Dead in the Huasteca Potosina",
+            "slug": "xantolo-dia-de-muertos-huasteca",
+            "destino": "San Luis Potosí",
+            "categoria": "Cultural",
+            "experiencias": [
+                "Día de Muertos",
+                "Aventura y naturaleza",
+                "Cultura"
+            ],
+            "descripcion_breve": "Déjate sorprender por los escenarios acuáticos de la Huasteca Potosina y la festividad del Xantolo (día de muertos) que se celebra con ofrendas, altares, música, baile y gastronomía creando una atmósfera de respeto, alegría y memoria.",
+            "descripcion_breve_en": "Be amazed by the water landscapes of the Huasteca Potosina and the Xantolo festival (Day of the Dead) celebrated with offerings, altars, music, dance and gastronomy, creating an atmosphere of respect, joy and memory.",
+            "precio_desde": 5245,
+            "precio_nota": "Menor 6-12. Adulto desde $6,019 (TPL) / $6,389 (DBL)",
+            "duracion_texto": "3 días / 2 noches",
+            "duracion_horas": 72,
+            "dificultad": "moderada",
+            "idiomas": [
+                "es",
+                "en"
+            ],
+            "punto_salida": "Av. Cruz del Sur 2371, Jardines de la Cruz, CP 44950, Guadalajara, Jalisco",
+            "salida_garantizada": true,
+            "pickup_hotel": false,
+            "fecha_viaje": "30 octubre – 1 noviembre 2026",
+            "fotos": [
+                "huasteca-puente-flores.jpg",
+                "huasteca-tamul-1.jpg",
+                "huasteca-cascada.jpg",
+                "huasteca-rafting.jpg"
+            ],
+            "incluye": [
+                "Transporte en van, servicio compartido",
+                "Seguro de viajero en transporte",
+                "Traslados acordes a itinerario",
+                "2 noches de alojamiento Hotel 3*",
+                "Admisiones en sitios a visitar",
+                "Guía local",
+                "Chaleco salvavidas, remo y panga en Cascada de Tamul",
+                "Chaleco y llanta para tubbing en Cascada El Meco",
+                "Asistencia de staff durante el viaje",
+                "IVA"
+            ],
+            "no_incluye": [
+                "Alimentos y bebidas",
+                "Renta de chalecos en Minas Viejas y Micos",
+                "Actividad de salto de cascadas en Micos",
+                "Festival de Las Ánimas en Tamasopo (evento nocturno)",
+                "Seguro por actividades de naturaleza"
+            ],
+            "itinerario": [
+                {
+                    "dia": 1,
+                    "titulo": "Guadalajara – Cascadas de Tamasopo – Ciudad Valles",
+                    "descripcion": "05:00 hrs salida del punto de encuentro con destino a Cascadas de Tamasopo. Arribo y tiempo libre para disfrutar de los escenarios naturales. Alojamiento en Ciudad Valles."
+                },
+                {
+                    "dia": 2,
+                    "titulo": "Ciudad Valles – El Meco – Minas Viejas – Micos",
+                    "descripcion": "Visita a Cascada El Meco para tubbing, Cascada de Minas Viejas y Cascadas de Micos para fotografías. Por la noche, centro de Ciudad Valles para admirar altares y ofrendas del Xantolo."
+                },
+                {
+                    "dia": 3,
+                    "titulo": "Ciudad Valles – Cascada de Tamul – Guadalajara",
+                    "descripcion": "Visita a la Cascada de Tamul y la Cueva del Agua. Al finalizar, regreso a Guadalajara. Fin de servicios."
+                }
+            ],
+            "politica_cancelacion": "Cancelaciones con penalización del 30% del valor del viaje. Entre 45 y 30 días antes: 80% de penalización. Entre 29 y 0 días: 100% de penalización. No show el día del viaje: 100% de penalidad, sin reembolso. Explora México Tours podrá cancelar el viaje si no se completa el mínimo de personas, con reembolso total al cliente."
+        },
+        {
+            "titulo": "Día de Muertos en Michoacán",
+            "titulo_en": "Day of the Dead in Michoacán",
+            "slug": "dia-de-muertos-michoacan",
+            "destino": "Michoacán",
+            "categoria": "Cultural",
+            "experiencias": [
+                "Día de Muertos",
+                "Cultura"
+            ],
+            "descripcion_breve": "Dentro del conjunto de manifestaciones culturales de Michoacán destacan las relacionadas con el Día de Muertos, particularmente en las comunidades indígenas Purépecha, un ritual con profunda significación más allá de su vistosidad.",
+            "descripcion_breve_en": "Among Michoacán's cultural expressions, those related to the Day of the Dead stand out, particularly in the indigenous Purépecha communities — a ritual with deep meaning beyond its visual beauty.",
+            "precio_desde": 4099,
+            "precio_nota": "Menor 6-12. Adulto desde $4,179 (CuADPL) / $4,859 (DBL)",
+            "duracion_texto": "3 días / 2 noches",
+            "duracion_horas": 72,
+            "dificultad": "moderada",
+            "idiomas": [
+                "es",
+                "en"
+            ],
+            "punto_salida": "Av. Cruz del Sur 2371, Jardines de la Cruz, CP 44950, Guadalajara, Jalisco",
+            "salida_garantizada": true,
+            "pickup_hotel": false,
+            "fecha_viaje": "31 octubre – 2 noviembre 2026",
+            "fotos": [
+                "michoacan-trajes.jpg"
+            ],
+            "incluye": [
+                "Transporte en van, servicio compartido",
+                "Seguro de viajero en transporte",
+                "Traslados acordes a itinerario",
+                "2 noches de alojamiento particular 3*",
+                "Embarcación para visita a Isla de Janitzio",
+                "Asistencia de staff durante el viaje",
+                "IVA"
+            ],
+            "no_incluye": [
+                "Alimentos y bebidas",
+                "Paseo en tranvía en el centro de Morelia",
+                "Admisión a museos y zonas arqueológicas",
+                "Propinas",
+                "Seguro de gastos médicos de viaje"
+            ],
+            "itinerario": [
+                {
+                    "dia": 1,
+                    "titulo": "Guadalajara – Morelia",
+                    "descripcion": "06:00 hrs salida con destino a Capula, tiempo libre para desayuno y compras de artesanías. Visita a Isla de Janitzio. Por la tarde, regreso a Morelia para alojamiento."
+                },
+                {
+                    "dia": 2,
+                    "titulo": "Morelia – Zona lacustre de Pátzcuaro – Morelia",
+                    "descripcion": "Visita a Tzurumútaro y su cementerio decorado con cempasúchil, Pátzcuaro y la Plaza Vasco de Quiroga, Tzintzuntzan con Las Yácatas y el Ex convento de Santa Ana. Medianoche, regreso a Morelia."
+                },
+                {
+                    "dia": 3,
+                    "titulo": "Morelia – Guadalajara",
+                    "descripcion": "Mañana libre para el centro de la ciudad, museos o tranvía. Después de la comida, regreso a Guadalajara. Fin de servicios."
+                }
+            ],
+            "politica_cancelacion": "Cancelaciones con penalización del 30% del valor del viaje. Entre 45 y 30 días antes: 80% de penalización. Entre 29 y 0 días: 100% de penalización. No show el día del viaje: 100% de penalidad, sin reembolso. Explora México Tours podrá cancelar el viaje si no se completa el mínimo de personas, con reembolso total al cliente."
+        },
+        {
+            "titulo": "Día de Muertos en Mixquic",
+            "titulo_en": "Day of the Dead in Mixquic",
+            "slug": "dia-de-muertos-en-mixquic",
+            "destino": "Ciudad de México",
+            "categoria": "Cultural",
+            "experiencias": [
+                "Día de Muertos",
+                "Cultura"
+            ],
+            "descripcion_breve": "El barrio mágico de Mixquic da la bienvenida a los fieles difuntos con las tradicionales ofrendas llenas de comida, bebidas y objetos personales de las personas fallecidas \"La alumbrada\". Todas las casas se impregnan del olor que desprende la flor de cempasúchil, las frutas, el sahumerio con incienso y las veladoras. Apreciarás esta tradición milenaria 100 % mexicana, donde el culto y costumbres hacia la muerte se conjuntan y hacen de ésta una experiencia única en el mundo.",
+            "descripcion_breve_en": "",
+            "precio_desde": null,
+            "precio_nota": "Tarifa por persona. Consultar disponibilidad. Capacidad: mínimo 2 / máximo 4 (10 lugares).",
+            "duracion_texto": "11 horas",
+            "duracion_horas": 11,
+            "dificultad": "facil",
+            "idiomas": [
+                "es"
+            ],
+            "punto_salida": "Hotel Barceló Centro CDMX",
+            "salida_garantizada": false,
+            "pickup_hotel": true,
+            "fecha_viaje": "2 noviembre 2026",
+            "fotos": [
+                "dia-de-muertos-en-mixquic__DSC_0077_(2).jpg",
+                "dia-de-muertos-en-mixquic__Getty-Veladoras-597c93c65f9b58928bdc78f4.jpg",
+                "dia-de-muertos-en-mixquic__experiencias-dia-muertos.jpg"
+            ],
+            "incluye": [
+                "Transporte en van, servicio compartido",
+                "Seguro de viajero en transporte",
+                "Traslados acordes a itinerario",
+                "Guía local",
+                "Visita a cementerio",
+                "IVA"
+            ],
+            "no_incluye": [
+                "Alimentos",
+                "Bebidas",
+                "Entrada a Ex convento San Andrés Apóstol",
+                "Propinas",
+                "Seguro de gastos médicos de viaje"
+            ],
+            "itinerario": [
+                {
+                    "dia": 1,
+                    "titulo": "Día único · Mixquic",
+                    "descripcion": "12:45 hrs cita en punto de encuentro. 13:00 hrs salida a Mixquic. 22:00 hrs fin de actividades y regreso a punto de salida. 23:45 hrs arribo a Ciudad de México, Hotel Barceló Centro CDMX. Fin de servicios."
+                }
+            ],
+            "politica_cancelacion": "Los horarios del itinerario son aproximados y podrían sufrir cambios sin previo aviso según las decisiones de las comunidades a visitar, condiciones de tráfico o cierres viales. Explora México Tours podrá realizar la cancelación total del viaje si no se completa el mínimo de personas para operar la excursión, comprometiéndose a realizar el reembolso total del importe pagado por el cliente. Cancelaciones con penalización del 30% del valor del viaje; entre 45 y 30 días antes, 80%; entre 29 y 0 días, 100%. No show el día del viaje: 100% de penalidad, sin reembolso."
+        },
+        {
+            "titulo": "Barrancas del Cobre",
+            "titulo_en": "Copper Canyon",
+            "slug": "barrancas-del-cobre",
+            "destino": "Chihuahua",
+            "categoria": "Cultural",
+            "experiencias": [
+                "Aventura y naturaleza",
+                "Cultura"
+            ],
+            "descripcion_breve": "Barrancas del Cobre es un impresionante sistema de cañones ubicado en Chihuahua, reconocido por su belleza natural, su biodiversidad y riqueza cultural. Con paisajes espectaculares, miradores únicos y un ferrocarril que atraviesa la sierra y la montaña, es uno de los destinos imperdibles de México.",
+            "descripcion_breve_en": "",
+            "precio_desde": null,
+            "precio_nota": "Tarifa por persona desde, se requiere confirmar disponibilidad. Ocupaciones: DBL/TPL/CuADPL adulto y Menor 6-12.",
+            "duracion_texto": "5 días / 4 noches",
+            "duracion_horas": 120,
+            "dificultad": "facil",
+            "idiomas": [
+                "es"
+            ],
+            "punto_salida": "Recogida en aeropuerto de Chihuahua o Sinaloa según inicie el itinerario",
+            "salida_garantizada": false,
+            "pickup_hotel": false,
+            "fecha_viaje": "Todo el año, sujeto a disponibilidad",
+            "fotos": [
+                "barrancas-del-cobre__77c16123-a1a2-4ce2-b073-5d99a7dc99d0.jpg",
+                "barrancas-del-cobre__IMG_5191.jpg",
+                "barrancas-del-cobre__IMG_5328.jpg",
+                "barrancas-del-cobre__IMG_5432.jpg",
+                "barrancas-del-cobre__WhatsApp_Image_2022-01-24_at_10.17.22.jpg",
+                "barrancas-del-cobre__WhatsApp_Image_2022-01-24_at_10.19.35.jpg"
+            ],
+            "incluye": [
+                "Transporte desde y hacia el aeropuerto",
+                "Seguro de viajero en transporte",
+                "Traslados acordes a itinerario",
+                "4 noches de alojamiento",
+                "City tour en el centro de Chihuahua",
+                "Visita comunidad menonita",
+                "Tour valle Tarahumara",
+                "Tour miradores",
+                "Visita parque de Aventura Barrancas del Cobre",
+                "Boleto de tren Chepe Express categoría ejecutiva",
+                "IVA"
+            ],
+            "no_incluye": [
+                "Vuelos de ciudad de origen",
+                "Alimentos",
+                "Bebidas",
+                "Admisiones en lugares a visitar",
+                "Pagos ejidales",
+                "Actividades en parque de aventuras",
+                "Tours adicionales",
+                "Seguro por actividades de naturaleza"
+            ],
+            "itinerario": [
+                {
+                    "dia": 1,
+                    "titulo": "Chihuahua",
+                    "descripcion": "Llegada al Aeropuerto de Chihuahua donde serán recibidos con cartel con su nombre para traslado al hotel. Día libre para dar un paseo opcional por la ciudad y visitar sus atractivos turísticos: el Museo de Pancho Villa (cerrado los lunes), Palacio de Gobierno y sus murales, Catedral, Acueducto Colonial, la zona residencial Quinta Gameros, el Calabozo de Miguel Hidalgo y el Centro Histórico. Alojamiento en Chihuahua."
+                },
+                {
+                    "dia": 2,
+                    "titulo": "Chihuahua – Creel",
+                    "descripcion": "08:30 am cita en lobby del hotel para traslado en transporte terrestre con destino a Creel, Pueblo Mágico. En el trayecto visitaremos la Comunidad Menonita en Cuauhtémoc (cerrado los domingos). A la llegada, paseo por los alrededores de Creel: Lago de Arareko, Valle de Los Hongos y Valle de las Ranas, Misión Jesuita de San Ignacio y una cueva habitada por Tarahumaras. Tarde libre. Alojamiento en Creel."
+                },
+                {
+                    "dia": 3,
+                    "titulo": "Creel – Divisadero – Barrancas",
+                    "descripcion": "08:30 am traslado por carretera a Posada Barrancas Divisadero y tour miradores incluido para visitar el parque de aventura. Podrá visitar los distintos miradores, paseo en teleférico y tirolesas (opcional no incluido), piedra volada y puente colgante. Degustación opcional de las típicas gorditas de Divisadero. Tarde libre para disfrutar de las vistas. Alojamiento en Barrancas del Cobre."
+                },
+                {
+                    "dia": 4,
+                    "titulo": "Barrancas – Divisadero – El Fuerte",
+                    "descripcion": "08:30 hrs traslado a estación Divisadero para abordar el tren Chepe Express con destino al Pueblo Mágico colonial de El Fuerte, una de las obras maestras de la ingeniería mexicana con sus puentes y túneles. Llegada a El Fuerte a las 02:35 pm, recepción y traslado al hotel. Tarde libre para caminar por las calles empedradas, visitar su iglesia colonial, el palacio municipal y el museo local. Alojamiento en El Fuerte."
+                },
+                {
+                    "dia": 5,
+                    "titulo": "El Fuerte – Aeropuerto de Los Mochis",
+                    "descripcion": "Mañana libre y traslado al aeropuerto de Los Mochis según el horario de salida de su vuelo. Fin de servicios."
+                }
+            ],
+            "politica_cancelacion": "El itinerario puede estar sujeto a cambios por políticas de Ferromex. Los lunes los museos en Chihuahua están cerrados; los domingos el museo Menonita se encuentra cerrado. Al abordar el tren Chepe se requerirá identificación oficial vigente con fotografía. Explora México Tours no permitirá cancelaciones, pero sí cambios de fecha conforme a los términos y condiciones del proveedor final. Si el cliente el día del viaje no se presenta, aplica como NO SHOW y genera el 100% de penalidad. Solo puede haber 1 persona por asiento; niños de 1 año en adelante ocupan asiento."
+        },
+        {
+            "titulo": "Oaxaca Ciudad",
+            "titulo_en": "Oaxaca City",
+            "slug": "oaxaca-ciudad",
+            "destino": "Oaxaca",
+            "categoria": "Cultural",
+            "experiencias": [
+                "Cultura",
+                "Gastronómico",
+                "Aventura y naturaleza"
+            ],
+            "descripcion_breve": "Un destino lleno de cultura, gastronomía y arte que posiciona a Oaxaca como uno de los favoritos en México. La riqueza de la cocina oaxaqueña enamora a cualquiera, sus edificios conservan la arquitectura colonial, coloridos murales y el arte del barro negro y los alebrijes.",
+            "descripcion_breve_en": "",
+            "precio_desde": null,
+            "precio_nota": "Tarifa por persona desde, se requiere confirmar disponibilidad. Ocupaciones: DBL/TPL/CuADPL adulto y Menor 3-12.",
+            "duracion_texto": "5 días / 4 noches",
+            "duracion_horas": 120,
+            "dificultad": "facil",
+            "idiomas": [
+                "es",
+                "en"
+            ],
+            "punto_salida": "Recogida en aeropuerto de Oaxaca",
+            "salida_garantizada": false,
+            "pickup_hotel": false,
+            "fecha_viaje": "Todo el año, sujeto a disponibilidad",
+            "fotos": [
+                "oaxaca-ciudad__IMG_2858.jpg",
+                "oaxaca-ciudad__IMG_4733.jpg",
+                "oaxaca-ciudad__OAXACA.jpg",
+                "oaxaca-ciudad__WhatsApp_Image_2026-06-18_at_18.38.43.jpg"
+            ],
+            "incluye": [
+                "Transporte desde y hacia el aeropuerto",
+                "Seguro de viaje en transporte",
+                "Traslados acordes a itinerario",
+                "4 noches de alojamiento",
+                "IVA"
+            ],
+            "no_incluye": [
+                "Alimentos",
+                "Bebidas",
+                "Vuelos",
+                "Gastos personales",
+                "Propinas",
+                "Seguro por actividades de naturaleza"
+            ],
+            "itinerario": [
+                {
+                    "dia": 1,
+                    "titulo": "Oaxaca",
+                    "descripcion": "Llegada al aeropuerto de Oaxaca, traslado a su hotel y tarde libre."
+                },
+                {
+                    "dia": 2,
+                    "titulo": "Oaxaca – Árbol del Tule – Mitla y Hierve el Agua",
+                    "descripcion": "Comenzamos frente al Árbol del Tule con su imponente copa y altura, seguimos hacia Teotitlán del Valle para entender el teñido natural, admiramos las grecas milenarias de Mitla, caminamos frente a las cascadas de Hierve el Agua y terminamos disfrutando de un mezcal artesanal."
+                },
+                {
+                    "dia": 3,
+                    "titulo": "Oaxaca – Monte Albán – Alebrijes y Barro Negro",
+                    "descripcion": "Inicia en Monte Albán, antigua capital zapoteca, caminando entre templos y terrazas. Continúa hacia Arrazola, donde los alebrijes cobran vida en un taller auténtico: tallado, pintado y técnicas tradicionales sin compras obligadas. Finaliza en San Bartolo Coyotepec, famoso por su barro negro."
+                },
+                {
+                    "dia": 4,
+                    "titulo": "Centro de Oaxaca y tarde libre",
+                    "descripcion": "Recorrido de medio día caminando por el centro de Oaxaca: el zócalo, la catedral, el templo de Santo Domingo y sus coloridas calles. Resto de la tarde libre para compras, museos o degustar mezcal."
+                },
+                {
+                    "dia": 5,
+                    "titulo": "Aeropuerto de Oaxaca",
+                    "descripcion": "Traslado al aeropuerto de Oaxaca. Fin de servicios."
+                }
+            ],
+            "politica_cancelacion": "El itinerario puede estar sujeto a cambio. Explora México Tours no permitirá cancelaciones, pero sí cambios de fecha conforme a los términos y condiciones del proveedor final. Si el cliente el día del viaje no se presenta, aplica como NO SHOW y genera el 100% de penalidad. Solo puede haber 1 persona por asiento; niños de 1 año en adelante ocupan asiento."
+        },
+        {
+            "titulo": "Oaxaca y sus Playas",
+            "titulo_en": "Oaxaca and its Beaches",
+            "slug": "oaxaca-y-sus-playas",
+            "destino": "Oaxaca",
+            "categoria": "Aventura",
+            "experiencias": [
+                "Aventura y naturaleza"
+            ],
+            "descripcion_breve": "Las playas de Oaxaca son un destino de la costa del Pacífico que se caracteriza por sus atractivos naturales, aguas cálidas y ambiente relajado. Aquí podrás disfrutar de espectaculares atardeceres, gastronomía local y aguas cristalinas.",
+            "descripcion_breve_en": "",
+            "precio_desde": null,
+            "precio_nota": "Tarifa por persona desde, se requiere confirmar disponibilidad. Ocupaciones: DBL/TPL/CuADPL adulto y Menor 3-12.",
+            "duracion_texto": "5 días / 4 noches",
+            "duracion_horas": 120,
+            "dificultad": "facil",
+            "idiomas": [
+                "es"
+            ],
+            "punto_salida": "Recogida en aeropuerto (Puerto Escondido / Huatulco)",
+            "salida_garantizada": false,
+            "pickup_hotel": false,
+            "fecha_viaje": "Todo el año, sujeto a disponibilidad",
+            "fotos": [
+                "oaxaca-y-sus-playas__IMG_2019.jpg",
+                "oaxaca-y-sus-playas__IMG_2100.jpg",
+                "oaxaca-y-sus-playas__IMG_2464.jpg",
+                "oaxaca-y-sus-playas__luminiscencia.jpg"
+            ],
+            "incluye": [
+                "Transporte desde y hacia el aeropuerto",
+                "Seguro de viaje en transporte",
+                "Traslados acordes a itinerario",
+                "Alojamiento",
+                "IVA"
+            ],
+            "no_incluye": [
+                "Alimentos",
+                "Bebidas",
+                "Vuelos",
+                "Gastos personales",
+                "Propinas",
+                "Seguro por actividades de naturaleza"
+            ],
+            "itinerario": [
+                {
+                    "dia": 1,
+                    "titulo": "Llegada a la costa",
+                    "descripcion": "Llegada al aeropuerto, traslado al hotel y tarde libre para disfrutar de la playa."
+                }
+            ],
+            "politica_cancelacion": "El itinerario puede estar sujeto a cambio. Explora México Tours no permitirá cancelaciones, pero sí cambios de fecha conforme a los términos y condiciones del proveedor final. Si el cliente el día del viaje no se presenta, aplica como NO SHOW y genera el 100% de penalidad. Solo puede haber 1 persona por asiento; niños de 1 año en adelante ocupan asiento."
+        },
+        {
+            "titulo": "Explora Chiapas",
+            "titulo_en": "Explore Chiapas",
+            "slug": "explora-chiapas",
+            "destino": "Chiapas",
+            "categoria": "Aventura",
+            "experiencias": [
+                "Aventura y naturaleza",
+                "Cultura"
+            ],
+            "descripcion_breve": "Chiapas es el estado con más contrastes culturales y naturales, engloba ecosistemas tan diversos que lo convierten en uno de los favoritos para visitar en nuestro país. Un lugar fascinante lleno de naturaleza, tradiciones y colores.",
+            "descripcion_breve_en": "",
+            "precio_desde": null,
+            "precio_nota": "Tarifa por persona desde, se requiere confirmar disponibilidad. Ocupaciones: DBL/TPL/CuADPL adulto y Menor 3-12.",
+            "duracion_texto": "5 días / 4 noches",
+            "duracion_horas": 120,
+            "dificultad": "facil",
+            "idiomas": [
+                "es",
+                "en"
+            ],
+            "punto_salida": "Recogida en aeropuerto de Tuxtla Gutiérrez",
+            "salida_garantizada": false,
+            "pickup_hotel": false,
+            "fecha_viaje": "Todo el año, sujeto a disponibilidad",
+            "fotos": [
+                "explora-chiapas__DSC_0064_(2).jpg",
+                "explora-chiapas__DSC_0339.jpg",
+                "explora-chiapas__DSC_0935.jpg",
+                "explora-chiapas__IMG_1257.jpg"
+            ],
+            "incluye": [
+                "Transporte desde y hacia el aeropuerto",
+                "Seguro de viaje en transporte",
+                "Traslados acordes a itinerario",
+                "Admisiones en sitios a visitar",
+                "4 noches de alojamiento",
+                "IVA"
+            ],
+            "no_incluye": [
+                "Alimentos",
+                "Bebidas",
+                "Vuelos",
+                "Gastos personales",
+                "Propinas",
+                "Seguro por actividades de naturaleza"
+            ],
+            "itinerario": [
+                {
+                    "dia": 1,
+                    "titulo": "Aeropuerto Tuxtla Gutiérrez – San Cristóbal de las Casas",
+                    "descripcion": "Llegada al aeropuerto de Tuxtla Gutiérrez y traslado a su hotel en San Cristóbal de las Casas. Registro en hotel y noche libre para descansar."
+                },
+                {
+                    "dia": 2,
+                    "titulo": "San Cristóbal – Agua Azul, Misol-Ha y Palenque",
+                    "descripcion": "Salida temprano hacia Palenque. Escala en Ocosingo para desayunar. Visita al Parque Cascadas de Agua Azul, formado por la unión de los ríos Otulún, Shumuljá y Tulijá. Continuación a la Cascada de Misol-Ha (40 m de altura). Recorrido guiado por la Zona Arqueológica de Palenque, uno de los sitios mayas más importantes de Mesoamérica. Regreso a San Cristóbal."
+                },
+                {
+                    "dia": 3,
+                    "titulo": "San Cristóbal – Cascadas de El Chiflón – Lagunas de Montebello",
+                    "descripcion": "Visita a las Cascadas de El Chiflón, cadena de cascadas formada por el Río San Vicente (El Suspiro, Ala de Ángel, Arco Iris, Quinceañera y la principal, Velo de Novia, de 120 m). Continuación a las Lagunas de Montebello, donde visitaremos Tziscao y el lago internacional en la frontera con Guatemala. Regreso a San Cristóbal."
+                },
+                {
+                    "dia": 4,
+                    "titulo": "San Cristóbal – Cañón del Sumidero – Chiapa de Corzo",
+                    "descripcion": "Visita a los miradores del Cañón del Sumidero. Recorrido en lancha de 1 hora 50 minutos sobre el río Grijalva: la presa de Chicoasén, la cueva de la virgen y el árbol de navidad. Tiempo libre en el pueblo mágico de Chiapa de Corzo. Regreso a San Cristóbal."
+                },
+                {
+                    "dia": 5,
+                    "titulo": "San Cristóbal – Aeropuerto de Tuxtla Gutiérrez",
+                    "descripcion": "Mañana libre y, a la hora acordada, traslado al aeropuerto de Tuxtla Gutiérrez. Fin de servicios."
+                }
+            ],
+            "politica_cancelacion": "El itinerario puede estar sujeto a cambio. Explora México Tours no permitirá cancelaciones, pero sí cambios de fecha conforme a los términos y condiciones del proveedor final. Si el cliente el día del viaje no se presenta, aplica como NO SHOW y genera el 100% de penalidad. Solo puede haber 1 persona por asiento; niños de 1 año en adelante ocupan asiento."
+        },
+        {
+            "titulo": "Ciudades Coloniales",
+            "titulo_en": "Colonial Cities",
+            "slug": "ciudades-coloniales",
+            "destino": "Querétaro – Guanajuato – Michoacán",
+            "categoria": "Cultural",
+            "experiencias": [
+                "Cultura"
+            ],
+            "descripcion_breve": "Explora el corazón colonial de México. Recorre los encantadores callejones de Guanajuato, admira la elegancia histórica de Querétaro y descubre la riqueza cultural de Michoacán. Tres estados del centro de México que comparten historia, arquitectura virreinal y cultura.",
+            "descripcion_breve_en": "",
+            "precio_desde": null,
+            "precio_nota": "Tarifa por persona. Máximo 4 personas en habitación incluyendo menores. Bebés deben llevar asiento asignado.",
+            "duracion_texto": "7 días / 6 noches",
+            "duracion_horas": 168,
+            "dificultad": "facil",
+            "idiomas": [
+                "es",
+                "en"
+            ],
+            "punto_salida": "Inicia en Ciudad de México o Guadalajara (hotel o aeropuerto), antes de las 12:00 hrs",
+            "salida_garantizada": false,
+            "pickup_hotel": true,
+            "fecha_viaje": "Todo el año, sujeto a disponibilidad",
+            "fotos": [
+                "ciudades-coloniales__DSC_0392.jpg",
+                "ciudades-coloniales__DSC_0442.jpg",
+                "ciudades-coloniales__IMG_1306.jpg",
+                "ciudades-coloniales__IMG_1320.jpg",
+                "ciudades-coloniales__IMG_1477.jpg"
+            ],
+            "incluye": [
+                "Transporte en servicio compartido",
+                "Traslados acordes a itinerario",
+                "Tours acordes a itinerario",
+                "Seguro de viajero en transporte",
+                "Noches de alojamiento",
+                "IVA"
+            ],
+            "no_incluye": [
+                "Alimentos",
+                "Bebidas",
+                "Admisión a museos no mencionados",
+                "Gastos personales",
+                "Propinas",
+                "Seguro de gastos médicos de viaje"
+            ],
+            "itinerario": [
+                {
+                    "dia": 1,
+                    "titulo": "Ciudad de México – Morelia",
+                    "descripcion": "12:00 hrs salida del punto de encuentro (hotel o aeropuerto de CDMX) y traslado a Morelia. Por la tarde, paseo por el centro de la ciudad. Alojamiento en Morelia."
+                },
+                {
+                    "dia": 2,
+                    "titulo": "Morelia – Ruta Vasco de Quiroga – Morelia",
+                    "descripcion": "La Ruta Don Vasco es un recorrido turístico y cultural por Michoacán siguiendo los pasos del misionero Vasco de Quiroga, visitando Pátzcuaro, Tzintzuntzan y Quiroga. Regreso a Morelia."
+                },
+                {
+                    "dia": 3,
+                    "titulo": "Morelia – Querétaro",
+                    "descripcion": "Después del desayuno, salida hacia Querétaro. Por la tarde, recorrido en tranvía para conocer la ciudad. Alojamiento en Querétaro."
+                },
+                {
+                    "dia": 4,
+                    "titulo": "Querétaro – Ruta del Vino – Querétaro",
+                    "descripcion": "Salida hacia la ruta del vino visitando los pueblos mágicos de Tequisquiapan y San Sebastián de Bernal. Degustación de quesos y visita a uno de los viñedos más antiguos de la ruta. Regreso a Querétaro."
+                },
+                {
+                    "dia": 5,
+                    "titulo": "Querétaro – Guanajuato",
+                    "descripcion": "Traslado a Guanajuato. Por la tarde, recorrido caminando por calles y callejones. Por la noche, actividad con una tradicional estudiantina. Alojamiento en Guanajuato."
+                },
+                {
+                    "dia": 6,
+                    "titulo": "Guanajuato – Ruta de la Independencia – Guanajuato",
+                    "descripcion": "Visita a Dolores Hidalgo, cuna de la Independencia, el santuario de Atotonilco y San Miguel de Allende, con su Parroquia de San Miguel Arcángel. Regreso a Guanajuato."
+                },
+                {
+                    "dia": 7,
+                    "titulo": "Guanajuato – Guadalajara",
+                    "descripcion": "Recorrido guiado por Guanajuato: Museo de las Momias, Monumento a El Pípila, túneles, mina del barrio de Valenciana, Iglesia de San Cayetano y mercado local. 16:00 hrs traslado a Guadalajara (aeropuerto u hotel). Fin de servicios."
+                }
+            ],
+            "politica_cancelacion": "Los horarios del itinerario son aproximados. Los traslados serán en servicio compartido o privado según la operación. Categoría de hoteles de 3 estrellas. Máxima ocupación 4 personas incluyendo niños o bebés. Equipaje flexible no mayor a 15 kilos por pasajero. Actividad recomendada para mayores de 6 años y menores de 75 años con movilidad. Explora México Tours no permitirá cancelaciones, pero sí cambios de fecha conforme a los términos del proveedor. NO SHOW genera 100% de penalidad."
+        }
+    ]
+}

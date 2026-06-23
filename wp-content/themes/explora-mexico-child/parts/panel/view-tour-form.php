@@ -23,7 +23,12 @@ $g = function ( $field, $default = '' ) use ( $post_id ) {
 $titulo   = $editing ? get_the_title( $post_id ) : '';
 $descrip  = $editing ? get_post_field( 'post_content', $post_id ) : '';
 $idiomas  = (array) $g( 'idiomas', array() );
-$galeria  = (array) $g( 'galeria', array() );
+// El campo 'galeria' (ACF gallery) devuelve arrays de imagen completos según su
+// return_format; normalizamos a IDs para que la galería se re-renderice al editar.
+$galeria  = array_values( array_filter( array_map(
+    function ( $item ) { return is_array( $item ) ? (int) ( $item['ID'] ?? $item['id'] ?? 0 ) : (int) $item; },
+    (array) $g( 'galeria', array() )
+) ) );
 $inc      = (array) $g( 'incluye', array() );
 $noinc    = (array) $g( 'no_incluye', array() );
 $itin     = (array) $g( 'itinerario', array() );

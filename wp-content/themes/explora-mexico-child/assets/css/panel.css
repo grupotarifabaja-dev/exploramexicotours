@@ -106,6 +106,7 @@
 .emt-panel__status--draft { background: rgba(176,181,189,0.2); color: var(--emt-gris-oscuro); }
 .emt-panel__row-actions { display: flex; gap: 6px; flex-wrap: wrap; }
 .emt-panel__empty { padding: var(--emt-spacing-2xl); text-align: center; color: var(--emt-color-text-muted); }
+.emt-panel__muted { color: var(--emt-color-text-muted); font-style: italic; }
 
 /* ---------- Formulario (P3) ---------- */
 .emt-panel-form__section { background: var(--emt-blanco); border: 1px solid var(--emt-color-border); border-radius: var(--emt-radius-lg); padding: var(--emt-spacing-lg); margin-bottom: var(--emt-spacing-lg); }
