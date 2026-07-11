@@ -10,6 +10,8 @@
 *.json text eol=lf
 *.txt  text eol=lf
 *.svg  text eol=lf
+*.sh   text eol=lf
+Dockerfile text eol=lf
 
 # Binarios: que Git NO los toque
 *.png  binary
