@@ -23,7 +23,51 @@ $o = function ( $field, $default = '' ) {
     </div>
 </div>
 
+<?php
+// Hero de portada: valores actuales (campos ACF tipo array).
+$hv = $o( 'hero_bg_video', array() );
+$hp = $o( 'hero_bg_poster', array() );
+$hv_id = is_array( $hv ) ? (int) ( $hv['id'] ?? 0 ) : 0;
+$hv_url = is_array( $hv ) ? ( $hv['url'] ?? '' ) : '';
+$hp_id = is_array( $hp ) ? (int) ( $hp['id'] ?? 0 ) : 0;
+$hp_url = is_array( $hp ) ? ( $hp['sizes']['medium'] ?? $hp['url'] ?? '' ) : '';
+?>
 <form id="emt-config-form" data-emt-form data-ajax-action="emt_panel_save_config" data-required-draft="" data-required-publish="">
+
+    <div class="emt-panel-form__section">
+        <h2>Hero de portada (video de fondo)</h2>
+        <p class="emt-field__help" style="margin-bottom:var(--emt-spacing-md);">Video de fondo del hero del inicio. Si no hay video, se usa la imagen de respaldo; si no hay ninguno, se usa el degradado azul. En móvil se muestra siempre la imagen de respaldo.</p>
+        <div class="emt-grid-2">
+            <div class="emt-field">
+                <label>Video de fondo (MP4)</label>
+                <div class="emt-image" data-image data-media-type="video">
+                    <div class="emt-image__preview" data-image-preview>
+                        <?php if ( $hv_url ) : ?><video src="<?php echo esc_url( $hv_url ); ?>" muted playsinline preload="metadata"></video><?php endif; ?>
+                    </div>
+                    <input type="hidden" name="hero_bg_video" value="<?php echo (int) $hv_id; ?>" data-image-input />
+                    <div class="emt-image__actions">
+                        <button type="button" class="emt-panel__btn" data-image-add>Subir / elegir video</button>
+                        <button type="button" class="emt-panel__btn emt-panel__btn--sm emt-panel__btn--danger" data-image-remove<?php echo $hv_id ? '' : ' style="display:none;"'; ?>>Quitar</button>
+                    </div>
+                    <div class="emt-field__help">MP4 sin audio, ligero (~5–10 MB).</div>
+                </div>
+            </div>
+            <div class="emt-field">
+                <label>Imagen de respaldo (poster)</label>
+                <div class="emt-image" data-image>
+                    <div class="emt-image__preview" data-image-preview>
+                        <?php if ( $hp_url ) : ?><img src="<?php echo esc_url( $hp_url ); ?>" alt="" /><?php endif; ?>
+                    </div>
+                    <input type="hidden" name="hero_bg_poster" value="<?php echo (int) $hp_id; ?>" data-image-input />
+                    <div class="emt-image__actions">
+                        <button type="button" class="emt-panel__btn" data-image-add>Subir / elegir imagen</button>
+                        <button type="button" class="emt-panel__btn emt-panel__btn--sm emt-panel__btn--danger" data-image-remove<?php echo $hp_id ? '' : ' style="display:none;"'; ?>>Quitar</button>
+                    </div>
+                    <div class="emt-field__help">Se muestra en móvil y mientras carga el video.</div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="emt-panel-form__section">
         <h2>Contacto</h2>

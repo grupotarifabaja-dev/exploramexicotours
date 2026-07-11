@@ -149,7 +149,9 @@
 
 /* Imagen única (foto de asesor) */
 .emt-image__preview { width: 110px; height: 110px; border-radius: var(--emt-radius-md); border: 1px dashed var(--emt-color-border); background: var(--emt-gris-claro); overflow: hidden; display: flex; align-items: center; justify-content: center; margin-bottom: var(--emt-spacing-sm); }
-.emt-image__preview img { width: 100%; height: 100%; object-fit: cover; }
+.emt-image__preview img, .emt-image__preview video { width: 100%; height: 100%; object-fit: cover; }
+/* El preview de video del hero puede ser más ancho (apaisado). */
+.emt-image[data-media-type="video"] .emt-image__preview { width: 200px; }
 .emt-image__actions { display: flex; gap: var(--emt-spacing-sm); align-items: center; }
 
 /* Barra de guardado */

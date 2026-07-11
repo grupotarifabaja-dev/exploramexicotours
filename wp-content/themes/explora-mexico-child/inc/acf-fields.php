@@ -215,6 +215,10 @@ function emt_acf_register_field_groups() {
             array( 'key' => 'field_emt_config_hero_seasonal_cta_url', 'label' => 'Hero CTA URL', 'name' => 'hero_seasonal_cta_url', 'type' => 'url' ),
             array( 'key' => 'field_emt_config_hero_seasonal_video', 'label' => 'Hero video (MP4 URL)', 'name' => 'hero_seasonal_video', 'type' => 'text', 'instructions' => 'URL de video MP4 (opcional)' ),
 
+            array( 'key' => 'field_emt_config_tab_hero_bg', 'label' => 'Hero portada (video de fondo)', 'name' => '', 'type' => 'tab', 'placement' => 'top' ),
+            array( 'key' => 'field_emt_config_hero_bg_video', 'label' => 'Video de fondo del hero', 'name' => 'hero_bg_video', 'type' => 'file', 'return_format' => 'array', 'mime_types' => 'mp4,webm', 'instructions' => 'Video de fondo del hero de la portada (MP4 recomendado, sin audio, ligero). Si está vacío se usa la imagen de respaldo.' ),
+            array( 'key' => 'field_emt_config_hero_bg_poster', 'label' => 'Imagen de respaldo del hero', 'name' => 'hero_bg_poster', 'type' => 'image', 'return_format' => 'array', 'instructions' => 'Se muestra mientras carga el video, en móvil y si el navegador no reproduce el video. Si no hay video ni imagen, el hero usa el degradado azul.' ),
+
             array( 'key' => 'field_emt_config_tab_megamenu', 'label' => 'Mega-menú', 'name' => '', 'type' => 'tab', 'placement' => 'top' ),
             array( 'key' => 'field_emt_config_mega_menu_destinos', 'label' => 'Mega-menú destinos', 'name' => 'mega_menu_destinos', 'type' => 'repeater', 'layout' => 'block', 'button_label' => 'Agregar destino', 'sub_fields' => array(
                 array( 'key' => 'field_emt_config_mm_destinos_nombre', 'label' => 'Nombre', 'name' => 'nombre', 'type' => 'text' ),
@@ -234,5 +238,20 @@ function emt_acf_register_field_groups() {
         ),
         'active'      => true,
         'description' => 'Configuración global EMT (doc maestro §6.4). Registrado por código.',
+    ) );
+
+    // Imagen por destino (term meta de tour_destino). Editable en wp-admin
+    // (Tours → Destinos → editar término). Usada en las cards de destinos del home.
+    acf_add_local_field_group( array(
+        'key'    => 'group_emt_destino',
+        'title'  => 'Destino',
+        'fields' => array(
+            array( 'key' => 'field_emt_destino_imagen', 'label' => 'Imagen del destino', 'name' => 'imagen_destino', 'type' => 'image', 'return_format' => 'array', 'instructions' => 'Foto representativa del destino para las cards del home. Si se deja vacía, se usa la foto destacada de un tour del destino.' ),
+        ),
+        'location' => array(
+            array( array( 'param' => 'taxonomy', 'operator' => '==', 'value' => 'tour_destino' ) ),
+        ),
+        'active'      => true,
+        'description' => 'Campos del término de destino. Registrado por código.',
     ) );
 }
