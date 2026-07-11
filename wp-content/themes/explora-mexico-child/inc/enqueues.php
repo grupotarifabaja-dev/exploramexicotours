@@ -106,8 +106,13 @@ function emt_enqueue_template_assets() {
         }
     }
 
-    if ( ( is_post_type_archive( array( 'tour', 'asesor' ) ) || is_tax( array( 'tour_destino', 'tour_categoria', 'tour_experiencia' ) ) )
-        && file_exists( "$dir/assets/js/filter-bar.js" ) ) {
+    // Catálogo de tours: filtros AJAX + "cargar más".
+    if ( ( is_post_type_archive( 'tour' ) || is_tax( array( 'tour_destino', 'tour_categoria', 'tour_experiencia' ) ) )
+        && file_exists( "$dir/assets/js/tour-filter.js" ) ) {
+        wp_enqueue_script( 'emt-tour-filter', "$uri/assets/js/tour-filter.js", array(), emt_asset_ver( "$dir/assets/js/tour-filter.js" ), true );
+    }
+    // Archivo de asesores: auto-envío simple del formulario (sin cambios).
+    if ( is_post_type_archive( 'asesor' ) && file_exists( "$dir/assets/js/filter-bar.js" ) ) {
         wp_enqueue_script( 'emt-filter-bar', "$uri/assets/js/filter-bar.js", array(), emt_asset_ver( "$dir/assets/js/filter-bar.js" ), true );
     }
 
