@@ -1,0 +1,15 @@
+# Reduce el contexto de build: solo se necesita el child theme y deploy/.
+.git
+.github
+.claude
+docs/
+seeders/
+scripts/
+node_modules/
+*.zip
+*.tar
+*.tar.gz
+*.sql
+*.sql.gz
+*.log
+emt-prod-backups/
