@@ -68,7 +68,9 @@
                     "descripcion": "Visita a la Cascada de Tamul y la Cueva del Agua. Al finalizar, regreso a Guadalajara. Fin de servicios."
                 }
             ],
-            "politica_cancelacion": "Cancelaciones con penalización del 30% del valor del viaje. Entre 45 y 30 días antes: 80% de penalización. Entre 29 y 0 días: 100% de penalización. No show el día del viaje: 100% de penalidad, sin reembolso. Explora México Tours podrá cancelar el viaje si no se completa el mínimo de personas, con reembolso total al cliente."
+            "politica_cancelacion": "Cancelaciones con penalización del 30% del valor del viaje. Entre 45 y 30 días antes: 80% de penalización. Entre 29 y 0 días: 100% de penalización. No show el día del viaje: 100% de penalidad, sin reembolso. Explora México Tours podrá cancelar el viaje si no se completa el mínimo de personas, con reembolso total al cliente.",
+            "destacado": true,
+            "orden_destacado": 1
         },
         {
             "titulo": "Día de Muertos en Michoacán",
@@ -131,7 +133,9 @@
                     "descripcion": "Mañana libre para el centro de la ciudad, museos o tranvía. Después de la comida, regreso a Guadalajara. Fin de servicios."
                 }
             ],
-            "politica_cancelacion": "Cancelaciones con penalización del 30% del valor del viaje. Entre 45 y 30 días antes: 80% de penalización. Entre 29 y 0 días: 100% de penalización. No show el día del viaje: 100% de penalidad, sin reembolso. Explora México Tours podrá cancelar el viaje si no se completa el mínimo de personas, con reembolso total al cliente."
+            "politica_cancelacion": "Cancelaciones con penalización del 30% del valor del viaje. Entre 45 y 30 días antes: 80% de penalización. Entre 29 y 0 días: 100% de penalización. No show el día del viaje: 100% de penalidad, sin reembolso. Explora México Tours podrá cancelar el viaje si no se completa el mínimo de personas, con reembolso total al cliente.",
+            "destacado": true,
+            "orden_destacado": 2
         },
         {
             "titulo": "Día de Muertos en Mixquic",
@@ -268,7 +272,9 @@
                     "descripcion": "Mañana libre y traslado al aeropuerto de Los Mochis según el horario de salida de su vuelo. Fin de servicios."
                 }
             ],
-            "politica_cancelacion": "El itinerario puede estar sujeto a cambios por políticas de Ferromex. Los lunes los museos en Chihuahua están cerrados; los domingos el museo Menonita se encuentra cerrado. Al abordar el tren Chepe se requerirá identificación oficial vigente con fotografía. Explora México Tours no permitirá cancelaciones, pero sí cambios de fecha conforme a los términos y condiciones del proveedor final. Si el cliente el día del viaje no se presenta, aplica como NO SHOW y genera el 100% de penalidad. Solo puede haber 1 persona por asiento; niños de 1 año en adelante ocupan asiento."
+            "politica_cancelacion": "El itinerario puede estar sujeto a cambios por políticas de Ferromex. Los lunes los museos en Chihuahua están cerrados; los domingos el museo Menonita se encuentra cerrado. Al abordar el tren Chepe se requerirá identificación oficial vigente con fotografía. Explora México Tours no permitirá cancelaciones, pero sí cambios de fecha conforme a los términos y condiciones del proveedor final. Si el cliente el día del viaje no se presenta, aplica como NO SHOW y genera el 100% de penalidad. Solo puede haber 1 persona por asiento; niños de 1 año en adelante ocupan asiento.",
+            "destacado": true,
+            "orden_destacado": 3
         },
         {
             "titulo": "Oaxaca Ciudad",

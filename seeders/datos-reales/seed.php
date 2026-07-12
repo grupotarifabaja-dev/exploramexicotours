@@ -162,6 +162,11 @@ function emt_seed_datos_reales( $opts = array() ) {
         update_field( 'idiomas', array_map( 'sanitize_key', (array) ( $t['idiomas'] ?? array() ) ), $post_id );
         update_field( 'salida_garantizada', ! empty( $t['salida_garantizada'] ) ? 1 : 0, $post_id );
         update_field( 'pickup_hotel', ! empty( $t['pickup_hotel'] ) ? 1 : 0, $post_id );
+        // Destacados de la home ("Tours imperdibles").
+        update_field( 'destacado', ! empty( $t['destacado'] ) ? 1 : 0, $post_id );
+        if ( isset( $t['orden_destacado'] ) ) {
+            update_field( 'orden_destacado', (int) $t['orden_destacado'], $post_id );
+        }
         update_field( 'peek_url', $t['peek_url'] ?? '#', $post_id );
         update_field( 'politica_cancelacion', wp_kses_post( $t['politica_cancelacion'] ?? '' ), $post_id );
 
