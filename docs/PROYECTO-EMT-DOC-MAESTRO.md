@@ -3,7 +3,7 @@
 **Proyecto:** Sitio web Explora México Tours (EMT)
 **Cliente:** Explora México Tours · Guadalajara, Jalisco
 **Propuesta:** P-10688-EMT
-**Versión del documento:** 1.1
+**Versión del documento:** 1.3
 **Fecha:** Junio 2026
 **Stack base:** WordPress + Hello Elementor parent + `explora-mexico-child`
 **Plazo:** 4 semanas
@@ -79,6 +79,12 @@ EMT vende dos tipos de productos:
 - **SSL:** Let's Encrypt con renovación automática
 - **CDN/Seguridad:** Cloudflare gratis al frente
 - **Correos:** Google Workspace separado (NO en el servidor)
+
+> **Nota v1.2 — Realidad de infraestructura (corrección):** en producción el servidor Hetzner **NO usa CloudPanel/Nginx** como se especifica arriba. Corre **Coolify** (PaaS self-hosted) con **Traefik** como proxy, y el sitio vive en **contenedores Docker** (`wordpress:latest` + `mariadb:11`). Implicaciones:
+> - **Deploy:** Coolify permite **auto-deploy desde GitHub** (push → build → release). Falta definir el pipeline `dev`→staging / `main`→producción ↔ Coolify (pendiente, ver §18 v1.2).
+> - **Persistencia:** uploads, `wp-config` y la BD viven en **volúmenes Docker** (p. ej. `…_wordpress-files`), no en filesystem tradicional (`/var/www` no existe). Lo que deba sobrevivir a un redeploy va en un volumen montado.
+> - **Dependencias de entorno:** plugins como **ACF Pro** son dependencia del **entorno/imagen del contenedor**, no del repo (no se versionan en Git); deben instalarse/activarse dentro del contenedor. El theme registra CPTs/taxonomías/campos ACF por código, pero asume ACF Pro presente.
+> - **Acceso SSH a producción:** solo por **llave** (no contraseña).
 
 ### 2.2 WordPress
 
@@ -1442,6 +1448,89 @@ chore(deps): actualizar Hello Elementor a 3.x
 **Decisiones bloqueantes para Fase A (ninguna):**
 - Ni Place ID ni respuesta de Peek detienen el inicio
 - Claude Code puede arrancar inmediatamente con Fase A (cimientos) — ver §14
+
+### v1.2 — Cierre de Fase A · Cimientos (junio 2026)
+
+Decisiones de construcción tomadas durante la Fase A (ver PR #2). Todas verificadas en entorno local (Local by Flywheel) antes del merge a `dev`.
+
+**Corrección de infraestructura (ver §2.1):**
+- Producción corre **Coolify + Docker** (WordPress + MariaDB en contenedores, Traefik proxy), **no CloudPanel/Nginx**. Implicaciones de deploy, persistencia de volúmenes y ACF Pro como dependencia de entorno documentadas en §2.1.
+
+**CPT `asesor` (el §6.2 no especificaba el registro):**
+- `has_archive => 'asesores'`, `rewrite slug => 'asesores'`, `supports => [title, thumbnail, excerpt, revisions]`, `menu_icon => dashicons-businessperson`, `menu_position => 6`, `show_in_rest => true`.
+
+**Slugs de URL de taxonomías (el §6.3 no los definía):**
+- `tour_destino → destino`, `tour_categoria → categoria-tour` (evita choque con la `category` nativa de WP), `tour_experiencia → experiencia`, `asesor_especialidad → especialidad`, `asesor_idioma → idioma`.
+- Todas con `show_in_rest => true` y `show_admin_column => true`.
+
+**Campos ACF (§6.1/§6.2/§6.4 — registrados por código con `acf_add_local_field_group`):**
+- Organizados en **pestañas (tabs)** para usabilidad (no estaba en el doc).
+- Tipos inferidos donde el doc era ambiguo: `dificultad` select (`facil`/`moderada`/`alta`, valores ascii con labels acentuados, default `facil`); `idiomas` checkbox (`es`/`en`/`fr`/`otros`, default `["es"]`); `excerpt_en` textarea, `descripcion_en` wysiwyg; `true_false` con `ui:1`; `tour_relacionados` `return_format:id, max:4`; imágenes `return_format:array`.
+- Prefijo de field keys: `field_emt_{cpt}_` para tour/asesor; **`field_emt_config_`** para la Options page (el §3.3 solo definía `{cpt}`).
+- Conteos finales (sin contar tabs): **tour = 30** (23 base + 7 gemelos `_en`), **config = 22**, **asesor = 11**.
+- Los 3 grupos son **locales** (`local => php`): no editables desde la UI de ACF.
+
+**i18n — routing bilingüe (§10):**
+- Estrategia **strip-prefix (Opción A)**: el prefijo `/en/` se retira en `do_parse_request` y WP resuelve la ruta restante con sus reglas normales → cubre páginas, CPTs, taxonomías y archivos uniformemente.
+- **Motivo del cambio:** el snippet del §10.1 (`add_rewrite_rule('^en/(.+?)/?$', '…pagename=$matches[1]')`) **rompía con CPTs/taxonomías** (solo resolvía Páginas estáticas → 404 para `/en/tours/…`), contradiciendo el §7.1 ("árbol replicado con prefijo"). El §10.1 queda **reemplazado** por strip-prefix.
+- `emt_current_lang()` captura el path **original** en `$GLOBALS['emt_request_path']` al cargar el módulo, en vez de leer `$_SERVER['REQUEST_URI']` en vivo (el strip-prefix lo modifica). Mismo comportamiento, más robusto.
+- Se conservó la regla `^en/?$ → index.php?lang=en` registrada (+ flush en `after_switch_theme`) como artefacto/fallback.
+
+**Seguridad — división theme vs servidor (§11.1):**
+- **En el theme** (`inc/security.php`): ocultar versión de WP (generator + `?ver` del core, surgical), deshabilitar XML-RPC autenticado + quitar `X-Pingback`, headers `X-Frame-Options`/`X-Content-Type-Options`/`Referrer-Policy` vía `send_headers`, quitar RSD/wlwmanifest/shortlink, forzar `DISALLOW_FILE_EDIT`.
+- **Diferido a servidor (Nginx/Cloudflare):** `Content-Security-Policy` (requiere mapear recursos externos), `Strict-Transport-Security` (HSTS), bloqueo total de `xmlrpc.php` (el filtro del theme solo cubre métodos autenticados).
+
+**A6 cubierto en A4:** la Options page "Configuración EMT" se implementó dentro del bloque de ACF.
+
+**Pendientes anotados para fases futuras:**
+- Definir el **pipeline de deploy Coolify ↔ GitHub** (auto-deploy `dev`→staging, `main`→producción).
+- **CSP** y **HSTS** a nivel servidor/Cloudflare (cuando el sitio esté completo y los recursos externos mapeados).
+- **Bloqueo total de `xmlrpc.php`** vía regla Nginx (`deny`), complementando el filtro del theme.
+- **Roles custom (§11.3):** Tour Manager y Asesor Manager (CRUD restringido a su CPT) — no entraban en A7.
+
+### v1.3 — Decisiones Fases B y C (junio 2026)
+
+Construcción de componentes (B) y plantillas (C). Todo verificado en local (Local by Flywheel) con el under construction intacto; PRs #3 (Fase B) y #4 (Fase C) mergeados a `dev`.
+
+**Fase B — Componentes base (`parts/` + `inc/template-helpers.php`):**
+- 7 componentes: header con mega-menú, footer, `tour-card`, `asesor-card`, selector de idioma (`lang-switcher`), WhatsApp flotante del sitio real (clase `emt-wa-float`, distinta del flotante propio del under construction), y helpers de render.
+- Helpers (`inc/template-helpers.php`): `emt_render_tour_card()`, `emt_render_asesor_card()`, `emt_breadcrumbs()` (+ JSON-LD BreadcrumbList §7.4), `emt_get_image_or_placeholder()`, `emt_format_price()`.
+- `assets/css/tokens.css`: set completo de tokens del §5 (la `style.css` inicial solo tenía la paleta básica).
+
+**Fase C — Plantillas:**
+- **Plantillas en la RAÍZ del theme, no en `templates/`** (corrige §4): la jerarquía de plantillas de WordPress solo resuelve desde la raíz. `header.php`/`footer.php` raíz (sobrescriben los de Hello) envuelven los `parts/`.
+- 6 plantillas: C1 `front-page.php` (Home), C2 `archive-tour.php` + `parts/tour-listing.php` (filtros), C3 `taxonomy-tour_{destino,categoria,experiencia}.php`, C4 `single-tour.php`, C5 `archive-asesor.php`, C6 `single-asesor.php`.
+- **vCard + atribución** (C6, `inc/asesor-functions.php`): endpoint `/asesores/{slug}/vcard` genera `.vcf` (con contador de descargas); `?ref={slug}` guarda cookie `emt_ref_asesor` por 30 días (para GA4). **Person schema** en el perfil.
+- **TouristTrip schema** en `single-tour.php` (`inc/seo-schema.php`, §9.5).
+- **Filtros GET server-side** en el listado (AJAX/range-sliders diferidos).
+
+**Fix sistémico CRÍTICO — orden de carga de CSS:**
+- Síntoma: botones con borde/caja magenta, hamburguesa visible en desktop. Causa: Hello Elementor encola su `reset.css`/`theme.css` **después** del CSS del child, y su selector `[type=button]` (especificidad 0,1,0, igual que una clase) ganaba el empate por cargar al final.
+- Solución: en `inc/enqueues.php`, encolar TODO el CSS/JS del child con **prioridad 20** en `wp_enqueue_scripts` (después de Hello, prioridad 10) → el design system gana de forma natural, sin trucos de especificidad. Además, **versionado por `filemtime()`** = cache-bust automático en cada cambio de archivo.
+- **Lección:** con Hello Elementor como parent, encolar siempre el CSS del child DESPUÉS del de Hello.
+
+**7 fixes visuales (revisados navegando con datos reales):**
+1. Header: disparadores del mega-menú como nav (sin caja nativa), hamburguesa oculta en desktop.
+2. Breadcrumbs: CSS horizontal con separadores `›` (`breadcrumbs.css`); el `<ol>` se veía como lista numerada.
+3. Escala de la ficha de tour: hero/galería acotado (420px / 45vh) + escala tipográfica y espaciado más contenidos.
+4. Skip-link accesible movido a `header.css` (site-wide) con patrón `:focus` (antes estaba solo en `home.css` y se mostraba en todas las páginas).
+5. Mega-menú: cierre con delay cancelable + hover en los paneles (ya no se cierra al cruzar del disparador al panel).
+6. Asesores: cards compactas (foto con altura acotada), foto de perfil ≤320px, grid responsive compartido (directorio + "otros asesores").
+7. Placeholder de foto: silueta neutra de persona, sin texto de marca.
+
+**Método de revisión visual:**
+- Seeder temporal `inc/_preview.php` (**no commiteado**) que siembra datos reales de prueba marcados `_emt_real` (solo en la BD local), con desactivación temporal del under construction (UC off) para navegar, y validación por capturas. Al cerrar: limpieza de datos + reactivación de UC (`true`) + working tree limpio.
+
+**Diferido a Fase D (y posterior):**
+- **Precios por ocupación (PRIORIDAD):** rediseñar el modelo de precio del tour. Campos **FIJOS (no repeater):** DBL / TPL / CuADPL / Menor + disponibilidad. `precio_desde` = el menor de los 4. Etiquetas vía `emt_t()`. (Hoy la tabla vive en `precio_nota` / cuerpo del post como solución temporal.)
+- Render del **QR** del asesor (hoy cableado a la URL de la vCard; falta la librería de render).
+- **Filtros AJAX** + range-sliders (hoy GET server-side).
+- **Hero estacional** configurable (§8.1).
+- **Mega-menú con imágenes** por item (hoy fallback a términos sin imagen).
+- **Peek tracking** (links de reserva pendientes del cliente; hoy `peek_url = "#"`).
+- **Google Reviews** (widget, §9.2).
+- **Tours recomendados** en el perfil de asesor (requiere un campo relationship asesor→tours, no contemplado en §6.2).
+- **Carga de contenido:** ~70 tours reales.
 
 ### (próximas decisiones aquí)
 
