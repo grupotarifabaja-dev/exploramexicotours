@@ -12,7 +12,8 @@ $emt_prefix = ( $emt_lang === 'en' ) ? '/en' : '';
 $emt_logo   = get_stylesheet_directory_uri() . '/assets/images/explora-logo.png';
 
 $emt_links = array(
-    'asesores' => home_url( $emt_prefix . '/asesores/' ),
+    'asesores'   => home_url( $emt_prefix . '/asesores/' ),
+    'transporte' => home_url( $emt_prefix . '/transporte/' ),
     'blog'     => home_url( $emt_prefix . '/blog/' ),
     'contacto' => home_url( $emt_prefix . '/contacto/' ),
 );
@@ -41,6 +42,7 @@ $emt_triggers = array(
                     </li>
                 <?php endforeach; ?>
                 <li class="emt-nav__item"><a class="emt-nav__link" href="<?php echo esc_url( $emt_links['asesores'] ); ?>"><?php echo esc_html( emt_t( 'asesores' ) ); ?></a></li>
+                <li class="emt-nav__item"><a class="emt-nav__link" href="<?php echo esc_url( $emt_links['transporte'] ); ?>"><?php echo esc_html( emt_t( 'transporte' ) ); ?></a></li>
                 <li class="emt-nav__item"><a class="emt-nav__link" href="<?php echo esc_url( $emt_links['blog'] ); ?>"><?php echo esc_html( emt_t( 'blog' ) ); ?></a></li>
                 <li class="emt-nav__item"><a class="emt-nav__link" href="<?php echo esc_url( $emt_links['contacto'] ); ?>"><?php echo esc_html( emt_t( 'contacto' ) ); ?></a></li>
             </ul>
@@ -70,6 +72,7 @@ $emt_triggers = array(
                     <li><a class="emt-drawer__link" href="<?php echo esc_url( home_url( $emt_prefix . '/tours/' ) ); ?>"><?php echo esc_html( $label ); ?></a></li>
                 <?php endforeach; ?>
                 <li><a class="emt-drawer__link" href="<?php echo esc_url( $emt_links['asesores'] ); ?>"><?php echo esc_html( emt_t( 'asesores' ) ); ?></a></li>
+                <li><a class="emt-drawer__link" href="<?php echo esc_url( $emt_links['transporte'] ); ?>"><?php echo esc_html( emt_t( 'transporte' ) ); ?></a></li>
                 <li><a class="emt-drawer__link" href="<?php echo esc_url( $emt_links['blog'] ); ?>"><?php echo esc_html( emt_t( 'blog' ) ); ?></a></li>
                 <li><a class="emt-drawer__link" href="<?php echo esc_url( $emt_links['contacto'] ); ?>"><?php echo esc_html( emt_t( 'contacto' ) ); ?></a></li>
             </ul>

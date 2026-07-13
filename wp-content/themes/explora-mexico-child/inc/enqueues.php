@@ -127,5 +127,14 @@ function emt_enqueue_template_assets() {
     if ( is_front_page() && file_exists( "$dir/assets/js/hero-video.js" ) ) {
         wp_enqueue_script( 'emt-hero-video', "$uri/assets/js/hero-video.js", array(), emt_asset_ver( "$dir/assets/js/hero-video.js" ), true );
     }
+
+    if ( get_query_var( 'emt_transporte' ) ) {
+        if ( file_exists( "$dir/assets/css/transfer.css" ) ) {
+            wp_enqueue_style( 'emt-transfer', "$uri/assets/css/transfer.css", array( 'emt-tokens' ), emt_asset_ver( "$dir/assets/css/transfer.css" ) );
+        }
+        if ( file_exists( "$dir/assets/js/transfer-form.js" ) ) {
+            wp_enqueue_script( 'emt-transfer-form', "$uri/assets/js/transfer-form.js", array(), emt_asset_ver( "$dir/assets/js/transfer-form.js" ), true );
+        }
+    }
 }
 add_action( 'wp_enqueue_scripts', 'emt_enqueue_template_assets', 20 );
