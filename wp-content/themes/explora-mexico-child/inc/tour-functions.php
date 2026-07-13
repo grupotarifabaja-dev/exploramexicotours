@@ -37,10 +37,39 @@ function emt_tour_precios( $post_id ) {
 }
 
 /**
- * Sincroniza precio_desde = menor de los 4 precios por ocupación.
- * Respeta un override manual: si precio_desde ya trae valor, no lo toca.
- * Se ejecuta al guardar un tour (acf/save_post) y se puede llamar directo
- * (p. ej. desde un seeder con update_field, que no dispara acf/save_post).
+ * Precios por capacidad de grupo/vehículo (modelo alternativo al de ocupación).
+ * Devuelve TODAS las filas capturadas; 'precio' es float o null (=> "Consultar").
+ *
+ * @param int $post_id
+ * @return array<int,array{capacidad:string,vehiculo:string,precio:?float}>
+ */
+function emt_tour_precios_vehiculo( $post_id ) {
+    if ( ! function_exists( 'get_field' ) ) {
+        return array();
+    }
+    $rows = array();
+    foreach ( (array) get_field( 'precios_vehiculo', $post_id ) as $r ) {
+        $cap = trim( (string) ( $r['capacidad'] ?? '' ) );
+        $veh = trim( (string) ( $r['vehiculo'] ?? '' ) );
+        if ( $cap === '' && $veh === '' ) {
+            continue;
+        }
+        $p = $r['precio'] ?? '';
+        $rows[] = array(
+            'capacidad' => $cap,
+            'vehiculo'  => $veh,
+            'precio'    => ( $p === '' || $p === null || (float) $p <= 0 ) ? null : (float) $p,
+        );
+    }
+    return $rows;
+}
+
+/**
+ * Sincroniza precio_desde = menor entre los precios por ocupación Y los
+ * precios por vehículo. Respeta un override manual: si precio_desde ya trae
+ * valor, no lo toca. Se ejecuta al guardar un tour (acf/save_post) y se puede
+ * llamar directo (p. ej. desde un seeder con update_field, que no dispara
+ * acf/save_post).
  *
  * @param int|string $post_id
  * @return void
@@ -56,6 +85,11 @@ function emt_tour_sync_precio_desde( $post_id ) {
     $precios = array();
     foreach ( emt_tour_precios( $post_id ) as $r ) {
         $precios[] = $r['precio'];
+    }
+    foreach ( emt_tour_precios_vehiculo( $post_id ) as $r ) {
+        if ( $r['precio'] !== null ) {
+            $precios[] = $r['precio'];
+        }
     }
     if ( $precios ) {
         update_field( 'precio_desde', (int) min( $precios ), $post_id );

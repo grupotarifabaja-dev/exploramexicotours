@@ -66,6 +66,10 @@ return array(
     'ocup_cuadruple'       => 'Cuádruple',
     'ocup_menor'           => 'Menor (6-12)',
     'asientos'             => 'asientos',
+    'capacidad'            => 'Capacidad',
+    'vehiculo'             => 'Vehículo',
+    'consultar'            => 'Consultar',
+    'transporte'           => 'Transporte',
 
     // Navegación
     'a_donde_ir'           => '¿A dónde ir?',

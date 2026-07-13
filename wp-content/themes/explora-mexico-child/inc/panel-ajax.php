@@ -96,6 +96,21 @@ function emt_panel_save_tour() {
         update_field( $rep, $rows, $post_id );
     }
 
+    // Precios por vehículo (modelo alternativo; precio vacío => "Consultar").
+    $pv = array();
+    foreach ( (array) ( $_POST['precios_vehiculo'] ?? array() ) as $r ) {
+        $cap = sanitize_text_field( wp_unslash( $r['capacidad'] ?? '' ) );
+        $veh = sanitize_text_field( wp_unslash( $r['vehiculo'] ?? '' ) );
+        if ( $cap === '' && $veh === '' ) { continue; }
+        $praw = $r['precio'] ?? '';
+        $pv[] = array(
+            'capacidad' => $cap,
+            'vehiculo'  => $veh,
+            'precio'    => ( $praw === '' ) ? '' : (float) $praw,
+        );
+    }
+    update_field( 'precios_vehiculo', $pv, $post_id );
+
     // Itinerario.
     $itin = array();
     foreach ( (array) ( $_POST['itinerario'] ?? array() ) as $r ) {

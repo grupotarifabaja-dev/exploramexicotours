@@ -34,6 +34,7 @@ while ( have_posts() ) :
     $relacion  = get_field( 'tour_relacionados', $id );
     $fecha     = get_field( 'fecha_viaje', $id );
     $precios   = function_exists( 'emt_tour_precios' ) ? emt_tour_precios( $id ) : array();
+    $precios_veh = function_exists( 'emt_tour_precios_vehiculo' ) ? emt_tour_precios_vehiculo( $id ) : array();
     $precio_nota = get_field( 'precio_nota', $id );
 
     $destinos  = get_the_terms( $id, 'tour_destino' );
@@ -123,6 +124,33 @@ while ( have_posts() ) :
                                 </tbody>
                             </table>
                             <?php if ( $precio_nota ) : ?>
+                                <p class="emt-precios-nota"><?php echo esc_html( $precio_nota ); ?></p>
+                            <?php endif; ?>
+                        </section>
+                    <?php endif; ?>
+
+                    <?php if ( $precios_veh ) : ?>
+                        <section class="emt-tour-precios">
+                            <h2><?php echo esc_html( emt_t( 'precios' ) ); ?></h2>
+                            <table class="emt-precios-tabla">
+                                <thead>
+                                    <tr>
+                                        <th><?php echo esc_html( emt_t( 'capacidad' ) ); ?></th>
+                                        <th><?php echo esc_html( emt_t( 'vehiculo' ) ); ?></th>
+                                        <th><?php echo esc_html( emt_t( 'precio_persona' ) ); ?></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ( $precios_veh as $row ) : ?>
+                                        <tr>
+                                            <td><?php echo esc_html( $row['capacidad'] ); ?></td>
+                                            <td><?php echo esc_html( $row['vehiculo'] ); ?></td>
+                                            <td class="emt-precios-tabla__precio"><?php echo $row['precio'] !== null ? esc_html( emt_format_price( $row['precio'] ) ) : esc_html( emt_t( 'consultar' ) ); ?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                            <?php if ( $precio_nota && ! $precios ) : ?>
                                 <p class="emt-precios-nota"><?php echo esc_html( $precio_nota ); ?></p>
                             <?php endif; ?>
                         </section>
