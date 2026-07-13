@@ -59,6 +59,14 @@ function emt_acf_register_field_groups() {
             array( 'key' => 'field_emt_tour_precio_menor', 'label' => 'Precio Menor 6-12', 'name' => 'precio_menor', 'type' => 'number', 'required' => 0, 'wrapper' => array( 'width' => '60' ) ),
             array( 'key' => 'field_emt_tour_disp_menor', 'label' => 'Disponibilidad Menor', 'name' => 'disp_menor', 'type' => 'number', 'required' => 0, 'instructions' => 'Asientos', 'wrapper' => array( 'width' => '40' ) ),
             array( 'key' => 'field_emt_tour_precio_nota', 'label' => 'Nota de precios', 'name' => 'precio_nota', 'type' => 'textarea', 'rows' => 2, 'required' => 0, 'instructions' => 'Observaciones (p. ej. "máximo 4 por habitación incluyendo menores").' ),
+
+            // Modelo alternativo: precios por capacidad de grupo/vehículo (p. ej. tours de Tequila).
+            // Coexiste con el de ocupación: un tour usa uno u otro (o ninguno -> "Consultar precio").
+            array( 'key' => 'field_emt_tour_precios_vehiculo', 'label' => 'Precios por vehículo', 'name' => 'precios_vehiculo', 'type' => 'repeater', 'required' => 0, 'layout' => 'table', 'button_label' => 'Agregar tramo', 'instructions' => 'Precio POR PERSONA según capacidad del grupo y vehículo. Deja el precio vacío para mostrar "Consultar".', 'sub_fields' => array(
+                array( 'key' => 'field_emt_tour_pv_capacidad', 'label' => 'Capacidad', 'name' => 'capacidad', 'type' => 'text', 'instructions' => '"2 pax", "11-15 pax"' ),
+                array( 'key' => 'field_emt_tour_pv_vehiculo', 'label' => 'Vehículo', 'name' => 'vehiculo', 'type' => 'text', 'instructions' => '"Sedán", "Sprinter Lux"' ),
+                array( 'key' => 'field_emt_tour_pv_precio', 'label' => 'Precio p/p (MXN)', 'name' => 'precio', 'type' => 'number', 'required' => 0 ),
+            ) ),
             array( 'key' => 'field_emt_tour_fecha_viaje', 'label' => 'Fecha del viaje', 'name' => 'fecha_viaje', 'type' => 'text', 'required' => 0, 'instructions' => 'P. ej. "30 octubre – 1 noviembre 2026".' ),
             array( 'key' => 'field_emt_tour_duracion_texto', 'label' => 'Duración (texto)', 'name' => 'duracion_texto', 'type' => 'text', 'required' => 1, 'instructions' => '"1 día", "3 días/2 noches"' ),
             array( 'key' => 'field_emt_tour_duracion_horas', 'label' => 'Duración (horas)', 'name' => 'duracion_horas', 'type' => 'number', 'required' => 0, 'instructions' => 'Para filtros' ),

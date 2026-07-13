@@ -170,6 +170,21 @@ function emt_seed_datos_reales( $opts = array() ) {
         update_field( 'peek_url', $t['peek_url'] ?? '#', $post_id );
         update_field( 'politica_cancelacion', wp_kses_post( $t['politica_cancelacion'] ?? '' ), $post_id );
 
+        // Precios por vehículo (modelo alternativo; precio null => "Consultar").
+        $pv = array();
+        foreach ( (array) ( $t['precios_vehiculo'] ?? array() ) as $r ) {
+            $cap = sanitize_text_field( $r['capacidad'] ?? '' );
+            $veh = sanitize_text_field( $r['vehiculo'] ?? '' );
+            if ( $cap === '' && $veh === '' ) { continue; }
+            $p = $r['precio'] ?? null;
+            $pv[] = array(
+                'capacidad' => $cap,
+                'vehiculo'  => $veh,
+                'precio'    => ( $p === null || $p === '' ) ? '' : (float) $p,
+            );
+        }
+        update_field( 'precios_vehiculo', $pv, $post_id );
+
         // Repeaters incluye / no_incluye.
         foreach ( array( 'incluye', 'no_incluye' ) as $rep ) {
             $rows = array();
@@ -219,6 +234,11 @@ function emt_seed_datos_reales( $opts = array() ) {
         if ( $galeria ) {
             update_field( 'galeria', $galeria, $post_id );
             set_post_thumbnail( $post_id, $galeria[0] );
+        }
+
+        // Autocalcula precio_desde si no vino explícito (considera ocupación y vehículo).
+        if ( function_exists( 'emt_tour_sync_precio_desde' ) ) {
+            emt_tour_sync_precio_desde( $post_id );
         }
 
         update_post_meta( $post_id, '_emt_real_seed', 1 );

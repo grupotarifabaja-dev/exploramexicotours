@@ -1,0 +1,76 @@
+/* ============================================================
+   EXPLORA TRANSFER (/transporte/) — sección de transporte
+   ============================================================ */
+
+/* Hero */
+.emt-transfer-hero {
+  background: linear-gradient(135deg, var(--emt-azul-profundo), var(--emt-azul-brillante));
+  color: var(--emt-blanco);
+  padding-block: var(--emt-spacing-3xl);
+  text-align: center;
+}
+.emt-transfer-hero__eyebrow { text-transform: uppercase; letter-spacing: 0.08em; font-size: var(--emt-fs-sm); color: var(--emt-turquesa); margin: 0 0 var(--emt-spacing-sm); }
+.emt-transfer-hero__title { font-family: var(--emt-font-display); font-size: var(--emt-fs-3xl); font-weight: var(--emt-fw-black); line-height: var(--emt-lh-tight); margin: 0 0 var(--emt-spacing-md); }
+.emt-transfer-hero__sub { max-width: 62ch; margin: 0 auto var(--emt-spacing-xl); opacity: 0.92; line-height: var(--emt-lh-relaxed); }
+
+/* Secciones */
+.emt-transfer-section { padding-block: var(--emt-spacing-3xl); }
+.emt-transfer-section--alt { background: var(--emt-gris-claro); }
+.emt-transfer-section--dark { background: var(--emt-azul-profundo); color: var(--emt-blanco); }
+.emt-transfer-section h2 { font-family: var(--emt-font-display); font-size: var(--emt-fs-2xl); font-weight: var(--emt-fw-bold); color: var(--emt-azul-profundo); margin: 0 0 var(--emt-spacing-md); text-align: center; }
+.emt-transfer-section--dark h2 { color: var(--emt-blanco); }
+.emt-transfer-section__sub { text-align: center; color: var(--emt-color-text-muted); margin: 0 0 var(--emt-spacing-xl); }
+.emt-transfer-quienes { max-width: 72ch; }
+.emt-transfer-quienes p { line-height: var(--emt-lh-relaxed); }
+
+/* Servicios */
+.emt-transfer-servicios { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--emt-spacing-md); }
+@media (min-width: 720px)  { .emt-transfer-servicios { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 1024px) { .emt-transfer-servicios { grid-template-columns: repeat(4, 1fr); } }
+.emt-transfer-servicio { background: var(--emt-blanco); border: 1px solid var(--emt-color-border); border-radius: var(--emt-radius-md); padding: var(--emt-spacing-md); font-weight: var(--emt-fw-medium); color: var(--emt-azul-profundo); text-align: center; }
+
+/* Flotilla */
+.emt-transfer-flotilla { display: grid; grid-template-columns: 1fr; gap: var(--emt-spacing-lg); }
+@media (min-width: 720px)  { .emt-transfer-flotilla { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .emt-transfer-flotilla { grid-template-columns: repeat(3, 1fr); } }
+.emt-flotilla-card { border: 1px solid var(--emt-color-border); border-radius: var(--emt-radius-lg); padding: var(--emt-spacing-lg); background: var(--emt-blanco); display: flex; flex-direction: column; gap: var(--emt-spacing-xs); }
+.emt-flotilla-card__icon { font-size: 40px; line-height: 1; }
+.emt-flotilla-card__name { font-family: var(--emt-font-display); font-size: var(--emt-fs-md); font-weight: var(--emt-fw-bold); color: var(--emt-azul-profundo); margin: 0; }
+.emt-flotilla-card__cap { color: var(--emt-azul-brillante); font-weight: var(--emt-fw-semibold); font-size: var(--emt-fs-sm); margin: 0; }
+.emt-flotilla-card__feats { color: var(--emt-color-text-muted); font-size: var(--emt-fs-sm); line-height: var(--emt-lh-relaxed); margin: 0; }
+
+/* Clientes */
+.emt-transfer-clientes { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--emt-spacing-sm) var(--emt-spacing-lg); justify-content: center; }
+.emt-transfer-clientes li { opacity: 0.85; font-weight: var(--emt-fw-medium); font-size: var(--emt-fs-sm); }
+
+/* Certificaciones */
+.emt-transfer-certs { list-style: none; margin: 0 auto; padding: 0; max-width: 70ch; display: grid; gap: var(--emt-spacing-sm); }
+.emt-transfer-certs li { padding-left: 1.6em; position: relative; }
+.emt-transfer-certs li::before { content: "✔"; position: absolute; left: 0; color: var(--emt-verde); font-weight: var(--emt-fw-bold); }
+
+/* Formulario */
+.emt-transfer-form-wrap { max-width: 860px; }
+.emt-transfer-form { background: var(--emt-blanco); border: 1px solid var(--emt-color-border); border-radius: var(--emt-radius-lg); padding: var(--emt-spacing-xl); }
+.emt-transfer-form__grid { display: grid; grid-template-columns: 1fr; gap: var(--emt-spacing-md); }
+@media (min-width: 720px) {
+  .emt-transfer-form__grid { grid-template-columns: 1fr 1fr; }
+  .emt-transfer-form__grid .emt-field--full { grid-column: 1 / -1; }
+}
+.emt-transfer-form .emt-field > label, .emt-transfer-form fieldset > legend { display: block; font-weight: var(--emt-fw-semibold); font-size: var(--emt-fs-sm); color: var(--emt-azul-profundo); margin-bottom: 4px; }
+.emt-transfer-form input, .emt-transfer-form select, .emt-transfer-form textarea {
+  width: 100%; padding: 0.55rem 0.8rem; border: 1px solid var(--emt-color-border); border-radius: var(--emt-radius-md); font-size: var(--emt-fs-base); font-family: var(--emt-font-body); background: #fff;
+}
+.emt-transfer-form fieldset { border: 0; padding: 0; margin: 0; }
+.emt-transfer-form__pax-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--emt-spacing-md); }
+.emt-transfer-check { display: flex; align-items: flex-start; gap: var(--emt-spacing-sm); font-size: var(--emt-fs-sm); padding: 3px 0; cursor: pointer; }
+.emt-transfer-check input { width: auto; margin-top: 3px; }
+.emt-transfer-form .emt-field--error input, .emt-transfer-form .emt-field--error textarea { border-color: var(--emt-coral); }
+.emt-transfer-form__bar { display: flex; gap: var(--emt-spacing-md); align-items: center; justify-content: flex-end; margin-top: var(--emt-spacing-lg); }
+.emt-transfer-form__msg { margin-right: auto; font-size: var(--emt-fs-sm); }
+.emt-transfer-form__msg.is-ok { color: #4e7a16; font-weight: var(--emt-fw-semibold); }
+.emt-transfer-form__msg.is-err { color: var(--emt-coral); }
+
+/* Contacto */
+.emt-transfer-contacto ul { list-style: none; margin: 0 0 var(--emt-spacing-md); padding: 0; display: grid; gap: var(--emt-spacing-sm); }
+.emt-transfer-contacto a { color: var(--emt-azul-brillante); }
+.emt-transfer-operado { color: var(--emt-color-text-muted); font-size: var(--emt-fs-sm); font-style: italic; }
