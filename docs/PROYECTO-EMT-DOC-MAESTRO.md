@@ -1532,6 +1532,81 @@ Construcción de componentes (B) y plantillas (C). Todo verificado en local (Loc
 - **Tours recomendados** en el perfil de asesor (requiere un campo relationship asesor→tours, no contemplado en §6.2).
 - **Carga de contenido:** ~70 tours reales.
 
+### v1.4 — Fase D: D1 Precios por ocupación + Panel de gestión del cliente (junio 2026)
+
+**D1 — Precios por ocupación (PR #5, mergeado):**
+- Campos ACF FIJOS (no repeater): precio_dbl/tpl/cuadpl/menor + disp_* (disponibilidad/asientos) + precio_nota + fecha_viaje. También precio_desde_usd ("para extranjeros").
+- precio_desde se AUTOCALCULA como el menor de los 4 precios por ocupación vía acf/save_post (inc/tour-functions.php), SOLO si está vacío; si el admin captura un valor, se respeta como override manual.
+- Ficha de tour: tabla de precios (Ocupación | Precio por persona | Disponibilidad), solo filas con precio; etiquetas (Doble/Triple/Cuádruple/Menor + encabezados) vía emt_t() en ES/EN (no campos _en, son fijas).
+- Schema: TouristTrip con AggregateOffer (lowPrice/highPrice).
+- Fix: traducción de dificultad (facil/moderada/alta → Fácil/Moderada/Alta · Easy/Moderate/Challenging) vía emt_t().
+- Conteo de campos del tour: 30→40.
+
+**PANEL DE GESTIÓN DEL CLIENTE (PR #6, mergeado) — el módulo más grande del proyecto:**
+
+> **DECISIÓN DE ARQUITECTURA CLAVE:** El cliente NO entra a wp-admin. Gestiona el sitio desde un PANEL FRONTEND a medida, estético, con marca EMT. Referente de UX aprobado: el "Panel de Gestión" de miagencia.travel. Esto NO estaba en el alcance documentado originalmente (el catálogo se diseñó sobre CPT+ACF nativo); se incorporó como entregable dentro del precio cerrado de $18k. Reemplaza el enfoque inicial descartado de "wp-admin brandeado".
+
+- **Stack:** todo DENTRO del theme WordPress (PHP + plantillas + AJAX), SIN React/dependencias externas. Reusa los CPT tour/asesor + ACF + helpers existentes. Es lo más mantenible.
+- **Routing:** ruta /panel/ (el dispatcher corre en template_redirect a prioridad 1, ANTES del under-construction que está a prioridad 10, para que /panel/ no sea interceptado por el UC). Sub-vistas: /panel/, /panel/tours/, /panel/tours/nuevo|editar, /panel/asesores/, /panel/configuracion/.
+- **Autenticación:** login frontend propio con marca EMT. Usa el rol custom emt_gestor (inc/roles.php) con capabilities granulares: SOLO crear/editar/publicar/borrar tours y asesores + subir medios. NADA de plugins/ajustes/temas/usuarios/otros CPT. Los CPT tour/asesor usan capability_type propio + map_meta_cap para que el rol sea acotado.
+- **Estética:** marca EMT (Azul Profundo #003366, Azul Brillante #0057B8, Rosa Magenta #E91E63, Poppins/Inter). Estructura: header (logo + usuario + "Ver sitio" + "Salir") + sidebar con secciones y contadores + tablas con thumbnail/estado/acciones + formularios en secciones con ayudas. Admin bar de WordPress OCULTA en el panel y para el rol.
+- **Secciones:**
+  - Dashboard/Inicio: métricas (tours publicados/borrador, asesores) + accesos rápidos.
+  - Tours: lista (tabla: thumbnail, destino, "desde", duración, estado con color, acciones) + buscador + alta/edición con TODOS los campos ACF (datos básicos bilingües, precios por ocupación, logística, itinerario repeater, incluye/no incluye, galería con wp.media, políticas/mapa/Peek/SEO).
+  - Asesores: lista (avatar redondo, nombre, puesto, idiomas, estado) + alta/edición (datos bilingües, foto, teléfono, whatsapp normalizado a dígitos, email, LinkedIn, Instagram, idiomas/especialidades como taxonomías por nombre, activo, orden).
+  - Configuración: contacto (whatsapp, teléfono, emails, dirección), redes sociales, textos del hero estacional.
+- **Seguridad:** nonces + verificación de capability + sanitización por tipo en CADA acción AJAX (guardar/eliminar tour/asesor/config). Eliminar va a papelera. NO se expone al cliente: claves de API (Google/Peek), Place ID, el toggle de Under Construction (para que no lo apague por error), ni los repeaters del mega-menú — eso queda en wp-admin para el admin.
+- **Validación sin pérdida de datos (decisión UX importante):** el formulario usa novalidate; la validación la controla el JS (nunca resetea valores capturados). Al fallar marca el campo faltante + scroll/focus + aviso "tus datos se conservan". "Guardar borrador" exige solo título (permite guardar parcial); "Publicar" exige título + duración. El backend refuerza lo mismo.
+- **Módulos:** inc/panel.php (dispatcher/login/admin-bar), inc/panel-ajax.php (handlers de guardado/borrado), inc/roles.php (rol+caps), vistas en parts/panel/ (header, sidebar, login, dashboard, view-tours, view-tour-form, view-asesores, view-asesor-form, view-configuracion), assets/css/panel.css, assets/js/panel.js.
+
+**Verificación:** el panel se verificó visualmente con el navegador (login, dashboard, formularios de tour/asesor/config, estética EMT, admin bar oculta) y el guardado end-to-end por código (persistencia de precios, autocálculo, itinerario, taxonomías, whatsapp a dígitos). El front público y el UC quedan intactos.
+
+**Pendiente inmediato tras el panel:** guía "Cómo cargar un tour" para el cliente (con capturas del panel terminado).
+
+**Diferido a siguientes bloques de Fase D:** carga de los 70 tours reales (ahora el cliente puede hacerlo solo desde el panel), integración Peek con tracking (cliente pasará links), hero estacional rotativo, mega-menú con imágenes reales, filtros AJAX, Google Reviews, QR del asesor, "tours que recomiendo", traducciones de contenido por-tour (fecha, notas, descripciones EN).
+
+### v1.5 — Fase D: Seeder de datos reales, catálogo de 8 tours, galería con lightbox, hero con video + cards de destino (junio 2026)
+
+**SEEDER DE DATOS REALES REUTILIZABLE (PR #7, mergeado):**
+
+> **DECISIÓN:** Los datos de tours/asesores NO viven en Git (el repo es solo código); viven en la BD. Para no perder el contenido real y poder recargarlo en cualquier entorno (local para revisar, producción para entregar), se creó un seeder reutilizable que SÍ va al repo. Resuelve la pregunta recurrente de "¿por qué el panel aparece vacío?": antes todo era temporal y se borraba; ahora el seeder reconstruye el contenido de forma idempotente.
+
+- Ubicación en el repo: `seeders/datos-reales/` con `seed.php` (lógica), `data/` (JSON + fotos), `README.md`.
+- Ejecución: comando WP-CLI propio del theme (`wp emt seed-datos-reales`) + función programática. Como el PHP CLI del entorno de Local no tiene mysqli, en la práctica se dispara vía un mu-plugin temporal (fuera del repo) que llama a la función del repo.
+- Idempotente por slug: re-ejecutar ACTUALIZA los tours/asesores existentes (no duplica) y reutiliza las fotos ya importadas (mismos attachment IDs, no re-importa).
+- Crea términos de taxonomía faltantes y reutiliza los existentes.
+- Contenido sembrado: 8 tours + 3 asesores (ver abajo) + sus fotos optimizadas, todo versionado en el repo (es contenido de entrega, no scaffolding desechable).
+
+**CATÁLOGO DE 8 TOURS REALES (PR #7):**
+- Provienen del "Inventario de Tours" del cliente (carpetas con .docx + fotos por tour). El asistente parseó los .docx y estructuró el JSON.
+- Los 8 tours: (1) Xantolo · Huasteca Potosina [SLP, $5,245], (2) Día de Muertos en Michoacán [Michoacán, $4,099], (3) Día de Muertos en Mixquic [CDMX], (4) Barrancas del Cobre [Chihuahua], (5) Oaxaca Ciudad [Oaxaca], (6) Oaxaca y sus Playas [Oaxaca], (7) Explora Chiapas [Chiapas], (8) Ciudades Coloniales [Querétaro–Guanajuato–Michoacán].
+- **Los 6 nuevos van SIN PRECIO** (las tablas de precio en los .docx estaban vacías; el cliente los definirá después). Decisión: cargarlos ya, sin precio, y agregar precios luego desde el panel.
+- Destinos nuevos creados como términos: Ciudad de México, Chihuahua, Oaxaca, Chiapas, "Querétaro – Guanajuato – Michoacán". Categoría principal del .docx → `categoria`; las demás → `experiencias`.
+- Fotos optimizadas (71 MB → ~9 MB, máx 1600px). Primera foto = destacada.
+
+> **DECISIÓN — manejo de precio nulo:** Como había tours sin precio, se agregó el manejo de `precio_desde` nulo en los 3 puntos de render (tarjeta de tour, ficha pública/reserve card, lista del panel): muestran "Consultar precio" / "Price upon request" (clave i18n `consultar_precio`) en vez de "$null", "$0" o vacío roto.
+
+**GALERÍA DE LA FICHA PÚBLICA — fotos completas + lightbox (PR #7):**
+- Problema detectado al cargar fotos reales de orientación mixta: la galería usaba object-fit: cover con altura fija (recortaba) y solo mostraba 4 miniaturas, sin lightbox.
+- **Bug corregido (afectaba a cualquier tour, no solo el seeder):** el campo ACF `galeria` devolvía arrays de imagen completos pero el form del panel asumía IDs → la galería salía vacía al editar. Normalizado a IDs.
+- Hero de galería: técnica **blurred backdrop** — la foto destacada se muestra completa (contain) y detrás se pone una copia ampliada y desenfocada de la misma foto (blur 28px, scale 1.15, levemente oscurecida) que llena el contenedor. Cero espacio muerto, cero recorte. (El "magenta" de las franjas venía del estilo de botón heredado de Hello/Elementor, cubierto por el ::before del backdrop.) Las miniaturas pasan a cover (cuadritos parejos).
+- **Lightbox** nuevo (`tour-gallery.js`, vanilla, sin librerías): clic en cualquier foto abre overlay oscuro con la foto grande, navegación prev/sig (botones + flechas teclado), contador (1/N), swipe táctil, cierre con X / Escape / clic fuera, accesible (role=dialog, focus trap, aria, i18n).
+
+**HERO CON VIDEO DE FONDO + CARDS DE DESTINO CON IMAGEN (PR #8, mergeado):**
+- **Hero con video:** el hero del home soporta video de fondo (autoplay/muted/loop/playsinline) con imagen de respaldo (poster) + overlay oscuro para legibilidad. Cascada: **video → poster → degradado azul** (nunca se rompe). Carga responsable (`hero-video.js`): el `<video>` sale con preload=none y sin fuente; solo en DESKTOP y sin prefers-reduced-motion se inyecta la fuente y se reproduce. En móvil/reduced-motion/autoplay-bloqueado queda el poster (sin gasto de datos/batería). El cliente subirá el video real; la mecánica ya está lista.
+- **Cards de "Destinos imperdibles":** antes eran rectángulos turquesa vacíos; ahora muestran imagen + nombre + overlay, enlazando al archivo del destino. Cascada de respaldo: **imagen del término (ACF term meta `imagen_destino`) → foto destacada de un tour del destino → degradado** (nunca roto).
+- Campos de configuración nuevos: `hero_bg_video` (file) + `hero_bg_poster` (image) en la options page Y en el panel del cliente (Configuración → "Hero de portada"). `imagen_destino` (image, term meta de tour_destino) — editable en wp-admin (Tours → Destinos → editar), no en el panel del cliente por ahora (el panel gestiona tours/asesores/config, no taxonomías).
+
+**Estado del entorno local (al cierre de esta tanda):** UC desactivado vía mu-plugin temporal `_emt_seed.php` (fuera del repo), 8 tours + 3 asesores cargados, usuario `cliente_emt` activo. El repo siempre lleva `EMT_UNDER_CONSTRUCTION = true` (producción). Pendiente reactivar UC + limpiar usuario cuando se cierre el trabajo visual.
+
+**Pendientes tras esta tanda:**
+- Subir el video real del hero + imagen de respaldo (mecánica lista).
+- Asignar fotos específicas por destino si se quieren distintas a las de los tours (ej. Jalisco no tiene tours → card en degradado).
+- Precios de los 6 tours nuevos (cliente).
+- Despliegue a producción + correr el seeder allá (dejar los 8 tours permanentes).
+- Diferenciadores restantes: filtros AJAX, Google Reviews, QR del asesor, integración Peek.
+- Guía del cliente: SOLO al final, cuando el panel esté congelado (decisión de Fabian: hacerla antes es prematuro porque el panel aún cambia).
+
 ### v1.6 — Filtros AJAX, Despliegue a producción, Tequila y Explora Transfer (julio 2026)
 
 Cierre del ciclo dev→producción: el sitio completo vive en producción **detrás del under construction**, con pipeline automático probado. PRs #8–#14.
