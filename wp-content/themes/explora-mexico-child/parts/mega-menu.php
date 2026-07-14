@@ -49,10 +49,14 @@ if ( ! function_exists( 'emt_mega_items' ) ) {
             if ( ! is_wp_error( $terms ) ) {
                 foreach ( $terms as $t ) {
                     $link = get_term_link( $t );
+                    // Misma cascada que las cards del home: imagen del término
+                    // (imagen_destino) -> foto destacada de un tour con el
+                    // término -> null (placeholder degradado del CSS).
+                    $img_url = function_exists( 'emt_destino_image_url' ) ? emt_destino_image_url( $t, 'medium' ) : '';
                     $items[] = array(
                         'nombre'   => $t->name,
                         'url'      => is_wp_error( $link ) ? '#' : $link,
-                        'imagen'   => null,
+                        'imagen'   => $img_url ? array( 'url' => $img_url ) : null,
                         'orden'    => 99,
                         'fallback' => true,
                     );
