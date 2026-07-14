@@ -34,4 +34,3 @@ require_once $emt_inc . 'roles.php';
 require_once $emt_inc . 'panel.php';
 require_once $emt_inc . 'panel-ajax.php';
 require_once $emt_inc . 'transfer.php';
-require_once $emt_inc . 'contacto.php';

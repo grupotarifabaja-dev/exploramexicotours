@@ -128,10 +128,6 @@ function emt_enqueue_template_assets() {
         wp_enqueue_script( 'emt-hero-video', "$uri/assets/js/hero-video.js", array(), emt_asset_ver( "$dir/assets/js/hero-video.js" ), true );
     }
 
-    if ( get_query_var( 'emt_contacto' ) && file_exists( "$dir/assets/css/contacto.css" ) ) {
-        wp_enqueue_style( 'emt-contacto', "$uri/assets/css/contacto.css", array( 'emt-tokens' ), emt_asset_ver( "$dir/assets/css/contacto.css" ) );
-    }
-
     if ( get_query_var( 'emt_transporte' ) ) {
         if ( file_exists( "$dir/assets/css/transfer.css" ) ) {
             wp_enqueue_style( 'emt-transfer', "$uri/assets/css/transfer.css", array( 'emt-tokens' ), emt_asset_ver( "$dir/assets/css/transfer.css" ) );
