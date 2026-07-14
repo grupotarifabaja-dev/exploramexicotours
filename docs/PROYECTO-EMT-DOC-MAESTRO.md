@@ -3,8 +3,8 @@
 **Proyecto:** Sitio web Explora México Tours (EMT)
 **Cliente:** Explora México Tours · Guadalajara, Jalisco
 **Propuesta:** P-10688-EMT
-**Versión del documento:** 1.3
-**Fecha:** Junio 2026
+**Versión del documento:** 1.6
+**Fecha:** Julio 2026
 **Stack base:** WordPress + Hello Elementor parent + `explora-mexico-child`
 **Plazo:** 4 semanas
 **Director técnico:** Fabian Valdez (Supratecnia)
@@ -1531,6 +1531,43 @@ Construcción de componentes (B) y plantillas (C). Todo verificado en local (Loc
 - **Google Reviews** (widget, §9.2).
 - **Tours recomendados** en el perfil de asesor (requiere un campo relationship asesor→tours, no contemplado en §6.2).
 - **Carga de contenido:** ~70 tours reales.
+
+### v1.6 — Filtros AJAX, Despliegue a producción, Tequila y Explora Transfer (julio 2026)
+
+Cierre del ciclo dev→producción: el sitio completo vive en producción **detrás del under construction**, con pipeline automático probado. PRs #8–#14.
+
+**1) Filtros AJAX del catálogo (PR #9):**
+- Evolución de los filtros GET de Fase C (no reconstrucción): AJAX sin recarga (handler `emt_filter_tours`, nonce + `nopriv`), slider doble de **precio**, **duración** por rangos sobre `duracion_horas` (1 día / 2-3 / 4-6 / 7+), "cargar más" por lotes de 9, URL compartible (`pushState`) con soporte del botón atrás, panel colapsable en móvil.
+- Lógica compartida en `inc/tour-filters.php`: el primer render server-side (SEO, sin-JS) y el AJAX usan la MISMA construcción de query y las mismas cards (mejora progresiva: sin JS todo sigue funcionando por GET).
+- **DECISIÓN — tours sin precio siempre visibles:** el filtro de precio jamás oculta un tour sin `precio_desde` (meta_query OR: BETWEEN / vacío / NOT EXISTS), con nota aclaratoria bajo el slider. Razón: no se puede excluir un tour por un precio que no tiene, y ocultarlos escondería la mayoría del catálogo actual.
+
+**2) Despliegue a producción (Coolify + GitHub, PRs #10, #11, #13):**
+- **Diagnóstico inicial:** prod corría el theme mínimo (solo under construction) desde un Service one-click de Coolify (imagen `wordpress:latest`, todo en un volumen persistente), sin pipeline, sin ACF Pro, `main` en el commit inicial. Backup doble (server + local) **verificado con restauración real** (import a contenedor desechable + conteos) antes de tocar nada.
+- **Pipeline (Opción A):** `Dockerfile` (`FROM wordpress:6.8-php8.3-apache`) hornea el child theme; `deploy/docker-entrypoint-emt.sh` sincroniza SOLO el theme al webroot en cada arranque (el volumen tapa la imagen; uploads/wp-config/plugins/BD intactos). **Auto-deploy por webhook de GitHub App: `dev`→staging, `main`→producción** (ambos probados con releases reales). Staging aislado (BD y volumen propios, Basic Auth, `blog_public=0`, UC activo). Procedimiento API reproducible en `deploy/coolify-api-notas.md` (sanitizado).
+- **Migración de prod NO destructiva (plan B):** la Application nueva se construyó AL LADO del Service viejo con **volumen propio + copia íntegra de los archivos de prod** (wp-config byte-idéntico, salts intactos) y **la MISMA MariaDB** (cero divergencia de leads; la BD nunca se migró). Plan A (bind `host_path` al volumen existente) se descartó: **`host_path` en storages falla silencioso en Coolify 4.1.2** (deployment muere sin emitir logs).
+- **Switchover sin downtime:** dominio asignado a la app nueva (requiere `force_domain_override` + regenerar labels Traefik — Coolify cachea `custom_labels` y no los regenera al cambiar flags) → fase dual-backend (ambos sirven idéntico) → stop del contenedor viejo. Verificado: 0 cortes, UC ininterrumpido, leads operando.
+- **Lecciones operativas:**
+  - **Auto-delete de ramas en GitHub: OFF.** Borró `dev` dos veces al mergear releases (dev era el head del PR) y rompió el pipeline de staging hasta recrearla.
+  - **El Service viejo NO se borra** hasta migrar su BD: su MariaDB ES la BD de producción (Fase 4b pendiente). El contenedor WordPress viejo queda detenido como rollback (`docker start` lo revive).
+  - **Verificación en prod SIN tocar el UC:** nunca usar el mu-plugin UC-off en producción (no hay Basic Auth delante; expondría el sitio). Método: datos por wp-cli, formularios por AJAX (el UC exime `DOING_AJAX`), páginas con **usuario admin temporal** (el UC deja pasar `manage_options`) que se elimina al terminar.
+  - El backup manual verificado (dump + tar + restore de prueba + copia off-server con hash) es la red de seguridad estándar antes de cada operación mayor.
+
+**3) Modelo de precios por vehículo + tours de Tequila (PR #14):**
+- Repeater `precios_vehiculo` [capacidad, vehículo, precio p/p] que **COEXISTE** con el modelo de ocupación de v1.3: un tour usa uno u otro (o ninguno → "Consultar precio"). Ficha: tabla Capacidad | Vehículo | Precio por persona (bilingüe; filas sin precio → "Consultar"). `precio_desde` autocalcula el **menor entre ambos modelos**. Sección propia en el panel del cliente y soporte en el seeder.
+- **6 tours de Tequila** en el seeder (14 totales, destino Jalisco): solo **"Tequila a tu alcance" tiene precios** (11 tramos, desde $986); el resto muestra su tabla de tramos en "Consultar". José Cuervo Express usa 3 fotos de La Rojeña (temporal). La card de Jalisco del home tomó foto automáticamente (fallback de v1.5… del hero/cards de destinos, PR #8).
+
+**4) Explora Transfer (PR #14):**
+- **Nueva sección absorbida en el alcance:** página `/transporte/` (+ `/en/transporte/` vía strip-prefix i18n): hero, quiénes somos, 12 servicios, flotilla de 9 vehículos (cards con características; fotos del cliente pendientes), franja de 17 clientes, certificaciones, contacto propio y **formulario de reservación** con los campos del docx del cliente.
+- Solicitudes → opción **`emt_transfer_solicitudes`** (sin autoload, mismo patrón que `emt_leads`), AJAX con nonce + sanitización + whitelist, notificación por email. Por ahora solo BD; pendiente decidir si se muestran en el panel.
+- Entrada "Transporte" en el menú (desktop + drawer).
+- **Revert documentado:** un ajuste que movía el bloque corporativo (quiénes somos / clientes / certificaciones) a una página `/contacto/` nueva se **revirtió a petición del cliente** (`25c45a1`): `/transporte/` conserva sus secciones originales y no existe plantilla propia de `/contacto/`.
+
+**ESTADO GLOBAL:** producción corre el sitio completo (14 tours con fotos, 3 asesores, panel de gestión, transfer, filtros, bilingüe) **detrás del under construction**, que sigue captando leads sin interrupción. Pipeline automático `main`→prod probado con releases reales. **El lanzamiento (apagar UC) es decisión del cliente**: `EMT_UNDER_CONSTRUCTION = false` + push.
+
+**PENDIENTES:**
+- *Del cliente:* precios de los 11 tours en "Consultar" (10 + tramos de Tequila), los ~15 tours restantes de Jalisco, video + poster del hero, fotos reales de la flotilla y de José Cuervo Express, links de reserva Peek, licencia ACF Pro (activación de updates).
+- *Técnicos:* Fase 4b (migrar BD de prod a MariaDB standalone y retirar el Service viejo), limpieza del entorno local de capturas (mu-plugin UC-off + usuario cliente_emt + reactivar UC local), decidir destino de `emt_transfer_solicitudes` en el panel.
+- *Diferenciadores y guía (cierre pre-lanzamiento):* QR del asesor, Google Reviews, Peek tracking, mega-menú con imágenes, hero estacional, capturas del panel y la guía del cliente "Cómo cargar un tour".
 
 ### (próximas decisiones aquí)
 
