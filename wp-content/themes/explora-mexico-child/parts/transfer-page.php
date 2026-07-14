@@ -15,14 +15,10 @@ $L_es = array(
     'hero_eyebrow' => 'Transporte ejecutivo y turístico',
     'hero_sub'     => 'Transporte para ejecutivos, turismo nacional y extranjero, personal y eventos. Crecimiento sostenido desde 2009, con Distintivo Moderniza (SECTUR).',
     'hero_cta'     => 'Reservar transporte',
-    'quienes_t'    => 'Quiénes somos',
-    'quienes_p'    => 'Explora Transfer by Explora México Tours es una empresa mexicana creada para atender las necesidades de transporte de personas. Nos especializamos en transporte para el ejecutivo que viene por negocios a Guadalajara, así como para el turismo nacional y extranjero. Crecimiento sostenido desde 2009 y certificación Distintivo Moderniza (SECTUR).',
     'servicios_t'  => 'Servicios',
     'flotilla_t'   => 'Nuestra flotilla',
     'flotilla_sub' => 'Unidades para cada tamaño de grupo y tipo de servicio.',
     'pax'          => 'pasajeros',
-    'clientes_t'   => 'Confían en nosotros',
-    'cert_t'       => 'Certificaciones y reconocimientos',
     'contacto_t'   => 'Contacto Explora Transfer',
     'oficina'      => 'Oficina',
     'domicilio'    => 'Domicilio',
@@ -50,14 +46,10 @@ $L_en = array(
     'hero_eyebrow' => 'Executive & tourist transportation',
     'hero_sub'     => 'Transportation for business travelers, national and international tourism, staff and events. Steady growth since 2009, Distintivo Moderniza certified (SECTUR).',
     'hero_cta'     => 'Book transportation',
-    'quienes_t'    => 'About us',
-    'quienes_p'    => 'Explora Transfer by Explora México Tours is a Mexican company created to serve people-transportation needs. We specialize in transportation for executives visiting Guadalajara on business, as well as national and international tourism. Steady growth since 2009 and Distintivo Moderniza certification (SECTUR).',
     'servicios_t'  => 'Services',
     'flotilla_t'   => 'Our fleet',
     'flotilla_sub' => 'Vehicles for every group size and type of service.',
     'pax'          => 'passengers',
-    'clientes_t'   => 'They trust us',
-    'cert_t'       => 'Certifications & recognitions',
     'contacto_t'   => 'Explora Transfer contact',
     'oficina'      => 'Office',
     'domicilio'    => 'Address',
@@ -98,12 +90,6 @@ $flotilla = array(
     array( 'n' => 'Mini SUV Suzuki o Mitsubishi 2020', 'cap' => '6 (4 c/equipaje)', 'icon' => '🚙', 'feats_es' => 'A/C, vestiduras en tela, parrilla exterior, cajuela para bolsa de mano, CarPlay, Bluetooth.', 'feats_en' => 'A/C, fabric upholstery, exterior rack, carry-on trunk, CarPlay, Bluetooth.' ),
 );
 
-$clientes = array( 'HCL Technologies', 'Wizeline', 'Wipro', 'TATA Consultancy Services', 'IGT', 'Rosewood Hotels', 'Aeries Tech', 'Tequileño', 'Nimbus', 'Sealed Air Corp', 'Diversey', 'Secretaría de Turismo de Jalisco', 'Casa Maestri', 'Arcos', 'Slalom', 'Greymatters', 'El Cristiano Tequila' );
-
-$certs = ( $lang === 'en' )
-    ? array( 'Distintivo I', 'Distintivo M', 'Distintivo C', 'Anfitriona al estilo Jalisco', 'Training in prevention of child and adolescent exploitation in travel and tourism', '"Yo también juego" recognition — Road to the 2026 World Cup' )
-    : array( 'Distintivo I', 'Distintivo M', 'Distintivo C', 'Anfitriona al estilo Jalisco', 'Sensibilización y capacitación en prevención de explotación de niños, niñas y adolescentes en viajes y turismo', 'Reconocimiento "Yo también juego" rumbo al mundial 2026' );
-
 $tipos_servicio = ( $lang === 'en' )
     ? array( 'traslado' => 'Transfer service', 'turistico' => 'Tourist transportation', 'personal' => 'Staff transportation', 'escolar' => 'School transportation', 'por_horas' => 'By the hour', 'aeropuerto' => 'Airport transfer', 'tours_locales' => 'Local tours', 'aeronaves' => 'Aircraft rental', 'evento_social' => 'Social event transfer', 'otro' => 'Other' )
     : array( 'traslado' => 'Servicio de traslado', 'turistico' => 'Transporte turístico', 'personal' => 'Transporte de personal', 'escolar' => 'Transporte escolar', 'por_horas' => 'Transporte por horas', 'aeropuerto' => 'Traslados desde o al aeropuerto', 'tours_locales' => 'Tours locales', 'aeronaves' => 'Renta de aeronaves', 'evento_social' => 'Traslado para evento social', 'otro' => 'Otro' );
@@ -119,14 +105,6 @@ get_header();
             <h1 class="emt-transfer-hero__title"><?php echo esc_html( $L['title'] ); ?></h1>
             <p class="emt-transfer-hero__sub"><?php echo esc_html( $L['hero_sub'] ); ?></p>
             <a class="emt-btn emt-btn--cta" href="#reservar"><?php echo esc_html( $L['hero_cta'] ); ?></a>
-        </div>
-    </section>
-
-    <!-- Quiénes somos -->
-    <section class="emt-transfer-section">
-        <div class="emt-container emt-transfer-quienes">
-            <h2><?php echo esc_html( $L['quienes_t'] ); ?></h2>
-            <p><?php echo esc_html( $L['quienes_p'] ); ?></p>
         </div>
     </section>
 
@@ -157,30 +135,6 @@ get_header();
                     </article>
                 <?php endforeach; ?>
             </div>
-        </div>
-    </section>
-
-    <!-- Clientes -->
-    <section class="emt-transfer-section emt-transfer-section--dark">
-        <div class="emt-container">
-            <h2><?php echo esc_html( $L['clientes_t'] ); ?></h2>
-            <ul class="emt-transfer-clientes">
-                <?php foreach ( $clientes as $c ) : ?>
-                    <li><?php echo esc_html( $c ); ?></li>
-                <?php endforeach; ?>
-            </ul>
-        </div>
-    </section>
-
-    <!-- Certificaciones -->
-    <section class="emt-transfer-section">
-        <div class="emt-container">
-            <h2><?php echo esc_html( $L['cert_t'] ); ?></h2>
-            <ul class="emt-transfer-certs">
-                <?php foreach ( $certs as $c ) : ?>
-                    <li><?php echo esc_html( $c ); ?></li>
-                <?php endforeach; ?>
-            </ul>
         </div>
     </section>
 
