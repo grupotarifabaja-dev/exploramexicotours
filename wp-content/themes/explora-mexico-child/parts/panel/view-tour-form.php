@@ -105,6 +105,27 @@ $itin_ico= array( 'salida' => 'Salida', 'parada' => 'Parada', 'comida' => 'Comid
     </div>
 
     <div class="emt-panel-form__section">
+        <h2>Precios por vehículo</h2>
+        <div class="emt-field__help" style="margin-bottom:12px;">Modelo alternativo (p. ej. tours de Tequila): precio POR PERSONA según capacidad del grupo y vehículo. Usa este O el de ocupación, no ambos. Deja el precio vacío para mostrar "Consultar".</div>
+        <div id="emt-pv" data-repeater="precios_vehiculo">
+            <?php $pv = (array) $g( 'precios_vehiculo', array() ); $vi = 0; foreach ( $pv as $row ) :
+                $cap = trim( (string) ( $row['capacidad'] ?? '' ) );
+                $veh = trim( (string) ( $row['vehiculo'] ?? '' ) );
+                if ( $cap === '' && $veh === '' ) { continue; } ?>
+                <div class="emt-repeater__item" data-row>
+                    <div class="emt-repeater__item-head"><span></span><button type="button" class="emt-repeater__remove" data-remove>Quitar</button></div>
+                    <div class="emt-grid-3">
+                        <div class="emt-field"><label>Capacidad</label><input type="text" name="precios_vehiculo[<?php echo $vi; ?>][capacidad]" value="<?php echo esc_attr( $cap ); ?>" placeholder="2 pax" /></div>
+                        <div class="emt-field"><label>Vehículo</label><input type="text" name="precios_vehiculo[<?php echo $vi; ?>][vehiculo]" value="<?php echo esc_attr( $veh ); ?>" placeholder="Sedán" /></div>
+                        <div class="emt-field"><label>Precio p/p (MXN)</label><input type="number" name="precios_vehiculo[<?php echo $vi; ?>][precio]" value="<?php echo esc_attr( $row['precio'] ?? '' ); ?>" min="0" step="1" placeholder="vacío = Consultar" /></div>
+                    </div>
+                </div>
+            <?php $vi++; endforeach; ?>
+        </div>
+        <button type="button" class="emt-panel__btn" data-repeater-add="precios_vehiculo">+ Agregar tramo</button>
+    </div>
+
+    <div class="emt-panel-form__section">
         <h2>Logística</h2>
         <div class="emt-grid-2">
             <div class="emt-field"><label>Duración (texto) <span class="emt-req">*</span></label><input type="text" name="duracion_texto" value="<?php echo esc_attr( $g( 'duracion_texto' ) ); ?>" placeholder="3 días / 2 noches" required /><div class="emt-field__err-msg"></div></div>
@@ -230,6 +251,16 @@ $itin_ico= array( 'salida' => 'Salida', 'parada' => 'Parada', 'comida' => 'Comid
         </div>
         <div class="emt-field"><label>Título</label><input type="text" data-name="itinerario|__i__|titulo" /></div>
         <div class="emt-field"><label>Descripción</label><textarea data-name="itinerario|__i__|descripcion"></textarea></div>
+    </div>
+</template>
+<template id="emt-tpl-precios_vehiculo">
+    <div class="emt-repeater__item" data-row>
+        <div class="emt-repeater__item-head"><span></span><button type="button" class="emt-repeater__remove" data-remove>Quitar</button></div>
+        <div class="emt-grid-3">
+            <div class="emt-field"><label>Capacidad</label><input type="text" data-name="precios_vehiculo|__i__|capacidad" placeholder="2 pax" /></div>
+            <div class="emt-field"><label>Vehículo</label><input type="text" data-name="precios_vehiculo|__i__|vehiculo" placeholder="Sedán" /></div>
+            <div class="emt-field"><label>Precio p/p (MXN)</label><input type="number" data-name="precios_vehiculo|__i__|precio" min="0" step="1" placeholder="vacío = Consultar" /></div>
+        </div>
     </div>
 </template>
 <template id="emt-tpl-incluye">

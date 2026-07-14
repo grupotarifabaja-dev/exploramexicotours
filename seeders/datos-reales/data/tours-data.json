@@ -566,6 +566,634 @@
                 }
             ],
             "politica_cancelacion": "Los horarios del itinerario son aproximados. Los traslados serán en servicio compartido o privado según la operación. Categoría de hoteles de 3 estrellas. Máxima ocupación 4 personas incluyendo niños o bebés. Equipaje flexible no mayor a 15 kilos por pasajero. Actividad recomendada para mayores de 6 años y menores de 75 años con movilidad. Explora México Tours no permitirá cancelaciones, pero sí cambios de fecha conforme a los términos del proveedor. NO SHOW genera 100% de penalidad."
+        },
+        {
+            "titulo": "Tour Tequila “Tradición con distinción”",
+            "titulo_en": "Tequila Tour “Tradition with Distinction”",
+            "slug": "tour-tequila-tradicion-con-distincion",
+            "destino": "Jalisco",
+            "categoria": "Cultural",
+            "experiencias": [
+                "Cultura",
+                "Gastronómico"
+            ],
+            "descripcion_breve": "Disfruta de un recorrido diseñado para quienes buscan experiencias memorables, transportación de lujo, gastronomía selecta, atención personalizada y acceso a la auténtica cultura tequilera. Descubre el arte del tequila artesanal mediante una experiencia inmersiva en nuestra destilería familiar y aprende los secretos detrás de nuestro tequila premium y conecta con el origen. Te recibimos con cantarito en mano, conoce el cuidado y cultivo de la planta de agave, visita la destilería donde conocerás de mano de los expertos el proceso de destilación y concluye con una cata guiada de 3 de nuestras expresiones: tequila blanco, tequila reposado y tequila añejo.",
+            "precio_desde": null,
+            "precios_vehiculo": [
+                {
+                    "capacidad": "2 pax",
+                    "vehiculo": "Suburban línea nueva",
+                    "precio": null
+                },
+                {
+                    "capacidad": "3 pax",
+                    "vehiculo": "Suburban línea nueva",
+                    "precio": null
+                },
+                {
+                    "capacidad": "4 pax",
+                    "vehiculo": "Suburban línea nueva",
+                    "precio": null
+                },
+                {
+                    "capacidad": "5 pax",
+                    "vehiculo": "Suburban línea nueva",
+                    "precio": null
+                },
+                {
+                    "capacidad": "6 pax",
+                    "vehiculo": "Suburban línea nueva",
+                    "precio": null
+                },
+                {
+                    "capacidad": "7-10 pax",
+                    "vehiculo": "Sprinter Lux",
+                    "precio": null
+                }
+            ],
+            "precio_nota": "Precio por persona según capacidad del grupo y vehículo. Reserva mínima 15 días antes, máxima 3 meses. Solicitudes especiales (pedidas de mano, aniversarios, eventos): contáctanos. Si esta destilería no es de tu interés, agenda con la destilería de tu preferencia.",
+            "duracion_texto": "1 día (13 horas)",
+            "duracion_horas": 13,
+            "dificultad": "facil",
+            "idiomas": [
+                "es",
+                "en"
+            ],
+            "punto_salida": "Hoteles o Airbnb en Zona Guadalajara Centro, Zapopan Centro, Tlaquepaque Centro, Zona Expo y Zona Andares",
+            "salida_garantizada": false,
+            "pickup_hotel": true,
+            "fecha_viaje": "Todo el año (10:00–23:00 hrs)",
+            "fotos": [
+                "tour-tequila-tradicion-con-distincion__01.jpg",
+                "tour-tequila-tradicion-con-distincion__02.jpg",
+                "tour-tequila-tradicion-con-distincion__03.jpg",
+                "tour-tequila-tradicion-con-distincion__04.jpg",
+                "tour-tequila-tradicion-con-distincion__05.jpg",
+                "tour-tequila-tradicion-con-distincion__06.jpg",
+                "tour-tequila-tradicion-con-distincion__07.jpg",
+                "tour-tequila-tradicion-con-distincion__08.jpg"
+            ],
+            "incluye": [
+                "Transportación en servicio privado acorde a itinerario",
+                "Chofer certificado",
+                "Guía tequilier durante todo el recorrido",
+                "Bebidas refrescantes y snacks a bordo",
+                "Seguro de viajero a bordo de transporte",
+                "Admisión y recorrido por fábrica de tequila premium artesanal",
+                "Cata de tequila guiada por maestro tequilero",
+                "Parada en el centro de Tequila para fotografías",
+                "Degustación de tequila en bar local",
+                "Cena maridaje a 3 tiempos",
+                "IVA"
+            ],
+            "no_incluye": [
+                "Gastos personales",
+                "Propinas"
+            ],
+            "itinerario": [
+                {
+                    "dia": 1,
+                    "titulo": "Tequila premium de día completo",
+                    "descripcion": "10:00 hrs pick up en punto acordado. 10:15 salida a Tequila. 11:30 arribo a destilería e inicio de recorrido. 14:00 traslado al centro de Tequila: tiempo para comer y visitar la Parroquia de Santiago Apóstol, la Plaza principal y su quiosco, el callejón José Cuervo y el Museo Nacional del Tequila (admisión no incluida). 16:30 cita íntima para degustar los sabores del agave: copa de bienvenida de pulque tradicional, introducción al mundo del agave y degustación guiada de cuatro variedades de tequila acompañada de chocolate, quesos y bocadillos de la región. 18:30 cena maridaje en lugar secreto. 21:30 regreso a Guadalajara. 23:00 arribo y fin de servicios."
+                }
+            ],
+            "politica_cancelacion": "Actividad recomendada para mayores de 18 años (no disponible para menores de 17). No sugerimos este viaje a mujeres embarazadas ni personas con lesiones en rodillas, espalda o cirugías recientes. Para reservar: nombre completo de participantes, celular y un contacto de emergencia que no asista, vía WhatsApp (+52) 33 1048 0670 o reserva@exploramexicotours.com. Explora México Tours actúa como intermediario entre el cliente y los servicios contratados. Cancelaciones: 30% de penalización; entre 45 y 30 días antes, 80%; entre 29 y 0 días, 100%. NO SHOW el día del viaje: 100% de penalidad, sin reembolso ni abono a otro viaje."
+        },
+        {
+            "titulo": "Tour a Tequila en tren José Cuervo Express (Atardecer)",
+            "titulo_en": "Tequila Tour on the José Cuervo Express Train (Sunset)",
+            "slug": "tour-tequila-jose-cuervo-express",
+            "destino": "Jalisco",
+            "categoria": "Cultural",
+            "experiencias": [
+                "Cultura",
+                "Gastronómico"
+            ],
+            "descripcion_breve": "Explora Tequila en una experiencia inolvidable en el ¡José Cuervo Express! El único tren de pasajeros estilo antiguo de todo México, el mejor modo de vivir el pueblo de Tequila y los impresionantes paisajes de los campos de agave, patrimonio natural de la humanidad. Conocerás el Pueblo Mágico de Tequila con un día repleto de actividades: juegos, música, espectáculo, y aprenderás todo sobre la producción del tequila.",
+            "precio_desde": null,
+            "precios_vehiculo": [
+                {
+                    "capacidad": "2 pax",
+                    "vehiculo": "Sedán",
+                    "precio": null
+                },
+                {
+                    "capacidad": "3 pax",
+                    "vehiculo": "Sedán",
+                    "precio": null
+                },
+                {
+                    "capacidad": "4 pax",
+                    "vehiculo": "Sedán Full Size",
+                    "precio": null
+                },
+                {
+                    "capacidad": "5 pax",
+                    "vehiculo": "Suburban",
+                    "precio": null
+                },
+                {
+                    "capacidad": "6 pax",
+                    "vehiculo": "Suburban",
+                    "precio": null
+                },
+                {
+                    "capacidad": "7 pax",
+                    "vehiculo": "Toyota o similar",
+                    "precio": null
+                },
+                {
+                    "capacidad": "8 pax",
+                    "vehiculo": "Toyota o similar",
+                    "precio": null
+                },
+                {
+                    "capacidad": "9 pax",
+                    "vehiculo": "Toyota o similar",
+                    "precio": null
+                },
+                {
+                    "capacidad": "10 pax",
+                    "vehiculo": "Toyota o similar",
+                    "precio": null
+                },
+                {
+                    "capacidad": "11-15 pax",
+                    "vehiculo": "Sprinter regular",
+                    "precio": null
+                },
+                {
+                    "capacidad": "16-19 pax",
+                    "vehiculo": "Sprinter regular",
+                    "precio": null
+                }
+            ],
+            "precio_nota": "Vagón de tren categoría EXPRESS. Precio por persona según capacidad del grupo. Reserva con 15 días a 3 meses de anticipación. Si llevas niños o menores de edad, contáctanos para una propuesta a tu medida.",
+            "duracion_texto": "1 día (12 horas)",
+            "duracion_horas": 12,
+            "dificultad": "facil",
+            "idiomas": [
+                "es",
+                "en"
+            ],
+            "punto_salida": "Hoteles o Airbnb en Zona Guadalajara Centro, Zapopan Centro, Tlaquepaque Centro, Zona Expo y Zona Andares",
+            "salida_garantizada": false,
+            "pickup_hotel": true,
+            "fecha_viaje": "Todos los días (sujeto a disponibilidad)",
+            "fotos": [
+                "tour-tequila-jose-cuervo-express__01.jpg",
+                "tour-tequila-jose-cuervo-express__02.jpg",
+                "tour-tequila-jose-cuervo-express__03.jpg"
+            ],
+            "incluye": [
+                "Transportación redonda desde tu alojamiento a las estaciones del tren en servicio privado",
+                "Traslado terrestre compartido Guadalajara–Tequila",
+                "Traslado en tren ruta Tequila–Guadalajara al atardecer",
+                "Categoría de vagón EXPRESS",
+                "Vista panorámica del paisaje agavero desde el tren",
+                "Visita a los campos de agave con demostración de jima",
+                "Servicio de alimentos ligeros y coctelería con tequilas de la casa",
+                "Juego de lotería conmemorativo",
+                "Catado educativo a una copa guiado por un Experto Tequilero",
+                "Recorrido por la destilería La Rojeña®",
+                "Acceso al Centro Cultural Juan Beckmann Gallardo",
+                "Tiempo libre para comer y conocer el Pueblo Mágico de Tequila",
+                "Espectáculo mexicano",
+                "Tradicional brindis con uno de los tequilas de la casa",
+                "IVA"
+            ],
+            "no_incluye": [
+                "Alimentos",
+                "Bebidas",
+                "Gastos personales",
+                "Propinas"
+            ],
+            "itinerario": [
+                {
+                    "dia": 1,
+                    "titulo": "Campos, el origen de la historia (Atardecer)",
+                    "descripcion": "07:00 hrs pick up de pasajeros en punto acordado. Traslado terrestre compartido Guadalajara–Tequila con visita a los campos de agave y demostración de jima. Día completo de actividades en el Pueblo Mágico de Tequila: recorrido por la destilería La Rojeña®, Centro Cultural Juan Beckmann Gallardo, tiempo libre para comer y pasear. Al atardecer, regreso en el tren José Cuervo Express (vagón Express) con alimentos ligeros, coctelería, lotería, catado educativo, espectáculo mexicano y brindis tradicional. Arribo a Guadalajara y fin de servicios (22:00 hrs aprox.)."
+                }
+            ],
+            "politica_cancelacion": "Una vez emitidos los boletos del tren no se permiten cancelaciones. Cambios de fecha sujetos a los términos del proveedor. Explora México Tours actúa como intermediario entre el cliente y los servicios contratados. NO SHOW genera 100% de penalidad."
+        },
+        {
+            "titulo": "Tour Tequila y destilería “La Rojeña” José Cuervo",
+            "titulo_en": "Tequila Tour & “La Rojeña” José Cuervo Distillery",
+            "slug": "tour-tequila-la-rojena",
+            "destino": "Jalisco",
+            "categoria": "Cultural",
+            "experiencias": [
+                "Cultura",
+                "Gastronómico"
+            ],
+            "descripcion_breve": "Explora la región de Jalisco, cuna de la bebida nacional, reconocida en México y el mundo, la cual lleva su mismo nombre: ¡Tequila! Podrás recorrer su plaza, caminar por sus calles y tomar fotografías de sus bellos paisajes. Visitarás una destilería y conocerás sus impresionantes instalaciones que brindan experiencias únicas. También aprenderás a detalle sobre el proceso de elaboración de esta bebida para finalmente degustar los tequilas que ahí se elaboran.",
+            "precio_desde": null,
+            "precios_vehiculo": [
+                {
+                    "capacidad": "2 pax",
+                    "vehiculo": "Sedán",
+                    "precio": null
+                },
+                {
+                    "capacidad": "3 pax",
+                    "vehiculo": "Sedán",
+                    "precio": null
+                },
+                {
+                    "capacidad": "4 pax",
+                    "vehiculo": "Sedán Full Size",
+                    "precio": null
+                },
+                {
+                    "capacidad": "5 pax",
+                    "vehiculo": "Suburban",
+                    "precio": null
+                },
+                {
+                    "capacidad": "6 pax",
+                    "vehiculo": "Suburban",
+                    "precio": null
+                },
+                {
+                    "capacidad": "7 pax",
+                    "vehiculo": "Toyota o Urban",
+                    "precio": null
+                },
+                {
+                    "capacidad": "8 pax",
+                    "vehiculo": "Toyota o Urban",
+                    "precio": null
+                },
+                {
+                    "capacidad": "9 pax",
+                    "vehiculo": "Toyota o Urban",
+                    "precio": null
+                },
+                {
+                    "capacidad": "10 pax",
+                    "vehiculo": "Toyota o Urban",
+                    "precio": null
+                },
+                {
+                    "capacidad": "11-15 pax",
+                    "vehiculo": "Sprinter regular",
+                    "precio": null
+                },
+                {
+                    "capacidad": "16-19 pax",
+                    "vehiculo": "Sprinter regular",
+                    "precio": null
+                }
+            ],
+            "precio_nota": "Precio por persona según capacidad del grupo. Reserva mínima 72 horas antes, máxima 3 meses. Si llevas niños o menores de edad, contáctanos para una propuesta a tu medida.",
+            "duracion_texto": "1 día (10 horas)",
+            "duracion_horas": 10,
+            "dificultad": "facil",
+            "idiomas": [
+                "es",
+                "en"
+            ],
+            "punto_salida": "Hoteles o Airbnb en Zona Guadalajara Centro, Zapopan Centro, Tlaquepaque Centro, Zona Expo y Zona Andares",
+            "salida_garantizada": false,
+            "pickup_hotel": true,
+            "fecha_viaje": "Lunes a sábado (no opera Navidad ni Año Nuevo)",
+            "fotos": [
+                "tour-tequila-la-rojena__01.jpg",
+                "tour-tequila-la-rojena__02.jpg",
+                "tour-tequila-la-rojena__03.jpg",
+                "tour-tequila-la-rojena__04.jpg",
+                "tour-tequila-la-rojena__05.jpg",
+                "tour-tequila-la-rojena__06.jpg"
+            ],
+            "incluye": [
+                "Transportación en servicio privado acorde a itinerario",
+                "Chofer certificado",
+                "Seguro de viajero a bordo de transporte",
+                "Admisión y recorrido por fábrica de tequila",
+                "Degustación de tequila de destilería",
+                "Tiempo libre en las instalaciones de la destilería",
+                "Tiempo libre en el centro del Pueblo Mágico de Tequila",
+                "Tiempo libre para comer, pasear y compras",
+                "IVA"
+            ],
+            "no_incluye": [
+                "Alimentos",
+                "Bebidas",
+                "Entrada a museos",
+                "Gastos personales",
+                "Propinas"
+            ],
+            "itinerario": [
+                {
+                    "dia": 1,
+                    "titulo": "La Rojeña y Pueblo Mágico de Tequila",
+                    "descripcion": "09:00 hrs pick up en punto acordado. 09:15 salida con destino a Tequila. 10:30 arribo al centro de Tequila. 11:00 inicio de recorrido José Cuervo La Rojeña. 13:00 tiempo para comer y visitar la Parroquia de Santiago Apóstol, la Plaza principal y su quiosco, el callejón José Cuervo y el Museo Nacional del Tequila (admisión no incluida). 15:00 salida con destino a Cantaritos de Amatitán (parada opcional). 17:30 regreso a Guadalajara. 19:00 arribo, drop off y fin de servicios."
+                }
+            ],
+            "politica_cancelacion": "Una vez emitidos los boletos no se permiten cancelaciones. Las cancelaciones deberán avisarse con 48 horas de anticipación para reagendar la visita en una fecha posterior. No hay reembolsos; en caso de cancelar, la visita será reagendada durante el mes en curso."
+        },
+        {
+            "titulo": "Tour Tequila Jornalero",
+            "titulo_en": "Jornalero Tequila Tour",
+            "slug": "tour-tequila-jornalero",
+            "destino": "Jalisco",
+            "categoria": "Cultural",
+            "experiencias": [
+                "Cultura",
+                "Gastronómico"
+            ],
+            "descripcion_breve": "Explora el lugar que da vida al Tequila, y conoce las manos involucradas detrás de cada trago de tu copa. Caminemos justo donde inicia la cadena productiva de este espirituoso: en los campos de agave. Échales un vistazo a las labores del campo y vive una experiencia gastronómica al estilo de los jornaleros. Conocerás el proceso de producción, desde la plantación hasta la destilación, para lograr entender cada una de las expresiones de este espirituoso. ¡Te adentrarás en la cultura tequilera!",
+            "precio_desde": null,
+            "precios_vehiculo": [
+                {
+                    "capacidad": "2 pax",
+                    "vehiculo": "Sedán",
+                    "precio": null
+                },
+                {
+                    "capacidad": "3 pax",
+                    "vehiculo": "Sedán",
+                    "precio": null
+                },
+                {
+                    "capacidad": "4 pax",
+                    "vehiculo": "Sedán Full Size",
+                    "precio": null
+                },
+                {
+                    "capacidad": "5 pax",
+                    "vehiculo": "Suburban",
+                    "precio": null
+                },
+                {
+                    "capacidad": "6 pax",
+                    "vehiculo": "Suburban",
+                    "precio": null
+                },
+                {
+                    "capacidad": "7 pax",
+                    "vehiculo": "Toyota o Urban",
+                    "precio": null
+                },
+                {
+                    "capacidad": "8 pax",
+                    "vehiculo": "Toyota o Urban",
+                    "precio": null
+                },
+                {
+                    "capacidad": "9 pax",
+                    "vehiculo": "Toyota o Urban",
+                    "precio": null
+                },
+                {
+                    "capacidad": "10 pax",
+                    "vehiculo": "Toyota o Urban",
+                    "precio": null
+                },
+                {
+                    "capacidad": "11-15 pax",
+                    "vehiculo": "Sprinter regular",
+                    "precio": null
+                },
+                {
+                    "capacidad": "16-19 pax",
+                    "vehiculo": "Sprinter regular",
+                    "precio": null
+                }
+            ],
+            "precio_nota": "Precio por persona según capacidad del grupo. Reserva mínima 72 horas antes, máxima 3 meses. Actividad no disponible para menores de 17 años.",
+            "duracion_texto": "1 día (10 horas)",
+            "duracion_horas": 10,
+            "dificultad": "facil",
+            "idiomas": [
+                "es",
+                "en"
+            ],
+            "punto_salida": "Hoteles o Airbnb en Zona Guadalajara Centro, Zapopan Centro, Tlaquepaque Centro, Zona Expo y Zona Andares",
+            "salida_garantizada": false,
+            "pickup_hotel": true,
+            "fecha_viaje": "Lunes a sábado (español: L-Mi-V · inglés: Ma-J-S). Domingos bajo solicitud especial. No opera Navidad ni Año Nuevo",
+            "fotos": [
+                "tour-tequila-jornalero__01.jpg",
+                "tour-tequila-jornalero__02.jpg",
+                "tour-tequila-jornalero__03.jpg",
+                "tour-tequila-jornalero__04.jpg",
+                "tour-tequila-jornalero__05.jpg",
+                "tour-tequila-jornalero__06.jpg",
+                "tour-tequila-jornalero__07.jpg",
+                "tour-tequila-jornalero__08.jpg",
+                "tour-tequila-jornalero__09.jpg",
+                "tour-tequila-jornalero__10.jpg"
+            ],
+            "incluye": [
+                "Transportación de acuerdo a itinerario",
+                "Chofer certificado",
+                "Seguro de viajero a bordo de transporte",
+                "Guía tequillier",
+                "Admisión a destilería artesanal categoría premium",
+                "Visita a campos de agave",
+                "Actividad y demostración de uso de utensilios en el campo agavero",
+                "Desayuno rústico mexicano a pie de campo",
+                "Cantarito con receta de la casa",
+                "Recorrido guiado en fábrica y explicación del proceso de elaboración",
+                "Cata guiada por expertos tequileros (blanco, reposado y añejo) + copa extra de tu expresión favorita",
+                "Visita al Pueblo Mágico de Tequila",
+                "Tiempo libre",
+                "IVA"
+            ],
+            "no_incluye": [
+                "Alimentos",
+                "Bebidas",
+                "Entrada a museos",
+                "Gastos personales",
+                "Propinas"
+            ],
+            "itinerario": [
+                {
+                    "dia": 1,
+                    "titulo": "Campos de agave y destilería artesanal",
+                    "descripcion": "07:40 hrs pick up en punto acordado. 07:50 salida con destino a Tequila. 09:00 arribo a destilería e inicio de recorrido: campos de agave, demostración de labores del campo, desayuno rústico a pie de campo, recorrido de fábrica y cata guiada. 12:00 traslado al centro de Tequila. 12:30 tiempo para comer y visitar la Parroquia de Santiago Apóstol, la Plaza principal y su quiosco, el callejón José Cuervo y el Museo Nacional del Tequila (admisión no incluida). 14:30 salida con destino a Cantaritos de Amatitán. 17:00 regreso a Guadalajara. 18:15 arribo, drop off y fin de servicios."
+                }
+            ],
+            "politica_cancelacion": "Una vez emitidos los boletos no se permiten cancelaciones. Las cancelaciones deberán avisarse con 72 horas de anticipación para reagendar la visita en una fecha posterior. No hay reembolsos; la visita será reagendada durante el mes en curso sujeto a disponibilidad."
+        },
+        {
+            "titulo": "Tour Tequila a tu alcance",
+            "titulo_en": "Tequila Within Reach Tour",
+            "slug": "tour-tequila-a-tu-alcance",
+            "destino": "Jalisco",
+            "categoria": "Cultural",
+            "experiencias": [
+                "Cultura",
+                "Gastronómico"
+            ],
+            "descripcion_breve": "Explora la magia de Tequila en una experiencia accesible y llena de tradición. Recorre los paisajes agaveros, conoce el proceso de elaboración, disfruta de una degustación y explora el encantador pueblo de Tequila a tu propio ritmo. Un tour diseñado para quienes desean vivir la cultura tequilera, divertirse y crear recuerdos inolvidables.",
+            "precio_desde": 986,
+            "precios_vehiculo": [
+                {
+                    "capacidad": "2 pax",
+                    "vehiculo": "Sedán",
+                    "precio": 3249
+                },
+                {
+                    "capacidad": "3 pax",
+                    "vehiculo": "Sedán",
+                    "precio": 2240
+                },
+                {
+                    "capacidad": "4 pax",
+                    "vehiculo": "Sedán Full Size",
+                    "precio": 1914
+                },
+                {
+                    "capacidad": "5 pax",
+                    "vehiculo": "Suburban",
+                    "precio": 2310
+                },
+                {
+                    "capacidad": "6 pax",
+                    "vehiculo": "Suburban",
+                    "precio": 1961
+                },
+                {
+                    "capacidad": "7 pax",
+                    "vehiculo": "Toyota o Urban",
+                    "precio": 1769
+                },
+                {
+                    "capacidad": "8 pax",
+                    "vehiculo": "Toyota o Urban",
+                    "precio": 1576
+                },
+                {
+                    "capacidad": "9 pax",
+                    "vehiculo": "Toyota o Urban",
+                    "precio": 1425
+                },
+                {
+                    "capacidad": "10 pax",
+                    "vehiculo": "Toyota o Urban",
+                    "precio": 1304
+                },
+                {
+                    "capacidad": "11-15 pax",
+                    "vehiculo": "Sprinter regular",
+                    "precio": 1206
+                },
+                {
+                    "capacidad": "16-19 pax",
+                    "vehiculo": "Sprinter regular",
+                    "precio": 986
+                }
+            ],
+            "precio_nota": "Precio por persona en MXN según capacidad del grupo y vehículo. Reserva mínima 72 horas antes, máxima 3 meses. Si llevas menores de edad, contáctanos para una opción a tu medida.",
+            "duracion_texto": "1 día (10 horas)",
+            "duracion_horas": 10,
+            "dificultad": "facil",
+            "idiomas": [
+                "es",
+                "en"
+            ],
+            "punto_salida": "Hoteles o Airbnb en Zona Guadalajara Centro, Zapopan Centro, Tlaquepaque Centro, Zona Expo y Zona Andares",
+            "salida_garantizada": false,
+            "pickup_hotel": true,
+            "fecha_viaje": "Lunes a domingo (no opera Navidad ni Año Nuevo)",
+            "fotos": [
+                "tour-tequila-a-tu-alcance__01.jpg",
+                "tour-tequila-a-tu-alcance__02.jpg",
+                "tour-tequila-a-tu-alcance__03.jpg",
+                "tour-tequila-a-tu-alcance__04.jpg",
+                "tour-tequila-a-tu-alcance__05.jpg",
+                "tour-tequila-a-tu-alcance__06.jpg",
+                "tour-tequila-a-tu-alcance__07.jpg",
+                "tour-tequila-a-tu-alcance__08.jpg"
+            ],
+            "incluye": [
+                "Transportación acorde a itinerario",
+                "Chofer certificado",
+                "Seguro de viajero a bordo de transporte",
+                "Admisión a destilería local",
+                "Recorrido guiado en fábrica",
+                "Explicación del proceso de elaboración de tequila",
+                "Degustación de tequila",
+                "Visita al Pueblo Mágico de Tequila",
+                "Tiempo libre",
+                "IVA"
+            ],
+            "no_incluye": [
+                "Alimentos",
+                "Bebidas",
+                "Entrada a museos",
+                "Gastos personales",
+                "Propinas"
+            ],
+            "itinerario": [
+                {
+                    "dia": 1,
+                    "titulo": "Tequila a tu ritmo",
+                    "descripcion": "09:00 hrs pick up en punto acordado. 09:15 salida con destino a Tequila. 10:30 arribo al centro de Tequila. 11:00 inicio de recorrido en destilería local. 13:00 tiempo para comer y visitar la Parroquia de Santiago Apóstol, la Plaza principal y su quiosco, el callejón José Cuervo y el Museo Nacional del Tequila (admisión no incluida). 15:00 salida con destino a Cantaritos de Amatitán (parada opcional). 17:30 regreso a Guadalajara. 19:00 arribo, drop off y fin de servicios."
+                }
+            ],
+            "politica_cancelacion": "Una vez emitidos los boletos no se permiten cancelaciones. Las cancelaciones deberán avisarse con 72 horas de anticipación para reagendar la visita; tendrás 6 meses para utilizar tu servicio, sujeto a disponibilidad y nivelación tarifaria. No hay reembolsos ni se toma a cuenta de otro servicio."
+        },
+        {
+            "titulo": "Tour Tequilero hasta los huesos",
+            "titulo_en": "Tequilero to the Bone Tour",
+            "slug": "tour-tequilero-hasta-los-huesos",
+            "destino": "Jalisco",
+            "categoria": "Cultural",
+            "experiencias": [
+                "Cultura",
+                "Día de Muertos",
+                "Gastronómico"
+            ],
+            "descripcion_breve": "Explora la magia del Día de Muertos en Tequila y el festival “Tequilero hasta los huesos”, donde disfrutarás de un espectacular desfile de catrinas, altares, ofrendas tradicionales, música en vivo, gastronomía típica y todo el encanto de la cultura mexicana. Tour compartido con disponibilidad de máximo 18 espacios.",
+            "precio_desde": null,
+            "precios_vehiculo": [],
+            "precio_nota": "Tour compartido, precio por persona (por definir edición 2026). Máximo 18 espacios. Reserva mínima 72 horas antes, máxima 3 meses. Si llevas menores de edad, contáctanos para una opción a tu medida.",
+            "duracion_texto": "1 día (12 horas)",
+            "duracion_horas": 12,
+            "dificultad": "facil",
+            "idiomas": [
+                "es",
+                "en"
+            ],
+            "punto_salida": "Punto de encuentro",
+            "salida_garantizada": false,
+            "pickup_hotel": false,
+            "fecha_viaje": "Temporada Día de Muertos (edición 2026 por confirmar)",
+            "fotos": [
+                "tour-tequilero-hasta-los-huesos__01.jpg",
+                "tour-tequilero-hasta-los-huesos__02.jpg",
+                "tour-tequilero-hasta-los-huesos__03.jpg",
+                "tour-tequilero-hasta-los-huesos__04.jpg",
+                "tour-tequilero-hasta-los-huesos__05.jpg"
+            ],
+            "incluye": [
+                "Transportación en servicio compartido",
+                "Coordinador de grupo",
+                "Admisión y recorrido por fábrica de tequila",
+                "Visita al centro de Tequila para comida, compras y fotografías",
+                "Seguro de viajero a bordo de transporte",
+                "Cena maridaje con tequila",
+                "IVA"
+            ],
+            "no_incluye": [
+                "Alimentos",
+                "Bebidas",
+                "Entrada a museos",
+                "Gastos personales",
+                "Propinas"
+            ],
+            "itinerario": [
+                {
+                    "dia": 1,
+                    "titulo": "Día de Muertos en Tequila",
+                    "descripcion": "10:45 hrs pick up en punto de encuentro. 11:00 salida con destino a Tequila. 13:00 arribo a destilería local para recorrido. 16:00 tiempo libre en el centro de Tequila: Parroquia de Santiago Apóstol, Plaza principal, quiosco, callejón José Cuervo, Museo Nacional del Tequila (admisión no incluida), altares y ofrendas del festival. 19:00 cata y cena maridaje. 21:00 regreso a Guadalajara. 23:00 arribo al punto de encuentro y fin de servicios."
+                }
+            ],
+            "politica_cancelacion": "Actividad recomendada para mayores de 18 años (no disponible para menores de 17). No sugerimos este viaje a mujeres embarazadas ni personas con lesiones o cirugías recientes. Explora México Tours podrá cancelar el viaje si no se completa el mínimo de personas, reembolsando el importe total. Para reservar: nombre completo, celular y contacto de emergencia vía WhatsApp (+52) 33 1048 0670 o reserva@exploramexicotours.com. Cancelaciones: 30% de penalización; entre 45 y 30 días, 80%; entre 29 y 0 días, 100%. NO SHOW: 100% de penalidad."
         }
     ]
 }
