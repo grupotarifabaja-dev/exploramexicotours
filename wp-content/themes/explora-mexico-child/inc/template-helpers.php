@@ -57,12 +57,16 @@ function emt_get_image_or_placeholder( $post_id, $size = 'large' ) {
 }
 
 /**
- * Imagen de una card de destino, con cascada de respaldo:
- *   1) campo ACF 'imagen_destino' del término,
- *   2) foto destacada de un tour publicado de ese destino,
- *   3) '' (el CSS deja el degradado actual).
+ * Imagen de un término de taxonomía de tours, con cascada de respaldo:
+ *   1) campo ACF 'imagen_destino' del término (term meta; hoy registrado para
+ *      tour_destino — en otras taxonomías simplemente no existe y se salta),
+ *   2) foto destacada de un tour publicado con ese término (cualquier taxonomía),
+ *   3) '' (el CSS deja el degradado/placeholder).
  *
- * @param WP_Term $term   Término de tour_destino.
+ * La usan las cards de destinos del home y el mega-menú (misma cascada:
+ * UN solo lugar para personalizar imágenes por término).
+ *
+ * @param WP_Term $term   Término de tour_destino / tour_categoria / tour_experiencia.
  * @param string  $size   Tamaño de imagen.
  * @return string URL de imagen o '' si no hay ninguna.
  */
@@ -73,7 +77,7 @@ function emt_destino_image_url( $term, $size = 'medium_large' ) {
             return $img['sizes'][ $size ] ?? $img['url'] ?? '';
         }
     }
-    // Respaldo: foto destacada de un tour del destino.
+    // Respaldo: foto destacada de un tour con ese término.
     $tours = get_posts( array(
         'post_type'      => 'tour',
         'posts_per_page' => 1,
@@ -81,7 +85,7 @@ function emt_destino_image_url( $term, $size = 'medium_large' ) {
         'no_found_rows'  => true,
         'meta_key'       => '_thumbnail_id',
         'tax_query'      => array( array(
-            'taxonomy' => 'tour_destino',
+            'taxonomy' => $term->taxonomy,
             'field'    => 'term_id',
             'terms'    => $term->term_id,
         ) ),
