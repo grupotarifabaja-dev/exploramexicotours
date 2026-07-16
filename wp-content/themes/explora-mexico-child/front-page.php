@@ -43,6 +43,15 @@ $hero_has_media  = ( $hero_video_url || $hero_poster_url );
     </div>
 </section>
 
+<!-- 1b. Franja de confianza (señales reales, sobria) -->
+<section class="emt-avales" aria-label="<?php echo esc_attr( emt_t( 'aval_titulo' ) ); ?>">
+    <div class="emt-container emt-avales__inner">
+        <p class="emt-avales__item"><?php echo esc_html( emt_t( 'aval_anios' ) ); ?></p>
+        <p class="emt-avales__item"><?php echo esc_html( emt_t( 'aval_moderniza' ) ); ?></p>
+        <p class="emt-avales__item"><span class="emt-avales__label"><?php echo esc_html( emt_t( 'aval_confian' ) ); ?></span> TATA · Wipro · Rosewood Hotels · IGT · Wizeline</p>
+    </div>
+</section>
+
 <!-- 2. Destinos destacados -->
 <?php
 $destinos = get_terms( array( 'taxonomy' => 'tour_destino', 'hide_empty' => false, 'parent' => 0, 'number' => 5 ) );
