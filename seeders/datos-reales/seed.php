@@ -245,6 +245,29 @@ function emt_seed_datos_reales( $opts = array() ) {
         $report['tours'][] = array( 'id' => $post_id, 'titulo' => $t['titulo'], 'slug' => $slug, 'accion' => $action, 'fotos' => count( $galeria ) );
     }
 
+    /* ---------------- HERO DE PORTADA (poster) ----------------
+       Asigna una foto potente del pool como imagen de respaldo del hero SOLO si
+       la opción está vacía (no pisa una elección manual posterior del cliente). */
+    if ( ! $dry && function_exists( 'update_field' ) ) {
+        $poster_actual = get_field( 'hero_bg_poster', 'option' );
+        if ( empty( $poster_actual ) ) {
+            $att = get_posts( array(
+                'post_type'   => 'attachment',
+                'post_status' => 'inherit',
+                'numberposts' => 1,
+                'fields'      => 'ids',
+                'meta_key'    => '_emt_seed_photo',
+                'meta_value'  => 'barrancas-del-cobre__77c16123-a1a2-4ce2-b073-5d99a7dc99d0.jpg',
+            ) );
+            if ( $att ) {
+                update_field( 'hero_bg_poster', (int) $att[0], 'option' );
+                $report['hero_poster'] = 'asignado (puente colgante Barrancas, id ' . (int) $att[0] . ')';
+            }
+        } else {
+            $report['hero_poster'] = 'ya definido (no se toca)';
+        }
+    }
+
     /* ---------------- ASESORES ---------------- */
     foreach ( (array) ( $ases_json['asesores'] ?? array() ) as $a ) {
         $slug  = sanitize_title( $a['slug'] ?? $a['nombre'] );
