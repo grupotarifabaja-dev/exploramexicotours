@@ -97,6 +97,9 @@
   .emt-reserve-card__wa { order: 5; flex: 1 1 100%; text-align: center; }
   /* Aire al final del contenido para que la barra fija no lo tape. */
   .emt-single-tour { padding-bottom: 220px; }
+  /* El float de WhatsApp es redundante en la ficha móvil (la barra fija ya
+     tiene el CTA de WhatsApp) y se encimaba sobre él. */
+  body.single-tour .emt-wa-float { display: none; }
 }
 
 .emt-tour-related { margin-top: var(--emt-spacing-3xl); }
