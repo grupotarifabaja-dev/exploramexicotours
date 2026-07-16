@@ -136,6 +136,12 @@
 .emt-header__burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
 .emt-header__burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
+/* El drawer off-canvas (translateX(100%)) contribuye al scrollable overflow y
+   generaba scroll horizontal en todo el sitio móvil. clip en el root lo corta
+   sin crear un scroll container (position: sticky sigue funcionando); hidden
+   queda como fallback para navegadores viejos. */
+html { overflow-x: hidden; overflow-x: clip; }
+
 /* Drawer móvil */
 .emt-drawer {
   position: fixed;
@@ -198,7 +204,9 @@
 /* Responsive: < 720px (md) colapsa a hamburguesa */
 @media (max-width: 719px) {
   .emt-header__nav { display: none; }
-  .emt-btn--cta { display: none; }
+  /* SOLO el CTA del header: un selector global aquí ocultaba todos los
+     .emt-btn--cta del sitio en móvil (hero, reserve card). */
+  .emt-header .emt-btn--cta { display: none; }
   .emt-header__burger { display: flex; }
 }
 @media (min-width: 720px) {

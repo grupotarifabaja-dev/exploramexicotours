@@ -88,10 +88,15 @@
   .emt-reserve-card {
     position: fixed; left: 0; right: 0; bottom: 0; z-index: var(--emt-z-float);
     flex-direction: row; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; row-gap: var(--emt-spacing-sm);
     border-radius: var(--emt-radius-lg) var(--emt-radius-lg) 0 0;
     box-shadow: var(--emt-shadow-xl);
   }
   .emt-reserve-card .emt-btn { width: auto; }
+  /* CTA primario (WhatsApp) a lo ancho en su propia fila, amigable al pulgar. */
+  .emt-reserve-card__wa { order: 5; flex: 1 1 100%; text-align: center; }
+  /* Aire al final del contenido para que la barra fija no lo tape. */
+  .emt-single-tour { padding-bottom: 220px; }
 }
 
 .emt-tour-related { margin-top: var(--emt-spacing-3xl); }
