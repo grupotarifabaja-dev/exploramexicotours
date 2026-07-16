@@ -141,6 +141,11 @@
    sin crear un scroll container (position: sticky sigue funcionando); hidden
    queda como fallback para navegadores viejos. */
 html { overflow-x: hidden; overflow-x: clip; }
+/* body también (iOS Safari ignora el del root para el pan táctil). Scoped a
+   móvil: los position: sticky del sitio son solo >=1024px y no se afectan. */
+@media (max-width: 1023px) {
+  body { overflow-x: hidden; overflow-x: clip; }
+}
 
 /* Drawer móvil */
 .emt-drawer {
