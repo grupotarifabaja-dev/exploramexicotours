@@ -116,6 +116,12 @@ return array(
     'trust_viajeros'       => 'Viajeros felices',
     'cta_grupos_title'     => '¿Viajas en grupo? Cotiza a la medida',
 
+    // Franja de confianza (home)
+    'aval_titulo'          => 'Señales de confianza',
+    'aval_anios'           => 'Más de 20 años creando viajes por México',
+    'aval_moderniza'       => 'Distintivo Moderniza · SECTUR',
+    'aval_confian'         => 'Confían en nosotros:',
+
     // Estados
     'cargando'             => 'Cargando…',
     'sin_resultados'       => 'Sin resultados',

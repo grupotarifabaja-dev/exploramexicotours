@@ -116,6 +116,12 @@ return array(
     'trust_viajeros'       => 'Happy travelers',
     'cta_grupos_title'     => 'Traveling as a group? Get a custom quote',
 
+    // Trust strip (home)
+    'aval_titulo'          => 'Trust signals',
+    'aval_anios'           => '20+ years crafting journeys across Mexico',
+    'aval_moderniza'       => 'Distintivo Moderniza · SECTUR',
+    'aval_confian'         => 'Trusted by:',
+
     // States
     'cargando'             => 'Loading…',
     'sin_resultados'       => 'No results',
