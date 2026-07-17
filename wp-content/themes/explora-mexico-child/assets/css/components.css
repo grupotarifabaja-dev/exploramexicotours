@@ -92,6 +92,19 @@
 .emt-chip.is-selected .emt-chip__count,
 .emt-chip[aria-pressed="true"] .emt-chip__count { background: rgba(255, 255, 255, 0.22); }
 
+/* Chip como control de formulario: el label ES el chip y el checkbox vive
+   oculto dentro. El foco del input ilumina el chip (accesible con teclado);
+   el estado seleccionado lo pinta el servidor con .is-selected. */
+.emt-chip { position: relative; }
+.emt-chip__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+.emt-chip:focus-within { box-shadow: var(--emt-focus-ring); }
+
 /* ------------------------------------------------------------
    3. CARDS
    Radio 16px, borde + sombra sutil, hover con elevación.
@@ -218,6 +231,68 @@
 .emt-section--dark .emt-title { color: var(--emt-blanco); }
 .emt-section--dark .emt-eyebrow { color: var(--emt-turquesa); }
 .emt-section--dark .emt-heading__sub { color: rgba(233, 241, 248, 0.75); }
+
+/* ------------------------------------------------------------
+   8. AVATAR
+   Identidad de asesor. Con foto: recorte circular. Sin foto:
+   iniciales blancas sobre degradado azul (adiós silueta gris).
+   Definido en la sección Asesores de la cascada.
+   ------------------------------------------------------------ */
+.emt-avatar {
+  --emt-avatar-size: 48px;
+  width: var(--emt-avatar-size);
+  height: var(--emt-avatar-size);
+  border-radius: 50%;
+  overflow: hidden;
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 auto;
+  background: linear-gradient(135deg, var(--emt-azul-profundo), var(--emt-azul-brillante));
+  color: var(--emt-blanco);
+  font-family: var(--emt-font-display);
+  font-weight: var(--emt-fw-bold);
+  font-size: calc(var(--emt-avatar-size) * 0.36);
+  letter-spacing: 0.03em;
+  user-select: none;
+}
+.emt-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.emt-avatar--sm { --emt-avatar-size: 36px; }
+.emt-avatar--lg { --emt-avatar-size: 72px; }
+.emt-avatar--xl { --emt-avatar-size: 112px; }
+
+/* ------------------------------------------------------------
+   9. EMPTY STATE
+   Cuando una lista queda en cero (p. ej. filtros sin resultados).
+   Icono + título + texto + una acción para salir del callejón.
+   Definido en la sección Asesores de la cascada.
+   ------------------------------------------------------------ */
+.emt-empty {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  gap: var(--emt-spacing-sm);
+  padding: var(--emt-spacing-3xl) var(--emt-spacing-lg);
+}
+.emt-empty__icon {
+  width: 64px;
+  height: 64px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--emt-surface-tint);
+  color: var(--emt-azul-brillante);
+  margin-bottom: var(--emt-spacing-xs);
+}
+.emt-empty__icon svg { width: 30px; height: 30px; }
+.emt-empty__title {
+  font-family: var(--emt-font-display);
+  font-size: var(--emt-fs-lg);
+  font-weight: var(--emt-fw-bold);
+  color: var(--emt-azul-profundo);
+  margin: 0;
+}
+.emt-empty__text { color: var(--emt-color-text-muted); max-width: 46ch; margin: 0; }
+.emt-empty__action { margin-top: var(--emt-spacing-md); }
 
 /* ------------------------------------------------------------
    Accesibilidad: sin movimiento si el usuario lo pide.

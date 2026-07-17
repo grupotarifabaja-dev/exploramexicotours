@@ -125,4 +125,12 @@ return array(
     // States
     'cargando'             => 'Loading…',
     'sin_resultados'       => 'No results',
+
+    // Advisors (2026 redesign)
+    'asesores_eyebrow'     => 'Meet the team',
+    'asesores_sub'         => 'Mexico experts ready to help you plan your trip.',
+
+    // Empty state (design-system component)
+    'empty_titulo'         => 'No results here',
+    'empty_texto'          => 'Try a different filter combination, or clear them to see everything.',
 );

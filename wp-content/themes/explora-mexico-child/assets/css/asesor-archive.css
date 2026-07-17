@@ -1,21 +1,48 @@
 /* ============================================================
    ASESOR ARCHIVE / directorio (doc maestro §8.4)
+   Rediseño 2026: el hero es un .emt-heading del sistema (dentro
+   de .emt-section) y los filtros son chips (.emt-chip). Aquí solo
+   vive el layout específico del directorio.
    ============================================================ */
-.emt-asesor-archive { padding-block: var(--emt-spacing-2xl) var(--emt-spacing-4xl); }
+.emt-asesor-archive .emt-breadcrumbs { margin-bottom: var(--emt-spacing-lg); }
 
+/* Barra de filtros: superficie tenue, chips por grupo */
 .emt-asesor-filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--emt-spacing-xl);
-  align-items: flex-end;
-  background: var(--emt-gris-claro);
+  display: grid;
+  gap: var(--emt-spacing-lg);
+  background: var(--emt-surface-tint);
+  border: 1px solid var(--emt-color-border);
+  border-radius: var(--emt-radius-card);
   padding: var(--emt-spacing-lg);
-  border-radius: var(--emt-radius-lg);
   margin-bottom: var(--emt-spacing-2xl);
 }
 .emt-asesor-filters .emt-filters__group { border: 0; padding: 0; margin: 0; }
-.emt-asesor-filters legend { font-family: var(--emt-font-display); font-weight: var(--emt-fw-semibold); color: var(--emt-azul-profundo); margin-bottom: var(--emt-spacing-sm); }
-.emt-asesor-filters .emt-filters__opt { display: inline-flex; align-items: center; gap: 4px; margin-right: var(--emt-spacing-md); font-size: var(--emt-fs-sm); }
+.emt-asesor-filters .emt-filters__legend {
+  font-family: var(--emt-font-display);
+  font-weight: var(--emt-fw-semibold);
+  font-size: var(--emt-eyebrow-fs);
+  letter-spacing: var(--emt-eyebrow-tracking);
+  text-transform: uppercase;
+  color: var(--emt-acento-tinta);
+  padding: 0;
+  margin-bottom: var(--emt-spacing-sm);
+}
+.emt-asesor-filters .emt-filters__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--emt-spacing-sm);
+}
+.emt-asesor-filters .emt-filters__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--emt-spacing-md);
+}
+.emt-asesor-filters .emt-filters__actions:empty { display: none; }
+.emt-asesor-filters .emt-filters__clear {
+  font-size: var(--emt-fs-sm);
+  font-weight: var(--emt-fw-medium);
+  color: var(--emt-azul-brillante);
+}
 
 /* .emt-asesores-grid vive en asesor-card.css (site-wide), para que sea
    consistente en el directorio y en "otros asesores" del perfil. */

@@ -2,6 +2,11 @@
 /**
  * Directorio de asesores (doc maestro §8.4). Usa emt_render_asesor_card().
  * Filtro ligero por especialidad / idioma (GET). Solo asesores activos.
+ *
+ * Rediseño 2026: adopta el sistema de diseño — .emt-heading con línea serape,
+ * filtros como chips (.emt-chip con checkbox oculto, auto-submit vía
+ * filter-bar.js; sin JS funciona con el botón de <noscript>) y .emt-empty
+ * cuando la combinación de filtros queda en cero.
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit;
@@ -30,43 +35,61 @@ $tx_idi = get_terms( array( 'taxonomy' => 'asesor_idioma', 'hide_empty' => false
 
 get_header();
 ?>
-<section class="emt-archive-hero">
+<section class="emt-section emt-asesor-archive">
     <div class="emt-container">
         <?php if ( function_exists( 'emt_breadcrumbs' ) ) { emt_breadcrumbs(); } ?>
-        <h1 class="emt-archive-hero__title"><?php echo esc_html( emt_t( 'nuestro_equipo' ) ); ?></h1>
+
+        <header class="emt-heading">
+            <span class="emt-eyebrow"><?php echo esc_html( emt_t( 'asesores_eyebrow' ) ); ?></span>
+            <h1 class="emt-title"><?php echo esc_html( emt_t( 'nuestro_equipo' ) ); ?></h1>
+            <p class="emt-heading__sub"><?php echo esc_html( emt_t( 'asesores_sub' ) ); ?></p>
+        </header>
+
+        <form class="emt-asesor-filters" method="get" action="<?php echo esc_url( $base_url ); ?>" data-emt-filters>
+            <?php
+            $grp = function ( $title, $name, $terms, $sel ) {
+                if ( is_wp_error( $terms ) || ! $terms ) { return; }
+                echo '<fieldset class="emt-filters__group"><legend class="emt-filters__legend">' . esc_html( $title ) . '</legend><div class="emt-filters__chips">';
+                foreach ( $terms as $t ) {
+                    $on = in_array( $t->term_id, $sel, true );
+                    printf(
+                        '<label class="emt-chip%1$s"><input class="emt-chip__input" type="checkbox" name="%2$s[]" value="%3$d"%4$s><span>%5$s</span></label>',
+                        $on ? ' is-selected' : '',
+                        esc_attr( $name ),
+                        (int) $t->term_id,
+                        $on ? ' checked' : '',
+                        esc_html( $t->name )
+                    );
+                }
+                echo '</div></fieldset>';
+            };
+            $grp( emt_t( 'especialidades' ), 'especialidad', $tx_esp, $f_esp );
+            $grp( emt_t( 'idiomas' ), 'idioma', $tx_idi, $f_idi );
+            ?>
+            <div class="emt-filters__actions">
+                <noscript><button type="submit" class="emt-btn emt-btn--outline"><?php echo esc_html( emt_t( 'aplicar_filtros' ) ); ?></button></noscript>
+                <?php if ( $f_esp || $f_idi ) : ?>
+                    <a class="emt-filters__clear" href="<?php echo esc_url( $base_url ); ?>"><?php echo esc_html( emt_t( 'limpiar_filtros' ) ); ?></a>
+                <?php endif; ?>
+            </div>
+        </form>
+
+        <?php if ( $query->have_posts() ) : ?>
+            <div class="emt-asesores-grid">
+                <?php while ( $query->have_posts() ) : $query->the_post(); ?>
+                    <?php emt_render_asesor_card( get_the_ID() ); ?>
+                <?php endwhile; ?>
+            </div>
+        <?php else : ?>
+            <div class="emt-empty">
+                <span class="emt-empty__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></span>
+                <h2 class="emt-empty__title"><?php echo esc_html( emt_t( 'empty_titulo' ) ); ?></h2>
+                <p class="emt-empty__text"><?php echo esc_html( emt_t( 'empty_texto' ) ); ?></p>
+                <a class="emt-btn emt-btn--outline emt-empty__action" href="<?php echo esc_url( $base_url ); ?>"><?php echo esc_html( emt_t( 'limpiar_filtros' ) ); ?></a>
+            </div>
+        <?php endif; wp_reset_postdata(); ?>
     </div>
 </section>
-
-<div class="emt-container emt-asesor-archive">
-    <form class="emt-asesor-filters" method="get" action="<?php echo esc_url( $base_url ); ?>" data-emt-filters>
-        <?php
-        $grp = function ( $title, $name, $terms, $sel ) {
-            if ( is_wp_error( $terms ) || ! $terms ) { return; }
-            echo '<fieldset class="emt-filters__group"><legend>' . esc_html( $title ) . '</legend>';
-            foreach ( $terms as $t ) {
-                printf( '<label class="emt-filters__opt"><input type="checkbox" name="%s[]" value="%d"%s> %s</label>', esc_attr( $name ), (int) $t->term_id, in_array( $t->term_id, $sel, true ) ? ' checked' : '', esc_html( $t->name ) );
-            }
-            echo '</fieldset>';
-        };
-        $grp( emt_t( 'especialidades' ), 'especialidad', $tx_esp, $f_esp );
-        $grp( emt_t( 'idiomas' ), 'idioma', $tx_idi, $f_idi );
-        ?>
-        <div class="emt-filters__actions">
-            <button type="submit" class="emt-btn emt-btn--secondary"><?php echo esc_html( emt_t( 'aplicar_filtros' ) ); ?></button>
-            <a class="emt-filters__clear" href="<?php echo esc_url( $base_url ); ?>"><?php echo esc_html( emt_t( 'limpiar_filtros' ) ); ?></a>
-        </div>
-    </form>
-
-    <?php if ( $query->have_posts() ) : ?>
-        <div class="emt-asesores-grid">
-            <?php while ( $query->have_posts() ) : $query->the_post(); ?>
-                <?php emt_render_asesor_card( get_the_ID() ); ?>
-            <?php endwhile; ?>
-        </div>
-    <?php else : ?>
-        <p class="emt-listing__empty"><?php echo esc_html( emt_t( 'sin_resultados' ) ); ?></p>
-    <?php endif; wp_reset_postdata(); ?>
-</div>
 
 <?php
 get_footer();
