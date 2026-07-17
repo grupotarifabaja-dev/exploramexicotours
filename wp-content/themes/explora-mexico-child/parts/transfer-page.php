@@ -86,14 +86,15 @@ $servicios = ( $lang === 'en' )
     ? array( 'Regular & luxury executive transportation', 'Tourist transportation', 'Staff transportation', 'School transportation', 'Transportation by the hour', 'Airport transfers', 'Local tours', 'Social event transfers', 'Personalized transfers', 'Aircraft rental', 'Security & bodyguard services', 'Yacht & boat rental' )
     : array( 'Transporte ejecutivo regular y de lujo', 'Transporte turístico', 'Transporte de personal', 'Transporte escolar', 'Transporte por horas', 'Traslados desde o al aeropuerto', 'Tours locales', 'Traslados para eventos sociales', 'Traslados personalizados', 'Renta de aeronaves', 'Servicios de seguridad y guardaespaldas', 'Renta de yates y embarcaciones' );
 
+// 'img': fotos reales en assets/images/flotilla/ (principal + opcional secundaria al hover).
 $flotilla = array(
-    array( 'n' => 'Mercedes Benz Sprinter Lux', 'cap' => 20, 'icon' => '🚐', 'feats_es' => 'Asientos reclinables, mesa de trabajo con portavasos, A/C, Smart TV, Bluetooth, audio tipo cine, cargadores USB y tipo C, aislante térmico, espacio para maletas, ventanas panorámicas.', 'feats_en' => 'Reclining seats, work table with cup holders, A/C, Smart TV, Bluetooth, cinema-grade audio, USB & USB-C chargers, thermal insulation, luggage space, panoramic windows.' ),
-    array( 'n' => 'Mercedes Benz Sprinter Regular', 'cap' => 20, 'icon' => '🚐', 'feats_es' => 'Asientos reclinables, A/C, TV y DVD, espacio para maletas, ventanas.', 'feats_en' => 'Reclining seats, A/C, TV & DVD, luggage space, windows.' ),
+    array( 'n' => 'Mercedes Benz Sprinter Lux', 'cap' => 20, 'icon' => '🚐', 'img' => array( 'sprinter-lux-1.jpg', 'sprinter-lux-2.jpg' ), 'feats_es' => 'Asientos reclinables, mesa de trabajo con portavasos, A/C, Smart TV, Bluetooth, audio tipo cine, cargadores USB y tipo C, aislante térmico, espacio para maletas, ventanas panorámicas.', 'feats_en' => 'Reclining seats, work table with cup holders, A/C, Smart TV, Bluetooth, cinema-grade audio, USB & USB-C chargers, thermal insulation, luggage space, panoramic windows.' ),
+    array( 'n' => 'Mercedes Benz Sprinter Regular', 'cap' => 20, 'icon' => '🚐', 'img' => array( 'sprinter-regular-1.jpg', 'sprinter-regular-2.jpg' ), 'feats_es' => 'Asientos reclinables, A/C, TV y DVD, espacio para maletas, ventanas.', 'feats_en' => 'Reclining seats, A/C, TV & DVD, luggage space, windows.' ),
     array( 'n' => 'Autobús (Irizar, Volvo, Marcopolo, Neobus)', 'cap' => '46–50', 'icon' => '🚌', 'feats_es' => 'A/C, TV, DVD, audio, cargadores, maletero interior, espacio para maletas, 1 o 2 puertas, ventanas panorámicas.', 'feats_en' => 'A/C, TV, DVD, audio, chargers, interior luggage rack, luggage space, 1 or 2 doors, panoramic windows.' ),
     array( 'n' => 'Toyota Hiace / Urban / Transit', 'cap' => 12, 'icon' => '🚐', 'feats_es' => 'Asientos reclinables, A/C, TV, DVD, audio, parrilla porta equipaje (según unidad).', 'feats_en' => 'Reclining seats, A/C, TV, DVD, audio, roof luggage rack (per unit).' ),
-    array( 'n' => 'Suburban línea 2019', 'cap' => 6, 'icon' => '🚙', 'feats_es' => 'A/C, vidrios y seguros eléctricos, DVD, vestiduras en piel, cajuela para maletas.', 'feats_en' => 'A/C, power windows & locks, DVD, leather upholstery, luggage trunk.' ),
-    array( 'n' => 'Suburban línea nueva 2023', 'cap' => 6, 'icon' => '🚙', 'feats_es' => 'A/C, vidrios y seguros eléctricos, DVD, vestiduras en piel, cajuela.', 'feats_en' => 'A/C, power windows & locks, DVD, leather upholstery, trunk.' ),
-    array( 'n' => 'Camry 2023', 'cap' => 4, 'icon' => '🚗', 'feats_es' => 'A/C, vidrios/seguros eléctricos, vestiduras en tela, cajuela, Bluetooth.', 'feats_en' => 'A/C, power windows/locks, fabric upholstery, trunk, Bluetooth.' ),
+    array( 'n' => 'Suburban línea 2019', 'cap' => 6, 'icon' => '🚙', 'img' => array( 'suburban-2019-1.jpg', 'suburban-2019-2.jpg' ), 'feats_es' => 'A/C, vidrios y seguros eléctricos, DVD, vestiduras en piel, cajuela para maletas.', 'feats_en' => 'A/C, power windows & locks, DVD, leather upholstery, luggage trunk.' ),
+    array( 'n' => 'Suburban línea nueva 2023', 'cap' => 6, 'icon' => '🚙', 'img' => array( 'suburban-nueva-1.jpg', 'suburban-nueva-2.jpg' ), 'feats_es' => 'A/C, vidrios y seguros eléctricos, DVD, vestiduras en piel, cajuela.', 'feats_en' => 'A/C, power windows & locks, DVD, leather upholstery, trunk.' ),
+    array( 'n' => 'Camry 2023', 'cap' => 4, 'icon' => '🚗', 'img' => array( 'camry-1.jpg', 'camry-2.jpg' ), 'feats_es' => 'A/C, vidrios/seguros eléctricos, vestiduras en tela, cajuela, Bluetooth.', 'feats_en' => 'A/C, power windows/locks, fabric upholstery, trunk, Bluetooth.' ),
     array( 'n' => 'Versa 2025', 'cap' => 3, 'icon' => '🚗', 'feats_es' => 'A/C, vidrios/seguros eléctricos, vestiduras en tela, cajuela, CarPlay, Bluetooth.', 'feats_en' => 'A/C, power windows/locks, fabric upholstery, trunk, CarPlay, Bluetooth.' ),
     array( 'n' => 'Mini SUV Suzuki o Mitsubishi 2020', 'cap' => '6 (4 c/equipaje)', 'icon' => '🚙', 'feats_es' => 'A/C, vestiduras en tela, parrilla exterior, cajuela para bolsa de mano, CarPlay, Bluetooth.', 'feats_en' => 'A/C, fabric upholstery, exterior rack, carry-on trunk, CarPlay, Bluetooth.' ),
 );
@@ -108,6 +109,9 @@ $tipos_servicio = ( $lang === 'en' )
     ? array( 'traslado' => 'Transfer service', 'turistico' => 'Tourist transportation', 'personal' => 'Staff transportation', 'escolar' => 'School transportation', 'por_horas' => 'By the hour', 'aeropuerto' => 'Airport transfer', 'tours_locales' => 'Local tours', 'aeronaves' => 'Aircraft rental', 'evento_social' => 'Social event transfer', 'otro' => 'Other' )
     : array( 'traslado' => 'Servicio de traslado', 'turistico' => 'Transporte turístico', 'personal' => 'Transporte de personal', 'escolar' => 'Transporte escolar', 'por_horas' => 'Transporte por horas', 'aeropuerto' => 'Traslados desde o al aeropuerto', 'tours_locales' => 'Tours locales', 'aeronaves' => 'Renta de aeronaves', 'evento_social' => 'Traslado para evento social', 'otro' => 'Otro' );
 
+// Base de los assets de flotilla (fotos reales + logo Explora Transfer).
+$emt_flotilla_base = trailingslashit( get_stylesheet_directory_uri() ) . 'assets/images/flotilla/';
+
 get_header();
 ?>
 <main class="emt-transfer">
@@ -116,7 +120,9 @@ get_header();
     <section class="emt-transfer-hero">
         <div class="emt-container emt-transfer-hero__inner">
             <p class="emt-transfer-hero__eyebrow"><?php echo esc_html( $L['hero_eyebrow'] ); ?></p>
-            <h1 class="emt-transfer-hero__title"><?php echo esc_html( $L['title'] ); ?></h1>
+            <h1 class="emt-transfer-hero__title">
+                <img class="emt-transfer-hero__logo" src="<?php echo esc_url( $emt_flotilla_base . 'logo-explora-transfer.png' ); ?>" alt="<?php echo esc_attr( $L['title'] ); ?>" width="800" height="251" />
+            </h1>
             <p class="emt-transfer-hero__sub"><?php echo esc_html( $L['hero_sub'] ); ?></p>
             <a class="emt-btn emt-btn--cta" href="#reservar"><?php echo esc_html( $L['hero_cta'] ); ?></a>
         </div>
@@ -148,12 +154,24 @@ get_header();
             <h2><?php echo esc_html( $L['flotilla_t'] ); ?></h2>
             <p class="emt-transfer-section__sub"><?php echo esc_html( $L['flotilla_sub'] ); ?></p>
             <div class="emt-transfer-flotilla">
-                <?php foreach ( $flotilla as $v ) : ?>
-                    <article class="emt-flotilla-card">
-                        <div class="emt-flotilla-card__icon" aria-hidden="true"><?php echo esc_html( $v['icon'] ); ?></div>
-                        <h3 class="emt-flotilla-card__name"><?php echo esc_html( $v['n'] ); ?></h3>
-                        <p class="emt-flotilla-card__cap"><?php echo esc_html( $v['cap'] . ' ' . $L['pax'] ); ?></p>
-                        <p class="emt-flotilla-card__feats"><?php echo esc_html( $lang === 'en' ? $v['feats_en'] : $v['feats_es'] ); ?></p>
+                <?php foreach ( $flotilla as $v ) : $has_img = ! empty( $v['img'] ); ?>
+                    <article class="emt-flotilla-card<?php echo $has_img ? ' emt-flotilla-card--foto' : ''; ?>">
+                        <?php if ( $has_img ) : ?>
+                            <figure class="emt-flotilla-card__media">
+                                <img class="emt-flotilla-card__img" src="<?php echo esc_url( $emt_flotilla_base . $v['img'][0] ); ?>" alt="<?php echo esc_attr( $v['n'] ); ?>" loading="lazy" decoding="async" />
+                                <?php if ( ! empty( $v['img'][1] ) ) : ?>
+                                    <img class="emt-flotilla-card__img emt-flotilla-card__img--alt" src="<?php echo esc_url( $emt_flotilla_base . $v['img'][1] ); ?>" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+                                <?php endif; ?>
+                            </figure>
+                        <?php endif; ?>
+                        <div class="emt-flotilla-card__body">
+                            <?php if ( ! $has_img ) : ?>
+                                <div class="emt-flotilla-card__icon" aria-hidden="true"><?php echo esc_html( $v['icon'] ); ?></div>
+                            <?php endif; ?>
+                            <h3 class="emt-flotilla-card__name"><?php echo esc_html( $v['n'] ); ?></h3>
+                            <p class="emt-flotilla-card__cap"><?php echo esc_html( $v['cap'] . ' ' . $L['pax'] ); ?></p>
+                            <p class="emt-flotilla-card__feats"><?php echo esc_html( $lang === 'en' ? $v['feats_en'] : $v['feats_es'] ); ?></p>
+                        </div>
                     </article>
                 <?php endforeach; ?>
             </div>
