@@ -11,6 +11,9 @@
 }
 .emt-transfer-hero__eyebrow { text-transform: uppercase; letter-spacing: 0.08em; font-size: var(--emt-fs-sm); color: var(--emt-turquesa); margin: 0 0 var(--emt-spacing-sm); }
 .emt-transfer-hero__title { font-family: var(--emt-font-display); font-size: var(--emt-fs-3xl); font-weight: var(--emt-fw-black); line-height: var(--emt-lh-tight); margin: 0 0 var(--emt-spacing-md); }
+/* Logo Explora Transfer: el original (turquesa + azul marino) no contrasta sobre el
+   gradiente del hero; se renderiza en blanco vía filter. */
+.emt-transfer-hero__logo { display: block; margin-inline: auto; width: min(380px, 78vw); height: auto; filter: brightness(0) invert(1); }
 .emt-transfer-hero__sub { max-width: 62ch; margin: 0 auto var(--emt-spacing-xl); opacity: 0.92; line-height: var(--emt-lh-relaxed); }
 
 /* Secciones */
@@ -33,8 +36,15 @@
 .emt-transfer-flotilla { display: grid; grid-template-columns: 1fr; gap: var(--emt-spacing-lg); }
 @media (min-width: 720px)  { .emt-transfer-flotilla { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 1024px) { .emt-transfer-flotilla { grid-template-columns: repeat(3, 1fr); } }
-.emt-flotilla-card { border: 1px solid var(--emt-color-border); border-radius: var(--emt-radius-lg); padding: var(--emt-spacing-lg); background: var(--emt-blanco); display: flex; flex-direction: column; gap: var(--emt-spacing-xs); }
+.emt-flotilla-card { border: 1px solid var(--emt-color-border); border-radius: var(--emt-radius-lg); background: var(--emt-blanco); display: flex; flex-direction: column; overflow: hidden; }
+.emt-flotilla-card__body { padding: var(--emt-spacing-lg); display: flex; flex-direction: column; gap: var(--emt-spacing-xs); }
 .emt-flotilla-card__icon { font-size: 40px; line-height: 1; }
+/* Foto real: principal siempre visible; la secundaria aparece al hover/focus. */
+.emt-flotilla-card__media { margin: 0; position: relative; aspect-ratio: 3 / 2; overflow: hidden; }
+.emt-flotilla-card__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.emt-flotilla-card__img--alt { opacity: 0; transition: opacity 0.35s ease; }
+.emt-flotilla-card--foto:hover .emt-flotilla-card__img--alt,
+.emt-flotilla-card--foto:focus-within .emt-flotilla-card__img--alt { opacity: 1; }
 .emt-flotilla-card__name { font-family: var(--emt-font-display); font-size: var(--emt-fs-md); font-weight: var(--emt-fw-bold); color: var(--emt-azul-profundo); margin: 0; }
 .emt-flotilla-card__cap { color: var(--emt-azul-brillante); font-weight: var(--emt-fw-semibold); font-size: var(--emt-fs-sm); margin: 0; }
 .emt-flotilla-card__feats { color: var(--emt-color-text-muted); font-size: var(--emt-fs-sm); line-height: var(--emt-lh-relaxed); margin: 0; }
