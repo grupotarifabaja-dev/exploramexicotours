@@ -63,7 +63,7 @@
 .emt-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: var(--emt-spacing-sm); }
 .emt-list li { padding-left: 1.6rem; position: relative; }
 .emt-list--ok li::before { content: "✓"; position: absolute; left: 0; color: var(--emt-verde); font-weight: var(--emt-fw-bold); }
-.emt-list--no li::before { content: "✕"; position: absolute; left: 0; color: var(--emt-coral); font-weight: var(--emt-fw-bold); }
+.emt-list--no li::before { content: "✕"; position: absolute; left: 0; color: var(--emt-color-danger); font-weight: var(--emt-fw-bold); }
 .emt-tour-map__embed { aspect-ratio: 16 / 9; border-radius: var(--emt-radius-md); overflow: hidden; }
 .emt-tour-map__embed iframe { width: 100%; height: 100%; border: 0; }
 

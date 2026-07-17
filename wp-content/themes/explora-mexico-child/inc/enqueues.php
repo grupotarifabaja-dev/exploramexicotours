@@ -54,7 +54,12 @@ function emt_enqueue_site_assets() {
         wp_enqueue_style( 'emt-tokens', "$uri/assets/css/tokens.css", array( 'explora-mexico-child' ), emt_asset_ver( "$dir/assets/css/tokens.css" ) );
     }
 
-    $deps   = array( 'emt-tokens' );
+    // Componentes base del sistema de diseño (rediseño 2026): global, tras tokens.
+    if ( file_exists( "$dir/assets/css/components.css" ) ) {
+        wp_enqueue_style( 'emt-components', "$uri/assets/css/components.css", array( 'emt-tokens' ), emt_asset_ver( "$dir/assets/css/components.css" ) );
+    }
+
+    $deps   = array( wp_style_is( 'emt-components', 'enqueued' ) ? 'emt-components' : 'emt-tokens' );
     $styles = array( 'header', 'mega-menu', 'footer', 'tour-card', 'asesor-card', 'lang-switcher', 'whatsapp-float', 'breadcrumbs' );
     foreach ( $styles as $s ) {
         $file = "$dir/assets/css/$s.css";
@@ -99,10 +104,11 @@ function emt_enqueue_template_assets() {
         $map[] = 'asesor-single';
     }
 
+    $tpl_deps = array( wp_style_is( 'emt-components', 'enqueued' ) ? 'emt-components' : 'emt-tokens' );
     foreach ( $map as $m ) {
         $file = "$dir/assets/css/$m.css";
         if ( file_exists( $file ) ) {
-            wp_enqueue_style( "emt-tpl-$m", "$uri/assets/css/$m.css", array( 'emt-tokens' ), emt_asset_ver( $file ) );
+            wp_enqueue_style( "emt-tpl-$m", "$uri/assets/css/$m.css", $tpl_deps, emt_asset_ver( $file ) );
         }
     }
 
@@ -130,7 +136,7 @@ function emt_enqueue_template_assets() {
 
     if ( get_query_var( 'emt_transporte' ) ) {
         if ( file_exists( "$dir/assets/css/transfer.css" ) ) {
-            wp_enqueue_style( 'emt-transfer', "$uri/assets/css/transfer.css", array( 'emt-tokens' ), emt_asset_ver( "$dir/assets/css/transfer.css" ) );
+            wp_enqueue_style( 'emt-transfer', "$uri/assets/css/transfer.css", array( wp_style_is( 'emt-components', 'enqueued' ) ? 'emt-components' : 'emt-tokens' ), emt_asset_ver( "$dir/assets/css/transfer.css" ) );
         }
         if ( file_exists( "$dir/assets/js/transfer-form.js" ) ) {
             wp_enqueue_script( 'emt-transfer-form', "$uri/assets/js/transfer-form.js", array(), emt_asset_ver( "$dir/assets/js/transfer-form.js" ), true );
