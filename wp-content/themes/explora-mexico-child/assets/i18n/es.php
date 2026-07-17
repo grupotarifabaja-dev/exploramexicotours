@@ -125,4 +125,12 @@ return array(
     // Estados
     'cargando'             => 'Cargando…',
     'sin_resultados'       => 'Sin resultados',
+
+    // Asesores (rediseño 2026)
+    'asesores_eyebrow'     => 'Conócenos',
+    'asesores_sub'         => 'Expertos en México listos para ayudarte a planear tu viaje.',
+
+    // Empty state (componente del sistema)
+    'empty_titulo'         => 'Sin resultados por aquí',
+    'empty_texto'          => 'Prueba con otra combinación de filtros o límpialos para ver todo.',
 );
