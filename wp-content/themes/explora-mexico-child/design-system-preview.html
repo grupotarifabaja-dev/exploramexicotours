@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Sistema de diseño — Explora México Tours</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/components.css">
+<style>
+  /* Estilos SOLO del preview (no forman parte del sistema) */
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: var(--emt-font-body); color: var(--emt-color-text); background: var(--emt-surface); line-height: var(--emt-lh-normal); }
+  .dsp-intro { background: var(--emt-surface-dark); color: var(--emt-on-dark); padding: clamp(3rem, 7vw, 5rem) 0 clamp(2.5rem, 6vw, 4rem); }
+  .dsp-intro h1 { font-family: var(--emt-font-display); font-size: var(--emt-fs-3xl); font-weight: var(--emt-fw-black); color: #fff; margin: 0.4rem 0 0.8rem; line-height: var(--emt-lh-tight); }
+  .dsp-intro p { max-width: 62ch; color: rgba(233,241,248,0.8); margin: 0; }
+  .dsp-serape-hairline { height: 5px; background: var(--emt-serape); }
+  .dsp-block { padding-block: clamp(2.5rem, 6vw, 4rem); }
+  .dsp-block + .dsp-block { border-top: 1px solid var(--emt-color-border); }
+  .dsp-label { font-family: var(--emt-font-display); font-weight: var(--emt-fw-semibold); font-size: var(--emt-fs-xs); letter-spacing: 0.14em; text-transform: uppercase; color: var(--emt-color-text-muted); margin: 0 0 1.4rem; }
+  .dsp-note { font-size: var(--emt-fs-sm); color: var(--emt-color-text-muted); max-width: 72ch; }
+  .dsp-row { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
+  .dsp-stack { display: grid; gap: 1.5rem; }
+
+  /* Paleta */
+  .dsp-swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 1rem; }
+  .dsp-swatch { border-radius: var(--emt-radius-md); overflow: hidden; border: 1px solid var(--emt-color-border); background: #fff; }
+  .dsp-swatch__color { height: 74px; }
+  .dsp-swatch__meta { padding: 0.6rem 0.75rem; }
+  .dsp-swatch__name { font-family: var(--emt-font-display); font-weight: var(--emt-fw-semibold); font-size: var(--emt-fs-sm); color: var(--emt-azul-profundo); display: block; }
+  .dsp-swatch__hex { font-size: var(--emt-fs-xs); color: var(--emt-color-text-muted); }
+  .dsp-swatch__rol { font-size: var(--emt-fs-xs); color: var(--emt-color-text-muted); display: block; margin-top: 2px; }
+
+  /* Tipografía */
+  .dsp-type { display: grid; gap: 1.6rem; }
+  .dsp-type-item { display: grid; gap: 0.15rem; }
+  .dsp-type-item small { color: var(--emt-color-text-muted); font-size: var(--emt-fs-xs); letter-spacing: 0.06em; text-transform: uppercase; }
+  .dsp-display { font-family: var(--emt-font-display); font-size: var(--emt-fs-display); font-weight: var(--emt-fw-black); line-height: 1.05; color: var(--emt-azul-profundo); margin: 0; }
+  .dsp-h1 { font-family: var(--emt-font-display); font-size: var(--emt-fs-3xl); font-weight: var(--emt-fw-black); line-height: var(--emt-lh-tight); color: var(--emt-azul-profundo); margin: 0; }
+  .dsp-h3 { font-family: var(--emt-font-display); font-size: var(--emt-fs-lg); font-weight: var(--emt-fw-bold); color: var(--emt-azul-profundo); margin: 0; }
+  .dsp-body { font-size: var(--emt-fs-base); line-height: var(--emt-lh-relaxed); max-width: 68ch; margin: 0; }
+  .dsp-small { font-size: var(--emt-fs-sm); color: var(--emt-color-text-muted); margin: 0; }
+
+  /* Cards demo */
+  .dsp-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; }
+  .dsp-card-precio { color: var(--emt-azul-brillante); font-weight: var(--emt-fw-bold); font-family: var(--emt-font-display); }
+  .dsp-card-precio small { color: var(--emt-color-text-muted); font-weight: var(--emt-fw-normal); font-family: var(--emt-font-body); }
+  .dsp-destino-name { font-family: var(--emt-font-display); font-weight: var(--emt-fw-bold); font-size: var(--emt-fs-lg); margin: 0; }
+  .dsp-destino-count { font-size: var(--emt-fs-sm); opacity: 0.85; }
+
+  /* Ritmo de secciones (demo full-bleed) */
+  .dsp-rhythm .emt-section { border: 0; }
+  .dsp-rhythm p { max-width: 60ch; margin: 0 auto; text-align: center; line-height: var(--emt-lh-relaxed); }
+  .dsp-rhythm .emt-section--dark p { color: rgba(233,241,248,0.8); }
+  .dsp-rhythm .dsp-cta-row { display: flex; justify-content: center; gap: 0.75rem; margin-top: 1.6rem; flex-wrap: wrap; }
+</style>
+</head>
+<body>
+
+<!-- Cabecera del preview -->
+<header class="dsp-intro">
+  <div class="emt-container">
+    <span class="emt-eyebrow" style="color: var(--emt-turquesa);">Rediseño 2026 · Fase 0</span>
+    <h1>Sistema de diseño<br>Explora México Tours</h1>
+    <p>Azul de marca como base, paleta de energía como acento. Tokens, tipografía y componentes que todas las secciones usarán en la cascada del rediseño. Esta página es interna: no está enlazada desde el sitio.</p>
+  </div>
+</header>
+<div class="dsp-serape-hairline"></div>
+
+<main>
+
+  <!-- 1. PALETA -->
+  <section class="dsp-block">
+    <div class="emt-container">
+      <p class="dsp-label">01 · Paleta</p>
+      <div class="dsp-stack">
+        <div>
+          <p class="dsp-note" style="margin-bottom:.8rem;"><strong>Base de marca</strong> — estructura, títulos, footer, botones secundarios.</p>
+          <div class="dsp-swatches">
+            <div class="dsp-swatch"><div class="dsp-swatch__color" style="background:var(--emt-azul-profundo)"></div><div class="dsp-swatch__meta"><span class="dsp-swatch__name">Azul profundo</span><span class="dsp-swatch__hex">#003366</span><span class="dsp-swatch__rol">Títulos, footer, sección oscura</span></div></div>
+            <div class="dsp-swatch"><div class="dsp-swatch__color" style="background:var(--emt-azul-brillante)"></div><div class="dsp-swatch__meta"><span class="dsp-swatch__name">Azul brillante</span><span class="dsp-swatch__hex">#0057B8</span><span class="dsp-swatch__rol">Links, botón secundario</span></div></div>
+          </div>
+        </div>
+        <div>
+          <p class="dsp-note" style="margin-bottom:.8rem;"><strong>Paleta de energía</strong> — acentos con vida; cada color tiene un rol, no compiten entre sí.</p>
+          <div class="dsp-swatches">
+            <div class="dsp-swatch"><div class="dsp-swatch__color" style="background:var(--emt-magenta)"></div><div class="dsp-swatch__meta"><span class="dsp-swatch__name">Magenta</span><span class="dsp-swatch__hex">#E91E63</span><span class="dsp-swatch__rol">CTA principal, destacados</span></div></div>
+            <div class="dsp-swatch"><div class="dsp-swatch__color" style="background:var(--emt-coral)"></div><div class="dsp-swatch__meta"><span class="dsp-swatch__name">Coral</span><span class="dsp-swatch__hex">#FF6B35</span><span class="dsp-swatch__rol">Energía cálida, degradados</span></div></div>
+            <div class="dsp-swatch"><div class="dsp-swatch__color" style="background:var(--emt-turquesa)"></div><div class="dsp-swatch__meta"><span class="dsp-swatch__name">Turquesa</span><span class="dsp-swatch__hex">#17BEBB</span><span class="dsp-swatch__rol">Eyebrows, detalles frescos</span></div></div>
+            <div class="dsp-swatch"><div class="dsp-swatch__color" style="background:var(--emt-ambar)"></div><div class="dsp-swatch__meta"><span class="dsp-swatch__name">Ámbar</span><span class="dsp-swatch__hex">#FFC845</span><span class="dsp-swatch__rol">Badges, highlights puntuales</span></div></div>
+          </div>
+        </div>
+        <div>
+          <p class="dsp-note" style="margin-bottom:.8rem;"><strong>Soporte y neutros</strong> — texto, bordes, superficies y estados.</p>
+          <div class="dsp-swatches">
+            <div class="dsp-swatch"><div class="dsp-swatch__color" style="background:var(--emt-turquesa-tinta)"></div><div class="dsp-swatch__meta"><span class="dsp-swatch__name">Turquesa tinta</span><span class="dsp-swatch__hex">#0B7A77</span><span class="dsp-swatch__rol">Acento como texto sobre claro</span></div></div>
+            <div class="dsp-swatch"><div class="dsp-swatch__color" style="background:var(--emt-rojo)"></div><div class="dsp-swatch__meta"><span class="dsp-swatch__name">Rojo</span><span class="dsp-swatch__hex">#E63946</span><span class="dsp-swatch__rol">Errores (semántico danger)</span></div></div>
+            <div class="dsp-swatch"><div class="dsp-swatch__color" style="background:var(--emt-verde)"></div><div class="dsp-swatch__meta"><span class="dsp-swatch__name">Verde</span><span class="dsp-swatch__hex">#8BC34A</span><span class="dsp-swatch__rol">Éxito, confirmaciones</span></div></div>
+            <div class="dsp-swatch"><div class="dsp-swatch__color" style="background:var(--emt-gris-oscuro)"></div><div class="dsp-swatch__meta"><span class="dsp-swatch__name">Gris oscuro</span><span class="dsp-swatch__hex">#1F2937</span><span class="dsp-swatch__rol">Texto base</span></div></div>
+            <div class="dsp-swatch"><div class="dsp-swatch__color" style="background:var(--emt-gris-medio)"></div><div class="dsp-swatch__meta"><span class="dsp-swatch__name">Gris medio</span><span class="dsp-swatch__hex">#B0B5BD</span><span class="dsp-swatch__rol">Texto secundario</span></div></div>
+            <div class="dsp-swatch"><div class="dsp-swatch__color" style="background:var(--emt-surface-tint); border-bottom:1px solid var(--emt-color-border);"></div><div class="dsp-swatch__meta"><span class="dsp-swatch__name">Superficie tenue</span><span class="dsp-swatch__hex">#F2F7FB</span><span class="dsp-swatch__rol">Sección alterna clara</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. TIPOGRAFÍA -->
+  <section class="dsp-block">
+    <div class="emt-container">
+      <p class="dsp-label">02 · Tipografía — Poppins display · Inter body (escala fluida)</p>
+      <div class="dsp-type">
+        <div class="dsp-type-item"><small>Display · hero · Poppins 800 · clamp 2.6–4.5rem</small>
+          <p class="dsp-display">Descubre México con quien lo conoce</p></div>
+        <div class="dsp-type-item"><small>H1 · título de página · Poppins 800 · clamp 2.4–4rem</small>
+          <p class="dsp-h1">Barrancas del Cobre</p></div>
+        <div class="dsp-type-item"><small>H2 · título de sección · Poppins 800 · clamp 1.9–2.75rem · con línea serape</small>
+          <div class="emt-heading emt-heading--left" style="margin-bottom:0;">
+            <span class="emt-eyebrow">¿A dónde ir?</span>
+            <h2 class="emt-title">Destinos imperdibles</h2>
+          </div></div>
+        <div class="dsp-type-item"><small>H3 · título de card · Poppins 700 · 1.35–1.5rem</small>
+          <p class="dsp-h3">Tour Tequila a tu alcance</p></div>
+        <div class="dsp-type-item"><small>Body · Inter 400 · 1rem / 1.65</small>
+          <p class="dsp-body">Más de 20 años creando experiencias auténticas por Jalisco y todo México. Viaja con guías que conocen cada rincón: del vagón del Chepe a los campos de agave, de los altares de Mixquic a las playas de Oaxaca.</p></div>
+        <div class="dsp-type-item"><small>Small · Inter 400 · 0.875rem · texto secundario</small>
+          <p class="dsp-small">Salidas desde Guadalajara · Precios por persona en ocupación doble</p></div>
+        <div class="dsp-type-item"><small>Eyebrow · Poppins 600 · 0.8125rem · tracking 0.16em · turquesa tinta</small>
+          <span class="emt-eyebrow">Transporte ejecutivo y turístico</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. BOTONES -->
+  <section class="dsp-block">
+    <div class="emt-container">
+      <p class="dsp-label">03 · Botones</p>
+      <div class="dsp-stack">
+        <div class="dsp-row">
+          <a class="emt-btn emt-btn--cta" href="#">Reservar por WhatsApp</a>
+          <a class="emt-btn emt-btn--secondary" href="#">Ver todos los tours</a>
+          <a class="emt-btn emt-btn--outline" href="#">Cotizar grupo</a>
+          <a class="emt-btn emt-btn--cta emt-btn--lg" href="#">Reservar ahora</a>
+        </div>
+        <div class="dsp-row">
+          <a class="emt-btn emt-btn--cta" style="box-shadow: var(--emt-focus-ring);" href="#">Estado :focus-visible</a>
+          <span class="dsp-note">El anillo de foco es visible en todos los botones y chips (navegación con teclado). Hover: elevación −2px + sombra del color del botón.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. CHIPS -->
+  <section class="dsp-block">
+    <div class="emt-container">
+      <p class="dsp-label">04 · Chips / pills — filtros, tags, categorías</p>
+      <div class="dsp-stack">
+        <div class="dsp-row">
+          <button class="emt-chip" type="button">Jalisco</button>
+          <button class="emt-chip is-selected" type="button">Día de Muertos</button>
+          <button class="emt-chip" type="button">Aventura</button>
+          <button class="emt-chip is-selected" type="button">Gastronómico <span class="emt-chip__count">6</span></button>
+          <button class="emt-chip" type="button">2–3 días <span class="emt-chip__count">3</span></button>
+          <button class="emt-chip" type="button">Cultural</button>
+        </div>
+        <span class="dsp-note">Sustituyen a los checkboxes de sistema en los filtros del catálogo. Seleccionado = azul profundo sólido (el magenta queda reservado a la acción principal de la vista).</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. BADGES -->
+  <section class="dsp-block">
+    <div class="emt-container">
+      <p class="dsp-label">05 · Badges</p>
+      <div class="dsp-row">
+        <span class="emt-badge emt-badge--ambar">★ Destacado</span>
+        <span class="emt-badge emt-badge--magenta">Nuevo</span>
+        <span class="emt-badge emt-badge--magenta">8 tours</span>
+        <span class="emt-badge emt-badge--turquesa">Consultar precio</span>
+        <span class="emt-badge emt-badge--turquesa">Bilingüe</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. CARDS + OVERLAY -->
+  <section class="dsp-block">
+    <div class="emt-container">
+      <p class="dsp-label">06 · Cards (radio 16px, hover con elevación) + overlay de imagen</p>
+      <div class="dsp-cards">
+        <!-- Card de tour -->
+        <article class="emt-card">
+          <figure class="emt-card__media">
+            <img src="assets/images/flotilla/suburban-2019-1.jpg" alt="">
+          </figure>
+          <div class="emt-card__body">
+            <div class="dsp-row" style="gap:.5rem;">
+              <span class="emt-badge emt-badge--ambar">★ Destacado</span>
+            </div>
+            <h3 class="dsp-h3">Tour Tequila a tu alcance</h3>
+            <p class="dsp-small">Paisaje agavero · 1 día · Salida de Guadalajara</p>
+            <p class="dsp-card-precio">Desde $986 <small>MXN p/p</small></p>
+            <div><a class="emt-btn emt-btn--secondary" href="#">Ver tour</a></div>
+          </div>
+        </article>
+        <!-- Card de destino con overlay -->
+        <a class="emt-card emt-img-overlay" href="#" style="display:block; aspect-ratio: 3/4;">
+          <img src="assets/images/flotilla/sprinter-lux-1.jpg" alt="" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover;">
+          <div class="emt-img-overlay__content">
+            <p class="dsp-destino-name">Jalisco</p>
+            <span class="dsp-destino-count">6 tours</span>
+          </div>
+        </a>
+        <!-- Card simple -->
+        <article class="emt-card">
+          <div class="emt-card__body">
+            <span class="emt-eyebrow">Explora Transfer</span>
+            <h3 class="dsp-h3">Mercedes Benz Sprinter Lux</h3>
+            <p class="dsp-body" style="font-size: var(--emt-fs-sm);">20 pasajeros · Asientos reclinables, Smart TV, audio tipo cine, cargadores USB.</p>
+            <div class="dsp-row" style="gap:.5rem;"><span class="emt-badge emt-badge--turquesa">Ejecutivo</span><span class="emt-badge emt-badge--turquesa">Turístico</span></div>
+          </div>
+        </article>
+      </div>
+      <p class="dsp-note" style="margin-top:1.2rem;">El overlay estándar (<code>--emt-overlay-img</code>) garantiza texto blanco legible sobre cualquier foto: transparente hasta el 38% y azul noche 82% al pie.</p>
+    </div>
+  </section>
+
+  <!-- 7. RITMO DE SECCIONES -->
+  <section class="dsp-block" style="padding-bottom: 0;">
+    <div class="emt-container">
+      <p class="dsp-label">07 · Ritmo de secciones — claro → tenue → oscuro full-bleed</p>
+    </div>
+    <div class="dsp-rhythm" style="margin-top: 1rem;">
+      <section class="emt-section">
+        <div class="emt-container">
+          <div class="emt-heading">
+            <span class="emt-eyebrow">¿A dónde ir?</span>
+            <h2 class="emt-title">Destinos imperdibles</h2>
+            <p class="emt-heading__sub">Sección clara: la base del sitio. Cards y contenido respiran sobre blanco.</p>
+          </div>
+        </div>
+      </section>
+      <section class="emt-section emt-section--tint">
+        <div class="emt-container">
+          <div class="emt-heading">
+            <span class="emt-eyebrow">¿Qué tour?</span>
+            <h2 class="emt-title">Experiencias que se viven una vez</h2>
+            <p class="emt-heading__sub">Sección tenue: rompe el compás blanco sin pedir protagonismo.</p>
+          </div>
+        </div>
+      </section>
+      <section class="emt-section emt-section--dark">
+        <div class="emt-container">
+          <div class="emt-heading">
+            <span class="emt-eyebrow">Explora Transfer</span>
+            <h2 class="emt-title">También te llevamos</h2>
+            <p class="emt-heading__sub">Sección oscura full-bleed: contraste fuerte para momentos clave (Transfer, CTA final, cifras).</p>
+          </div>
+          <div class="dsp-cta-row">
+            <a class="emt-btn emt-btn--cta" href="#">Reservar transporte</a>
+            <a class="emt-btn emt-btn--ghost" href="#">Conocer la flotilla</a>
+          </div>
+        </div>
+      </section>
+    </div>
+  </section>
+
+</main>
+
+<div class="dsp-serape-hairline"></div>
+<footer style="padding: 1.4rem 0; text-align: center;">
+  <p class="dsp-small">Sistema de diseño EMT · Fase 0 del rediseño · Página interna de revisión (noindex, sin enlaces desde el sitio)</p>
+</footer>
+
+</body>
+</html>
