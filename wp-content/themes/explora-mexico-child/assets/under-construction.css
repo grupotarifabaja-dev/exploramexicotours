@@ -4,7 +4,14 @@
    y nitidez en elementos clave.
    ============================================ */
 
+/* Paleta CONGELADA: el UC hereda las variables de style.css vía wp_head(),
+   pero su diseño quedó aprobado con estos valores. Se fijan aquí para que el
+   rediseño del sitio (tokens nuevos) no altere esta página mientras siga viva. */
 body.emt-under-construction {
+  --emt-turquesa: #009FAE;
+  --emt-rosa: #E91E63;
+  --emt-naranja: #F28C00;
+  --emt-coral: #E63946;
   background: #FFFFFF;
   color: #1F2937;
   font-family: 'Inter', -apple-system, sans-serif;

@@ -5,24 +5,34 @@ Description: Child theme de Hello Elementor para Explora México Tours. Sistema 
 Author: Fabian Valdez
 Author URI: https://exploramexicotours.com
 Template: hello-elementor
-Version: 1.0.3
+Version: 1.1.0
 Text Domain: explora-mexico-child
 */
 
 /* ============================================
-   TOKENS DE MARCA — Explora México Tours
+   PALETA DE MARCA — Explora México Tours
+   (rediseño 2026: azul base + paleta de energía)
+   La capa semántica vive en assets/css/tokens.css.
    ============================================ */
 :root {
-  /* Paleta principal */
+  /* Base de marca */
   --emt-azul-profundo: #003366;
   --emt-azul-brillante: #0057B8;
 
-  /* Colores de acento */
-  --emt-rosa: #E91E63;
-  --emt-turquesa: #009FAE;
-  --emt-naranja: #F28C00;
-  --emt-coral: #E63946;
+  /* Paleta de energía (acentos) */
+  --emt-magenta: #E91E63;
+  --emt-coral: #FF6B35;
+  --emt-turquesa: #17BEBB;
+  --emt-ambar: #FFC845;
+
+  /* Acentos de soporte */
   --emt-verde: #8BC34A;
+  --emt-rojo: #E63946;          /* errores / danger */
+  --emt-turquesa-tinta: #0B7A77; /* turquesa legible sobre claro (texto) */
+
+  /* Alias previos al rediseño — no usar en código nuevo */
+  --emt-rosa: var(--emt-magenta);
+  --emt-naranja: #F28C00;
 
   /* Neutros */
   --emt-blanco: #FFFFFF;
