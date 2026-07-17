@@ -1,15 +1,39 @@
 /* ============================================================
    SINGLE ASESOR (doc maestro §8.5)
+   Rediseño 2026: hero con .emt-heading--left (puesto = eyebrow,
+   nombre con línea serape), avatar de respaldo del sistema y
+   "otros asesores" como .emt-section--tint.
    ============================================================ */
-.emt-single-asesor { padding-block: var(--emt-spacing-xl) var(--emt-spacing-4xl); }
+.emt-single-asesor > .emt-container { padding-block: var(--emt-spacing-xl) var(--emt-spacing-3xl); }
 
-.emt-asesor-hero { display: grid; grid-template-columns: 1fr; gap: var(--emt-spacing-xl); margin-bottom: var(--emt-spacing-2xl); }
+.emt-asesor-hero { display: grid; grid-template-columns: 1fr; gap: var(--emt-spacing-xl); margin-top: var(--emt-spacing-lg); }
 @media (min-width: 720px) { .emt-asesor-hero { grid-template-columns: 300px 1fr; align-items: start; } }
+
 .emt-asesor-hero__media { max-width: 320px; }
-.emt-asesor-hero__media img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: var(--emt-radius-lg); box-shadow: var(--emt-shadow-md); }
-.emt-asesor-hero__name { font-family: var(--emt-font-display); font-size: var(--emt-fs-xl); font-weight: var(--emt-fw-bold); color: var(--emt-azul-profundo); margin: 0; }
-.emt-asesor-hero__role { color: var(--emt-turquesa); font-weight: var(--emt-fw-semibold); margin: var(--emt-spacing-xs) 0 var(--emt-spacing-md); }
-.emt-asesor-hero__bio { line-height: var(--emt-lh-relaxed); margin: 0 0 var(--emt-spacing-md); }
+.emt-asesor-hero__media img {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: var(--emt-radius-card);
+  box-shadow: var(--emt-shadow-md);
+}
+/* Sin foto: avatar de iniciales centrado en el mismo marco 3:4 */
+.emt-asesor-hero__media-fallback {
+  aspect-ratio: 3 / 4;
+  display: grid;
+  place-items: center;
+  background: var(--emt-surface-tint);
+  border: 1px solid var(--emt-color-border);
+  border-radius: var(--emt-radius-card);
+}
+.emt-asesor-hero__media-fallback .emt-avatar { --emt-avatar-size: 140px; }
+
+/* El .emt-heading trae margen de sección; en el hero lo acotamos */
+.emt-asesor-hero__heading { margin-bottom: var(--emt-spacing-md); }
+.emt-asesor-hero__bio { line-height: var(--emt-lh-relaxed); margin: 0 0 var(--emt-spacing-md); max-width: 60ch; }
+
+.emt-asesor-hero__info .emt-asesor-card__specs,
+.emt-asesor-hero__info .emt-asesor-card__langs { margin-bottom: var(--emt-spacing-sm); }
 
 .emt-asesor-actions { display: flex; flex-wrap: wrap; gap: var(--emt-spacing-sm); margin: var(--emt-spacing-lg) 0; }
 
@@ -21,7 +45,7 @@
   justify-content: center;
   border: 1px dashed var(--emt-color-border);
   border-radius: var(--emt-radius-md);
-  background: var(--emt-gris-claro);
+  background: var(--emt-surface-tint);
   font-size: var(--emt-fs-xs);
   color: var(--emt-color-text-muted);
   text-align: center;
@@ -31,5 +55,5 @@
 .emt-asesor-qr canvas,
 .emt-asesor-qr svg { width: 100%; height: 100%; }
 
-.emt-asesor-otros { margin-top: var(--emt-spacing-3xl); }
-.emt-asesor-otros h2 { font-family: var(--emt-font-display); font-size: var(--emt-fs-xl); color: var(--emt-azul-profundo); margin: 0 0 var(--emt-spacing-lg); }
+/* Otros asesores: fondo y ritmo los pone .emt-section--tint */
+.emt-asesor-otros .emt-title { font-size: var(--emt-fs-xl); }
