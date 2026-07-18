@@ -111,6 +111,7 @@ function emt_acf_register_field_groups() {
             // --- Tab: Galería y mapa ---
             array( 'key' => 'field_emt_tour_tab_galeria', 'label' => 'Galería y mapa', 'name' => '', 'type' => 'tab', 'placement' => 'top' ),
             array( 'key' => 'field_emt_tour_galeria', 'label' => 'Galería', 'name' => 'galeria', 'type' => 'gallery', 'required' => 1, 'min' => 4, 'insert' => 'append', 'library' => 'all', 'instructions' => 'Mínimo 4 imágenes' ),
+            array( 'key' => 'field_emt_tour_imagen_header', 'label' => 'Imagen de header', 'name' => 'imagen_header', 'type' => 'image', 'required' => 0, 'return_format' => 'array', 'instructions' => 'Foto de portada del tour (arriba de la ficha). Tamaño sugerido: 1600×900 px (horizontal 16:9). Si se deja vacía, se usa la foto destacada.' ),
             array( 'key' => 'field_emt_tour_mapa_embed', 'label' => 'Mapa (embed URL)', 'name' => 'mapa_embed', 'type' => 'url', 'required' => 0, 'instructions' => 'URL Google Maps embed' ),
 
             // --- Tab: Indicadores ---

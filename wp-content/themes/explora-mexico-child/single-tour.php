@@ -26,6 +26,7 @@ while ( have_posts() ) :
     $garantia  = get_field( 'salida_garantizada', $id );
     $pickup    = get_field( 'pickup_hotel', $id );
     $galeria   = get_field( 'galeria', $id );
+    $imagen_header = get_field( 'imagen_header', $id );
     $incluye   = emt_get_field( 'incluye', $id );
     $no_incl   = emt_get_field( 'no_incluye', $id );
     $itin      = emt_get_field( 'itinerario', $id );
@@ -43,59 +44,64 @@ while ( have_posts() ) :
     $cotiza_url = home_url( ( $lang === 'en' ? '/en' : '' ) . '/cotizacion/' );
     ?>
     <article class="emt-single-tour">
-        <div class="emt-container">
-            <?php if ( function_exists( 'emt_breadcrumbs' ) ) { emt_breadcrumbs(); } ?>
+        <?php
+        // Imagen de header: dedicada (imagen_header) -> destacada -> galería[0] -> placeholder.
+        $hero_img = '';
+        if ( is_array( $imagen_header ) && ! empty( $imagen_header['url'] ) ) {
+            $hero_img = $imagen_header['sizes']['large'] ?? $imagen_header['url'];
+        } elseif ( has_post_thumbnail( $id ) ) {
+            $hero_img = get_the_post_thumbnail_url( $id, 'large' );
+        } elseif ( ! empty( $galeria[0]['url'] ) ) {
+            $hero_img = $galeria[0]['sizes']['large'] ?? $galeria[0]['url'];
+        } else {
+            $hero_img = emt_get_image_or_placeholder( $id, 'large' );
+        }
 
-            <!-- Hero -->
-            <header class="emt-tour-hero">
-                <?php
-                // Lista normalizada de imágenes de la galería para mostrar y para el lightbox.
-                $imgs = array();
-                if ( is_array( $galeria ) ) {
-                    foreach ( $galeria as $g ) {
-                        $full = $g['url'] ?? '';
-                        if ( ! $full ) { continue; }
-                        $imgs[] = array(
-                            'thumb'   => $g['sizes']['medium'] ?? $full,
-                            'display' => $g['sizes']['large'] ?? $full,
-                            'full'    => $full,
-                            'alt'     => $g['alt'] ?? '',
-                        );
-                    }
-                }
-                if ( empty( $imgs ) ) {
-                    $main = has_post_thumbnail( $id ) ? get_the_post_thumbnail_url( $id, 'large' ) : emt_get_image_or_placeholder( $id, 'large' );
-                    $imgs[] = array( 'thumb' => $main, 'display' => $main, 'full' => $main, 'alt' => $titulo );
-                }
-                $lb_data = array_map( function ( $im ) { return array( 'src' => $im['full'], 'alt' => $im['alt'] ); }, $imgs );
-                ?>
-                <div class="emt-tour-gallery" data-gallery>
-                    <button type="button" class="emt-tour-gallery__main" data-gallery-open="0" aria-label="<?php echo esc_attr( emt_t( 'ver_galeria' ) ); ?>" style="--hero-img:url('<?php echo esc_url( $imgs[0]['display'] ); ?>')">
-                        <img src="<?php echo esc_url( $imgs[0]['display'] ); ?>" alt="<?php echo esc_attr( $imgs[0]['alt'] ?: $titulo ); ?>" />
-                    </button>
-                    <?php if ( count( $imgs ) > 1 ) : ?>
-                        <div class="emt-tour-gallery__thumbs">
-                            <?php foreach ( $imgs as $i => $im ) : ?>
-                                <button type="button" class="emt-tour-gallery__thumb" data-gallery-open="<?php echo (int) $i; ?>" aria-label="<?php echo esc_attr( emt_t( 'ver_foto' ) . ' ' . ( $i + 1 ) ); ?>">
-                                    <img src="<?php echo esc_url( $im['thumb'] ); ?>" alt="<?php echo esc_attr( $im['alt'] ); ?>" loading="lazy" />
-                                </button>
-                            <?php endforeach; ?>
-                        </div>
-                    <?php endif; ?>
-                    <script type="application/json" data-gallery-data><?php echo wp_json_encode( $lb_data ); ?></script>
+        // Galería (para el lightbox "Ver galería").
+        $gallery_imgs = array();
+        if ( is_array( $galeria ) ) {
+            foreach ( $galeria as $g ) {
+                $full = $g['url'] ?? '';
+                if ( ! $full ) { continue; }
+                $gallery_imgs[] = array( 'full' => $full, 'alt' => $g['alt'] ?? '' );
+            }
+        }
+        $lb_data = array_map( function ( $im ) { return array( 'src' => $im['full'], 'alt' => $im['alt'] ); }, $gallery_imgs );
+        ?>
+        <!-- Hero (mismo formato que el header de destino: foto + overlay + serape) -->
+        <section class="emt-tour-hero <?php echo $hero_img ? 'emt-tour-hero--photo' : 'emt-tour-hero--plain'; ?>">
+            <?php if ( $hero_img ) : ?>
+                <div class="emt-tour-hero__media" aria-hidden="true">
+                    <img src="<?php echo esc_url( $hero_img ); ?>" alt="" />
                 </div>
-                <h1 class="emt-tour-hero__title"><?php echo esc_html( $titulo ); ?></h1>
+            <?php endif; ?>
+            <div class="emt-container emt-tour-hero__inner">
+                <?php if ( function_exists( 'emt_breadcrumbs' ) ) { emt_breadcrumbs(); } ?>
+                <div class="emt-heading emt-heading--left emt-tour-hero__heading">
+                    <span class="emt-eyebrow"><?php echo esc_html( $destino ? $destino : emt_t( 'eyebrow_tours' ) ); ?></span>
+                    <h1 class="emt-title emt-tour-hero__title"><?php echo esc_html( $titulo ); ?></h1>
+                </div>
                 <ul class="emt-tour-hero__meta">
-                    <?php if ( $destino ) : ?><li>📍 <?php echo esc_html( $destino ); ?></li><?php endif; ?>
-                    <?php if ( $duracion ) : ?><li>⏱ <?php echo esc_html( $duracion ); ?></li><?php endif; ?>
+                    <?php if ( $duracion ) : ?><li>&#9201; <?php echo esc_html( $duracion ); ?></li><?php endif; ?>
                     <?php if ( $dificultad ) : ?><li><?php echo esc_html( emt_t( 'dificultad' ) . ': ' . emt_t( $dificultad ) ); ?></li><?php endif; ?>
-                    <?php if ( $fecha ) : ?><li>📅 <?php echo esc_html( $fecha ); ?></li><?php endif; ?>
+                    <?php if ( $fecha ) : ?><li>&#128197; <?php echo esc_html( $fecha ); ?></li><?php endif; ?>
                 </ul>
                 <div class="emt-tour-hero__flags">
                     <?php if ( $garantia ) : ?><span class="emt-flag emt-flag--ok"><?php echo esc_html( emt_t( 'salida_garantizada' ) ); ?></span><?php endif; ?>
                     <?php if ( $pickup ) : ?><span class="emt-flag emt-flag--pickup"><?php echo esc_html( emt_t( 'pickup_hotel' ) ); ?></span><?php endif; ?>
                 </div>
-            </header>
+                <?php if ( ! empty( $gallery_imgs ) ) : ?>
+                    <div class="emt-tour-hero__gallery" data-gallery>
+                        <button type="button" class="emt-btn emt-btn--ghost emt-tour-hero__gallery-btn" data-gallery-open="0">
+                            <?php echo esc_html( emt_t( 'ver_galeria' ) ); ?> (<?php echo count( $gallery_imgs ); ?>)
+                        </button>
+                        <script type="application/json" data-gallery-data><?php echo wp_json_encode( $lb_data ); ?></script>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </section>
+
+        <div class="emt-container">
 
             <div class="emt-tour-body">
                 <!-- Columna principal -->

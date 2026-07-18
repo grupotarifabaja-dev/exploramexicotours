@@ -203,6 +203,26 @@ $itin_ico= array( 'salida' => 'Salida', 'parada' => 'Parada', 'comida' => 'Comid
     </div>
 
     <div class="emt-panel-form__section">
+        <h2>Imagen de header</h2>
+        <?php
+        $header_val   = $g( 'imagen_header' );
+        $header_id    = is_array( $header_val ) ? (int) ( $header_val['ID'] ?? $header_val['id'] ?? 0 ) : (int) $header_val;
+        $header_thumb = $header_id ? wp_get_attachment_image_url( $header_id, 'medium' ) : '';
+        ?>
+        <div class="emt-image" data-image>
+            <div class="emt-image__preview" data-image-preview>
+                <?php if ( $header_thumb ) : ?><img src="<?php echo esc_url( $header_thumb ); ?>" alt="" /><?php endif; ?>
+            </div>
+            <input type="hidden" name="imagen_header" value="<?php echo (int) $header_id; ?>" data-image-input />
+            <div class="emt-image__actions">
+                <button type="button" class="emt-panel__btn" data-image-add>Subir / elegir imagen</button>
+                <button type="button" class="emt-panel__btn emt-panel__btn--sm emt-panel__btn--danger" data-image-remove<?php echo $header_id ? '' : ' style="display:none;"'; ?>>Quitar</button>
+            </div>
+            <div class="emt-field__help">Foto de portada del tour (arriba de la ficha). Tamaño sugerido: <strong>1600&times;900 px</strong> (horizontal 16:9). Si se deja vacía, se usa la foto destacada.</div>
+        </div>
+    </div>
+
+    <div class="emt-panel-form__section">
         <h2>Galería</h2>
         <div class="emt-gallery" data-gallery>
             <div class="emt-gallery__items" data-gallery-items>

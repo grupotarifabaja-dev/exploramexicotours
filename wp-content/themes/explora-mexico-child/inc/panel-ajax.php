@@ -137,6 +137,10 @@ function emt_panel_save_tour() {
         delete_post_thumbnail( $post_id );
     }
 
+    // Imagen de header (dedicada; respaldo a la destacada en la ficha).
+    $imagen_header = (int) ( $_POST['imagen_header'] ?? 0 );
+    update_field( 'imagen_header', $imagen_header ?: '', $post_id );
+
     // Taxonomías.
     $destino = (int) ( $_POST['destino'] ?? 0 );
     wp_set_object_terms( $post_id, $destino ? array( $destino ) : array(), 'tour_destino' );
