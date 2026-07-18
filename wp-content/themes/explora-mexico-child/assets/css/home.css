@@ -83,3 +83,56 @@
 .emt-cta-banner__title { font-family: var(--emt-font-display); font-size: var(--emt-fs-xl); font-weight: var(--emt-fw-bold); margin: 0; }
 .emt-cta-banner .emt-btn--cta { background: var(--emt-blanco); color: var(--emt-rosa); }
 
+/* ============================================================
+   IMPERDIBLES — mosaico bento (rediseño 2026)
+   Tiles de foto con overlay del sistema (.emt-img-overlay). Un tile
+   grande (2x2) + chicos, mosaico asimétrico responsive.
+   ============================================================ */
+.emt-bento {
+  display: grid;
+  gap: var(--emt-spacing-md);
+  grid-template-columns: 1fr;
+  grid-auto-rows: 210px;
+}
+.emt-bento__tile {
+  position: relative;
+  display: block;
+  border-radius: var(--emt-radius-card);
+  overflow: hidden;
+  text-decoration: none;
+  box-shadow: var(--emt-shadow-sm);
+  /* Respaldo si el tour no tiene foto: degradado azul de marca. */
+  background: linear-gradient(135deg, var(--emt-azul-profundo), var(--emt-azul-brillante));
+  transition: transform var(--emt-transition-base), box-shadow var(--emt-transition-base);
+}
+.emt-bento__tile:hover { transform: translateY(-4px); box-shadow: var(--emt-shadow-lg); }
+.emt-bento__tile:focus-visible { outline: none; box-shadow: var(--emt-focus-ring), var(--emt-shadow-lg); }
+.emt-bento__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--emt-transition-base);
+}
+.emt-bento__tile:hover .emt-bento__img { transform: scale(1.06); }
+
+/* Contenido sobre la foto (usa .emt-img-overlay__content del sistema) */
+.emt-bento__content { display: flex; flex-direction: column; align-items: flex-start; gap: 0.35rem; }
+.emt-bento__title { font-family: var(--emt-font-display); font-weight: var(--emt-fw-bold); font-size: var(--emt-fs-lg); line-height: var(--emt-lh-tight); margin: 0; color: var(--emt-blanco); }
+.emt-bento__meta { font-size: var(--emt-fs-sm); color: rgba(255, 255, 255, 0.9); margin: 0; }
+.emt-bento__price { font-family: var(--emt-font-display); font-weight: var(--emt-fw-semibold); font-size: var(--emt-fs-sm); color: var(--emt-ambar); }
+.emt-bento__more { text-align: center; margin-top: var(--emt-spacing-xl); }
+
+/* Tablet: 2 columnas, el destacado ocupa el ancho completo y doble alto */
+@media (min-width: 640px) {
+  .emt-bento { grid-template-columns: repeat(2, 1fr); }
+  .emt-bento__tile--lg { grid-column: span 2; grid-row: span 2; }
+}
+/* Desktop: 4 columnas, el destacado 2x2 → mosaico 1 grande + 4 chicos */
+@media (min-width: 1000px) {
+  .emt-bento { grid-template-columns: repeat(4, 1fr); grid-auto-rows: 215px; }
+  .emt-bento__tile--lg { grid-column: span 2; grid-row: span 2; }
+  .emt-bento__tile--lg .emt-bento__title { font-size: var(--emt-fs-xl); }
+}
+

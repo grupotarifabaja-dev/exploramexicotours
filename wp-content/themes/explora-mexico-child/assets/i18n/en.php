@@ -134,6 +134,9 @@ return array(
     'empty_titulo'         => 'No results here',
     'empty_texto'          => 'Try a different filter combination, or clear them to see everything.',
 
+    // Home — Unmissable bento (2026 redesign)
+    'imperdibles_eyebrow'  => 'Don\'t miss out',
+
     // Archive / taxonomy headers (2026 redesign)
     'eyebrow_destino'      => 'Destination',
     'eyebrow_categoria'    => 'Category',

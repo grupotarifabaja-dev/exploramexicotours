@@ -134,6 +134,9 @@ return array(
     'empty_titulo'         => 'Sin resultados por aquí',
     'empty_texto'          => 'Prueba con otra combinación de filtros o límpialos para ver todo.',
 
+    // Home — Imperdibles bento (rediseño 2026)
+    'imperdibles_eyebrow'  => 'No te lo pierdas',
+
     // Headers de archivo / taxonomía (rediseño 2026)
     'eyebrow_destino'      => 'Destino',
     'eyebrow_categoria'    => 'Categoría',
