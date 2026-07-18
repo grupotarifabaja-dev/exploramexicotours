@@ -71,6 +71,10 @@
 .emt-filters__search input { width: 100%; padding: var(--emt-spacing-sm) var(--emt-spacing-md); border: 1px solid var(--emt-color-border); border-radius: var(--emt-radius-md); }
 .emt-filters__group { border: 0; padding: 0; margin: 0; }
 .emt-filters__group legend { font-family: var(--emt-font-display); font-weight: var(--emt-fw-semibold); color: var(--emt-azul-profundo); margin-bottom: var(--emt-spacing-sm); }
+/* Filtros como chips del sistema (rediseño 2026): se acomodan y envuelven
+   dentro del sidebar; el estado seleccionado lo pinta :has(:checked). */
+.emt-filters__chips { display: flex; flex-wrap: wrap; gap: var(--emt-spacing-sm); }
+.emt-filters__chips .emt-chip { max-width: 100%; font-size: var(--emt-fs-sm); }
 .emt-filters__opt { display: flex; align-items: center; gap: var(--emt-spacing-sm); font-size: var(--emt-fs-sm); padding: 2px 0; cursor: pointer; }
 .emt-filters__group input[type="number"] { width: 100%; padding: var(--emt-spacing-sm); border: 1px solid var(--emt-color-border); border-radius: var(--emt-radius-md); }
 .emt-filters__actions { display: flex; flex-direction: column; gap: var(--emt-spacing-sm); }
