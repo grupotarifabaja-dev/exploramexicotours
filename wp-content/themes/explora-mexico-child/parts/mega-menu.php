@@ -1,122 +1,97 @@
 <?php
 /**
- * Parte: Mega-menú (doc maestro §7.3).
- * Tres paneles: destinos, categorías (con imagen) y experiencias (lineal).
- * Datos desde la Options page (§6.4); fallback a términos de taxonomía.
+ * Parte: Mega-menú (doc maestro §7.3) — rediseño 2026.
  *
- * Se incluye desde parts/header.php.
+ * AUTOMÁTICO: los tres paneles (destinos, categorías, experiencias) se arman
+ * SIEMPRE desde sus taxonomías, mostrando solo términos con tours publicados
+ * (hide_empty) y ordenados por número de tours. Así, al publicar un tour nuevo
+ * el menú se actualiza solo — sin listas manuales que mantener.
+ *
+ * La imagen de cada tarjeta usa la cascada editable: imagen del término
+ * (imagen_destino, editable en wp-admin) → foto de un tour del término →
+ * degradado azul. Contador "N tours" por término. Se incluye desde parts/header.php.
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+$emt_lang   = function_exists( 'emt_current_lang' ) ? emt_current_lang() : 'es';
+$emt_prefix = ( $emt_lang === 'en' ) ? '/en' : '';
+$emt_tours_url = home_url( $emt_prefix . '/tours/' );
+
 if ( ! function_exists( 'emt_mega_items' ) ) {
     /**
-     * Devuelve items para un panel del mega-menú.
-     * Prioriza la Options page; si está vacía, cae a términos de la taxonomía.
+     * Items de un panel del mega-menú, siempre desde la taxonomía.
      *
-     * @param string|null $options_field Campo repeater de la options page (o null).
-     * @param string      $taxonomy      Taxonomía de fallback.
-     * @param int         $limit         Máximo de items.
-     * @return array<int,array{nombre:string,url:string,imagen:?array,fallback:bool}>
+     * @param string $taxonomy Taxonomía (tour_destino/categoria/experiencia).
+     * @param int    $limit    Máximo de items.
+     * @return array<int,array{nombre:string,url:string,imagen:string,count:int}>
      */
-    function emt_mega_items( $options_field, $taxonomy, $limit = 8 ) {
+    function emt_mega_items( $taxonomy, $limit = 10 ) {
         $items = array();
-
-        if ( $options_field && function_exists( 'get_field' ) ) {
-            $rows = get_field( $options_field, 'option' );
-            if ( is_array( $rows ) ) {
-                foreach ( $rows as $r ) {
-                    if ( empty( $r['nombre'] ) ) {
-                        continue;
-                    }
-                    $items[] = array(
-                        'nombre'   => $r['nombre'],
-                        'url'      => isset( $r['url'] ) ? $r['url'] : '#',
-                        'imagen'   => isset( $r['imagen'] ) ? $r['imagen'] : null,
-                        'orden'    => isset( $r['orden'] ) ? (int) $r['orden'] : 99,
-                        'fallback' => false,
-                    );
-                }
-            }
+        if ( ! taxonomy_exists( $taxonomy ) ) {
+            return $items;
         }
-
-        if ( empty( $items ) && taxonomy_exists( $taxonomy ) ) {
-            $terms = get_terms( array(
-                'taxonomy'   => $taxonomy,
-                'hide_empty' => false,
-                'number'     => $limit,
-            ) );
-            if ( ! is_wp_error( $terms ) ) {
-                foreach ( $terms as $t ) {
-                    $link = get_term_link( $t );
-                    // Misma cascada que las cards del home: imagen del término
-                    // (imagen_destino) -> foto destacada de un tour con el
-                    // término -> null (placeholder degradado del CSS).
-                    $img_url = function_exists( 'emt_destino_image_url' ) ? emt_destino_image_url( $t, 'medium' ) : '';
-                    $items[] = array(
-                        'nombre'   => $t->name,
-                        'url'      => is_wp_error( $link ) ? '#' : $link,
-                        'imagen'   => $img_url ? array( 'url' => $img_url ) : null,
-                        'orden'    => 99,
-                        'fallback' => true,
-                    );
-                }
-            }
+        $terms = get_terms( array(
+            'taxonomy'   => $taxonomy,
+            'hide_empty' => true,   // solo términos con tours → el menú refleja lo publicado
+            'number'     => $limit,
+            'orderby'    => 'count',
+            'order'      => 'DESC',
+        ) );
+        if ( is_wp_error( $terms ) || ! $terms ) {
+            return $items;
         }
-
-        usort( $items, function ( $a, $b ) {
-            return $a['orden'] <=> $b['orden'];
-        } );
-
-        return array_slice( $items, 0, $limit );
+        foreach ( $terms as $t ) {
+            $link = get_term_link( $t );
+            $img  = function_exists( 'emt_destino_image_url' ) ? emt_destino_image_url( $t, 'medium' ) : '';
+            $items[] = array(
+                'nombre' => $t->name,
+                'url'    => is_wp_error( $link ) ? '#' : $link,
+                'imagen' => $img,
+                'count'  => (int) $t->count,
+            );
+        }
+        return $items;
     }
 }
 
 /**
- * Render de un panel visual (destinos / categorías).
+ * Render de un panel del mega-menú con tarjetas de foto + overlay del sistema.
+ *
+ * @param string $id            destinos | categorias | experiencias
+ * @param array  $items         Items de emt_mega_items().
+ * @param string $ver_todos_url URL del enlace "Ver todos".
+ * @return void
  */
-function emt_render_mega_panel( $id, $items ) {
+function emt_render_mega_panel( $id, $items, $ver_todos_url ) {
     ?>
     <div class="emt-mega" id="emt-mega-<?php echo esc_attr( $id ); ?>" data-mega-panel="<?php echo esc_attr( $id ); ?>" hidden>
         <div class="emt-container">
-            <ul class="emt-mega__grid">
-                <?php foreach ( $items as $item ) : ?>
-                    <li class="emt-mega__item">
-                        <a class="emt-mega__link" href="<?php echo esc_url( $item['url'] ); ?>">
-                            <?php if ( ! empty( $item['imagen']['url'] ) ) : ?>
-                                <span class="emt-mega__img" style="background-image:url('<?php echo esc_url( $item['imagen']['url'] ); ?>');"></span>
-                            <?php else : ?>
-                                <span class="emt-mega__img emt-mega__img--placeholder" aria-hidden="true"></span>
+            <?php if ( ! empty( $items ) ) : ?>
+                <div class="emt-mega__grid">
+                    <?php foreach ( $items as $item ) : ?>
+                        <a class="emt-mega__card emt-img-overlay<?php echo empty( $item['imagen'] ) ? ' emt-mega__card--noimg' : ''; ?>" href="<?php echo esc_url( $item['url'] ); ?>">
+                            <?php if ( ! empty( $item['imagen'] ) ) : ?>
+                                <span class="emt-mega__img" style="background-image:url('<?php echo esc_url( $item['imagen'] ); ?>');" aria-hidden="true"></span>
                             <?php endif; ?>
-                            <span class="emt-mega__name"><?php echo esc_html( $item['nombre'] ); ?></span>
+                            <span class="emt-img-overlay__content emt-mega__content">
+                                <span class="emt-mega__name"><?php echo esc_html( $item['nombre'] ); ?></span>
+                                <?php if ( $item['count'] > 0 ) : ?>
+                                    <span class="emt-mega__count"><?php printf( esc_html( emt_t( 'n_tours' ) ), $item['count'] ); ?></span>
+                                <?php endif; ?>
+                            </span>
                         </a>
-                    </li>
-                <?php endforeach; ?>
-                <?php if ( empty( $items ) ) : ?>
-                    <li class="emt-mega__empty"><?php echo esc_html( emt_t( 'sin_resultados' ) ); ?></li>
-                <?php endif; ?>
-            </ul>
+                    <?php endforeach; ?>
+                </div>
+                <a class="emt-mega__all" href="<?php echo esc_url( $ver_todos_url ); ?>"><?php echo esc_html( emt_t( 'ver_todos' ) ); ?> <span aria-hidden="true">&rarr;</span></a>
+            <?php else : ?>
+                <p class="emt-mega__empty"><?php echo esc_html( emt_t( 'sin_resultados' ) ); ?></p>
+            <?php endif; ?>
         </div>
     </div>
     <?php
 }
 
-$emt_mega_destinos     = emt_mega_items( 'mega_menu_destinos', 'tour_destino' );
-$emt_mega_categorias   = emt_mega_items( null, 'tour_categoria' );
-$emt_mega_experiencias = emt_mega_items( 'mega_menu_experiencias', 'tour_experiencia' );
-
-emt_render_mega_panel( 'destinos', $emt_mega_destinos );
-emt_render_mega_panel( 'categorias', $emt_mega_categorias );
-?>
-<div class="emt-mega emt-mega--linear" id="emt-mega-experiencias" data-mega-panel="experiencias" hidden>
-    <div class="emt-container">
-        <ul class="emt-mega__linear">
-            <?php foreach ( $emt_mega_experiencias as $item ) : ?>
-                <li><a class="emt-mega__chip" href="<?php echo esc_url( $item['url'] ); ?>"><?php echo esc_html( $item['nombre'] ); ?></a></li>
-            <?php endforeach; ?>
-            <?php if ( empty( $emt_mega_experiencias ) ) : ?>
-                <li class="emt-mega__empty"><?php echo esc_html( emt_t( 'sin_resultados' ) ); ?></li>
-            <?php endif; ?>
-        </ul>
-    </div>
-</div>
+emt_render_mega_panel( 'destinos', emt_mega_items( 'tour_destino' ), $emt_tours_url );
+emt_render_mega_panel( 'categorias', emt_mega_items( 'tour_categoria' ), $emt_tours_url );
+emt_render_mega_panel( 'experiencias', emt_mega_items( 'tour_experiencia' ), $emt_tours_url );
