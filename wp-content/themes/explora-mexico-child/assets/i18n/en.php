@@ -110,6 +110,8 @@ return array(
     'destinos_destacados'  => 'Must-see destinations',
     'tours_imperdibles'    => 'Unmissable tours',
     'explora_experiencia'  => 'Explore by experience',
+    'blog_eyebrow'         => 'From the blog',
+    'blog_titulo'          => 'Travel stories & news',
     'trust_anios'          => 'Years traveling',
     'trust_tours'          => 'Active tours',
     'trust_destinos'       => 'Destinations',

@@ -110,6 +110,8 @@ return array(
     'destinos_destacados'  => 'Destinos imperdibles',
     'tours_imperdibles'    => 'Tours imperdibles',
     'explora_experiencia'  => 'Explora por experiencia',
+    'blog_eyebrow'         => 'Del blog',
+    'blog_titulo'          => 'Historias y noticias de viaje',
     'trust_anios'          => 'Años viajando',
     'trust_tours'          => 'Tours activos',
     'trust_destinos'       => 'Destinos',
