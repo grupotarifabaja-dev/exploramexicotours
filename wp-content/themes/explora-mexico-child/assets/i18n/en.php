@@ -133,4 +133,11 @@ return array(
     // Empty state (design-system component)
     'empty_titulo'         => 'No results here',
     'empty_texto'          => 'Try a different filter combination, or clear them to see everything.',
+
+    // Archive / taxonomy headers (2026 redesign)
+    'eyebrow_destino'      => 'Destination',
+    'eyebrow_categoria'    => 'Category',
+    'eyebrow_experiencia'  => 'Experience',
+    'eyebrow_tours'        => 'Explore Mexico',
+    'n_tours'              => '%d tours',
 );
