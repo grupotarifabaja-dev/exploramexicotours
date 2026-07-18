@@ -33,7 +33,7 @@ while ( have_posts() ) :
     $politica  = emt_get_field( 'politica_cancelacion', $id );
     $mapa      = get_field( 'mapa_embed', $id );
     $relacion  = get_field( 'tour_relacionados', $id );
-    $fecha     = get_field( 'fecha_viaje', $id );
+    $fecha     = emt_get_field( 'fecha_viaje', $id );
     $precios   = function_exists( 'emt_tour_precios' ) ? emt_tour_precios( $id ) : array();
     $precios_veh = function_exists( 'emt_tour_precios_vehiculo' ) ? emt_tour_precios_vehiculo( $id ) : array();
     $precio_nota = get_field( 'precio_nota', $id );
@@ -82,9 +82,9 @@ while ( have_posts() ) :
                     <h1 class="emt-title emt-tour-hero__title"><?php echo esc_html( $titulo ); ?></h1>
                 </div>
                 <ul class="emt-tour-hero__meta">
-                    <?php if ( $duracion ) : ?><li>&#9201; <?php echo esc_html( $duracion ); ?></li><?php endif; ?>
+                    <?php if ( $duracion ) : ?><li><?php echo emt_icon( 'clock' ); ?><span><?php echo esc_html( $duracion ); ?></span></li><?php endif; ?>
                     <?php if ( $dificultad ) : ?><li><?php echo esc_html( emt_t( 'dificultad' ) . ': ' . emt_t( $dificultad ) ); ?></li><?php endif; ?>
-                    <?php if ( $fecha ) : ?><li>&#128197; <?php echo esc_html( $fecha ); ?></li><?php endif; ?>
+                    <?php if ( $fecha ) : ?><li><?php echo emt_icon( 'calendar' ); ?><span><?php echo esc_html( $fecha ); ?></span></li><?php endif; ?>
                 </ul>
                 <div class="emt-tour-hero__flags">
                     <?php if ( $garantia ) : ?><span class="emt-flag emt-flag--ok"><?php echo esc_html( emt_t( 'salida_garantizada' ) ); ?></span><?php endif; ?>
@@ -106,7 +106,10 @@ while ( have_posts() ) :
             <div class="emt-tour-body">
                 <!-- Columna principal -->
                 <div class="emt-tour-main">
-                    <div class="emt-tour-desc"><?php the_content(); ?></div>
+                    <div class="emt-tour-desc"><?php
+                        $desc_en = ( $lang === 'en' ) ? get_field( 'descripcion_en', $id ) : '';
+                        if ( ! empty( $desc_en ) ) { echo wp_kses_post( $desc_en ); } else { the_content(); }
+                    ?></div>
 
                     <?php if ( $precios ) : ?>
                         <section class="emt-tour-precios">

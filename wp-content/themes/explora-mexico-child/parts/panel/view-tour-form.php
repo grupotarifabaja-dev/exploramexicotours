@@ -100,6 +100,7 @@ $itin_ico= array( 'salida' => 'Salida', 'parada' => 'Parada', 'comida' => 'Comid
         <div class="emt-grid-2" style="margin-top:16px;">
             <div class="emt-field"><label>Precio desde (MXN)</label><input type="number" name="precio_desde" value="<?php echo esc_attr( $g( 'precio_desde' ) ); ?>" min="0" /><div class="emt-field__help">Déjalo vacío: se autocalcula como el menor de los 4.</div></div>
             <div class="emt-field"><label>Fecha del viaje</label><input type="text" name="fecha_viaje" value="<?php echo esc_attr( $g( 'fecha_viaje' ) ); ?>" placeholder="30 octubre – 1 noviembre 2026" /></div>
+            <div class="emt-field"><label>Fecha del viaje (EN)</label><input type="text" name="fecha_viaje_en" value="<?php echo esc_attr( $g( 'fecha_viaje_en' ) ); ?>" placeholder="Day of the Dead season (2026, TBC)" /><div class="emt-field__help">Vacío = se usa el español.</div></div>
         </div>
         <div class="emt-field"><label>Nota de precios</label><textarea name="precio_nota" placeholder="Máximo 4 por habitación incluyendo menores."><?php echo esc_textarea( $g( 'precio_nota' ) ); ?></textarea></div>
     </div>
@@ -127,8 +128,9 @@ $itin_ico= array( 'salida' => 'Salida', 'parada' => 'Parada', 'comida' => 'Comid
 
     <div class="emt-panel-form__section">
         <h2>Logística</h2>
-        <div class="emt-grid-2">
+        <div class="emt-grid-3">
             <div class="emt-field"><label>Duración (texto) <span class="emt-req">*</span></label><input type="text" name="duracion_texto" value="<?php echo esc_attr( $g( 'duracion_texto' ) ); ?>" placeholder="3 días / 2 noches" required /><div class="emt-field__err-msg"></div></div>
+            <div class="emt-field"><label>Duración texto (EN)</label><input type="text" name="duracion_texto_en" value="<?php echo esc_attr( $g( 'duracion_texto_en' ) ); ?>" placeholder="3 days / 2 nights" /><div class="emt-field__help">Vacío = se usa el español.</div></div>
             <div class="emt-field"><label>Duración (horas)</label><input type="number" name="duracion_horas" value="<?php echo esc_attr( $g( 'duracion_horas' ) ); ?>" min="0" /></div>
         </div>
         <div class="emt-grid-2">

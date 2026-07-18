@@ -80,6 +80,7 @@
 .emt-tour-card__title a { color: var(--emt-azul-profundo); text-decoration: none; }
 .emt-tour-card__title a:hover { color: var(--emt-azul-brillante); }
 .emt-tour-card__meta { color: var(--emt-color-text-muted); font-size: var(--emt-fs-sm); margin: 0; }
+.emt-tour-card__destino { display: inline-flex; align-items: center; gap: 0.3rem; }
 .emt-tour-card__tags { display: flex; flex-wrap: wrap; gap: var(--emt-spacing-xs); margin: 0; }
 .emt-tour-card__tag {
   font-size: var(--emt-fs-xs);

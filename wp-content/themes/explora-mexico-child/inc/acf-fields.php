@@ -134,6 +134,8 @@ function emt_acf_register_field_groups() {
             array( 'key' => 'field_emt_tour_tab_en', 'label' => 'Inglés (EN)', 'name' => '', 'type' => 'tab', 'placement' => 'top' ),
             array( 'key' => 'field_emt_tour_titulo_en', 'label' => 'Título (EN)', 'name' => 'titulo_en', 'type' => 'text', 'required' => 0 ),
             array( 'key' => 'field_emt_tour_excerpt_en', 'label' => 'Excerpt (EN)', 'name' => 'excerpt_en', 'type' => 'textarea', 'required' => 0 ),
+            array( 'key' => 'field_emt_tour_duracion_texto_en', 'label' => 'Duración texto (EN)', 'name' => 'duracion_texto_en', 'type' => 'text', 'required' => 0, 'instructions' => 'P. ej. "3 days / 2 nights". Si se deja vacío se usa el español.' ),
+            array( 'key' => 'field_emt_tour_fecha_viaje_en', 'label' => 'Fecha del viaje (EN)', 'name' => 'fecha_viaje_en', 'type' => 'text', 'required' => 0, 'instructions' => 'P. ej. "Day of the Dead season (2026 edition, TBC)". Si se deja vacío se usa el español.' ),
             array( 'key' => 'field_emt_tour_descripcion_en', 'label' => 'Descripción (EN)', 'name' => 'descripcion_en', 'type' => 'wysiwyg', 'required' => 0 ),
             array( 'key' => 'field_emt_tour_politica_cancelacion_en', 'label' => 'Política de cancelación (EN)', 'name' => 'politica_cancelacion_en', 'type' => 'wysiwyg', 'required' => 0 ),
             array( 'key' => 'field_emt_tour_incluye_en', 'label' => 'Incluye (EN)', 'name' => 'incluye_en', 'type' => 'repeater', 'required' => 0, 'layout' => 'table', 'button_label' => 'Agregar ítem', 'sub_fields' => array(

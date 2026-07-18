@@ -58,7 +58,7 @@ function emt_panel_save_tour() {
     }
 
     // Campos de texto.
-    $text = array( 'titulo_en', 'descripcion_en', 'duracion_texto', 'punto_salida', 'fecha_viaje', 'seo_title_override', 'seo_desc_override' );
+    $text = array( 'titulo_en', 'descripcion_en', 'duracion_texto', 'duracion_texto_en', 'punto_salida', 'fecha_viaje', 'fecha_viaje_en', 'seo_title_override', 'seo_desc_override' );
     foreach ( $text as $f ) {
         update_field( $f, sanitize_text_field( wp_unslash( $_POST[ $f ] ?? '' ) ), $post_id );
     }
