@@ -91,6 +91,15 @@
 }
 .emt-chip.is-selected .emt-chip__count,
 .emt-chip[aria-pressed="true"] .emt-chip__count { background: rgba(255, 255, 255, 0.22); }
+/* Chip que refleja su propio checkbox/radio (filtros con AJAX, sin recarga):
+   el estado seleccionado se pinta desde el input marcado, sin JS extra. */
+.emt-chip:has(.emt-chip__input:checked) {
+  background: var(--emt-azul-profundo);
+  border-color: var(--emt-azul-profundo);
+  color: var(--emt-blanco);
+  font-weight: var(--emt-fw-semibold);
+}
+.emt-chip:has(.emt-chip__input:checked) .emt-chip__count { background: rgba(255, 255, 255, 0.22); }
 
 /* Chip como control de formulario: el label ES el chip y el checkbox vive
    oculto dentro. El foco del input ilumina el chip (accesible con teclado);

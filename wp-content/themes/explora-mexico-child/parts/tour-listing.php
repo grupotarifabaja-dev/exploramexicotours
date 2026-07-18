@@ -64,18 +64,21 @@ $cur_pmax   = $filters['precio_max'] !== null ? $filters['precio_max'] : $bounds
         </div>
 
         <?php
+        // Filtros como chips del sistema: el checkbox/radio va oculto dentro del
+        // .emt-chip y el estado seleccionado lo pinta :has(:checked) (components.css).
+        // El JS de filtros (tour-filter.js) sigue operando sobre los inputs reales.
         $group = function ( $title, $name, $terms, $selected ) {
             if ( is_wp_error( $terms ) || ! $terms ) { return; }
-            echo '<fieldset class="emt-filters__group"><legend>' . esc_html( $title ) . '</legend>';
+            echo '<fieldset class="emt-filters__group"><legend>' . esc_html( $title ) . '</legend><div class="emt-filters__chips">';
             foreach ( $terms as $t ) {
                 printf(
-                    '<label class="emt-filters__opt"><input type="checkbox" name="%s[]" value="%d"%s> %s</label>',
+                    '<label class="emt-chip"><input class="emt-chip__input" type="checkbox" name="%s[]" value="%d"%s><span>%s</span></label>',
                     esc_attr( $name ), (int) $t->term_id,
                     in_array( $t->term_id, $selected, true ) ? ' checked' : '',
                     esc_html( $t->name )
                 );
             }
-            echo '</fieldset>';
+            echo '</div></fieldset>';
         };
         $group( emt_t( 'destinos' ), 'destino', $tx_destino, $filters['destino'] );
         $group( emt_t( 'categorias' ), 'categoria', $tx_cat, $filters['categoria'] );
@@ -83,16 +86,20 @@ $cur_pmax   = $filters['precio_max'] !== null ? $filters['precio_max'] : $bounds
         ?>
 
         <fieldset class="emt-filters__group"><legend><?php echo esc_html( emt_t( 'duracion' ) ); ?></legend>
-            <?php foreach ( $grupos_dur as $val => $g ) : ?>
-                <label class="emt-filters__opt"><input type="checkbox" name="duracion[]" value="<?php echo esc_attr( $val ); ?>"<?php echo in_array( $val, $filters['duracion'], true ) ? ' checked' : ''; ?>> <?php echo esc_html( $g['label'] ); ?></label>
-            <?php endforeach; ?>
+            <div class="emt-filters__chips">
+                <?php foreach ( $grupos_dur as $val => $g ) : ?>
+                    <label class="emt-chip"><input class="emt-chip__input" type="checkbox" name="duracion[]" value="<?php echo esc_attr( $val ); ?>"<?php echo in_array( $val, $filters['duracion'], true ) ? ' checked' : ''; ?>><span><?php echo esc_html( $g['label'] ); ?></span></label>
+                <?php endforeach; ?>
+            </div>
         </fieldset>
 
         <fieldset class="emt-filters__group"><legend><?php echo esc_html( emt_t( 'dificultad' ) ); ?></legend>
-            <label class="emt-filters__opt"><input type="radio" name="dificultad" value=""<?php checked( $filters['dificultad'], '' ); ?>> <?php echo esc_html( emt_t( 'todas' ) ); ?></label>
-            <?php foreach ( $difs as $k => $lbl ) : ?>
-                <label class="emt-filters__opt"><input type="radio" name="dificultad" value="<?php echo esc_attr( $k ); ?>"<?php checked( $filters['dificultad'], $k ); ?>> <?php echo esc_html( $lbl ); ?></label>
-            <?php endforeach; ?>
+            <div class="emt-filters__chips">
+                <label class="emt-chip"><input class="emt-chip__input" type="radio" name="dificultad" value=""<?php checked( $filters['dificultad'], '' ); ?>><span><?php echo esc_html( emt_t( 'todas' ) ); ?></span></label>
+                <?php foreach ( $difs as $k => $lbl ) : ?>
+                    <label class="emt-chip"><input class="emt-chip__input" type="radio" name="dificultad" value="<?php echo esc_attr( $k ); ?>"<?php checked( $filters['dificultad'], $k ); ?>><span><?php echo esc_html( $lbl ); ?></span></label>
+                <?php endforeach; ?>
+            </div>
         </fieldset>
 
         <?php if ( $has_price ) : ?>
