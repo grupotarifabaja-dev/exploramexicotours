@@ -133,4 +133,22 @@ return array(
     // Empty state (design-system component)
     'empty_titulo'         => 'No results here',
     'empty_texto'          => 'Try a different filter combination, or clear them to see everything.',
+
+    // Home — Unmissable bento (2026 redesign)
+    'imperdibles_eyebrow'  => 'Don\'t miss out',
+
+    // Archive / taxonomy headers (2026 redesign)
+    'eyebrow_destino'      => 'Destination',
+    'eyebrow_categoria'    => 'Category',
+    'eyebrow_experiencia'  => 'Experience',
+    'eyebrow_tours'        => 'Explore Mexico',
+    'n_tours'              => '%d tours',
+
+    // Catalog filters (accordion + active filters)
+    'buscar_destino'       => 'Search destination…',
+    'ver_mas_n'            => 'Show more (%d)',
+    'ver_menos'            => 'Show less',
+    'filtros_activos'      => 'Active filters:',
+    'limpiar_todo'         => 'Clear all',
+    'quitar'               => 'Remove',
 );

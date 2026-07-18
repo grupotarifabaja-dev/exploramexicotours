@@ -133,4 +133,22 @@ return array(
     // Empty state (componente del sistema)
     'empty_titulo'         => 'Sin resultados por aquí',
     'empty_texto'          => 'Prueba con otra combinación de filtros o límpialos para ver todo.',
+
+    // Home — Imperdibles bento (rediseño 2026)
+    'imperdibles_eyebrow'  => 'No te lo pierdas',
+
+    // Headers de archivo / taxonomía (rediseño 2026)
+    'eyebrow_destino'      => 'Destino',
+    'eyebrow_categoria'    => 'Categoría',
+    'eyebrow_experiencia'  => 'Experiencia',
+    'eyebrow_tours'        => 'Explora México',
+    'n_tours'              => '%d tours',
+
+    // Filtros del catálogo (acordeón + filtros activos)
+    'buscar_destino'       => 'Buscar destino…',
+    'ver_mas_n'            => 'Ver más (%d)',
+    'ver_menos'            => 'Ver menos',
+    'filtros_activos'      => 'Filtros activos:',
+    'limpiar_todo'         => 'Limpiar todo',
+    'quitar'               => 'Quitar',
 );

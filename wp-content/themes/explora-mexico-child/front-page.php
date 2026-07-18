@@ -80,30 +80,98 @@ if ( $destinos && ! is_wp_error( $destinos ) ) : ?>
 </section>
 <?php endif; ?>
 
-<!-- 3. Tours destacados (destacado = true) -->
+<!-- 3. Tours imperdibles (destacado = true) — mosaico bento (rediseño 2026) -->
 <?php
-$destacados = new WP_Query( array(
+// Orden editable desde el panel: campo "orden_destacado" (menor = primero;
+// vacío = 99). Se ordena en PHP para incluir tours sin el meta y usar la fecha
+// como desempate (más nuevo primero). El 1er tour resultante es el tile grande.
+$emt_dest_q = new WP_Query( array(
     'post_type'      => 'tour',
-    'posts_per_page' => 8,
+    'posts_per_page' => 30,
+    'fields'         => 'ids',
     'meta_key'       => 'destacado',
     'meta_value'     => '1',
-    'orderby'        => array( 'menu_order' => 'ASC', 'date' => 'DESC' ),
     'no_found_rows'  => true,
 ) );
-if ( $destacados->have_posts() ) : ?>
-<section class="emt-home-section emt-home-section--alt">
+$emt_dest_ids = $emt_dest_q->posts;
+usort( $emt_dest_ids, function ( $a, $b ) {
+    $oa = get_post_meta( $a, 'orden_destacado', true );
+    $ob = get_post_meta( $b, 'orden_destacado', true );
+    $oa = ( $oa === '' ) ? 99 : (int) $oa;
+    $ob = ( $ob === '' ) ? 99 : (int) $ob;
+    if ( $oa !== $ob ) { return $oa <=> $ob; }
+    return get_post_time( 'U', true, $b ) <=> get_post_time( 'U', true, $a );
+} );
+$emt_dest_ids = array_slice( $emt_dest_ids, 0, 5 );
+if ( $emt_dest_ids ) : ?>
+<section class="emt-section emt-section--tint emt-imperdibles">
     <div class="emt-container">
-        <header class="emt-section-head">
-            <h2 class="emt-section-head__title"><?php echo esc_html( emt_t( 'tours_imperdibles' ) ); ?></h2>
-        </header>
-        <div class="emt-tours-grid">
-            <?php while ( $destacados->have_posts() ) : $destacados->the_post(); ?>
-                <?php emt_render_tour_card( get_the_ID() ); ?>
-            <?php endwhile; ?>
+        <div class="emt-heading">
+            <span class="emt-eyebrow"><?php echo esc_html( emt_t( 'imperdibles_eyebrow' ) ); ?></span>
+            <h2 class="emt-title"><?php echo esc_html( emt_t( 'tours_imperdibles' ) ); ?></h2>
+        </div>
+
+        <?php
+        // Tamaños del mosaico: el 1er tile es grande (2x2); el resto se reparte
+        // para llenar el bloque sin huecos según cuántos destacados haya.
+        // Con menos de 3, se usa una fila de tiles iguales (sin asimetría).
+        $emt_n    = count( $emt_dest_ids );
+        $emt_mode = ( $emt_n >= 3 ) ? 'mosaic' : 'row';
+        $emt_sizes = array();
+        if ( $emt_mode === 'mosaic' ) {
+            $emt_sizes[0] = 'emt-bento__tile--lg';
+            $emt_rest = $emt_n - 1;
+            if ( $emt_rest === 2 ) {          // 3 tiles: grande + 2 anchos
+                $emt_sizes[1] = 'emt-bento__tile--wide';
+                $emt_sizes[2] = 'emt-bento__tile--wide';
+            } elseif ( $emt_rest === 3 ) {    // 4 tiles: grande + 1 ancho + 2 chicos
+                $emt_sizes[1] = 'emt-bento__tile--wide';
+            }
+            // 5 tiles: grande + 4 chicos (sin extras).
+        }
+        ?>
+        <div class="emt-bento emt-bento--<?php echo esc_attr( $emt_mode ); ?>">
+            <?php
+            $emt_bento_i = 0;
+            foreach ( $emt_dest_ids as $tid ) :
+                $tlink  = get_permalink( $tid );
+                $timg   = has_post_thumbnail( $tid ) ? get_the_post_thumbnail_url( $tid, 'large' ) : '';
+                $ttitle = get_the_title( $tid );
+                if ( $emt_lang === 'en' && function_exists( 'get_field' ) ) {
+                    $t_en = get_field( 'titulo_en', $tid );
+                    if ( ! empty( $t_en ) ) { $ttitle = $t_en; }
+                }
+                $tcats  = get_the_terms( $tid, 'tour_categoria' );
+                $tcat   = ( $tcats && ! is_wp_error( $tcats ) ) ? $tcats[0]->name : '';
+                $tdests = get_the_terms( $tid, 'tour_destino' );
+                $tdest  = ( $tdests && ! is_wp_error( $tdests ) ) ? $tdests[0]->name : '';
+                $tdur   = function_exists( 'emt_get_field' ) ? emt_get_field( 'duracion_texto', $tid ) : '';
+                $tprice = function_exists( 'get_field' ) ? get_field( 'precio_desde', $tid ) : '';
+                $tsize  = isset( $emt_sizes[ $emt_bento_i ] ) ? ' ' . $emt_sizes[ $emt_bento_i ] : '';
+                $tmeta  = trim( $tdest . ( ( $tdest && $tdur ) ? ' · ' : '' ) . $tdur );
+                ?>
+                <a class="emt-bento__tile emt-img-overlay<?php echo $tsize; ?>" href="<?php echo esc_url( $tlink ); ?>">
+                    <?php if ( $timg ) : ?>
+                        <img class="emt-bento__img" src="<?php echo esc_url( $timg ); ?>" alt="<?php echo esc_attr( $ttitle ); ?>" loading="lazy" />
+                    <?php endif; ?>
+                    <div class="emt-img-overlay__content emt-bento__content">
+                        <?php if ( $tcat ) : ?><span class="emt-badge emt-badge--ambar"><?php echo esc_html( $tcat ); ?></span><?php endif; ?>
+                        <h3 class="emt-bento__title"><?php echo esc_html( $ttitle ); ?></h3>
+                        <?php if ( $tmeta ) : ?><p class="emt-bento__meta"><?php echo esc_html( $tmeta ); ?></p><?php endif; ?>
+                        <?php if ( ! empty( $tprice ) ) : ?>
+                            <span class="emt-bento__price"><?php echo esc_html( emt_t( 'desde' ) . ' ' . ( function_exists( 'emt_format_price' ) ? emt_format_price( $tprice ) : number_format_i18n( (float) $tprice ) . ' MXN' ) ); ?></span>
+                        <?php endif; ?>
+                    </div>
+                </a>
+            <?php $emt_bento_i++; endforeach; ?>
+        </div>
+
+        <div class="emt-bento__more">
+            <a class="emt-btn emt-btn--outline" href="<?php echo esc_url( home_url( $emt_prefix . '/tours/' ) ); ?>"><?php echo esc_html( emt_t( 'ver_todos' ) ); ?></a>
         </div>
     </div>
 </section>
-<?php endif; wp_reset_postdata(); ?>
+<?php endif; ?>
 
 <!-- 4. Explora por experiencia -->
 <?php

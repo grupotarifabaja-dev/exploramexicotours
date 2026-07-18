@@ -1,13 +1,52 @@
 /* ============================================================
    TOUR ARCHIVE / TAXONOMÍAS (doc maestro §8.2)
    ============================================================ */
+
+/* ---- Header de archivo / taxonomía (rediseño 2026) ----
+   Adopta el sistema: heading serape sobre sección oscura, o foto editable
+   del destino con overlay para texto legible. Reemplaza la banda azul plana. */
 .emt-archive-hero {
-  background: linear-gradient(135deg, var(--emt-azul-profundo), var(--emt-azul-brillante));
-  color: var(--emt-blanco);
-  padding-block: var(--emt-spacing-2xl);
+  position: relative;
+  color: var(--emt-on-dark);
+  padding-block: clamp(2.75rem, 6vw, 4.5rem);
+  overflow: hidden;
+  background: var(--emt-surface-dark);
 }
-.emt-archive-hero__title { font-family: var(--emt-font-display); font-size: var(--emt-fs-2xl); font-weight: var(--emt-fw-bold); margin: var(--emt-spacing-sm) 0 0; }
-.emt-archive-hero__sub { opacity: 0.9; margin: var(--emt-spacing-xs) 0 0; }
+.emt-archive-hero--plain { background: var(--emt-surface-dark); }
+.emt-archive-hero--photo { background: var(--emt-azul-profundo); }
+
+/* Foto de fondo + overlay estándar para legibilidad del texto blanco */
+.emt-archive-hero__media { position: absolute; inset: 0; z-index: 0; }
+.emt-archive-hero__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.emt-archive-hero--photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(0, 20, 45, 0.55) 0%, rgba(0, 20, 45, 0.42) 42%, rgba(0, 20, 45, 0.85) 100%);
+}
+.emt-archive-hero__inner { position: relative; z-index: 2; }
+
+/* Heading dentro del hero: izquierda, títulos claros */
+.emt-archive-hero .emt-breadcrumbs { margin-top: 0; margin-bottom: var(--emt-spacing-md); }
+.emt-archive-hero__heading { margin-bottom: var(--emt-spacing-md); gap: 0.5rem; }
+.emt-archive-hero .emt-title { color: var(--emt-blanco); }
+.emt-archive-hero .emt-eyebrow { color: var(--emt-turquesa); }
+.emt-archive-hero__sub { color: rgba(233, 241, 248, 0.85); max-width: 60ch; }
+.emt-archive-hero__count {
+  margin: 0;
+  font-size: var(--emt-fs-sm);
+  font-weight: var(--emt-fw-semibold);
+  color: var(--emt-on-dark);
+  opacity: 0.92;
+}
+
+/* Breadcrumbs legibles sobre el hero oscuro */
+.emt-archive-hero .emt-breadcrumbs__item,
+.emt-archive-hero .emt-breadcrumbs__item:not(:first-child)::before,
+.emt-archive-hero .emt-breadcrumbs [aria-current="page"] { color: rgba(233, 241, 248, 0.72); }
+.emt-archive-hero .emt-breadcrumbs__item a { color: var(--emt-blanco); }
+.emt-archive-hero .emt-breadcrumbs__item a:hover { color: var(--emt-turquesa); }
 
 .emt-listing {
   display: grid;
@@ -19,23 +58,88 @@
   .emt-listing { grid-template-columns: 260px 1fr; align-items: start; }
 }
 
-/* Filtros */
+/* ---- Filtros (rediseño 2026): tarjeta blanca con grupos colapsables ----
+   Los controles son listas compactas con conteo; los filtros ACTIVOS se
+   muestran como chips arriba de los resultados. Degradación sin JS: todo
+   abierto y visible (la clase .emt-filters--js la agrega tour-filter.js). */
 .emt-filters {
-  display: flex;
-  flex-direction: column;
-  gap: var(--emt-spacing-lg);
-  background: var(--emt-gris-claro);
-  padding: var(--emt-spacing-lg);
-  border-radius: var(--emt-radius-lg);
+  display: block;
+  background: var(--emt-blanco);
+  border: 1px solid var(--emt-color-border);
+  border-radius: var(--emt-radius-card);
+  box-shadow: var(--emt-shadow-sm);
+  overflow: hidden;
 }
 @media (min-width: 1024px) { .emt-filters { position: sticky; top: 90px; } }
-.emt-filters__search input { width: 100%; padding: var(--emt-spacing-sm) var(--emt-spacing-md); border: 1px solid var(--emt-color-border); border-radius: var(--emt-radius-md); }
-.emt-filters__group { border: 0; padding: 0; margin: 0; }
-.emt-filters__group legend { font-family: var(--emt-font-display); font-weight: var(--emt-fw-semibold); color: var(--emt-azul-profundo); margin-bottom: var(--emt-spacing-sm); }
-.emt-filters__opt { display: flex; align-items: center; gap: var(--emt-spacing-sm); font-size: var(--emt-fs-sm); padding: 2px 0; cursor: pointer; }
-.emt-filters__group input[type="number"] { width: 100%; padding: var(--emt-spacing-sm); border: 1px solid var(--emt-color-border); border-radius: var(--emt-radius-md); }
-.emt-filters__actions { display: flex; flex-direction: column; gap: var(--emt-spacing-sm); }
+
+/* Buscador de tours (texto libre) arriba de todo */
+.emt-filters__search { padding: var(--emt-spacing-md) var(--emt-spacing-md) 0; }
+.emt-filters__search input { width: 100%; padding: var(--emt-spacing-sm) var(--emt-spacing-md); border: 1px solid var(--emt-color-border); border-radius: var(--emt-radius-md); font-family: var(--emt-font-body); }
+.emt-filters__search input:focus-visible { outline: none; box-shadow: var(--emt-focus-ring); }
+
+/* Grupo colapsable (acordeón) */
+.emt-facet { border-top: 1px solid var(--emt-color-border); }
+.emt-filters__search + .emt-facet { border-top: 0; margin-top: var(--emt-spacing-md); }
+.emt-facet__head {
+  width: 100%;
+  display: flex; align-items: center; justify-content: space-between; gap: var(--emt-spacing-sm);
+  background: none; border: 0; cursor: pointer;
+  padding: 0.85rem var(--emt-spacing-md);
+  font-family: var(--emt-font-display); font-weight: var(--emt-fw-semibold); font-size: var(--emt-fs-sm);
+  color: var(--emt-azul-profundo); text-align: left;
+}
+.emt-facet__head:focus-visible { outline: none; box-shadow: var(--emt-focus-ring); border-radius: var(--emt-radius-sm); }
+.emt-facet__caret { width: 9px; height: 9px; border-right: 2px solid var(--emt-azul-brillante); border-bottom: 2px solid var(--emt-azul-brillante); transform: rotate(45deg); transition: transform var(--emt-transition-base); flex: 0 0 auto; }
+.emt-filters--js .emt-facet.is-open .emt-facet__caret { transform: rotate(-135deg); }
+.emt-facet__body { padding: 0 var(--emt-spacing-md) var(--emt-spacing-md); }
+
+/* Sin JS: todo abierto/visible. Con JS: acordeón + colapsables + buscador. */
+.emt-facet__caret,
+.emt-facet__search,
+.emt-facet__more { display: none; }
+.emt-filters--js .emt-facet__caret { display: block; }
+.emt-filters--js .emt-facet__search { display: block; }
+.emt-filters--js .emt-facet__more { display: inline-block; }
+.emt-filters--js .emt-facet__body { display: none; }
+.emt-filters--js .emt-facet.is-open .emt-facet__body { display: block; }
+
+/* Buscador dentro del grupo (Destinos) */
+.emt-facet__search { position: relative; margin-bottom: var(--emt-spacing-sm); }
+.emt-facet__search svg { position: absolute; left: 10px; top: 50%; transform: translateY(-50%); width: 15px; height: 15px; color: var(--emt-color-text-muted); }
+.emt-facet__search-input { width: 100%; padding: 0.45rem 0.6rem 0.45rem 2rem; border: 1px solid var(--emt-color-border); border-radius: var(--emt-radius-md); background: var(--emt-surface-tint); font-family: var(--emt-font-body); font-size: var(--emt-fs-sm); }
+.emt-facet__search-input:focus-visible { outline: none; box-shadow: var(--emt-focus-ring); }
+
+/* Lista compacta de opciones + conteo */
+.emt-opts { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 1px; }
+.emt-opt { display: flex; align-items: center; gap: var(--emt-spacing-sm); padding: 0.35rem 0.4rem; border-radius: var(--emt-radius-sm); cursor: pointer; font-size: var(--emt-fs-sm); }
+.emt-opt:hover { background: var(--emt-surface-tint); }
+.emt-opt input { width: 16px; height: 16px; accent-color: var(--emt-azul-brillante); cursor: pointer; flex: 0 0 auto; }
+.emt-opt__name { flex: 1; color: var(--emt-color-text); }
+.emt-opt__count { font-size: var(--emt-fs-xs); color: var(--emt-color-text-muted); font-variant-numeric: tabular-nums; }
+.emt-opt-item.is-hidden { display: none !important; }
+.emt-filters--js .emt-opt-item.is-extra { display: none; }
+.emt-filters--js .emt-facet.show-all .emt-opt-item.is-extra,
+.emt-filters--js .emt-facet.is-searching .emt-opt-item.is-extra { display: block; }
+.emt-facet__nomatch { font-size: var(--emt-fs-sm); color: var(--emt-color-text-muted); padding: 0.35rem 0.4rem; margin: 0; }
+.emt-facet__more { margin-top: var(--emt-spacing-sm); background: none; border: 0; cursor: pointer; font-family: var(--emt-font-display); font-weight: var(--emt-fw-semibold); font-size: var(--emt-fs-xs); color: var(--emt-azul-brillante); padding: 2px 4px; }
+.emt-facet__more:hover { color: var(--emt-azul-profundo); text-decoration: underline; }
+.emt-facet__more-menos { display: none; }
+.emt-filters--js .emt-facet.show-all .emt-facet__more-mas { display: none; }
+.emt-filters--js .emt-facet.show-all .emt-facet__more-menos { display: inline; }
+
+.emt-filters__actions { display: flex; flex-direction: column; gap: var(--emt-spacing-sm); padding: var(--emt-spacing-md); border-top: 1px solid var(--emt-color-border); }
+.emt-filters--js .emt-filters__actions button[type="submit"] { display: none; } /* con JS el filtrado es en vivo */
 .emt-filters__clear { text-align: center; font-size: var(--emt-fs-sm); color: var(--emt-color-text-muted); text-decoration: underline; }
+
+/* Chips de filtros ACTIVOS (arriba de los resultados) */
+.emt-active-filters { display: flex; flex-wrap: wrap; align-items: center; gap: var(--emt-spacing-sm); margin-bottom: var(--emt-spacing-lg); }
+.emt-active-filters[hidden] { display: none; }
+.emt-active-filters__label { font-family: var(--emt-font-display); font-weight: var(--emt-fw-semibold); font-size: var(--emt-fs-xs); text-transform: uppercase; letter-spacing: 0.06em; color: var(--emt-color-text-muted); }
+.emt-active-chip { display: inline-flex; align-items: center; gap: 0.4rem; background: var(--emt-azul-profundo); color: var(--emt-blanco); border-radius: var(--emt-radius-pill); padding: 0.28rem 0.4rem 0.28rem 0.8rem; font-family: var(--emt-font-body); font-size: var(--emt-fs-sm); font-weight: var(--emt-fw-medium); }
+.emt-active-chip__x { display: inline-flex; align-items: center; justify-content: center; width: 17px; height: 17px; border-radius: 50%; border: 0; background: rgba(255, 255, 255, 0.22); color: var(--emt-blanco); cursor: pointer; font-size: 13px; line-height: 1; padding: 0; }
+.emt-active-chip__x:hover { background: rgba(255, 255, 255, 0.4); }
+.emt-active-filters__clear { background: none; border: 0; color: var(--emt-azul-brillante); font-family: var(--emt-font-display); font-weight: var(--emt-fw-semibold); font-size: var(--emt-fs-sm); cursor: pointer; }
+.emt-active-filters__clear:hover { text-decoration: underline; }
 
 .emt-listing__count { font-size: var(--emt-fs-sm); color: var(--emt-color-text-muted); margin: 0 0 var(--emt-spacing-lg); }
 .emt-tours-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr; gap: var(--emt-spacing-lg); }
@@ -75,5 +179,5 @@
 @media (max-width: 1023px) {
   .emt-filters__toggle { display: inline-flex; width: 100%; justify-content: center; }
   .emt-filters { display: none; }
-  .emt-listing.emt-filters--open .emt-filters { display: flex; }
+  .emt-listing.emt-filters--open .emt-filters { display: block; }
 }
