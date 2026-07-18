@@ -98,7 +98,26 @@ if ( $destacados->have_posts() ) : ?>
             <h2 class="emt-title"><?php echo esc_html( emt_t( 'tours_imperdibles' ) ); ?></h2>
         </div>
 
-        <div class="emt-bento">
+        <?php
+        // Tamaños del mosaico: el 1er tile es grande (2x2); el resto se reparte
+        // para llenar el bloque sin huecos según cuántos destacados haya.
+        // Con menos de 3, se usa una fila de tiles iguales (sin asimetría).
+        $emt_n    = $destacados->post_count;
+        $emt_mode = ( $emt_n >= 3 ) ? 'mosaic' : 'row';
+        $emt_sizes = array();
+        if ( $emt_mode === 'mosaic' ) {
+            $emt_sizes[0] = 'emt-bento__tile--lg';
+            $emt_rest = $emt_n - 1;
+            if ( $emt_rest === 2 ) {          // 3 tiles: grande + 2 anchos
+                $emt_sizes[1] = 'emt-bento__tile--wide';
+                $emt_sizes[2] = 'emt-bento__tile--wide';
+            } elseif ( $emt_rest === 3 ) {    // 4 tiles: grande + 1 ancho + 2 chicos
+                $emt_sizes[1] = 'emt-bento__tile--wide';
+            }
+            // 5 tiles: grande + 4 chicos (sin extras).
+        }
+        ?>
+        <div class="emt-bento emt-bento--<?php echo esc_attr( $emt_mode ); ?>">
             <?php
             $emt_bento_i = 0;
             while ( $destacados->have_posts() ) : $destacados->the_post();
@@ -116,7 +135,7 @@ if ( $destacados->have_posts() ) : ?>
                 $tdest  = ( $tdests && ! is_wp_error( $tdests ) ) ? $tdests[0]->name : '';
                 $tdur   = function_exists( 'emt_get_field' ) ? emt_get_field( 'duracion_texto', $tid ) : '';
                 $tprice = function_exists( 'get_field' ) ? get_field( 'precio_desde', $tid ) : '';
-                $tsize  = ( $emt_bento_i === 0 ) ? ' emt-bento__tile--lg' : '';
+                $tsize  = isset( $emt_sizes[ $emt_bento_i ] ) ? ' ' . $emt_sizes[ $emt_bento_i ] : '';
                 $tmeta  = trim( $tdest . ( ( $tdest && $tdur ) ? ' · ' : '' ) . $tdur );
                 ?>
                 <a class="emt-bento__tile emt-img-overlay<?php echo $tsize; ?>" href="<?php echo esc_url( $tlink ); ?>">
