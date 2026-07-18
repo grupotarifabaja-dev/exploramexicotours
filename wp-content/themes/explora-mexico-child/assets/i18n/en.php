@@ -143,4 +143,12 @@ return array(
     'eyebrow_experiencia'  => 'Experience',
     'eyebrow_tours'        => 'Explore Mexico',
     'n_tours'              => '%d tours',
+
+    // Catalog filters (accordion + active filters)
+    'buscar_destino'       => 'Search destination…',
+    'ver_mas_n'            => 'Show more (%d)',
+    'ver_menos'            => 'Show less',
+    'filtros_activos'      => 'Active filters:',
+    'limpiar_todo'         => 'Clear all',
+    'quitar'               => 'Remove',
 );
