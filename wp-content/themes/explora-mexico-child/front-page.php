@@ -80,26 +80,63 @@ if ( $destinos && ! is_wp_error( $destinos ) ) : ?>
 </section>
 <?php endif; ?>
 
-<!-- 3. Tours destacados (destacado = true) -->
+<!-- 3. Tours imperdibles (destacado = true) — mosaico bento (rediseño 2026) -->
 <?php
 $destacados = new WP_Query( array(
     'post_type'      => 'tour',
-    'posts_per_page' => 8,
+    'posts_per_page' => 5,
     'meta_key'       => 'destacado',
     'meta_value'     => '1',
     'orderby'        => array( 'menu_order' => 'ASC', 'date' => 'DESC' ),
     'no_found_rows'  => true,
 ) );
 if ( $destacados->have_posts() ) : ?>
-<section class="emt-home-section emt-home-section--alt">
+<section class="emt-section emt-section--tint emt-imperdibles">
     <div class="emt-container">
-        <header class="emt-section-head">
-            <h2 class="emt-section-head__title"><?php echo esc_html( emt_t( 'tours_imperdibles' ) ); ?></h2>
-        </header>
-        <div class="emt-tours-grid">
-            <?php while ( $destacados->have_posts() ) : $destacados->the_post(); ?>
-                <?php emt_render_tour_card( get_the_ID() ); ?>
-            <?php endwhile; ?>
+        <div class="emt-heading">
+            <span class="emt-eyebrow"><?php echo esc_html( emt_t( 'imperdibles_eyebrow' ) ); ?></span>
+            <h2 class="emt-title"><?php echo esc_html( emt_t( 'tours_imperdibles' ) ); ?></h2>
+        </div>
+
+        <div class="emt-bento">
+            <?php
+            $emt_bento_i = 0;
+            while ( $destacados->have_posts() ) : $destacados->the_post();
+                $tid    = get_the_ID();
+                $tlink  = get_permalink( $tid );
+                $timg   = has_post_thumbnail( $tid ) ? get_the_post_thumbnail_url( $tid, 'large' ) : '';
+                $ttitle = get_the_title( $tid );
+                if ( $emt_lang === 'en' && function_exists( 'get_field' ) ) {
+                    $t_en = get_field( 'titulo_en', $tid );
+                    if ( ! empty( $t_en ) ) { $ttitle = $t_en; }
+                }
+                $tcats  = get_the_terms( $tid, 'tour_categoria' );
+                $tcat   = ( $tcats && ! is_wp_error( $tcats ) ) ? $tcats[0]->name : '';
+                $tdests = get_the_terms( $tid, 'tour_destino' );
+                $tdest  = ( $tdests && ! is_wp_error( $tdests ) ) ? $tdests[0]->name : '';
+                $tdur   = function_exists( 'emt_get_field' ) ? emt_get_field( 'duracion_texto', $tid ) : '';
+                $tprice = function_exists( 'get_field' ) ? get_field( 'precio_desde', $tid ) : '';
+                $tsize  = ( $emt_bento_i === 0 ) ? ' emt-bento__tile--lg' : '';
+                $tmeta  = trim( $tdest . ( ( $tdest && $tdur ) ? ' · ' : '' ) . $tdur );
+                ?>
+                <a class="emt-bento__tile emt-img-overlay<?php echo $tsize; ?>" href="<?php echo esc_url( $tlink ); ?>">
+                    <?php if ( $timg ) : ?>
+                        <img class="emt-bento__img" src="<?php echo esc_url( $timg ); ?>" alt="<?php echo esc_attr( $ttitle ); ?>" loading="lazy" />
+                    <?php endif; ?>
+                    <div class="emt-img-overlay__content emt-bento__content">
+                        <?php if ( $tcat ) : ?><span class="emt-badge emt-badge--ambar"><?php echo esc_html( $tcat ); ?></span><?php endif; ?>
+                        <h3 class="emt-bento__title"><?php echo esc_html( $ttitle ); ?></h3>
+                        <?php if ( $tmeta ) : ?><p class="emt-bento__meta"><?php echo esc_html( $tmeta ); ?></p><?php endif; ?>
+                        <?php if ( ! empty( $tprice ) ) : ?>
+                            <span class="emt-bento__price"><?php echo esc_html( emt_t( 'desde' ) . ' ' . ( function_exists( 'emt_format_price' ) ? emt_format_price( $tprice ) : number_format_i18n( (float) $tprice ) . ' MXN' ) ); ?></span>
+                        <?php endif; ?>
+                    </div>
+                </a>
+            <?php $emt_bento_i++; endwhile; ?>
+        </div>
+
+        <div class="emt-bento__more">
+            <a class="emt-btn emt-btn--outline" href="<?php echo esc_url( home_url( $emt_prefix . '/tours/' ) ); ?>"><?php echo esc_html( emt_t( 'ver_todos' ) ); ?></a>
         </div>
     </div>
 </section>
