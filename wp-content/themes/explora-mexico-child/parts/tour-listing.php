@@ -6,6 +6,11 @@
  * Filtrado con AJAX + "cargar más" (assets/js/tour-filter.js) y degradación a
  * GET sin JS. La lógica de filtros vive en inc/tour-filters.php (compartida con
  * el handler AJAX). Variable opcional en scope: $emt_listing_base (tax_query fija).
+ *
+ * Rediseño 2026 (filtros que escalan): controles en grupos colapsables (acordeón)
+ * con lista compacta + conteo por opción, "Ver más" para listas largas y buscador
+ * dentro de Destinos. Los filtros activos se muestran como chips removibles ARRIBA
+ * de los resultados. Todo con degradación sin JS (grupos abiertos, todo visible).
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit;
@@ -36,16 +41,81 @@ if ( $base_taxo && $base_term ) {
 
 $query = new WP_Query( emt_tour_build_query_args( $filters, $base, $paged ) );
 
-// Datos para los controles.
-$tx_destino = get_terms( array( 'taxonomy' => 'tour_destino', 'hide_empty' => false ) );
-$tx_cat     = get_terms( array( 'taxonomy' => 'tour_categoria', 'hide_empty' => false ) );
-$tx_exp     = get_terms( array( 'taxonomy' => 'tour_experiencia', 'hide_empty' => false ) );
+// Datos para los controles. hide_empty: solo términos con tours (sin callejones sin salida).
+$tx_destino = get_terms( array( 'taxonomy' => 'tour_destino', 'hide_empty' => true, 'orderby' => 'count', 'order' => 'DESC' ) );
+$tx_cat     = get_terms( array( 'taxonomy' => 'tour_categoria', 'hide_empty' => true, 'orderby' => 'count', 'order' => 'DESC' ) );
+$tx_exp     = get_terms( array( 'taxonomy' => 'tour_experiencia', 'hide_empty' => true, 'orderby' => 'count', 'order' => 'DESC' ) );
 $difs       = array( 'facil' => 'Fácil', 'moderada' => 'Moderada', 'alta' => 'Alta' );
 $grupos_dur = emt_tour_duracion_grupos();
 $bounds     = emt_tour_price_bounds();
 $has_price  = ( $bounds['max'] > $bounds['min'] );
 $cur_pmin   = $filters['precio_min'] !== null ? $filters['precio_min'] : $bounds['min'];
 $cur_pmax   = $filters['precio_max'] !== null ? $filters['precio_max'] : $bounds['max'];
+
+/**
+ * Grupo de facetas (acordeón) para una taxonomía: lista compacta + conteo,
+ * "Ver más" tras $collapse opciones y buscador opcional.
+ */
+$emt_facet_tax = function ( $title, $name, $terms, $selected, $collapse = 0, $searchable = false, $open = false ) {
+    if ( is_wp_error( $terms ) || ! $terms ) { return; }
+    $has_sel = false;
+    foreach ( $terms as $t ) { if ( in_array( $t->term_id, $selected, true ) ) { $has_sel = true; break; } }
+    $open  = $open || $has_sel;               // si hay algo seleccionado, abre el grupo
+    $total = count( $terms );
+    ?>
+    <div class="emt-facet<?php echo $open ? ' is-open' : ''; ?>" data-emt-facet>
+        <button type="button" class="emt-facet__head" data-facet-toggle aria-expanded="<?php echo $open ? 'true' : 'false'; ?>">
+            <span><?php echo esc_html( $title ); ?></span>
+            <span class="emt-facet__caret" aria-hidden="true"></span>
+        </button>
+        <div class="emt-facet__body">
+            <?php if ( $searchable ) : ?>
+                <div class="emt-facet__search">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+                    <input type="text" class="emt-facet__search-input" data-facet-search placeholder="<?php echo esc_attr( emt_t( 'buscar_destino' ) ); ?>" aria-label="<?php echo esc_attr( emt_t( 'buscar_destino' ) ); ?>" />
+                </div>
+            <?php endif; ?>
+            <ul class="emt-opts">
+                <?php $i = 0; foreach ( $terms as $t ) :
+                    $is_extra = ( $collapse && $i >= $collapse ) ? ' is-extra' : '';
+                    ?>
+                    <li class="emt-opt-item<?php echo $is_extra; ?>">
+                        <label class="emt-opt">
+                            <input type="checkbox" name="<?php echo esc_attr( $name ); ?>[]" value="<?php echo (int) $t->term_id; ?>"<?php echo in_array( $t->term_id, $selected, true ) ? ' checked' : ''; ?> />
+                            <span class="emt-opt__name"><?php echo esc_html( $t->name ); ?></span>
+                            <span class="emt-opt__count"><?php echo (int) $t->count; ?></span>
+                        </label>
+                    </li>
+                <?php $i++; endforeach; ?>
+            </ul>
+            <p class="emt-facet__nomatch" data-facet-nomatch hidden><?php echo esc_html( emt_t( 'sin_resultados' ) ); ?></p>
+            <?php if ( $collapse && $total > $collapse ) : ?>
+                <button type="button" class="emt-facet__more" data-facet-more>
+                    <span class="emt-facet__more-mas"><?php printf( esc_html( emt_t( 'ver_mas_n' ) ), (int) ( $total - $collapse ) ); ?></span>
+                    <span class="emt-facet__more-menos"><?php echo esc_html( emt_t( 'ver_menos' ) ); ?></span>
+                </button>
+            <?php endif; ?>
+        </div>
+    </div>
+    <?php
+};
+
+/**
+ * Grupo de facetas simple (acordeón) para opciones fijas (duración / dificultad).
+ */
+$emt_facet_simple = function ( $title, $body_cb, $open = false ) {
+    ?>
+    <div class="emt-facet<?php echo $open ? ' is-open' : ''; ?>" data-emt-facet>
+        <button type="button" class="emt-facet__head" data-facet-toggle aria-expanded="<?php echo $open ? 'true' : 'false'; ?>">
+            <span><?php echo esc_html( $title ); ?></span>
+            <span class="emt-facet__caret" aria-hidden="true"></span>
+        </button>
+        <div class="emt-facet__body">
+            <ul class="emt-opts"><?php $body_cb(); ?></ul>
+        </div>
+    </div>
+    <?php
+};
 ?>
 <div class="emt-container emt-listing" data-emt-listing>
     <button type="button" class="emt-btn emt-btn--secondary emt-filters__toggle" data-emt-filters-toggle aria-expanded="false"><?php echo esc_html( emt_t( 'filtros' ) ); ?></button>
@@ -64,57 +134,59 @@ $cur_pmax   = $filters['precio_max'] !== null ? $filters['precio_max'] : $bounds
         </div>
 
         <?php
-        // Filtros como chips del sistema: el checkbox/radio va oculto dentro del
-        // .emt-chip y el estado seleccionado lo pinta :has(:checked) (components.css).
-        // El JS de filtros (tour-filter.js) sigue operando sobre los inputs reales.
-        $group = function ( $title, $name, $terms, $selected ) {
-            if ( is_wp_error( $terms ) || ! $terms ) { return; }
-            echo '<fieldset class="emt-filters__group"><legend>' . esc_html( $title ) . '</legend><div class="emt-filters__chips">';
-            foreach ( $terms as $t ) {
+        // Destinos: abierto, con buscador y "ver más" tras 6. Categorías: abierto.
+        // Experiencias/Duración/Dificultad: colapsados por defecto.
+        $emt_facet_tax( emt_t( 'destinos' ), 'destino', $tx_destino, $filters['destino'], 6, true, true );
+        $emt_facet_tax( emt_t( 'categorias' ), 'categoria', $tx_cat, $filters['categoria'], 0, false, true );
+        $emt_facet_tax( emt_t( 'experiencias' ), 'experiencia', $tx_exp, $filters['experiencia'], 8, false, false );
+
+        $emt_facet_simple( emt_t( 'duracion' ), function () use ( $grupos_dur, $filters ) {
+            foreach ( $grupos_dur as $val => $g ) {
                 printf(
-                    '<label class="emt-chip"><input class="emt-chip__input" type="checkbox" name="%s[]" value="%d"%s><span>%s</span></label>',
-                    esc_attr( $name ), (int) $t->term_id,
-                    in_array( $t->term_id, $selected, true ) ? ' checked' : '',
-                    esc_html( $t->name )
+                    '<li class="emt-opt-item"><label class="emt-opt"><input type="checkbox" name="duracion[]" value="%s"%s><span class="emt-opt__name">%s</span></label></li>',
+                    esc_attr( $val ),
+                    in_array( $val, $filters['duracion'], true ) ? ' checked' : '',
+                    esc_html( $g['label'] )
                 );
             }
-            echo '</div></fieldset>';
-        };
-        $group( emt_t( 'destinos' ), 'destino', $tx_destino, $filters['destino'] );
-        $group( emt_t( 'categorias' ), 'categoria', $tx_cat, $filters['categoria'] );
-        $group( emt_t( 'experiencias' ), 'experiencia', $tx_exp, $filters['experiencia'] );
+        }, in_array( true, array_map( function ( $v ) use ( $filters ) { return in_array( $v, $filters['duracion'], true ); }, array_keys( $grupos_dur ) ), true ) );
+
+        $emt_facet_simple( emt_t( 'dificultad' ), function () use ( $difs, $filters ) {
+            printf(
+                '<li class="emt-opt-item"><label class="emt-opt"><input type="radio" name="dificultad" value=""%s><span class="emt-opt__name">%s</span></label></li>',
+                checked( $filters['dificultad'], '', false ),
+                esc_html( emt_t( 'todas' ) )
+            );
+            foreach ( $difs as $k => $lbl ) {
+                printf(
+                    '<li class="emt-opt-item"><label class="emt-opt"><input type="radio" name="dificultad" value="%s"%s><span class="emt-opt__name">%s</span></label></li>',
+                    esc_attr( $k ),
+                    checked( $filters['dificultad'], $k, false ),
+                    esc_html( $lbl )
+                );
+            }
+        }, ( $filters['dificultad'] !== '' ) );
         ?>
 
-        <fieldset class="emt-filters__group"><legend><?php echo esc_html( emt_t( 'duracion' ) ); ?></legend>
-            <div class="emt-filters__chips">
-                <?php foreach ( $grupos_dur as $val => $g ) : ?>
-                    <label class="emt-chip"><input class="emt-chip__input" type="checkbox" name="duracion[]" value="<?php echo esc_attr( $val ); ?>"<?php echo in_array( $val, $filters['duracion'], true ) ? ' checked' : ''; ?>><span><?php echo esc_html( $g['label'] ); ?></span></label>
-                <?php endforeach; ?>
-            </div>
-        </fieldset>
-
-        <fieldset class="emt-filters__group"><legend><?php echo esc_html( emt_t( 'dificultad' ) ); ?></legend>
-            <div class="emt-filters__chips">
-                <label class="emt-chip"><input class="emt-chip__input" type="radio" name="dificultad" value=""<?php checked( $filters['dificultad'], '' ); ?>><span><?php echo esc_html( emt_t( 'todas' ) ); ?></span></label>
-                <?php foreach ( $difs as $k => $lbl ) : ?>
-                    <label class="emt-chip"><input class="emt-chip__input" type="radio" name="dificultad" value="<?php echo esc_attr( $k ); ?>"<?php checked( $filters['dificultad'], $k ); ?>><span><?php echo esc_html( $lbl ); ?></span></label>
-                <?php endforeach; ?>
-            </div>
-        </fieldset>
-
         <?php if ( $has_price ) : ?>
-        <fieldset class="emt-filters__group emt-filters__group--price"><legend><?php echo esc_html( emt_t( 'precio' ) ); ?> (MXN)</legend>
-            <div class="emt-range" data-emt-range data-min="<?php echo (int) $bounds['min']; ?>" data-max="<?php echo (int) $bounds['max']; ?>">
-                <div class="emt-range__slider">
-                    <span class="emt-range__track"></span>
-                    <span class="emt-range__fill" data-range-fill></span>
-                    <input type="range" class="emt-range__input" name="precio_min" min="<?php echo (int) $bounds['min']; ?>" max="<?php echo (int) $bounds['max']; ?>" step="100" value="<?php echo (int) $cur_pmin; ?>" data-range-min aria-label="<?php echo esc_attr( emt_t( 'precio_min_aria' ) ); ?>" />
-                    <input type="range" class="emt-range__input" name="precio_max" min="<?php echo (int) $bounds['min']; ?>" max="<?php echo (int) $bounds['max']; ?>" step="100" value="<?php echo (int) $cur_pmax; ?>" data-range-max aria-label="<?php echo esc_attr( emt_t( 'precio_max_aria' ) ); ?>" />
+        <div class="emt-facet is-open" data-emt-facet>
+            <button type="button" class="emt-facet__head" data-facet-toggle aria-expanded="true">
+                <span><?php echo esc_html( emt_t( 'precio' ) ); ?> (MXN)</span>
+                <span class="emt-facet__caret" aria-hidden="true"></span>
+            </button>
+            <div class="emt-facet__body">
+                <div class="emt-range" data-emt-range data-min="<?php echo (int) $bounds['min']; ?>" data-max="<?php echo (int) $bounds['max']; ?>">
+                    <div class="emt-range__slider">
+                        <span class="emt-range__track"></span>
+                        <span class="emt-range__fill" data-range-fill></span>
+                        <input type="range" class="emt-range__input" name="precio_min" min="<?php echo (int) $bounds['min']; ?>" max="<?php echo (int) $bounds['max']; ?>" step="100" value="<?php echo (int) $cur_pmin; ?>" data-range-min aria-label="<?php echo esc_attr( emt_t( 'precio_min_aria' ) ); ?>" />
+                        <input type="range" class="emt-range__input" name="precio_max" min="<?php echo (int) $bounds['min']; ?>" max="<?php echo (int) $bounds['max']; ?>" step="100" value="<?php echo (int) $cur_pmax; ?>" data-range-max aria-label="<?php echo esc_attr( emt_t( 'precio_max_aria' ) ); ?>" />
+                    </div>
+                    <div class="emt-range__values"><span data-range-lo></span> – <span data-range-hi></span></div>
                 </div>
-                <div class="emt-range__values"><span data-range-lo></span> – <span data-range-hi></span></div>
+                <p class="emt-range__note"><?php echo esc_html( emt_t( 'precio_sin_nota' ) ); ?></p>
             </div>
-            <p class="emt-range__note"><?php echo esc_html( emt_t( 'precio_sin_nota' ) ); ?></p>
-        </fieldset>
+        </div>
         <?php endif; ?>
 
         <div class="emt-filters__actions">
@@ -124,6 +196,8 @@ $cur_pmax   = $filters['precio_max'] !== null ? $filters['precio_max'] : $bounds
     </form>
 
     <div class="emt-listing__results" data-emt-results aria-busy="false">
+        <div class="emt-active-filters" data-emt-active data-label="<?php echo esc_attr( emt_t( 'filtros_activos' ) ); ?>" data-clear="<?php echo esc_attr( emt_t( 'limpiar_todo' ) ); ?>" data-remove="<?php echo esc_attr( emt_t( 'quitar' ) ); ?>" hidden></div>
+
         <p class="emt-listing__count" data-emt-count><?php echo esc_html( emt_tour_count_label( $query->found_posts ) ); ?></p>
 
         <div class="emt-tours-grid" data-emt-grid>

@@ -3,6 +3,10 @@
  * Mejora progresiva: sin JS el formulario funciona por GET y hay paginación.
  * Con JS: filtra sin recargar, actualiza la URL (pushState), soporta el botón
  * atrás (popstate), "cargar más" y un panel de filtros colapsable en móvil.
+ *
+ * Rediseño 2026 (filtros que escalan): grupos colapsables (acordeón), "ver más"
+ * para listas largas, buscador dentro de Destinos y chips de filtros ACTIVOS
+ * arriba de los resultados. La clase `emt-filters--js` activa el CSS de mejora.
  */
 (function () {
   'use strict';
@@ -16,7 +20,10 @@
   var emptyEl = listing.querySelector('[data-emt-empty]');
   var loadmore = listing.querySelector('[data-emt-loadmore]');
   var pagination = listing.querySelector('[data-emt-pagination]');
+  var activeWrap = listing.querySelector('[data-emt-active]');
   if (!form || !results || !grid) { return; }
+
+  form.classList.add('emt-filters--js'); // habilita el CSS de mejora progresiva
 
   var ajaxUrl = form.getAttribute('data-ajax');
   var nonce = form.getAttribute('data-nonce');
@@ -130,6 +137,77 @@
 
   function applyFilters() { fetchTours(1, 'replace', true); }
 
+  /* -------- Chips de filtros ACTIVOS (arriba de los resultados) -------- */
+  var A_LABEL = activeWrap ? (activeWrap.getAttribute('data-label') || '') : '';
+  var A_CLEAR = activeWrap ? (activeWrap.getAttribute('data-clear') || '') : '';
+  var A_REMOVE = activeWrap ? (activeWrap.getAttribute('data-remove') || '') : '';
+
+  function chosenInputs() {
+    return Array.prototype.slice.call(form.querySelectorAll('.emt-opt input')).filter(function (i) {
+      return i.checked && i.value !== '';
+    });
+  }
+
+  function renderActive() {
+    if (!activeWrap) { return; }
+    var chosen = chosenInputs();
+    activeWrap.innerHTML = '';
+    if (!chosen.length) { activeWrap.hidden = true; return; }
+    activeWrap.hidden = false;
+
+    var lbl = document.createElement('span');
+    lbl.className = 'emt-active-filters__label';
+    lbl.textContent = A_LABEL;
+    activeWrap.appendChild(lbl);
+
+    chosen.forEach(function (inp) {
+      var opt = inp.closest('.emt-opt');
+      var nameEl = opt ? opt.querySelector('.emt-opt__name') : null;
+      var text = nameEl ? nameEl.textContent.trim() : inp.value;
+      var chip = document.createElement('span');
+      chip.className = 'emt-active-chip';
+      chip.appendChild(document.createTextNode(text));
+      var x = document.createElement('button');
+      x.type = 'button';
+      x.className = 'emt-active-chip__x';
+      x.innerHTML = '&times;';
+      x.setAttribute('aria-label', (A_REMOVE + ' ' + text).trim());
+      x.addEventListener('click', function () {
+        if (inp.type === 'radio') {
+          var reset = form.querySelector('input[name="' + inp.name + '"][value=""]');
+          if (reset) { reset.checked = true; }
+        } else {
+          inp.checked = false;
+        }
+        renderActive();
+        applyFilters();
+      });
+      chip.appendChild(x);
+      activeWrap.appendChild(chip);
+    });
+
+    var clr = document.createElement('button');
+    clr.type = 'button';
+    clr.className = 'emt-active-filters__clear';
+    clr.textContent = A_CLEAR;
+    clr.addEventListener('click', function () { clearAll(); });
+    activeWrap.appendChild(clr);
+  }
+
+  function clearAll() {
+    form.querySelectorAll('input[type="checkbox"]').forEach(function (i) { i.checked = false; });
+    form.querySelectorAll('input[type="radio"]').forEach(function (i) { i.checked = (i.value === ''); });
+    var q = form.querySelector('input[name="q"]');
+    if (q) { q.value = ''; }
+    if (range) {
+      range.querySelector('[data-range-min]').value = rMin;
+      range.querySelector('[data-range-max]').value = rMax;
+      paintRange();
+    }
+    renderActive();
+    applyFilters();
+  }
+
   /* -------- Sincroniza el formulario desde la URL (para popstate) -------- */
   function syncFormFromUrl() {
     var params = new URLSearchParams(window.location.search);
@@ -148,15 +226,50 @@
       hi.value = params.get('precio_max') || rMax;
       paintRange();
     }
+    renderActive();
   }
+
+  /* -------- Acordeón, "ver más" y buscador dentro de grupos -------- */
+  form.querySelectorAll('[data-facet-toggle]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var facet = btn.closest('[data-emt-facet]');
+      var open = facet.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  });
+  form.querySelectorAll('[data-facet-more]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      btn.closest('[data-emt-facet]').classList.toggle('show-all');
+    });
+  });
+  form.querySelectorAll('[data-facet-search]').forEach(function (inp) {
+    inp.addEventListener('input', function () {
+      var facet = inp.closest('[data-emt-facet]');
+      var q = inp.value.trim().toLowerCase();
+      var items = facet.querySelectorAll('.emt-opt-item');
+      var visibles = 0;
+      facet.classList.toggle('is-searching', q !== '');
+      items.forEach(function (it) {
+        var nameEl = it.querySelector('.emt-opt__name');
+        var match = nameEl && nameEl.textContent.toLowerCase().indexOf(q) !== -1;
+        it.classList.toggle('is-hidden', !match);
+        if (match) { visibles++; }
+      });
+      var nomatch = facet.querySelector('[data-facet-nomatch]');
+      if (nomatch) { nomatch.hidden = (visibles !== 0); }
+      var more = facet.querySelector('[data-facet-more]');
+      if (more) { more.style.display = q ? 'none' : ''; }
+    });
+  });
 
   /* -------- Eventos -------- */
   form.addEventListener('change', function (e) {
     var t = e.target;
     if (!t) { return; }
-    if (t.type === 'checkbox' || t.type === 'radio' || t.type === 'range') { applyFilters(); }
+    if (t.type === 'checkbox' || t.type === 'radio') { renderActive(); applyFilters(); }
+    else if (t.type === 'range') { applyFilters(); }
   });
-  // Búsqueda con debounce.
+  // Búsqueda de tours (texto libre) con debounce.
   form.addEventListener('input', function (e) {
     if (e.target && e.target.name === 'q') {
       clearTimeout(searchTimer);
@@ -177,16 +290,7 @@
   if (clearLink) {
     clearLink.addEventListener('click', function (e) {
       e.preventDefault();
-      form.querySelectorAll('input[type="checkbox"]').forEach(function (i) { i.checked = false; });
-      form.querySelectorAll('input[type="radio"]').forEach(function (i) { i.checked = (i.value === ''); });
-      var q = form.querySelector('input[name="q"]');
-      if (q) { q.value = ''; }
-      if (range) {
-        range.querySelector('[data-range-min]').value = rMin;
-        range.querySelector('[data-range-max]').value = rMax;
-        paintRange();
-      }
-      applyFilters();
+      clearAll();
     });
   }
 
@@ -208,4 +312,7 @@
   if (loadmore) {
     updateLoadMore(parseInt(loadmore.getAttribute('data-page'), 10), parseInt(loadmore.getAttribute('data-max'), 10));
   }
+
+  // Estado inicial de los chips activos (si se llegó con filtros en la URL).
+  renderActive();
 })();
