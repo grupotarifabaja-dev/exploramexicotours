@@ -92,7 +92,7 @@ add_action( 'template_redirect', function () {
     }
 
     $view  = sanitize_key( get_query_var( 'emt_view' ) ?: 'dashboard' );
-    $valid = array( 'dashboard', 'tours', 'asesores', 'configuracion' );
+    $valid = array( 'dashboard', 'tours', 'asesores', 'destinos', 'configuracion' );
     if ( ! in_array( $view, $valid, true ) ) {
         wp_safe_redirect( emt_panel_url() );
         exit;

@@ -309,3 +309,31 @@ function emt_panel_save_config() {
 
     wp_send_json_success( array( 'msg' => 'Configuración guardada.' ) );
 }
+
+/* ============================================================
+   Guardar Destinos (destacado en home + portada por término)
+   ============================================================ */
+add_action( 'wp_ajax_emt_panel_save_destinos', 'emt_panel_save_destinos' );
+function emt_panel_save_destinos() {
+    emt_panel_guard( 'edit_tours' );
+
+    $ids       = array_map( 'intval', (array) ( $_POST['destino_ids'] ?? array() ) );
+    $destacado = (array) ( $_POST['destacado'] ?? array() );
+    $portadas  = (array) ( $_POST['imagen_destino'] ?? array() );
+
+    foreach ( $ids as $tid ) {
+        if ( $tid <= 0 ) { continue; }
+        $term = get_term( $tid, 'tour_destino' );
+        if ( ! $term || is_wp_error( $term ) ) { continue; }
+
+        // Destacado en home (true_false).
+        $is_dest = empty( $destacado[ $tid ] ) ? 0 : 1;
+        update_field( 'destacado', $is_dest, $term );
+
+        // Portada del destino (imagen_destino, ID de adjunto o vacío).
+        $img_id = isset( $portadas[ $tid ] ) ? (int) $portadas[ $tid ] : 0;
+        update_field( 'imagen_destino', $img_id ?: '', $term );
+    }
+
+    wp_send_json_success( array( 'msg' => 'Destinos actualizados.' ) );
+}

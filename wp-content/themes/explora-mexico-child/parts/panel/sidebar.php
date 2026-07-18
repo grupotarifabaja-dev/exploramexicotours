@@ -4,10 +4,12 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 $view = sanitize_key( get_query_var( 'emt_view' ) ?: 'dashboard' );
 $tc   = wp_count_posts( 'tour' );
 $ac   = wp_count_posts( 'asesor' );
+$dc   = (int) wp_count_terms( array( 'taxonomy' => 'tour_destino', 'hide_empty' => false, 'parent' => 0 ) );
 $nav  = array(
     'dashboard'     => array( 'Inicio', 'dashicons-dashboard', null ),
     'tours'         => array( 'Tours', 'dashicons-palmtree', (int) $tc->publish + (int) $tc->draft ),
     'asesores'      => array( 'Asesores', 'dashicons-businessperson', (int) $ac->publish + (int) $ac->draft ),
+    'destinos'      => array( 'Destinos', 'dashicons-location-alt', $dc ),
     'configuracion' => array( 'Configuración', 'dashicons-admin-settings', null ),
 );
 ?>

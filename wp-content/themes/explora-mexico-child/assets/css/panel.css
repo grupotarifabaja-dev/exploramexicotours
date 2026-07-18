@@ -169,3 +169,18 @@
   .emt-panel__sidebar li.is-active a { border-left: 0; border-bottom-color: var(--emt-rosa); }
   .emt-panel__main { padding: var(--emt-spacing-lg); }
 }
+
+/* ---------- Sección Destinos (panel) ---------- */
+.emt-destinos-admin { display: flex; flex-direction: column; gap: var(--emt-spacing-sm); }
+.emt-destino-row { display: flex; flex-wrap: wrap; align-items: center; gap: var(--emt-spacing-md); padding: var(--emt-spacing-md); border: 1px solid var(--emt-color-border); border-radius: var(--emt-radius-md); background: var(--emt-blanco); }
+.emt-destino-row__info { display: flex; flex-wrap: wrap; align-items: center; gap: var(--emt-spacing-md); flex: 1 1 260px; }
+.emt-destino-row__name { font-family: var(--emt-font-display); font-weight: var(--emt-fw-semibold); color: var(--emt-azul-profundo); font-size: var(--emt-fs-base); }
+.emt-destino-row__count { font-size: var(--emt-fs-xs); color: var(--emt-color-text-muted); background: var(--emt-gris-claro); padding: 0.15rem 0.5rem; border-radius: var(--emt-radius-pill); }
+.emt-destino-row__toggle { display: inline-flex; align-items: center; gap: 0.4rem; margin-left: auto; font-size: var(--emt-fs-sm); color: var(--emt-color-text); cursor: pointer; user-select: none; }
+.emt-destino-row__toggle input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--emt-rosa); cursor: pointer; }
+.emt-destino-row__portada .emt-image { display: flex; align-items: center; gap: var(--emt-spacing-sm); }
+.emt-image--sm .emt-image__preview { width: 84px; height: 84px; margin-bottom: 0; }
+.emt-image--sm .emt-image__actions { flex-direction: column; gap: 0.35rem; }
+@media (max-width: 719px) {
+  .emt-destino-row__toggle { margin-left: 0; }
+}

@@ -256,6 +256,7 @@ function emt_acf_register_field_groups() {
         'title'  => 'Destino',
         'fields' => array(
             array( 'key' => 'field_emt_destino_imagen', 'label' => 'Imagen del destino', 'name' => 'imagen_destino', 'type' => 'image', 'return_format' => 'array', 'instructions' => 'Foto representativa del destino para las cards del home. Si se deja vacía, se usa la foto destacada de un tour del destino.' ),
+            array( 'key' => 'field_emt_destino_destacado', 'label' => 'Destacado en home', 'name' => 'destacado', 'type' => 'true_false', 'default_value' => 0, 'ui' => 1, 'instructions' => 'Muestra este destino en la sección "Destinos imperdibles" del inicio. Si ninguno está marcado, el inicio usa los destinos con más tours.' ),
         ),
         'location' => array(
             array( array( 'param' => 'taxonomy', 'operator' => '==', 'value' => 'tour_destino' ) ),

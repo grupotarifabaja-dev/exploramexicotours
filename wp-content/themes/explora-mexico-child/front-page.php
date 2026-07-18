@@ -54,7 +54,15 @@ $hero_has_media  = ( $hero_video_url || $hero_poster_url );
 
 <!-- 2. Destinos destacados -->
 <?php
-$destinos = get_terms( array( 'taxonomy' => 'tour_destino', 'hide_empty' => false, 'parent' => 0, 'number' => 5 ) );
+// Destinos del inicio: primero los marcados como "Destacado en home" desde el
+// panel; si no hay ninguno marcado, respaldo con los de más tours.
+$destinos = get_terms( array( 'taxonomy' => 'tour_destino', 'hide_empty' => false, 'parent' => 0, 'number' => 5, 'meta_key' => 'destacado', 'meta_value' => '1' ) );
+if ( ! $destinos || is_wp_error( $destinos ) ) {
+    $destinos = array();
+}
+if ( empty( $destinos ) ) {
+    $destinos = get_terms( array( 'taxonomy' => 'tour_destino', 'hide_empty' => false, 'parent' => 0, 'number' => 5, 'orderby' => 'count', 'order' => 'DESC' ) );
+}
 if ( $destinos && ! is_wp_error( $destinos ) ) : ?>
 <section class="emt-home-section">
     <div class="emt-container">
