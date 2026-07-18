@@ -79,6 +79,8 @@ function emt_panel_save_tour() {
     update_field( 'salida_garantizada', empty( $_POST['salida_garantizada'] ) ? 0 : 1, $post_id );
     update_field( 'pickup_hotel', empty( $_POST['pickup_hotel'] ) ? 0 : 1, $post_id );
     update_field( 'destacado', empty( $_POST['destacado'] ) ? 0 : 1, $post_id );
+    $orden_dest = $_POST['orden_destacado'] ?? '';
+    update_field( 'orden_destacado', ( $orden_dest === '' ) ? 99 : max( 0, (int) $orden_dest ), $post_id );
 
     // Idiomas (checkbox).
     $idiomas = array_map( 'sanitize_key', (array) ( $_POST['idiomas'] ?? array() ) );

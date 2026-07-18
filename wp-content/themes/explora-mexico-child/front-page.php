@@ -82,15 +82,28 @@ if ( $destinos && ! is_wp_error( $destinos ) ) : ?>
 
 <!-- 3. Tours imperdibles (destacado = true) — mosaico bento (rediseño 2026) -->
 <?php
-$destacados = new WP_Query( array(
+// Orden editable desde el panel: campo "orden_destacado" (menor = primero;
+// vacío = 99). Se ordena en PHP para incluir tours sin el meta y usar la fecha
+// como desempate (más nuevo primero). El 1er tour resultante es el tile grande.
+$emt_dest_q = new WP_Query( array(
     'post_type'      => 'tour',
-    'posts_per_page' => 5,
+    'posts_per_page' => 30,
+    'fields'         => 'ids',
     'meta_key'       => 'destacado',
     'meta_value'     => '1',
-    'orderby'        => array( 'menu_order' => 'ASC', 'date' => 'DESC' ),
     'no_found_rows'  => true,
 ) );
-if ( $destacados->have_posts() ) : ?>
+$emt_dest_ids = $emt_dest_q->posts;
+usort( $emt_dest_ids, function ( $a, $b ) {
+    $oa = get_post_meta( $a, 'orden_destacado', true );
+    $ob = get_post_meta( $b, 'orden_destacado', true );
+    $oa = ( $oa === '' ) ? 99 : (int) $oa;
+    $ob = ( $ob === '' ) ? 99 : (int) $ob;
+    if ( $oa !== $ob ) { return $oa <=> $ob; }
+    return get_post_time( 'U', true, $b ) <=> get_post_time( 'U', true, $a );
+} );
+$emt_dest_ids = array_slice( $emt_dest_ids, 0, 5 );
+if ( $emt_dest_ids ) : ?>
 <section class="emt-section emt-section--tint emt-imperdibles">
     <div class="emt-container">
         <div class="emt-heading">
@@ -102,7 +115,7 @@ if ( $destacados->have_posts() ) : ?>
         // Tamaños del mosaico: el 1er tile es grande (2x2); el resto se reparte
         // para llenar el bloque sin huecos según cuántos destacados haya.
         // Con menos de 3, se usa una fila de tiles iguales (sin asimetría).
-        $emt_n    = $destacados->post_count;
+        $emt_n    = count( $emt_dest_ids );
         $emt_mode = ( $emt_n >= 3 ) ? 'mosaic' : 'row';
         $emt_sizes = array();
         if ( $emt_mode === 'mosaic' ) {
@@ -120,8 +133,7 @@ if ( $destacados->have_posts() ) : ?>
         <div class="emt-bento emt-bento--<?php echo esc_attr( $emt_mode ); ?>">
             <?php
             $emt_bento_i = 0;
-            while ( $destacados->have_posts() ) : $destacados->the_post();
-                $tid    = get_the_ID();
+            foreach ( $emt_dest_ids as $tid ) :
                 $tlink  = get_permalink( $tid );
                 $timg   = has_post_thumbnail( $tid ) ? get_the_post_thumbnail_url( $tid, 'large' ) : '';
                 $ttitle = get_the_title( $tid );
@@ -151,7 +163,7 @@ if ( $destacados->have_posts() ) : ?>
                         <?php endif; ?>
                     </div>
                 </a>
-            <?php $emt_bento_i++; endwhile; ?>
+            <?php $emt_bento_i++; endforeach; ?>
         </div>
 
         <div class="emt-bento__more">
@@ -159,7 +171,7 @@ if ( $destacados->have_posts() ) : ?>
         </div>
     </div>
 </section>
-<?php endif; wp_reset_postdata(); ?>
+<?php endif; ?>
 
 <!-- 4. Explora por experiencia -->
 <?php

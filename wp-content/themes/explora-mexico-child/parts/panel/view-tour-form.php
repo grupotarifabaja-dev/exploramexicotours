@@ -147,6 +147,7 @@ $itin_ico= array( 'salida' => 'Salida', 'parada' => 'Parada', 'comida' => 'Comid
                 <label><input type="checkbox" name="destacado" value="1" <?php checked( $g( 'destacado' ) ); ?> /> Destacado (home)</label>
             </div>
         </div>
+        <div class="emt-field"><label>Orden en imperdibles del home — menor = primero (el menor va en grande)</label><input type="number" name="orden_destacado" value="<?php echo esc_attr( $g( 'orden_destacado', 99 ) ); ?>" min="0" step="1" /></div>
     </div>
 
     <div class="emt-panel-form__section">
