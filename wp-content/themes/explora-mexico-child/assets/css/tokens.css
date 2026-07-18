@@ -8,22 +8,50 @@
   --emt-color-text: var(--emt-gris-oscuro);
   --emt-color-text-muted: var(--emt-gris-medio);
   --emt-color-link: var(--emt-azul-brillante);
-  --emt-color-cta: var(--emt-rosa);
-  --emt-color-cta-hover: #d11757;
+  --emt-color-cta: var(--emt-cta);
+  --emt-color-cta-hover: var(--emt-cta-hover);
   --emt-color-success: var(--emt-verde);
   --emt-color-warning: var(--emt-naranja);
-  --emt-color-danger: var(--emt-coral);
+  --emt-color-danger: var(--emt-rojo);
   --emt-color-border: rgba(0, 51, 102, 0.08);
 
-  /* Escala tipográfica (§5.2) */
+  /* Semánticos del rediseño 2026 */
+  --emt-cta: var(--emt-magenta);          /* acción principal */
+  --emt-cta-hover: #C4134F;
+  --emt-acento: var(--emt-turquesa);      /* eyebrows, detalles frescos */
+  --emt-acento-tinta: var(--emt-turquesa-tinta); /* acento como TEXTO sobre claro */
+  --emt-calido: var(--emt-coral);         /* energía cálida (degradados, hovers) */
+  --emt-highlight: var(--emt-ambar);      /* badges, highlights puntuales */
+
+  /* Superficies (ritmo de secciones) */
+  --emt-surface: var(--emt-blanco);
+  --emt-surface-tint: #F2F7FB;            /* sección tenue */
+  --emt-surface-dark: var(--emt-azul-profundo); /* sección oscura full-bleed */
+  --emt-on-dark: #E9F1F8;                 /* texto base sobre superficie oscura */
+
+  /* Firma visual: línea serape (solo bajo títulos de sección) */
+  --emt-serape: linear-gradient(90deg, var(--emt-magenta), var(--emt-coral) 34%, var(--emt-ambar) 67%, var(--emt-turquesa));
+
+  /* Overlay estándar para texto sobre fotos (cards de destino/tour) */
+  --emt-overlay-img: linear-gradient(180deg, rgba(0, 20, 45, 0) 38%, rgba(0, 20, 45, 0.82) 100%);
+
+  /* Anillo de foco (accesibilidad, hover/focus visibles) */
+  --emt-focus-ring: 0 0 0 3px rgba(0, 87, 184, 0.35);
+
+  /* Escala tipográfica (§5.2) — fluida desde el rediseño 2026 */
   --emt-fs-xs: 0.75rem;
   --emt-fs-sm: 0.875rem;
   --emt-fs-base: 1rem;
   --emt-fs-md: 1.125rem;
-  --emt-fs-lg: 1.5rem;
-  --emt-fs-xl: 2rem;
-  --emt-fs-2xl: 2.75rem;
-  --emt-fs-3xl: 4rem;
+  --emt-fs-lg: clamp(1.35rem, 1.2rem + 0.7vw, 1.5rem);
+  --emt-fs-xl: clamp(1.55rem, 1.3rem + 1.2vw, 2rem);
+  --emt-fs-2xl: clamp(1.9rem, 1.45rem + 2.1vw, 2.75rem);
+  --emt-fs-3xl: clamp(2.4rem, 1.7rem + 3.6vw, 4rem);
+  --emt-fs-display: clamp(2.6rem, 1.8rem + 4.2vw, 4.5rem);
+
+  /* Eyebrow (etiqueta de sección) */
+  --emt-eyebrow-fs: 0.8125rem;
+  --emt-eyebrow-tracking: 0.16em;
 
   --emt-fw-normal: 400;
   --emt-fw-medium: 500;
@@ -55,6 +83,7 @@
   /* Border radius */
   --emt-radius-sm: 6px;
   --emt-radius-md: 12px;
+  --emt-radius-card: 16px;
   --emt-radius-lg: 18px;
   --emt-radius-xl: 24px;
   --emt-radius-pill: 999px;

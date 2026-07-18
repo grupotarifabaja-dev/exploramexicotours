@@ -1,0 +1,303 @@
+/* ============================================================
+   COMPONENTES BASE — Sistema de diseño EMT (rediseño 2026)
+   Fundación aprobada en /design-system-preview.html.
+   Carga global después de tokens.css; las secciones adoptan
+   estas clases en la cascada del rediseño.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1. BOTONES
+   Primario (magenta) = LA acción de la vista. Secundario (azul)
+   = acciones de apoyo. Outline = terciario. Ghost = sobre oscuro.
+   ------------------------------------------------------------ */
+.emt-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--emt-font-display);
+  font-weight: var(--emt-fw-semibold);
+  font-size: var(--emt-fs-sm);
+  line-height: 1;
+  padding: 0.65rem 1.4rem;
+  border-radius: var(--emt-radius-pill);
+  text-decoration: none;
+  -webkit-appearance: none;
+  appearance: none;
+  border: 0;
+  cursor: pointer;
+  transition: transform var(--emt-transition-fast), background var(--emt-transition-fast),
+              box-shadow var(--emt-transition-fast), color var(--emt-transition-fast),
+              border-color var(--emt-transition-fast);
+}
+.emt-btn:focus-visible { outline: none; box-shadow: var(--emt-focus-ring); }
+
+.emt-btn--cta { background: var(--emt-cta); color: var(--emt-blanco); }
+.emt-btn--cta:hover { background: var(--emt-cta-hover); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(233, 30, 99, 0.28); }
+
+.emt-btn--secondary { background: var(--emt-azul-brillante); color: var(--emt-blanco); }
+.emt-btn--secondary:hover { background: var(--emt-azul-profundo); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0, 51, 102, 0.22); }
+
+.emt-btn--outline { background: transparent; border: 1.5px solid var(--emt-azul-brillante); color: var(--emt-azul-brillante); }
+.emt-btn--outline:hover { background: rgba(0, 87, 184, 0.08); transform: translateY(-2px); }
+
+/* Sobre secciones oscuras */
+.emt-btn--ghost { background: transparent; border: 1.5px solid rgba(255, 255, 255, 0.55); color: var(--emt-blanco); }
+.emt-btn--ghost:hover { background: rgba(255, 255, 255, 0.12); border-color: var(--emt-blanco); transform: translateY(-2px); }
+
+.emt-btn--lg { padding: 0.9rem 2rem; font-size: var(--emt-fs-base); }
+
+/* ------------------------------------------------------------
+   2. CHIPS / PILLS
+   Tags, filtros y categorías (sustituyen checkboxes de sistema).
+   Seleccionado = azul profundo sólido (el magenta queda reservado
+   para la acción principal).
+   ------------------------------------------------------------ */
+.emt-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.42rem 1rem;
+  border-radius: var(--emt-radius-pill);
+  border: 1px solid rgba(0, 51, 102, 0.18);
+  background: var(--emt-blanco);
+  color: var(--emt-azul-profundo);
+  font-family: var(--emt-font-body);
+  font-weight: var(--emt-fw-medium);
+  font-size: var(--emt-fs-sm);
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  transition: background var(--emt-transition-fast), border-color var(--emt-transition-fast),
+              color var(--emt-transition-fast), transform var(--emt-transition-fast);
+}
+.emt-chip:hover { border-color: var(--emt-azul-brillante); color: var(--emt-azul-brillante); }
+.emt-chip:focus-visible { outline: none; box-shadow: var(--emt-focus-ring); }
+.emt-chip.is-selected,
+.emt-chip[aria-pressed="true"] {
+  background: var(--emt-azul-profundo);
+  border-color: var(--emt-azul-profundo);
+  color: var(--emt-blanco);
+  font-weight: var(--emt-fw-semibold);
+}
+.emt-chip__count {
+  font-size: var(--emt-fs-xs);
+  font-weight: var(--emt-fw-semibold);
+  padding: 0.05rem 0.45rem;
+  border-radius: var(--emt-radius-pill);
+  background: rgba(0, 51, 102, 0.08);
+}
+.emt-chip.is-selected .emt-chip__count,
+.emt-chip[aria-pressed="true"] .emt-chip__count { background: rgba(255, 255, 255, 0.22); }
+
+/* Chip como control de formulario: el label ES el chip y el checkbox vive
+   oculto dentro. El foco del input ilumina el chip (accesible con teclado);
+   el estado seleccionado lo pinta el servidor con .is-selected. */
+.emt-chip { position: relative; }
+.emt-chip__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+.emt-chip:focus-within { box-shadow: var(--emt-focus-ring); }
+
+/* ------------------------------------------------------------
+   3. CARDS
+   Radio 16px, borde + sombra sutil, hover con elevación.
+   ------------------------------------------------------------ */
+.emt-card {
+  background: var(--emt-surface);
+  border: 1px solid var(--emt-color-border);
+  border-radius: var(--emt-radius-card);
+  box-shadow: var(--emt-shadow-sm);
+  overflow: hidden;
+  transition: transform var(--emt-transition-base), box-shadow var(--emt-transition-base);
+}
+.emt-card:hover,
+.emt-card:focus-within {
+  transform: translateY(-4px);
+  box-shadow: var(--emt-shadow-lg);
+}
+.emt-card__media {
+  margin: 0;
+  position: relative;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--emt-azul-profundo), var(--emt-azul-brillante));
+}
+.emt-card__media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.emt-card__body { padding: var(--emt-spacing-lg); display: flex; flex-direction: column; gap: var(--emt-spacing-sm); }
+
+/* ------------------------------------------------------------
+   4. EYEBROW + TÍTULO DE SECCIÓN (encabezado canónico)
+   El eyebrow es un elemento de diseño: tracking amplio, Poppins
+   seminegrita, turquesa tinta (legible sobre claro). El título
+   lleva la FIRMA del sistema: la línea serape.
+   ------------------------------------------------------------ */
+.emt-eyebrow {
+  display: inline-block;
+  font-family: var(--emt-font-display);
+  font-weight: var(--emt-fw-semibold);
+  font-size: var(--emt-eyebrow-fs);
+  letter-spacing: var(--emt-eyebrow-tracking);
+  text-transform: uppercase;
+  color: var(--emt-acento-tinta);
+}
+.emt-title {
+  font-family: var(--emt-font-display);
+  font-size: var(--emt-fs-2xl);
+  font-weight: var(--emt-fw-black);
+  line-height: var(--emt-lh-tight);
+  color: var(--emt-azul-profundo);
+  margin: 0;
+}
+/* Encabezado de sección: eyebrow + título + línea serape */
+.emt-heading {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  gap: 0.55rem;
+  margin-bottom: var(--emt-spacing-2xl);
+}
+.emt-heading::after {
+  content: '';
+  width: 64px;
+  height: 4px;
+  border-radius: var(--emt-radius-pill);
+  background: var(--emt-serape);
+  margin-top: 0.4rem;
+}
+.emt-heading--left { justify-items: start; text-align: left; }
+/* order:1 empuja el subtítulo detrás del ::after (la línea queda bajo el título) */
+.emt-heading__sub { order: 1; margin: 0.15rem 0 0; max-width: 56ch; color: var(--emt-color-text-muted); line-height: var(--emt-lh-relaxed); }
+
+/* ------------------------------------------------------------
+   5. BADGES
+   Ámbar = destacados (texto azul profundo, festivo y legible).
+   Magenta = conteos/nuevo. Turquesa = informativo suave.
+   ------------------------------------------------------------ */
+.emt-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.28rem 0.72rem;
+  border-radius: var(--emt-radius-pill);
+  font-family: var(--emt-font-body);
+  font-size: var(--emt-fs-xs);
+  font-weight: var(--emt-fw-bold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+.emt-badge--ambar { background: var(--emt-highlight); color: var(--emt-azul-profundo); }
+.emt-badge--magenta { background: var(--emt-cta); color: var(--emt-blanco); }
+.emt-badge--turquesa { background: rgba(23, 190, 187, 0.15); color: var(--emt-acento-tinta); }
+
+/* ------------------------------------------------------------
+   6. OVERLAY DE IMAGEN
+   Degradado estándar para texto sobre fotos (cards destino/tour).
+   ------------------------------------------------------------ */
+.emt-img-overlay { position: relative; }
+.emt-img-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--emt-overlay-img);
+  pointer-events: none;
+  z-index: 1;
+}
+.emt-img-overlay__content {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 2;
+  padding: var(--emt-spacing-lg);
+  color: var(--emt-blanco);
+}
+
+/* ------------------------------------------------------------
+   7. RITMO DE SECCIONES
+   Claro → tenue → claro → OSCURO full-bleed. El home (y el resto)
+   alternan estas superficies para romper el compás blanco.
+   ------------------------------------------------------------ */
+.emt-section { padding-block: clamp(3.5rem, 8vw, 6rem); background: var(--emt-surface); }
+.emt-section--tint { background: var(--emt-surface-tint); }
+.emt-section--dark { background: var(--emt-surface-dark); color: var(--emt-on-dark); }
+
+.emt-section--dark .emt-title { color: var(--emt-blanco); }
+.emt-section--dark .emt-eyebrow { color: var(--emt-turquesa); }
+.emt-section--dark .emt-heading__sub { color: rgba(233, 241, 248, 0.75); }
+
+/* ------------------------------------------------------------
+   8. AVATAR
+   Identidad de asesor. Con foto: recorte circular. Sin foto:
+   iniciales blancas sobre degradado azul (adiós silueta gris).
+   Definido en la sección Asesores de la cascada.
+   ------------------------------------------------------------ */
+.emt-avatar {
+  --emt-avatar-size: 48px;
+  width: var(--emt-avatar-size);
+  height: var(--emt-avatar-size);
+  border-radius: 50%;
+  overflow: hidden;
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 auto;
+  background: linear-gradient(135deg, var(--emt-azul-profundo), var(--emt-azul-brillante));
+  color: var(--emt-blanco);
+  font-family: var(--emt-font-display);
+  font-weight: var(--emt-fw-bold);
+  font-size: calc(var(--emt-avatar-size) * 0.36);
+  letter-spacing: 0.03em;
+  user-select: none;
+}
+.emt-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.emt-avatar--sm { --emt-avatar-size: 36px; }
+.emt-avatar--lg { --emt-avatar-size: 72px; }
+.emt-avatar--xl { --emt-avatar-size: 112px; }
+
+/* ------------------------------------------------------------
+   9. EMPTY STATE
+   Cuando una lista queda en cero (p. ej. filtros sin resultados).
+   Icono + título + texto + una acción para salir del callejón.
+   Definido en la sección Asesores de la cascada.
+   ------------------------------------------------------------ */
+.emt-empty {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  gap: var(--emt-spacing-sm);
+  padding: var(--emt-spacing-3xl) var(--emt-spacing-lg);
+}
+.emt-empty__icon {
+  width: 64px;
+  height: 64px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--emt-surface-tint);
+  color: var(--emt-azul-brillante);
+  margin-bottom: var(--emt-spacing-xs);
+}
+.emt-empty__icon svg { width: 30px; height: 30px; }
+.emt-empty__title {
+  font-family: var(--emt-font-display);
+  font-size: var(--emt-fs-lg);
+  font-weight: var(--emt-fw-bold);
+  color: var(--emt-azul-profundo);
+  margin: 0;
+}
+.emt-empty__text { color: var(--emt-color-text-muted); max-width: 46ch; margin: 0; }
+.emt-empty__action { margin-top: var(--emt-spacing-md); }
+
+/* ------------------------------------------------------------
+   Accesibilidad: sin movimiento si el usuario lo pide.
+   ------------------------------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  .emt-btn, .emt-chip, .emt-card { transition: none; }
+  .emt-btn:hover, .emt-chip:hover, .emt-card:hover, .emt-card:focus-within { transform: none; }
+}

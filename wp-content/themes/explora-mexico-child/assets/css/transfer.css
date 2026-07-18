@@ -74,11 +74,11 @@
 .emt-transfer-form__pax-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--emt-spacing-md); }
 .emt-transfer-check { display: flex; align-items: flex-start; gap: var(--emt-spacing-sm); font-size: var(--emt-fs-sm); padding: 3px 0; cursor: pointer; }
 .emt-transfer-check input { width: auto; margin-top: 3px; }
-.emt-transfer-form .emt-field--error input, .emt-transfer-form .emt-field--error textarea { border-color: var(--emt-coral); }
+.emt-transfer-form .emt-field--error input, .emt-transfer-form .emt-field--error textarea { border-color: var(--emt-color-danger); }
 .emt-transfer-form__bar { display: flex; gap: var(--emt-spacing-md); align-items: center; justify-content: flex-end; margin-top: var(--emt-spacing-lg); }
 .emt-transfer-form__msg { margin-right: auto; font-size: var(--emt-fs-sm); }
 .emt-transfer-form__msg.is-ok { color: #4e7a16; font-weight: var(--emt-fw-semibold); }
-.emt-transfer-form__msg.is-err { color: var(--emt-coral); }
+.emt-transfer-form__msg.is-err { color: var(--emt-color-danger); }
 
 /* Contacto */
 .emt-transfer-contacto ul { list-style: none; margin: 0 0 var(--emt-spacing-md); padding: 0; display: grid; gap: var(--emt-spacing-sm); }

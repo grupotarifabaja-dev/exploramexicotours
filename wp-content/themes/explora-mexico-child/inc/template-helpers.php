@@ -35,6 +35,48 @@ function emt_render_asesor_card( $asesor ) {
 }
 
 /**
+ * Iniciales de un asesor para el avatar de respaldo (máx. 2, con acentos).
+ *
+ * @param int $post_id ID del asesor.
+ * @return string Iniciales en mayúsculas, p. ej. "FV".
+ */
+function emt_asesor_initials( $post_id ) {
+    $words = preg_split( '/\s+/', trim( wp_strip_all_tags( get_the_title( $post_id ) ) ) );
+    $ini   = '';
+    foreach ( array_slice( (array) $words, 0, 2 ) as $w ) {
+        if ( $w !== '' ) {
+            $ini .= mb_strtoupper( mb_substr( $w, 0, 1 ) );
+        }
+    }
+    return $ini;
+}
+
+/**
+ * Imprime el avatar de un asesor (componente .emt-avatar del sistema).
+ * Con foto destacada: recorte circular. Sin foto: iniciales sobre azul.
+ *
+ * @param int    $post_id  ID del asesor.
+ * @param string $size     Modificador del componente: sm|md|lg|xl (md = sin sufijo).
+ * @param string $img_size Tamaño de imagen de WP para la foto.
+ * @return void
+ */
+function emt_asesor_avatar( $post_id, $size = 'md', $img_size = 'medium' ) {
+    $classes = 'emt-avatar' . ( $size !== 'md' ? ' emt-avatar--' . sanitize_html_class( $size ) : '' );
+    $url     = has_post_thumbnail( $post_id ) ? get_the_post_thumbnail_url( $post_id, $img_size ) : '';
+    if ( $url ) {
+        printf(
+            '<span class="%s"><img src="%s" alt="%s" loading="lazy" /></span>',
+            esc_attr( $classes ),
+            esc_url( $url ),
+            esc_attr( get_the_title( $post_id ) )
+        );
+        return;
+    }
+    printf( '<span class="%s" aria-hidden="true">%s</span>', esc_attr( $classes ), esc_html( emt_asesor_initials( $post_id ) ) );
+}
+
+/**
+ * Devuelve la URL de la imagen destacada del post o un placeholder del theme./**
  * Devuelve la URL de la imagen destacada del post o un placeholder del theme.
  *
  * @param int    $post_id ID del post.
