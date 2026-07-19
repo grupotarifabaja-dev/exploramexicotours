@@ -170,7 +170,7 @@ while ( have_posts() ) :
                             <h2><?php echo esc_html( emt_t( 'itinerario' ) ); ?></h2>
                             <?php foreach ( $itin as $paso ) : ?>
                                 <details class="emt-itin__item">
-                                    <summary><?php echo esc_html( trim( ( isset( $paso['dia'] ) ? 'Día ' . $paso['dia'] . ' · ' : '' ) . ( $paso['hora'] ?? '' ) . ' ' . ( $paso['titulo'] ?? $paso['titulo_en'] ?? '' ) ) ); ?></summary>
+                                    <summary><?php echo esc_html( trim( ( isset( $paso['dia'] ) ? emt_t( 'dia_label' ) . ' ' . $paso['dia'] . ' · ' : '' ) . ( $paso['hora'] ?? '' ) . ' ' . ( $paso['titulo'] ?? $paso['titulo_en'] ?? '' ) ) ); ?></summary>
                                     <?php if ( ! empty( $paso['descripcion'] ) || ! empty( $paso['descripcion_en'] ) ) : ?>
                                         <p><?php echo esc_html( $paso['descripcion'] ?? $paso['descripcion_en'] ); ?></p>
                                     <?php endif; ?>

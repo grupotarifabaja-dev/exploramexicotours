@@ -145,6 +145,7 @@ return array(
     'eyebrow_experiencia'  => 'Experience',
     'eyebrow_tours'        => 'Explore Mexico',
     'n_tours'              => '%d tours',
+    'dia_label'            => 'Day',
 
     // Catalog filters (accordion + active filters)
     'buscar_destino'       => 'Search destination…',
