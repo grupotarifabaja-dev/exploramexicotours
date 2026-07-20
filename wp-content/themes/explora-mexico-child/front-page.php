@@ -70,7 +70,9 @@ if ( $destinos && ! is_wp_error( $destinos ) ) : ?>
             <span class="emt-section-head__eyebrow"><?php echo esc_html( emt_t( 'a_donde_ir' ) ); ?></span>
             <h2 class="emt-section-head__title"><?php echo esc_html( emt_t( 'destinos_destacados' ) ); ?></h2>
         </header>
-        <ul class="emt-destinos-grid">
+        <div class="emt-carousel" data-carousel>
+            <button type="button" class="emt-carousel__nav emt-carousel__nav--prev" data-carousel-prev aria-label="<?php echo esc_attr( emt_t( 'anterior' ) ); ?>">&#8249;</button>
+            <ul class="emt-destinos-carousel emt-carousel__track" data-carousel-track>
             <?php foreach ( $destinos as $d ) :
                 $link = get_term_link( $d );
                 $img  = function_exists( 'emt_destino_image_url' ) ? emt_destino_image_url( $d ) : '';
@@ -83,7 +85,9 @@ if ( $destinos && ! is_wp_error( $destinos ) ) : ?>
                     </a>
                 </li>
             <?php endforeach; ?>
-        </ul>
+            </ul>
+            <button type="button" class="emt-carousel__nav emt-carousel__nav--next" data-carousel-next aria-label="<?php echo esc_attr( emt_t( 'siguiente' ) ); ?>">&#8250;</button>
+        </div>
     </div>
 </section>
 <?php endif; ?>

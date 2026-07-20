@@ -38,7 +38,6 @@
 .emt-section-head__eyebrow { text-transform: uppercase; letter-spacing: 0.08em; font-size: var(--emt-fs-sm); color: var(--emt-turquesa); }
 .emt-section-head__title { font-family: var(--emt-font-display); font-size: var(--emt-fs-2xl); font-weight: var(--emt-fw-bold); color: var(--emt-azul-profundo); margin: var(--emt-spacing-xs) 0 0; }
 
-.emt-destinos-grid,
 .emt-tours-grid,
 .emt-blog-grid {
   list-style: none;
@@ -47,17 +46,39 @@
   display: grid;
   gap: var(--emt-spacing-lg);
 }
-.emt-destinos-grid { grid-template-columns: repeat(2, 1fr); }
 .emt-tours-grid { grid-template-columns: 1fr; }
 .emt-blog-grid { grid-template-columns: 1fr; }
 @media (min-width: 720px) {
-  .emt-destinos-grid { grid-template-columns: repeat(3, 1fr); }
   .emt-tours-grid { grid-template-columns: repeat(2, 1fr); }
   .emt-blog-grid { grid-template-columns: repeat(3, 1fr); }
 }
 @media (min-width: 1024px) {
   .emt-tours-grid { grid-template-columns: repeat(3, 1fr); }
 }
+
+/* Carrusel de destinos (home) — scroll horizontal + snap + flechas */
+.emt-carousel { position: relative; }
+.emt-destinos-carousel {
+  list-style: none; margin: 0; padding: 4px; display: flex; gap: var(--emt-spacing-lg);
+  overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch; scrollbar-width: none;
+}
+.emt-destinos-carousel::-webkit-scrollbar { display: none; }
+.emt-destinos-carousel > .emt-destino-card { flex: 0 0 auto; width: clamp(240px, 80vw, 300px); scroll-snap-align: start; }
+@media (min-width: 720px) { .emt-destinos-carousel > .emt-destino-card { width: clamp(260px, 31%, 320px); } }
+.emt-carousel__nav {
+  position: absolute; top: 50%; transform: translateY(-50%); z-index: 3;
+  width: 44px; height: 44px; border-radius: 50%; border: 0; cursor: pointer;
+  background: var(--emt-blanco); color: var(--emt-azul-profundo);
+  box-shadow: 0 6px 20px rgba(0, 20, 45, 0.18); font-size: 26px; line-height: 1;
+  display: none; align-items: center; justify-content: center;
+  transition: background var(--emt-transition-fast), color var(--emt-transition-fast), transform var(--emt-transition-fast);
+}
+.emt-carousel__nav:hover { background: var(--emt-turquesa); color: var(--emt-blanco); transform: translateY(-50%) scale(1.05); }
+.emt-carousel__nav:disabled { opacity: 0.3; cursor: default; }
+.emt-carousel__nav--prev { left: -10px; }
+.emt-carousel__nav--next { right: -10px; }
+@media (min-width: 720px) { .emt-carousel.is-scrollable .emt-carousel__nav { display: flex; } }
 
 .emt-destino-card { position: relative; border-radius: var(--emt-radius-lg); overflow: hidden; aspect-ratio: 3 / 4; }
 .emt-destino-card a { display: block; height: 100%; text-decoration: none; }
