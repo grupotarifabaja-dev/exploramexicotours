@@ -110,6 +110,30 @@ while ( have_posts() ) :
                 </section>
             <?php endif; ?>
 
+            <?php
+            // Tarjeta de reserva (precio + CTAs) — banda inline debajo de la galería.
+            $wa_num = function_exists( 'get_field' ) ? preg_replace( '/\D/', '', (string) get_field( 'wa_number', 'option' ) ) : '';
+            if ( $wa_num === '' ) { $wa_num = '523310480670'; }
+            $wa_msg = ( $lang === 'en' ) ? "Hi, I'm interested in the {$titulo} tour" : "Hola, me interesa el tour {$titulo}";
+            $wa_url = 'https://wa.me/' . $wa_num . '?text=' . rawurlencode( $wa_msg );
+            ?>
+            <div class="emt-tour-booking">
+                <div class="emt-reserve-card">
+                    <?php if ( ! empty( $precio ) ) : ?>
+                        <p class="emt-reserve-card__price"><span><?php echo esc_html( emt_t( 'desde' ) ); ?></span><strong><?php echo esc_html( emt_format_price( $precio ) ); ?></strong></p>
+                    <?php else : ?>
+                        <p class="emt-reserve-card__price emt-reserve-card__price--consultar"><strong><?php echo esc_html( emt_t( 'consultar_precio' ) ); ?></strong></p>
+                    <?php endif; ?>
+                    <div class="emt-reserve-card__actions">
+                        <a href="<?php echo esc_url( $wa_url ); ?>" class="emt-btn emt-btn--cta emt-reserve-card__wa" data-tour-id="<?php echo esc_attr( $id ); ?>" target="_blank" rel="noopener"><?php echo esc_html( emt_t( 'reservar_whatsapp' ) ); ?></a>
+                        <?php if ( $peek && $peek !== '#' ) : ?>
+                            <a href="<?php echo esc_url( $peek ); ?>" class="emt-btn emt-btn--secondary emt-btn--peek" data-tour-id="<?php echo esc_attr( $id ); ?>" data-tour-title="<?php echo esc_attr( $titulo ); ?>" target="_blank" rel="noopener"><?php echo esc_html( emt_t( 'reservar_ahora' ) ); ?></a>
+                        <?php endif; ?>
+                        <a href="<?php echo esc_url( $cotiza_url ); ?>" class="emt-btn emt-btn--secondary"><?php echo esc_html( emt_t( 'solicitar_cotizacion' ) ); ?></a>
+                    </div>
+                </div>
+            </div>
+
             <div class="emt-tour-body">
                 <!-- Columna principal -->
                 <div class="emt-tour-main">
@@ -218,31 +242,6 @@ while ( have_posts() ) :
                         </section>
                     <?php endif; ?>
                 </div>
-
-                <!-- Sidebar de reserva -->
-                <aside class="emt-tour-aside">
-                    <div class="emt-reserve-card">
-                        <?php if ( ! empty( $precio ) ) : ?>
-                            <p class="emt-reserve-card__price"><span><?php echo esc_html( emt_t( 'desde' ) ); ?></span><strong><?php echo esc_html( emt_format_price( $precio ) ); ?></strong></p>
-                        <?php else : ?>
-                            <p class="emt-reserve-card__price emt-reserve-card__price--consultar"><strong><?php echo esc_html( emt_t( 'consultar_precio' ) ); ?></strong></p>
-                        <?php endif; ?>
-                        <?php
-                        // CTA primario: reservar por WhatsApp con mensaje prellenado (bilingüe).
-                        $wa_num = function_exists( 'get_field' ) ? preg_replace( '/\D/', '', (string) get_field( 'wa_number', 'option' ) ) : '';
-                        if ( $wa_num === '' ) { $wa_num = '523310480670'; }
-                        $wa_msg = ( $lang === 'en' )
-                            ? "Hi, I'm interested in the {$titulo} tour"
-                            : "Hola, me interesa el tour {$titulo}";
-                        $wa_url = 'https://wa.me/' . $wa_num . '?text=' . rawurlencode( $wa_msg );
-                        ?>
-                        <a href="<?php echo esc_url( $wa_url ); ?>" class="emt-btn emt-btn--cta emt-reserve-card__wa" data-tour-id="<?php echo esc_attr( $id ); ?>" target="_blank" rel="noopener"><?php echo esc_html( emt_t( 'reservar_whatsapp' ) ); ?></a>
-                        <?php if ( $peek && $peek !== '#' ) : ?>
-                            <a href="<?php echo esc_url( $peek ); ?>" class="emt-btn emt-btn--secondary emt-btn--peek" data-tour-id="<?php echo esc_attr( $id ); ?>" data-tour-title="<?php echo esc_attr( $titulo ); ?>" target="_blank" rel="noopener"><?php echo esc_html( emt_t( 'reservar_ahora' ) ); ?></a>
-                        <?php endif; ?>
-                        <a href="<?php echo esc_url( $cotiza_url ); ?>" class="emt-btn emt-btn--secondary"><?php echo esc_html( emt_t( 'solicitar_cotizacion' ) ); ?></a>
-                    </div>
-                </aside>
             </div>
 
             <!-- Tours relacionados -->

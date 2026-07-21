@@ -58,7 +58,7 @@
 .emt-flag--pickup { background: var(--emt-naranja); }
 
 .emt-tour-body { display: grid; grid-template-columns: 1fr; gap: var(--emt-spacing-xl); }
-@media (min-width: 1024px) { .emt-tour-body { grid-template-columns: 2fr 1fr; align-items: start; } }
+/* Cuerpo en una sola columna (la reserva ahora es banda inline arriba). */
 
 .emt-tour-main > section { margin-top: var(--emt-spacing-xl); }
 .emt-tour-main h2 { font-family: var(--emt-font-display); font-size: var(--emt-fs-md); font-weight: var(--emt-fw-semibold); color: var(--emt-azul-profundo); margin: 0 0 var(--emt-spacing-md); }
@@ -73,39 +73,28 @@
 .emt-tour-map__embed { aspect-ratio: 16 / 9; border-radius: var(--emt-radius-md); overflow: hidden; }
 .emt-tour-map__embed iframe { width: 100%; height: 100%; border: 0; }
 
-/* Sidebar de reserva (sticky en desktop; barra fija en móvil) */
+/* Tarjeta de reserva: banda inline justo debajo de la galería. */
+.emt-tour-booking { margin: var(--emt-spacing-lg) 0 0; }
 .emt-reserve-card {
-  background: var(--emt-blanco);
+  background: var(--emt-surface-tint);
   border: 1px solid var(--emt-color-border);
   border-radius: var(--emt-radius-lg);
-  box-shadow: var(--emt-shadow-md);
-  padding: var(--emt-spacing-lg);
-  display: flex;
-  flex-direction: column;
-  gap: var(--emt-spacing-md);
+  padding: var(--emt-spacing-md) var(--emt-spacing-lg);
+  display: flex; flex-direction: row; align-items: center;
+  justify-content: space-between; flex-wrap: wrap; gap: var(--emt-spacing-md);
 }
+.emt-reserve-card__actions { display: flex; flex-wrap: wrap; gap: var(--emt-spacing-sm); align-items: center; }
+.emt-reserve-card__actions .emt-btn { width: auto; }
 @media (min-width: 1024px) { .emt-tour-aside { position: sticky; top: 90px; } }
 .emt-reserve-card__price { display: flex; flex-direction: column; margin: 0; }
 .emt-reserve-card__price span { font-size: var(--emt-fs-sm); color: var(--emt-color-text-muted); }
 .emt-reserve-card__price strong { font-family: var(--emt-font-display); font-size: var(--emt-fs-xl); color: var(--emt-azul-profundo); }
 .emt-btn--peek { width: 100%; }
 
-@media (max-width: 1023px) {
-  .emt-reserve-card {
-    position: fixed; left: 0; right: 0; bottom: 0; z-index: var(--emt-z-float);
-    flex-direction: row; align-items: center; justify-content: space-between;
-    flex-wrap: wrap; row-gap: var(--emt-spacing-sm);
-    border-radius: var(--emt-radius-lg) var(--emt-radius-lg) 0 0;
-    box-shadow: var(--emt-shadow-xl);
-  }
-  .emt-reserve-card .emt-btn { width: auto; }
-  /* CTA primario (WhatsApp) a lo ancho en su propia fila, amigable al pulgar. */
-  .emt-reserve-card__wa { order: 5; flex: 1 1 100%; text-align: center; }
-  /* Aire al final del contenido para que la barra fija no lo tape. */
-  .emt-single-tour { padding-bottom: 220px; }
-  /* El float de WhatsApp es redundante en la ficha móvil (la barra fija ya
-     tiene el CTA de WhatsApp) y se encimaba sobre él. */
-  body.single-tour .emt-wa-float { display: none; }
+@media (max-width: 560px) {
+  .emt-reserve-card { flex-direction: column; align-items: stretch; text-align: center; }
+  .emt-reserve-card__actions { flex-direction: column; }
+  .emt-reserve-card__actions .emt-btn { width: 100%; }
 }
 
 .emt-tour-related { margin-top: var(--emt-spacing-3xl); }
@@ -138,3 +127,5 @@
 .emt-tour-gallery-strip__thumb:focus-visible img { transform: scale(1.06); }
 .emt-tour-gallery-strip__thumb:focus-visible { outline: 3px solid var(--emt-turquesa); outline-offset: 2px; }
 @media (max-width: 560px) { .emt-tour-gallery-strip__grid { grid-template-columns: repeat(3, 1fr); } }
+
+.emt-tour-desc { max-width: 74ch; }
