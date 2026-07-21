@@ -63,7 +63,7 @@ while ( have_posts() ) :
             foreach ( $galeria as $g ) {
                 $full = $g['url'] ?? '';
                 if ( ! $full ) { continue; }
-                $gallery_imgs[] = array( 'full' => $full, 'alt' => $g['alt'] ?? '' );
+                $gallery_imgs[] = array( 'thumb' => $g['sizes']['medium'] ?? $full, 'full' => $full, 'alt' => $g['alt'] ?? '' );
             }
         }
         $lb_data = array_map( function ( $im ) { return array( 'src' => $im['full'], 'alt' => $im['alt'] ); }, $gallery_imgs );
@@ -90,18 +90,25 @@ while ( have_posts() ) :
                     <?php if ( $garantia ) : ?><span class="emt-flag emt-flag--ok"><?php echo esc_html( emt_t( 'salida_garantizada' ) ); ?></span><?php endif; ?>
                     <?php if ( $pickup ) : ?><span class="emt-flag emt-flag--pickup"><?php echo esc_html( emt_t( 'pickup_hotel' ) ); ?></span><?php endif; ?>
                 </div>
-                <?php if ( ! empty( $gallery_imgs ) ) : ?>
-                    <div class="emt-tour-hero__gallery" data-gallery>
-                        <button type="button" class="emt-btn emt-btn--ghost emt-tour-hero__gallery-btn" data-gallery-open="0">
-                            <?php echo esc_html( emt_t( 'ver_galeria' ) ); ?> (<?php echo count( $gallery_imgs ); ?>)
-                        </button>
-                        <script type="application/json" data-gallery-data><?php echo wp_json_encode( $lb_data ); ?></script>
-                    </div>
-                <?php endif; ?>
             </div>
         </section>
 
         <div class="emt-container">
+
+            <?php if ( ! empty( $gallery_imgs ) ) : ?>
+                <section class="emt-tour-gallery-strip" data-gallery aria-label="<?php echo esc_attr( emt_t( 'galeria' ) ); ?>">
+                    <ul class="emt-tour-gallery-strip__grid">
+                        <?php foreach ( $gallery_imgs as $gi => $g ) : ?>
+                            <li>
+                                <button type="button" class="emt-tour-gallery-strip__thumb" data-gallery-open="<?php echo (int) $gi; ?>" aria-label="<?php echo esc_attr( emt_t( 'ver_galeria' ) . ' ' . ( $gi + 1 ) ); ?>">
+                                    <img src="<?php echo esc_url( $g['thumb'] ); ?>" alt="<?php echo esc_attr( $g['alt'] ); ?>" loading="lazy" decoding="async" />
+                                </button>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                    <script type="application/json" data-gallery-data><?php echo wp_json_encode( $lb_data ); ?></script>
+                </section>
+            <?php endif; ?>
 
             <div class="emt-tour-body">
                 <!-- Columna principal -->
