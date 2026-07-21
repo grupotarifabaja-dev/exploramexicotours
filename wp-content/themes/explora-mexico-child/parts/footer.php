@@ -28,15 +28,16 @@ $emt_uri    = get_stylesheet_directory_uri();
 
 $wa       = preg_replace( '/\D/', '', emt_opt( 'wa_number', '523310480670' ) );
 $email    = emt_opt( 'email_reservas', 'reserva@exploramexicotours.com' );
-$tel      = emt_opt( 'telefono_oficina', '+52 33 1048 0670' );
-$dir      = emt_opt( 'direccion_fiscal', 'Guadalajara, Jalisco' );
+$tel      = emt_opt( 'telefono_oficina', '+52 33 3810 3475' );
+$dir      = emt_opt( 'direccion_fiscal', 'Calle Durazno 1396, Col. Del Fresno, Guadalajara, Jalisco, C.P. 44900' );
 
 $redes = array_filter( array(
-    'facebook'  => emt_opt( 'redes_facebook' ),
-    'instagram' => emt_opt( 'redes_instagram' ),
-    'tiktok'    => emt_opt( 'redes_tiktok' ),
+    'facebook'  => emt_opt( 'redes_facebook', 'https://www.facebook.com/share/14efnQMgZxL/' ),
+    'instagram' => emt_opt( 'redes_instagram', 'https://www.instagram.com/explora_mexico_tours/' ),
+    'tiktok'    => emt_opt( 'redes_tiktok', 'https://www.tiktok.com/@explora_mexico_tours' ),
     'youtube'   => emt_opt( 'redes_youtube' ),
 ) );
+$redes_nombres = array( 'facebook' => 'Facebook', 'instagram' => 'Instagram', 'tiktok' => 'TikTok', 'youtube' => 'YouTube' );
 
 $enlaces = array(
     'tours'    => array( emt_t( 'ver_tour' ) === 'View tour' ? 'Tours' : 'Tours', home_url( $emt_prefix . '/tours/' ) ),
@@ -88,7 +89,7 @@ $creds = array(
             <?php if ( $redes ) : ?>
                 <ul class="emt-footer__social">
                     <?php foreach ( $redes as $net => $url ) : ?>
-                        <li><a href="<?php echo esc_url( $url ); ?>" target="_blank" rel="noopener noreferrer" aria-label="<?php echo esc_attr( ucfirst( $net ) ); ?>"><?php echo esc_html( ucfirst( $net ) ); ?></a></li>
+                        <li><a href="<?php echo esc_url( $url ); ?>" target="_blank" rel="noopener noreferrer" aria-label="<?php echo esc_attr( $redes_nombres[ $net ] ?? ucfirst( $net ) ); ?>"><?php echo esc_html( $redes_nombres[ $net ] ?? ucfirst( $net ) ); ?></a></li>
                     <?php endforeach; ?>
                 </ul>
             <?php endif; ?>
