@@ -1,0 +1,92 @@
+/* ============================================================
+   NOSOTROS / QUIÉNES SOMOS
+   ============================================================ */
+.emt-nosotros { padding-bottom: var(--emt-spacing-3xl); }
+
+/* Hero */
+.emt-nosotros-hero {
+  position: relative;
+  background: var(--emt-azul-profundo);
+  color: var(--emt-on-dark);
+  padding-block: clamp(2.75rem, 6vw, 4.5rem);
+  overflow: hidden;
+}
+.emt-nosotros-hero__heading { margin-bottom: var(--emt-spacing-md); gap: 0.5rem; }
+.emt-nosotros-hero .emt-title { color: var(--emt-blanco); }
+.emt-nosotros-hero .emt-eyebrow { color: var(--emt-turquesa); }
+.emt-nosotros-hero__intro { max-width: 62ch; color: rgba(233, 241, 248, 0.9); font-size: var(--emt-fs-lg); line-height: var(--emt-lh-normal); margin: 0; }
+.emt-nosotros-hero .emt-breadcrumbs { margin-top: 0; margin-bottom: var(--emt-spacing-md); }
+.emt-nosotros-hero .emt-breadcrumbs__item,
+.emt-nosotros-hero .emt-breadcrumbs__item:not(:first-child)::before,
+.emt-nosotros-hero .emt-breadcrumbs [aria-current="page"] { color: rgba(233, 241, 248, 0.72); }
+.emt-nosotros-hero .emt-breadcrumbs__item a { color: var(--emt-blanco); }
+.emt-nosotros-hero .emt-breadcrumbs__item a:hover { color: var(--emt-turquesa); }
+
+/* Titulares de sección */
+.emt-nosotros__h2 {
+  font-family: var(--emt-font-display); font-weight: var(--emt-fw-bold);
+  font-size: var(--emt-fs-2xl); color: var(--emt-azul-profundo);
+  margin: 0 0 var(--emt-spacing-lg); position: relative; padding-bottom: 0.6rem;
+}
+.emt-nosotros__h2::after {
+  content: ''; position: absolute; left: 0; bottom: 0; width: 68px; height: 5px;
+  border-radius: 3px; background: var(--emt-serape, linear-gradient(90deg, var(--emt-magenta), var(--emt-coral), var(--emt-ambar), var(--emt-turquesa)));
+}
+.emt-nosotros__lead { max-width: 74ch; font-size: var(--emt-fs-base); line-height: var(--emt-lh-relaxed); color: var(--emt-color-text); margin: 0; }
+
+/* Misión / Visión */
+.emt-mv-grid { display: grid; gap: var(--emt-spacing-lg); grid-template-columns: 1fr; }
+@media (min-width: 768px) { .emt-mv-grid { grid-template-columns: 1fr 1fr; } }
+.emt-mv-card {
+  background: var(--emt-blanco); border: 1px solid var(--emt-color-border);
+  border-radius: var(--emt-radius-lg); padding: var(--emt-spacing-xl);
+}
+.emt-mv-card__title {
+  font-family: var(--emt-font-display); font-weight: var(--emt-fw-bold);
+  font-size: var(--emt-fs-xl); color: var(--emt-turquesa-tinta, var(--emt-azul-brillante));
+  margin: 0 0 var(--emt-spacing-sm);
+}
+.emt-mv-card p { margin: 0; color: var(--emt-color-text); line-height: var(--emt-lh-relaxed); }
+
+/* Por qué reservar */
+.emt-nosotros-reasons { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--emt-spacing-md); grid-template-columns: 1fr; }
+@media (min-width: 768px) { .emt-nosotros-reasons { grid-template-columns: 1fr 1fr; } }
+.emt-nosotros-reasons li {
+  position: relative; padding-left: 2rem; color: var(--emt-color-text); line-height: var(--emt-lh-normal);
+}
+.emt-nosotros-reasons li::before {
+  content: ''; position: absolute; left: 0; top: 0.15em; width: 1.2rem; height: 1.2rem;
+  background: var(--emt-turquesa); border-radius: 50%;
+  -webkit-mask: no-repeat center / 0.75rem url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E");
+  mask: no-repeat center / 0.75rem url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E");
+  background-color: var(--emt-turquesa);
+}
+
+/* Servicios (chips) */
+.emt-nosotros-services { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--emt-spacing-sm); }
+.emt-nosotros-services li {
+  background: var(--emt-blanco); border: 1px solid var(--emt-color-border);
+  border-radius: var(--emt-radius-pill); padding: 0.5rem 1rem; font-size: var(--emt-fs-sm);
+  font-weight: var(--emt-fw-medium); color: var(--emt-azul-profundo);
+}
+
+/* Certificaciones */
+.emt-nosotros-sellos { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--emt-spacing-sm); grid-template-columns: 1fr; }
+@media (min-width: 768px) { .emt-nosotros-sellos { grid-template-columns: 1fr 1fr; } }
+.emt-nosotros-sellos li {
+  padding: 0.75rem 1rem; background: var(--emt-surface-tint, #f2f7fb);
+  border-left: 4px solid var(--emt-ambar); border-radius: var(--emt-radius-md);
+  color: var(--emt-color-text); font-weight: var(--emt-fw-medium);
+}
+
+/* CTA */
+.emt-nosotros-cta {
+  margin-top: var(--emt-spacing-2xl);
+  background: linear-gradient(120deg, var(--emt-magenta), var(--emt-coral) 70%, var(--emt-ambar));
+  color: var(--emt-blanco); text-align: center; padding-block: var(--emt-spacing-2xl);
+}
+.emt-nosotros-cta__title { font-family: var(--emt-font-display); font-weight: var(--emt-fw-bold); font-size: var(--emt-fs-2xl); margin: 0 0 var(--emt-spacing-xs); color: var(--emt-blanco); }
+.emt-nosotros-cta__sub { margin: 0 auto var(--emt-spacing-lg); max-width: 56ch; opacity: 0.95; }
+.emt-nosotros-cta__btns { display: flex; gap: var(--emt-spacing-md); justify-content: center; flex-wrap: wrap; }
+.emt-btn--white { background: var(--emt-blanco); color: var(--emt-magenta); }
+.emt-btn--white:hover { background: var(--emt-blanco); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18); }
