@@ -69,7 +69,7 @@ $bg_image_url  = 'https://exploramexicotours.com/wp-content/uploads/2026/05/Chat
         y el <span class="accent-naranja">descubrimiento</span>.
       </h1>
       <p class="hero-sub">
-        Más de 20 años llevando viajeros por Jalisco y todo México.
+        Más de 15 años llevando viajeros por Jalisco y todo México.
         Pronto, una nueva plataforma para descubrir, comparar y reservar
         las experiencias más auténticas del país.
       </p>

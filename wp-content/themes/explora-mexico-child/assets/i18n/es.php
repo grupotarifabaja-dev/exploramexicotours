@@ -87,7 +87,7 @@ return array(
     'tours'                => 'Tours',
 
     // Footer
-    'footer_desc'          => 'Más de 20 años creando experiencias de viaje auténticas por Jalisco y todo México.',
+    'footer_desc'          => 'Más de 15 años creando experiencias de viaje auténticas por Jalisco y todo México.',
     'enlaces_rapidos'      => 'Enlaces rápidos',
     'legales'              => 'Legales',
     'aviso_privacidad'     => 'Aviso de privacidad',
@@ -106,7 +106,7 @@ return array(
     'paginacion'           => 'Paginación',
     'hero_eyebrow'         => 'Tu próxima aventura comienza aquí',
     'hero_title'           => 'Descubre México con quien lo conoce',
-    'hero_sub'             => 'Más de 20 años creando experiencias auténticas por Jalisco y todo México.',
+    'hero_sub'             => 'Más de 15 años creando experiencias auténticas por Jalisco y todo México.',
     'destinos_destacados'  => 'Destinos imperdibles',
     'tours_imperdibles'    => 'Tours imperdibles',
     'explora_experiencia'  => 'Explora por experiencia',
@@ -120,7 +120,7 @@ return array(
 
     // Franja de confianza (home)
     'aval_titulo'          => 'Señales de confianza',
-    'aval_anios'           => 'Más de 20 años creando viajes por México',
+    'aval_anios'           => 'Más de 15 años creando viajes por México',
     'aval_moderniza'       => 'Distintivo Moderniza · SECTUR',
     'aval_confian'         => 'Confían en nosotros:',
 

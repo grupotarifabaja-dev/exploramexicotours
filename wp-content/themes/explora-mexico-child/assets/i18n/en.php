@@ -87,7 +87,7 @@ return array(
     'tours'                => 'Tours',
 
     // Footer
-    'footer_desc'          => 'Over 20 years crafting authentic travel experiences across Jalisco and all of Mexico.',
+    'footer_desc'          => 'Over 15 years crafting authentic travel experiences across Jalisco and all of Mexico.',
     'enlaces_rapidos'      => 'Quick links',
     'legales'              => 'Legal',
     'aviso_privacidad'     => 'Privacy notice',
@@ -106,7 +106,7 @@ return array(
     'paginacion'           => 'Pagination',
     'hero_eyebrow'         => 'Your next adventure starts here',
     'hero_title'           => 'Discover Mexico with the locals who know it',
-    'hero_sub'             => 'Over 20 years crafting authentic experiences across Jalisco and all of Mexico.',
+    'hero_sub'             => 'Over 15 years crafting authentic experiences across Jalisco and all of Mexico.',
     'destinos_destacados'  => 'Must-see destinations',
     'tours_imperdibles'    => 'Unmissable tours',
     'explora_experiencia'  => 'Explore by experience',
@@ -120,7 +120,7 @@ return array(
 
     // Trust strip (home)
     'aval_titulo'          => 'Trust signals',
-    'aval_anios'           => '20+ years crafting journeys across Mexico',
+    'aval_anios'           => '15+ years crafting journeys across Mexico',
     'aval_moderniza'       => 'Distintivo Moderniza · SECTUR',
     'aval_confian'         => 'Trusted by:',
 
