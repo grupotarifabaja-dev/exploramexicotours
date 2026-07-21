@@ -58,12 +58,14 @@ function emt_panel_save_tour() {
     }
 
     // Campos de texto.
-    $text = array( 'titulo_en', 'descripcion_en', 'duracion_texto', 'punto_salida', 'fecha_viaje', 'seo_title_override', 'seo_desc_override' );
+    $text = array( 'titulo_en', 'descripcion_en', 'duracion_texto', 'duracion_texto_en', 'punto_salida', 'fecha_viaje', 'fecha_viaje_en', 'seo_title_override', 'seo_desc_override' );
     foreach ( $text as $f ) {
         update_field( $f, sanitize_text_field( wp_unslash( $_POST[ $f ] ?? '' ) ), $post_id );
     }
     update_field( 'precio_nota', sanitize_textarea_field( wp_unslash( $_POST['precio_nota'] ?? '' ) ), $post_id );
     update_field( 'politica_cancelacion', wp_kses_post( wp_unslash( $_POST['politica_cancelacion'] ?? '' ) ), $post_id );
+    update_field( 'politica_cancelacion_en', wp_kses_post( wp_unslash( $_POST['politica_cancelacion_en'] ?? '' ) ), $post_id );
+    update_field( 'excerpt_en', sanitize_textarea_field( wp_unslash( $_POST['excerpt_en'] ?? '' ) ), $post_id );
     update_field( 'peek_url', esc_url_raw( wp_unslash( $_POST['peek_url'] ?? '' ) ), $post_id );
     update_field( 'mapa_embed', esc_url_raw( wp_unslash( $_POST['mapa_embed'] ?? '' ) ), $post_id );
 
@@ -98,6 +100,22 @@ function emt_panel_save_tour() {
         update_field( $rep, $rows, $post_id );
     }
 
+    // Espejo EN de incluye / no_incluye (por fila: usa el texto_en si viene; si no,
+    // el español). Solo se pobla si hay al menos una traducción; si no, la ficha
+    // en inglés cae al español automáticamente.
+    foreach ( array( 'incluye', 'no_incluye' ) as $rep ) {
+        $rows_en = array();
+        $any_en  = false;
+        foreach ( (array) ( $_POST[ $rep ] ?? array() ) as $r ) {
+            $texto_es = sanitize_text_field( wp_unslash( $r['texto'] ?? '' ) );
+            if ( $texto_es === '' ) { continue; }
+            $texto_en = sanitize_text_field( wp_unslash( $r['texto_en'] ?? '' ) );
+            if ( $texto_en !== '' ) { $any_en = true; }
+            $rows_en[] = array( 'icono' => sanitize_key( $r['icono'] ?? 'otro' ), 'texto' => ( $texto_en !== '' ? $texto_en : $texto_es ) );
+        }
+        update_field( $rep . '_en', $any_en ? $rows_en : array(), $post_id );
+    }
+
     // Precios por vehículo (modelo alternativo; precio vacío => "Consultar").
     $pv = array();
     foreach ( (array) ( $_POST['precios_vehiculo'] ?? array() ) as $r ) {
@@ -128,6 +146,25 @@ function emt_panel_save_tour() {
     }
     update_field( 'itinerario', $itin, $post_id );
 
+    // Espejo EN del itinerario (por campo: usa el _en si viene; si no, el español).
+    $itin_en = array();
+    $any_itin_en = false;
+    foreach ( (array) ( $_POST['itinerario'] ?? array() ) as $r ) {
+        $tit_es = sanitize_text_field( wp_unslash( $r['titulo'] ?? '' ) );
+        if ( $tit_es === '' ) { continue; }
+        $tit_en = sanitize_text_field( wp_unslash( $r['titulo_en'] ?? '' ) );
+        $des_en = sanitize_textarea_field( wp_unslash( $r['descripcion_en'] ?? '' ) );
+        if ( $tit_en !== '' || $des_en !== '' ) { $any_itin_en = true; }
+        $itin_en[] = array(
+            'dia'            => (int) ( $r['dia'] ?? 0 ),
+            'hora'           => sanitize_text_field( wp_unslash( $r['hora'] ?? '' ) ),
+            'titulo_en'      => ( $tit_en !== '' ? $tit_en : $tit_es ),
+            'descripcion_en' => ( $des_en !== '' ? $des_en : sanitize_textarea_field( wp_unslash( $r['descripcion'] ?? '' ) ) ),
+            'icono'          => sanitize_key( $r['icono'] ?? 'actividad' ),
+        );
+    }
+    update_field( 'itinerario_en', $any_itin_en ? $itin_en : array(), $post_id );
+
     // Galería + imagen destacada (primera).
     $galeria = array_values( array_filter( array_map( 'intval', (array) ( $_POST['galeria'] ?? array() ) ) ) );
     update_field( 'galeria', $galeria, $post_id );
@@ -136,6 +173,10 @@ function emt_panel_save_tour() {
     } else {
         delete_post_thumbnail( $post_id );
     }
+
+    // Imagen de header (dedicada; respaldo a la destacada en la ficha).
+    $imagen_header = (int) ( $_POST['imagen_header'] ?? 0 );
+    update_field( 'imagen_header', $imagen_header ?: '', $post_id );
 
     // Taxonomías.
     $destino = (int) ( $_POST['destino'] ?? 0 );
@@ -304,4 +345,32 @@ function emt_panel_save_config() {
     update_field( 'hero_seasonal_cta_url', esc_url_raw( wp_unslash( $_POST['hero_seasonal_cta_url'] ?? '' ) ), 'option' );
 
     wp_send_json_success( array( 'msg' => 'Configuración guardada.' ) );
+}
+
+/* ============================================================
+   Guardar Destinos (destacado en home + portada por término)
+   ============================================================ */
+add_action( 'wp_ajax_emt_panel_save_destinos', 'emt_panel_save_destinos' );
+function emt_panel_save_destinos() {
+    emt_panel_guard( 'edit_tours' );
+
+    $ids       = array_map( 'intval', (array) ( $_POST['destino_ids'] ?? array() ) );
+    $destacado = (array) ( $_POST['destacado'] ?? array() );
+    $portadas  = (array) ( $_POST['imagen_destino'] ?? array() );
+
+    foreach ( $ids as $tid ) {
+        if ( $tid <= 0 ) { continue; }
+        $term = get_term( $tid, 'tour_destino' );
+        if ( ! $term || is_wp_error( $term ) ) { continue; }
+
+        // Destacado en home (true_false).
+        $is_dest = empty( $destacado[ $tid ] ) ? 0 : 1;
+        update_field( 'destacado', $is_dest, $term );
+
+        // Portada del destino (imagen_destino, ID de adjunto o vacío).
+        $img_id = isset( $portadas[ $tid ] ) ? (int) $portadas[ $tid ] : 0;
+        update_field( 'imagen_destino', $img_id ?: '', $term );
+    }
+
+    wp_send_json_success( array( 'msg' => 'Destinos actualizados.' ) );
 }

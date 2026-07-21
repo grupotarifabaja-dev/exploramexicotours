@@ -111,6 +111,7 @@ function emt_acf_register_field_groups() {
             // --- Tab: Galería y mapa ---
             array( 'key' => 'field_emt_tour_tab_galeria', 'label' => 'Galería y mapa', 'name' => '', 'type' => 'tab', 'placement' => 'top' ),
             array( 'key' => 'field_emt_tour_galeria', 'label' => 'Galería', 'name' => 'galeria', 'type' => 'gallery', 'required' => 1, 'min' => 4, 'insert' => 'append', 'library' => 'all', 'instructions' => 'Mínimo 4 imágenes' ),
+            array( 'key' => 'field_emt_tour_imagen_header', 'label' => 'Imagen de header', 'name' => 'imagen_header', 'type' => 'image', 'required' => 0, 'return_format' => 'array', 'instructions' => 'Foto de portada del tour (arriba de la ficha). Tamaño sugerido: 1600×900 px (horizontal 16:9). Si se deja vacía, se usa la foto destacada.' ),
             array( 'key' => 'field_emt_tour_mapa_embed', 'label' => 'Mapa (embed URL)', 'name' => 'mapa_embed', 'type' => 'url', 'required' => 0, 'instructions' => 'URL Google Maps embed' ),
 
             // --- Tab: Indicadores ---
@@ -133,6 +134,8 @@ function emt_acf_register_field_groups() {
             array( 'key' => 'field_emt_tour_tab_en', 'label' => 'Inglés (EN)', 'name' => '', 'type' => 'tab', 'placement' => 'top' ),
             array( 'key' => 'field_emt_tour_titulo_en', 'label' => 'Título (EN)', 'name' => 'titulo_en', 'type' => 'text', 'required' => 0 ),
             array( 'key' => 'field_emt_tour_excerpt_en', 'label' => 'Excerpt (EN)', 'name' => 'excerpt_en', 'type' => 'textarea', 'required' => 0 ),
+            array( 'key' => 'field_emt_tour_duracion_texto_en', 'label' => 'Duración texto (EN)', 'name' => 'duracion_texto_en', 'type' => 'text', 'required' => 0, 'instructions' => 'P. ej. "3 days / 2 nights". Si se deja vacío se usa el español.' ),
+            array( 'key' => 'field_emt_tour_fecha_viaje_en', 'label' => 'Fecha del viaje (EN)', 'name' => 'fecha_viaje_en', 'type' => 'text', 'required' => 0, 'instructions' => 'P. ej. "Day of the Dead season (2026 edition, TBC)". Si se deja vacío se usa el español.' ),
             array( 'key' => 'field_emt_tour_descripcion_en', 'label' => 'Descripción (EN)', 'name' => 'descripcion_en', 'type' => 'wysiwyg', 'required' => 0 ),
             array( 'key' => 'field_emt_tour_politica_cancelacion_en', 'label' => 'Política de cancelación (EN)', 'name' => 'politica_cancelacion_en', 'type' => 'wysiwyg', 'required' => 0 ),
             array( 'key' => 'field_emt_tour_incluye_en', 'label' => 'Incluye (EN)', 'name' => 'incluye_en', 'type' => 'repeater', 'required' => 0, 'layout' => 'table', 'button_label' => 'Agregar ítem', 'sub_fields' => array(
@@ -255,6 +258,7 @@ function emt_acf_register_field_groups() {
         'title'  => 'Destino',
         'fields' => array(
             array( 'key' => 'field_emt_destino_imagen', 'label' => 'Imagen del destino', 'name' => 'imagen_destino', 'type' => 'image', 'return_format' => 'array', 'instructions' => 'Foto representativa del destino para las cards del home. Si se deja vacía, se usa la foto destacada de un tour del destino.' ),
+            array( 'key' => 'field_emt_destino_destacado', 'label' => 'Destacado en home', 'name' => 'destacado', 'type' => 'true_false', 'default_value' => 0, 'ui' => 1, 'instructions' => 'Muestra este destino en la sección "Destinos imperdibles" del inicio. Si ninguno está marcado, el inicio usa los destinos con más tours.' ),
         ),
         'location' => array(
             array( array( 'param' => 'taxonomy', 'operator' => '==', 'value' => 'tour_destino' ) ),

@@ -13,6 +13,24 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 /**
+ * Devuelve un ícono SVG inline del set de la UI (sin dependencias).
+ * Reemplaza los emojis en metadatos de tours. Hereda el color con currentColor.
+ *
+ * @param string $name  clock | calendar | pin
+ * @param string $class Clase CSS (default emt-meta-icon).
+ * @return string SVG o '' si el nombre no existe.
+ */
+function emt_icon( $name, $class = 'emt-meta-icon' ) {
+    $paths = array(
+        'clock'    => '<circle cx="12" cy="12" r="9"/><path d="M12 7.5V12l3 2"/>',
+        'calendar' => '<rect x="3.5" y="4.5" width="17" height="16" rx="2"/><path d="M16 3v3M8 3v3M3.5 9.5h17"/>',
+        'pin'      => '<path d="M20 10.5c0 5.4-8 11-8 11s-8-5.6-8-11a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10.5" r="2.6"/>',
+    );
+    if ( ! isset( $paths[ $name ] ) ) { return ''; }
+    return '<svg class="' . esc_attr( $class ) . '" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">' . $paths[ $name ] . '</svg>';
+}
+
+/**
  * Renderiza una tarjeta de tour incluyendo parts/tour-card.php.
  *
  * @param int|WP_Post $tour ID o post del tour.

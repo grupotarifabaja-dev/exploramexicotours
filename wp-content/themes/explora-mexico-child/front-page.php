@@ -54,7 +54,15 @@ $hero_has_media  = ( $hero_video_url || $hero_poster_url );
 
 <!-- 2. Destinos destacados -->
 <?php
-$destinos = get_terms( array( 'taxonomy' => 'tour_destino', 'hide_empty' => false, 'parent' => 0, 'number' => 5 ) );
+// Destinos del inicio: primero los marcados como "Destacado en home" desde el
+// panel; si no hay ninguno marcado, respaldo con los de más tours.
+$destinos = get_terms( array( 'taxonomy' => 'tour_destino', 'hide_empty' => false, 'parent' => 0, 'number' => 5, 'meta_key' => 'destacado', 'meta_value' => '1' ) );
+if ( ! $destinos || is_wp_error( $destinos ) ) {
+    $destinos = array();
+}
+if ( empty( $destinos ) ) {
+    $destinos = get_terms( array( 'taxonomy' => 'tour_destino', 'hide_empty' => false, 'parent' => 0, 'number' => 5, 'orderby' => 'count', 'order' => 'DESC' ) );
+}
 if ( $destinos && ! is_wp_error( $destinos ) ) : ?>
 <section class="emt-home-section">
     <div class="emt-container">
@@ -62,7 +70,9 @@ if ( $destinos && ! is_wp_error( $destinos ) ) : ?>
             <span class="emt-section-head__eyebrow"><?php echo esc_html( emt_t( 'a_donde_ir' ) ); ?></span>
             <h2 class="emt-section-head__title"><?php echo esc_html( emt_t( 'destinos_destacados' ) ); ?></h2>
         </header>
-        <ul class="emt-destinos-grid">
+        <div class="emt-carousel" data-carousel>
+            <button type="button" class="emt-carousel__nav emt-carousel__nav--prev" data-carousel-prev aria-label="<?php echo esc_attr( emt_t( 'anterior' ) ); ?>">&#8249;</button>
+            <ul class="emt-destinos-carousel emt-carousel__track" data-carousel-track>
             <?php foreach ( $destinos as $d ) :
                 $link = get_term_link( $d );
                 $img  = function_exists( 'emt_destino_image_url' ) ? emt_destino_image_url( $d ) : '';
@@ -75,7 +85,9 @@ if ( $destinos && ! is_wp_error( $destinos ) ) : ?>
                     </a>
                 </li>
             <?php endforeach; ?>
-        </ul>
+            </ul>
+            <button type="button" class="emt-carousel__nav emt-carousel__nav--next" data-carousel-next aria-label="<?php echo esc_attr( emt_t( 'siguiente' ) ); ?>">&#8250;</button>
+        </div>
     </div>
 </section>
 <?php endif; ?>
@@ -173,21 +185,47 @@ if ( $emt_dest_ids ) : ?>
 </section>
 <?php endif; ?>
 
-<!-- 4. Explora por experiencia -->
+<!-- 4. Del blog / Noticias (últimas 3 entradas) -->
 <?php
-$experiencias = get_terms( array( 'taxonomy' => 'tour_experiencia', 'hide_empty' => false, 'number' => 6 ) );
-if ( $experiencias && ! is_wp_error( $experiencias ) ) : ?>
-<section class="emt-home-section">
+$emt_blog_q = new WP_Query( array(
+    'post_type'           => 'post',
+    'post_status'         => 'publish',
+    'posts_per_page'      => 3,
+    'ignore_sticky_posts' => 1,
+    'no_found_rows'       => true,
+) );
+if ( $emt_blog_q->have_posts() ) :
+    $emt_blog_page = get_option( 'page_for_posts' ) ? get_permalink( get_option( 'page_for_posts' ) ) : home_url( '/blog/' );
+    ?>
+<section class="emt-home-section emt-home-blog">
     <div class="emt-container">
         <header class="emt-section-head">
-            <h2 class="emt-section-head__title"><?php echo esc_html( emt_t( 'explora_experiencia' ) ); ?></h2>
+            <span class="emt-section-head__eyebrow"><?php echo esc_html( emt_t( 'blog_eyebrow' ) ); ?></span>
+            <h2 class="emt-section-head__title"><?php echo esc_html( emt_t( 'blog_titulo' ) ); ?></h2>
         </header>
-        <ul class="emt-exp-grid">
-            <?php foreach ( $experiencias as $x ) :
-                $link = get_term_link( $x ); ?>
-                <li><a class="emt-exp-card" href="<?php echo esc_url( is_wp_error( $link ) ? '#' : $link ); ?>"><?php echo esc_html( $x->name ); ?></a></li>
-            <?php endforeach; ?>
+        <ul class="emt-blog-grid">
+            <?php while ( $emt_blog_q->have_posts() ) : $emt_blog_q->the_post();
+                $bid = get_the_ID();
+                $bimg = has_post_thumbnail( $bid ) ? get_the_post_thumbnail_url( $bid, 'medium_large' ) : emt_get_image_or_placeholder( $bid, 'medium_large' );
+                ?>
+                <li class="emt-blog-card">
+                    <a class="emt-blog-card__link" href="<?php the_permalink(); ?>">
+                        <span class="emt-blog-card__media">
+                            <img src="<?php echo esc_url( $bimg ); ?>" alt="" loading="lazy" />
+                        </span>
+                        <span class="emt-blog-card__body">
+                            <span class="emt-blog-card__date"><?php echo esc_html( get_the_date( '', $bid ) ); ?></span>
+                            <span class="emt-blog-card__title"><?php echo esc_html( get_the_title() ); ?></span>
+                            <span class="emt-blog-card__excerpt"><?php echo esc_html( wp_trim_words( get_the_excerpt(), 22, '…' ) ); ?></span>
+                            <span class="emt-blog-card__more"><?php echo esc_html( emt_t( 'leer_mas' ) ); ?> &rarr;</span>
+                        </span>
+                    </a>
+                </li>
+            <?php endwhile; wp_reset_postdata(); ?>
         </ul>
+        <div class="emt-home-blog__all">
+            <a class="emt-btn emt-btn--outline" href="<?php echo esc_url( $emt_blog_page ); ?>"><?php echo esc_html( emt_t( 'ver_todos' ) ); ?></a>
+        </div>
     </div>
 </section>
 <?php endif; ?>
@@ -195,7 +233,7 @@ if ( $experiencias && ! is_wp_error( $experiencias ) ) : ?>
 <!-- 5. Trayectoria (trust line) -->
 <section class="emt-trust">
     <div class="emt-container emt-trust__grid">
-        <div class="emt-trust__item"><span class="emt-trust__num">20</span><span class="emt-trust__label"><?php echo esc_html( emt_t( 'trust_anios' ) ); ?></span></div>
+        <div class="emt-trust__item"><span class="emt-trust__num">15</span><span class="emt-trust__label"><?php echo esc_html( emt_t( 'trust_anios' ) ); ?></span></div>
         <div class="emt-trust__item"><span class="emt-trust__num">70</span><span class="emt-trust__label"><?php echo esc_html( emt_t( 'trust_tours' ) ); ?></span></div>
         <div class="emt-trust__item"><span class="emt-trust__num">15</span><span class="emt-trust__label"><?php echo esc_html( emt_t( 'trust_destinos' ) ); ?></span></div>
         <div class="emt-trust__item"><span class="emt-trust__num">50k</span><span class="emt-trust__label"><?php echo esc_html( emt_t( 'trust_viajeros' ) ); ?></span></div>

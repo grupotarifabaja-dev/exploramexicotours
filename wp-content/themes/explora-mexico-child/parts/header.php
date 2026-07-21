@@ -16,6 +16,7 @@ $emt_links = array(
     'transporte' => home_url( $emt_prefix . '/transporte/' ),
     'blog'     => home_url( $emt_prefix . '/blog/' ),
     'contacto' => home_url( $emt_prefix . '/contacto/' ),
+    'nosotros' => home_url( $emt_prefix . '/nosotros/' ),
 );
 $emt_triggers = array(
     'destinos'     => emt_t( 'a_donde_ir' ),
@@ -44,6 +45,7 @@ $emt_triggers = array(
                 <li class="emt-nav__item"><a class="emt-nav__link" href="<?php echo esc_url( $emt_links['asesores'] ); ?>"><?php echo esc_html( emt_t( 'asesores' ) ); ?></a></li>
                 <li class="emt-nav__item"><a class="emt-nav__link" href="<?php echo esc_url( $emt_links['transporte'] ); ?>"><?php echo esc_html( emt_t( 'transporte' ) ); ?></a></li>
                 <li class="emt-nav__item"><a class="emt-nav__link" href="<?php echo esc_url( $emt_links['blog'] ); ?>"><?php echo esc_html( emt_t( 'blog' ) ); ?></a></li>
+                <li class="emt-nav__item"><a class="emt-nav__link" href="<?php echo esc_url( $emt_links['nosotros'] ); ?>"><?php echo esc_html( emt_t( 'nosotros' ) ); ?></a></li>
                 <li class="emt-nav__item"><a class="emt-nav__link" href="<?php echo esc_url( $emt_links['contacto'] ); ?>"><?php echo esc_html( emt_t( 'contacto' ) ); ?></a></li>
             </ul>
         </nav>
@@ -74,6 +76,7 @@ $emt_triggers = array(
                 <li><a class="emt-drawer__link" href="<?php echo esc_url( $emt_links['asesores'] ); ?>"><?php echo esc_html( emt_t( 'asesores' ) ); ?></a></li>
                 <li><a class="emt-drawer__link" href="<?php echo esc_url( $emt_links['transporte'] ); ?>"><?php echo esc_html( emt_t( 'transporte' ) ); ?></a></li>
                 <li><a class="emt-drawer__link" href="<?php echo esc_url( $emt_links['blog'] ); ?>"><?php echo esc_html( emt_t( 'blog' ) ); ?></a></li>
+                <li><a class="emt-drawer__link" href="<?php echo esc_url( $emt_links['nosotros'] ); ?>"><?php echo esc_html( emt_t( 'nosotros' ) ); ?></a></li>
                 <li><a class="emt-drawer__link" href="<?php echo esc_url( $emt_links['contacto'] ); ?>"><?php echo esc_html( emt_t( 'contacto' ) ); ?></a></li>
             </ul>
         </nav>

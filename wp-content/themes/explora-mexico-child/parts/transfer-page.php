@@ -44,6 +44,10 @@ $L_es = array(
     'f_enviando'   => 'Enviando…',
     'f_error'      => 'Revisa los campos obligatorios.',
     'f_conexion'   => 'Error de conexión. Intenta de nuevo.',
+    'cotizar'      => 'Cotizar',
+    'cotizar_v'    => 'Cotizar este vehículo',
+    'modal_cerrar' => 'Cerrar',
+    'f_vehiculo'   => 'Vehículo de interés',
 );
 $L_en = array(
     'title'        => 'Explora Transfer',
@@ -79,6 +83,10 @@ $L_en = array(
     'f_enviando'   => 'Sending…',
     'f_error'      => 'Please review the required fields.',
     'f_conexion'   => 'Connection error. Please try again.',
+    'cotizar'      => 'Get a quote',
+    'cotizar_v'    => 'Quote this vehicle',
+    'modal_cerrar' => 'Close',
+    'f_vehiculo'   => 'Vehicle of interest',
 );
 $L = ( $lang === 'en' ) ? $L_en : $L_es;
 
@@ -124,7 +132,7 @@ get_header();
                 <img class="emt-transfer-hero__logo" src="<?php echo esc_url( $emt_flotilla_base . 'logo-explora-transfer.png' ); ?>" alt="<?php echo esc_attr( $L['title'] ); ?>" width="800" height="251" />
             </h1>
             <p class="emt-transfer-hero__sub"><?php echo esc_html( $L['hero_sub'] ); ?></p>
-            <a class="emt-btn emt-btn--cta" href="#reservar"><?php echo esc_html( $L['hero_cta'] ); ?></a>
+            <button type="button" class="emt-btn emt-btn--cta" data-emt-transfer-open><?php echo esc_html( $L['hero_cta'] ); ?></button>
         </div>
     </section>
 
@@ -171,6 +179,7 @@ get_header();
                             <h3 class="emt-flotilla-card__name"><?php echo esc_html( $v['n'] ); ?></h3>
                             <p class="emt-flotilla-card__cap"><?php echo esc_html( $v['cap'] . ' ' . $L['pax'] ); ?></p>
                             <p class="emt-flotilla-card__feats"><?php echo esc_html( $lang === 'en' ? $v['feats_en'] : $v['feats_es'] ); ?></p>
+                            <button type="button" class="emt-btn emt-btn--outline emt-flotilla-card__cta" data-emt-transfer-open data-vehiculo="<?php echo esc_attr( $v['n'] ); ?>"><?php echo esc_html( $L['cotizar'] ); ?></button>
                         </div>
                     </article>
                 <?php endforeach; ?>
@@ -202,11 +211,17 @@ get_header();
         </div>
     </section>
 
-    <!-- Formulario de reservación -->
-    <section class="emt-transfer-section emt-transfer-section--alt" id="reservar">
-        <div class="emt-container emt-transfer-form-wrap">
-            <h2><?php echo esc_html( $L['form_t'] ); ?></h2>
-            <p class="emt-transfer-section__sub"><?php echo esc_html( $L['form_sub'] ); ?></p>
+    <!-- Modal de cotización / reservación -->
+    <dialog class="emt-modal" data-emt-transfer-modal aria-labelledby="emt-transfer-modal-title">
+        <div class="emt-modal__panel">
+            <header class="emt-modal__head">
+                <div class="emt-modal__headings">
+                    <h2 class="emt-modal__title" id="emt-transfer-modal-title"><?php echo esc_html( $L['form_t'] ); ?></h2>
+                    <p class="emt-modal__sub"><?php echo esc_html( $L['form_sub'] ); ?></p>
+                    <p class="emt-modal__vehiculo" data-modal-vehiculo hidden><span class="emt-modal__vehiculo-label"><?php echo esc_html( $L['f_vehiculo'] ); ?>:</span> <span data-modal-vehiculo-name></span></p>
+                </div>
+                <button type="button" class="emt-modal__close" data-emt-transfer-close aria-label="<?php echo esc_attr( $L['modal_cerrar'] ); ?>">&times;</button>
+            </header>
 
             <form class="emt-transfer-form" data-emt-transfer-form
                   data-ajax="<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>"
@@ -215,6 +230,7 @@ get_header();
                   data-msg-conexion="<?php echo esc_attr( $L['f_conexion'] ); ?>"
                   data-msg-enviando="<?php echo esc_attr( $L['f_enviando'] ); ?>"
                   novalidate>
+                <input type="hidden" name="vehiculo" value="" data-transfer-vehiculo-input />
                 <div class="emt-transfer-form__grid">
                     <div class="emt-field"><label><?php echo esc_html( $L['f_nombre'] ); ?> *</label><input type="text" name="nombre" required /></div>
                     <div class="emt-field"><label><?php echo esc_html( $L['f_tel'] ); ?> *</label><input type="tel" name="telefono" required /></div>
@@ -253,7 +269,7 @@ get_header();
                 </div>
             </form>
         </div>
-    </section>
+    </dialog>
 
     <!-- Contacto -->
     <section class="emt-transfer-section">
@@ -266,6 +282,9 @@ get_header();
                 <li><strong><?php echo esc_html( $L['domicilio'] ); ?>:</strong> Durazno 1396, Colonia Del Fresno, Guadalajara, Jalisco, México, CP 44950</li>
             </ul>
             <p class="emt-transfer-operado"><?php echo esc_html( $L['operado'] ); ?></p>
+            <p class="emt-transfer-contacto__cta">
+                <button type="button" class="emt-btn emt-btn--cta" data-emt-transfer-open><?php echo esc_html( $L['hero_cta'] ); ?></button>
+            </p>
         </div>
     </section>
 

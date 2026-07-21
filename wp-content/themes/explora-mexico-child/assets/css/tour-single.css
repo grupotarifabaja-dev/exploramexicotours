@@ -3,25 +3,35 @@
    ============================================================ */
 .emt-single-tour { padding-block: var(--emt-spacing-lg) var(--emt-spacing-3xl); }
 
-.emt-tour-hero { margin-bottom: var(--emt-spacing-xl); }
-.emt-tour-gallery { display: grid; gap: var(--emt-spacing-sm); margin-bottom: var(--emt-spacing-lg); }
-/* Hero de la galería: la foto destacada se muestra COMPLETA (object-fit: contain)
-   sobre un "blurred backdrop" — una copia ampliada y desenfocada de la propia foto
-   que llena el contenedor. Así no hay franjas vacías de color ni recorte de la
-   imagen, con orientaciones mixtas (vertical/horizontal). */
-.emt-tour-gallery__main { position: relative; display: block; width: 100%; padding: 0; border: 0; cursor: zoom-in; background: var(--emt-gris-claro); border-radius: var(--emt-radius-lg); overflow: hidden; }
-.emt-tour-gallery__main::before {
-  content: ""; position: absolute; inset: 0; z-index: 0;
-  background-image: var(--hero-img); background-size: cover; background-position: center;
-  filter: blur(28px) brightness(0.9) saturate(1.1); transform: scale(1.15);
+/* Hero de la ficha: mismo formato que el header de destino
+   (foto de fondo + overlay + heading serape sobre sección oscura). */
+.emt-tour-hero {
+  position: relative;
+  color: var(--emt-on-dark);
+  padding-block: clamp(2.75rem, 6vw, 4.5rem);
+  overflow: hidden;
+  margin-bottom: var(--emt-spacing-xl);
+  background: var(--emt-surface-dark);
 }
-.emt-tour-gallery__main img { position: relative; z-index: 1; display: block; width: 100%; height: 440px; max-height: 50vh; object-fit: contain; }
-/* Miniaturas: cuadrícula uniforme con recorte cover (cuadritos parejos). */
-.emt-tour-gallery__thumbs { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: var(--emt-spacing-sm); }
-.emt-tour-gallery__thumb { display: block; padding: 0; border: 0; cursor: zoom-in; background: var(--emt-gris-claro); border-radius: var(--emt-radius-md); overflow: hidden; aspect-ratio: 1 / 1; transition: transform 0.15s ease; }
-.emt-tour-gallery__thumb:hover { transform: scale(1.03); }
-.emt-tour-gallery__thumb img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.emt-tour-gallery__main:focus-visible, .emt-tour-gallery__thumb:focus-visible { outline: 3px solid var(--emt-azul-brillante); outline-offset: 2px; }
+.emt-tour-hero--plain { background: var(--emt-surface-dark); }
+.emt-tour-hero--photo { background: var(--emt-azul-profundo); }
+.emt-tour-hero__media { position: absolute; inset: 0; z-index: 0; }
+.emt-tour-hero__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.emt-tour-hero--photo::after {
+  content: ''; position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(180deg, rgba(0, 20, 45, 0.55) 0%, rgba(0, 20, 45, 0.42) 42%, rgba(0, 20, 45, 0.85) 100%);
+}
+.emt-tour-hero__inner { position: relative; z-index: 2; }
+.emt-tour-hero .emt-breadcrumbs { margin-top: 0; margin-bottom: var(--emt-spacing-md); }
+.emt-tour-hero__heading { margin-bottom: var(--emt-spacing-md); gap: 0.5rem; }
+.emt-tour-hero .emt-eyebrow { color: var(--emt-turquesa); }
+.emt-tour-hero .emt-breadcrumbs__item,
+.emt-tour-hero .emt-breadcrumbs__item:not(:first-child)::before,
+.emt-tour-hero .emt-breadcrumbs [aria-current="page"] { color: rgba(233, 241, 248, 0.72); }
+.emt-tour-hero .emt-breadcrumbs__item a { color: var(--emt-blanco); }
+.emt-tour-hero .emt-breadcrumbs__item a:hover { color: var(--emt-turquesa); }
+.emt-tour-hero__gallery { margin-top: var(--emt-spacing-md); }
+.emt-tour-hero__gallery-btn { cursor: zoom-in; }
 
 /* Lightbox */
 .emt-lightbox { position: fixed; inset: 0; z-index: 99999; display: flex; align-items: center; justify-content: center; background: rgba(0, 0, 0, 0.9); padding: 4vh 4vw; }
@@ -39,14 +49,10 @@
   .emt-lightbox__nav { width: 46px; height: 46px; font-size: 32px; }
   .emt-lightbox__close { width: 44px; height: 44px; }
 }
-.emt-tour-hero__title { font-family: var(--emt-font-display); font-size: var(--emt-fs-xl); font-weight: var(--emt-fw-bold); color: var(--emt-azul-profundo); line-height: var(--emt-lh-snug); margin: 0 0 var(--emt-spacing-sm); }
-.emt-tour-hero__meta { list-style: none; display: flex; flex-wrap: wrap; gap: var(--emt-spacing-md); padding: 0; margin: 0 0 var(--emt-spacing-sm); color: var(--emt-color-text-muted); font-size: var(--emt-fs-sm); }
-
-@media (max-width: 719px) {
-  .emt-tour-gallery__main img { height: 300px; }
-  .emt-tour-gallery__thumbs { grid-template-columns: repeat(auto-fill, minmax(72px, 1fr)); }
-}
-.emt-tour-hero__flags { display: flex; gap: var(--emt-spacing-sm); }
+.emt-tour-hero__title { color: var(--emt-blanco); margin: 0; }
+.emt-tour-hero__meta { list-style: none; display: flex; flex-wrap: wrap; gap: var(--emt-spacing-md); padding: 0; margin: 0 0 var(--emt-spacing-md); color: rgba(233, 241, 248, 0.9); font-size: var(--emt-fs-sm); }
+.emt-tour-hero__meta li { display: inline-flex; align-items: center; gap: 0.4rem; }
+.emt-tour-hero__flags { display: flex; gap: var(--emt-spacing-sm); flex-wrap: wrap; }
 .emt-flag { font-size: var(--emt-fs-xs); font-weight: var(--emt-fw-semibold); color: var(--emt-blanco); padding: 0.2rem 0.6rem; border-radius: var(--emt-radius-pill); }
 .emt-flag--ok { background: var(--emt-verde); }
 .emt-flag--pickup { background: var(--emt-naranja); }

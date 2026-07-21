@@ -87,7 +87,7 @@ return array(
     'tours'                => 'Tours',
 
     // Footer
-    'footer_desc'          => 'Más de 20 años creando experiencias de viaje auténticas por Jalisco y todo México.',
+    'footer_desc'          => 'Más de 15 años creando experiencias de viaje auténticas por Jalisco y todo México.',
     'enlaces_rapidos'      => 'Enlaces rápidos',
     'legales'              => 'Legales',
     'aviso_privacidad'     => 'Aviso de privacidad',
@@ -106,10 +106,12 @@ return array(
     'paginacion'           => 'Paginación',
     'hero_eyebrow'         => 'Tu próxima aventura comienza aquí',
     'hero_title'           => 'Descubre México con quien lo conoce',
-    'hero_sub'             => 'Más de 20 años creando experiencias auténticas por Jalisco y todo México.',
+    'hero_sub'             => 'Más de 15 años creando experiencias auténticas por Jalisco y todo México.',
     'destinos_destacados'  => 'Destinos imperdibles',
     'tours_imperdibles'    => 'Tours imperdibles',
     'explora_experiencia'  => 'Explora por experiencia',
+    'blog_eyebrow'         => 'Del blog',
+    'blog_titulo'          => 'Historias y noticias de viaje',
     'trust_anios'          => 'Años viajando',
     'trust_tours'          => 'Tours activos',
     'trust_destinos'       => 'Destinos',
@@ -118,7 +120,7 @@ return array(
 
     // Franja de confianza (home)
     'aval_titulo'          => 'Señales de confianza',
-    'aval_anios'           => 'Más de 20 años creando viajes por México',
+    'aval_anios'           => 'Más de 15 años creando viajes por México',
     'aval_moderniza'       => 'Distintivo Moderniza · SECTUR',
     'aval_confian'         => 'Confían en nosotros:',
 
@@ -143,6 +145,7 @@ return array(
     'eyebrow_experiencia'  => 'Experiencia',
     'eyebrow_tours'        => 'Explora México',
     'n_tours'              => '%d tours',
+    'dia_label'            => 'Día',
 
     // Filtros del catálogo (acordeón + filtros activos)
     'buscar_destino'       => 'Buscar destino…',

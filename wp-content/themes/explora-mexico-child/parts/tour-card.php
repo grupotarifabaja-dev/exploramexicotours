@@ -68,7 +68,7 @@ $classes = apply_filters( 'emt_tour_card_classes', array( 'emt-tour-card' ), $id
         <h3 class="emt-tour-card__title"><a href="<?php echo esc_url( $permalink ); ?>"><?php echo esc_html( $title ); ?></a></h3>
 
         <p class="emt-tour-card__meta">
-            <?php if ( $destino ) : ?><span class="emt-tour-card__destino">📍 <?php echo esc_html( $destino ); ?></span><?php endif; ?>
+            <?php if ( $destino ) : ?><span class="emt-tour-card__destino"><?php echo emt_icon( 'pin' ); ?><span><?php echo esc_html( $destino ); ?></span></span><?php endif; ?>
             <?php if ( $duracion ) : ?><span class="emt-tour-card__dur"> · <?php echo esc_html( $duracion ); ?></span><?php endif; ?>
         </p>
 

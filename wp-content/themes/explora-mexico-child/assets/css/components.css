@@ -310,3 +310,6 @@
   .emt-btn, .emt-chip, .emt-card { transition: none; }
   .emt-btn:hover, .emt-chip:hover, .emt-card:hover, .emt-card:focus-within { transform: none; }
 }
+
+/* Íconos inline de metadatos (reemplazan emojis en tours) */
+.emt-meta-icon { width: 1em; height: 1em; flex: none; vertical-align: -0.15em; opacity: 0.85; }

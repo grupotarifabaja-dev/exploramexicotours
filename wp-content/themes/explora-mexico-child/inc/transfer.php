@@ -70,6 +70,8 @@ function emt_transfer_guardar_solicitud() {
         $extras_validos
     ) );
 
+    $vehiculo = sanitize_text_field( wp_unslash( $_POST['vehiculo'] ?? '' ) );
+
     $solicitud = array(
         'fecha_registro' => current_time( 'mysql' ),
         'nombre'         => $nombre,
@@ -77,6 +79,7 @@ function emt_transfer_guardar_solicitud() {
         'correo'         => $email,
         'empresa'        => sanitize_text_field( wp_unslash( $_POST['empresa'] ?? '' ) ),
         'tipo_servicio'  => $tipo,
+        'vehiculo'       => $vehiculo,
         'origen'         => $origen,
         'destino'        => $destino,
         'fecha_salida'   => $salida,
@@ -102,7 +105,7 @@ function emt_transfer_guardar_solicitud() {
     wp_mail(
         $admin_email,
         '[EMT Transfer] Nueva solicitud de reservación',
-        "Nueva solicitud de transporte:\n\nNombre: {$nombre}\nTeléfono: {$tel}\nCorreo: {$email}\nServicio: {$tipo}\nOrigen: {$origen}\nDestino: {$destino}\nSalida: {$salida}\nPasajeros: {$adultos} adultos, {$solicitud['menores']} menores"
+        "Nueva solicitud de transporte:\n\nNombre: {$nombre}\nTeléfono: {$tel}\nCorreo: {$email}\nServicio: {$tipo}\nVehículo de interés: " . ( $vehiculo !== '' ? $vehiculo : '—' ) . "\nOrigen: {$origen}\nDestino: {$destino}\nSalida: {$salida}\nPasajeros: {$adultos} adultos, {$solicitud['menores']} menores"
     );
 
     $lang = function_exists( 'emt_current_lang' ) ? emt_current_lang() : 'es';
