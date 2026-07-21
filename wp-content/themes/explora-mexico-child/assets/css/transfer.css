@@ -80,7 +80,98 @@
 .emt-transfer-form__msg.is-ok { color: #4e7a16; font-weight: var(--emt-fw-semibold); }
 .emt-transfer-form__msg.is-err { color: var(--emt-color-danger); }
 
+/* Botón "Cotizar" en cada tarjeta de flotilla (alineado al fondo) */
+.emt-flotilla-card__body { flex: 1 1 auto; }
+.emt-flotilla-card__cta { margin-top: var(--emt-spacing-sm); align-self: flex-start; }
+
 /* Contacto */
 .emt-transfer-contacto ul { list-style: none; margin: 0 0 var(--emt-spacing-md); padding: 0; display: grid; gap: var(--emt-spacing-sm); }
 .emt-transfer-contacto a { color: var(--emt-azul-brillante); }
 .emt-transfer-operado { color: var(--emt-color-text-muted); font-size: var(--emt-fs-sm); font-style: italic; }
+.emt-transfer-contacto__cta { margin-top: var(--emt-spacing-lg); }
+
+/* ============================================================
+   MODAL DE COTIZACIÓN (<dialog>)
+   ============================================================ */
+html.emt-modal-open { overflow: hidden; }
+
+.emt-modal {
+  width: min(720px, 94vw);
+  max-width: min(720px, 94vw);
+  max-height: 92vh;
+  padding: 0;
+  border: 0;
+  border-radius: var(--emt-radius-lg);
+  background: transparent;
+  overflow: visible;
+  color: var(--emt-color-text);
+}
+.emt-modal::backdrop {
+  background: rgba(11, 31, 51, 0.55);
+  backdrop-filter: blur(2px);
+}
+/* Fallback para navegadores sin soporte de <dialog> (open sin showModal) */
+.emt-modal[open]:not(:modal) {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  z-index: 9999;
+  box-shadow: 0 0 0 100vmax rgba(11, 31, 51, 0.55);
+}
+
+.emt-modal__panel {
+  display: flex;
+  flex-direction: column;
+  max-height: 92vh;
+  background: var(--emt-blanco);
+  border-radius: var(--emt-radius-lg);
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+}
+
+.emt-modal__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--emt-spacing-md);
+  padding: var(--emt-spacing-lg) var(--emt-spacing-xl);
+  border-bottom: 1px solid var(--emt-color-border);
+  background: var(--emt-blanco);
+}
+.emt-modal__title { font-family: var(--emt-font-display); font-size: var(--emt-fs-xl); font-weight: var(--emt-fw-bold); color: var(--emt-azul-profundo); margin: 0; }
+.emt-modal__sub { color: var(--emt-color-text-muted); font-size: var(--emt-fs-sm); margin: 0.35rem 0 0; }
+.emt-modal__vehiculo { margin: 0.5rem 0 0; font-size: var(--emt-fs-sm); color: var(--emt-azul-profundo); }
+.emt-modal__vehiculo-label { font-weight: var(--emt-fw-semibold); color: var(--emt-azul-brillante); }
+
+.emt-modal__close {
+  flex: 0 0 auto;
+  width: 2.25rem; height: 2.25rem;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 1.7rem; line-height: 1;
+  color: var(--emt-color-text-muted);
+  background: var(--emt-gris-claro);
+  border: 0; border-radius: var(--emt-radius-pill);
+  cursor: pointer; transition: background 0.2s ease, color 0.2s ease;
+}
+.emt-modal__close:hover { background: var(--emt-color-border); color: var(--emt-azul-profundo); }
+
+/* El formulario dentro del modal: sin marco propio y con scroll interno. */
+.emt-modal .emt-transfer-form {
+  border: 0;
+  border-radius: 0;
+  padding: var(--emt-spacing-xl);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.emt-modal .emt-transfer-form__bar {
+  position: sticky;
+  bottom: calc(-1 * var(--emt-spacing-xl));
+  margin-bottom: calc(-1 * var(--emt-spacing-xl));
+  padding: var(--emt-spacing-md) 0;
+  background: var(--emt-blanco);
+}
+
+@media (max-width: 520px) {
+  .emt-modal__head { padding: var(--emt-spacing-md) var(--emt-spacing-lg); }
+  .emt-modal .emt-transfer-form { padding: var(--emt-spacing-lg); }
+}
