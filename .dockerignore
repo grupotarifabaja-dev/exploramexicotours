@@ -3,7 +3,7 @@
 .github
 .claude
 docs/
-seeders/
+# seeders/  <- NO excluir: el Dockerfile hornea seeders/ en /opt/emt/seeders (disparador de datos)
 scripts/
 node_modules/
 *.zip
