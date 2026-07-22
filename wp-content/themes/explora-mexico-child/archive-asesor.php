@@ -35,15 +35,22 @@ $tx_idi = get_terms( array( 'taxonomy' => 'asesor_idioma', 'hide_empty' => false
 
 get_header();
 ?>
+<section class="emt-archive-hero emt-archive-hero--plain">
+    <div class="emt-container emt-archive-hero__inner">
+        <?php if ( function_exists( 'emt_breadcrumbs' ) ) { emt_breadcrumbs(); } ?>
+        <div class="emt-heading emt-heading--left emt-archive-hero__heading">
+            <span class="emt-eyebrow"><?php echo esc_html( emt_t( 'asesores_eyebrow' ) ); ?></span>
+            <h1 class="emt-title emt-archive-hero__title"><?php echo esc_html( emt_t( 'nuestro_equipo' ) ); ?></h1>
+            <p class="emt-heading__sub emt-archive-hero__sub"><?php echo esc_html( emt_t( 'asesores_sub' ) ); ?></p>
+        </div>
+        <?php if ( $query->found_posts > 0 ) : ?>
+            <p class="emt-archive-hero__count"><?php echo esc_html( $query->found_posts . ' ' . ( $emt_lang === 'en' ? 'advisors' : 'asesores' ) ); ?></p>
+        <?php endif; ?>
+    </div>
+</section>
+
 <section class="emt-section emt-asesor-archive">
     <div class="emt-container">
-        <?php if ( function_exists( 'emt_breadcrumbs' ) ) { emt_breadcrumbs(); } ?>
-
-        <header class="emt-heading">
-            <span class="emt-eyebrow"><?php echo esc_html( emt_t( 'asesores_eyebrow' ) ); ?></span>
-            <h1 class="emt-title"><?php echo esc_html( emt_t( 'nuestro_equipo' ) ); ?></h1>
-            <p class="emt-heading__sub"><?php echo esc_html( emt_t( 'asesores_sub' ) ); ?></p>
-        </header>
 
         <form class="emt-asesor-filters" method="get" action="<?php echo esc_url( $base_url ); ?>" data-emt-filters>
             <?php
