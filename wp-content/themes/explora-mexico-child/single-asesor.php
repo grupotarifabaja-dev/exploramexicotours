@@ -63,12 +63,6 @@ while ( have_posts() ) :
                         <?php if ( $email ) : ?><a class="emt-btn emt-btn--outline" href="mailto:<?php echo esc_attr( $email ); ?>"><?php echo esc_html( emt_t( 'enviar_email' ) ); ?></a><?php endif; ?>
                         <?php if ( $vcard ) : ?><a class="emt-btn emt-btn--outline" href="<?php echo esc_url( $vcard ); ?>"><?php echo esc_html( emt_t( 'descargar_vcard' ) ); ?></a><?php endif; ?>
                     </div>
-
-                    <?php if ( $vcard ) : ?>
-                        <div class="emt-asesor-qr" data-vcard-url="<?php echo esc_url( $vcard ); ?>" aria-label="QR vCard">
-                            <noscript><a href="<?php echo esc_url( $vcard ); ?>">vCard</a></noscript>
-                        </div>
-                    <?php endif; ?>
                 </div>
             </header>
         </div>
