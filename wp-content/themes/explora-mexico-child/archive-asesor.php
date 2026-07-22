@@ -30,9 +30,6 @@ get_header();
             <h1 class="emt-title emt-archive-hero__title"><?php echo esc_html( emt_t( 'nuestro_equipo' ) ); ?></h1>
             <p class="emt-heading__sub emt-archive-hero__sub"><?php echo esc_html( emt_t( 'asesores_sub' ) ); ?></p>
         </div>
-        <?php if ( $query->found_posts > 1 ) : ?>
-            <p class="emt-archive-hero__count"><?php echo esc_html( $query->found_posts . ' ' . ( $emt_lang === 'en' ? 'advisors' : 'asesores' ) ); ?></p>
-        <?php endif; ?>
     </div>
 </section>
 

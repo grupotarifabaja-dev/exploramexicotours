@@ -313,3 +313,7 @@
 
 /* Íconos inline de metadatos (reemplazan emojis en tours) */
 .emt-meta-icon { width: 1em; height: 1em; flex: none; vertical-align: -0.15em; opacity: 0.85; }
+
+/* Avatar placeholder: silueta gris cuando el asesor no tiene foto */
+.emt-avatar--placeholder { background: var(--emt-gris-claro); color: var(--emt-gris-medio); }
+.emt-avatar--placeholder svg { width: 60%; height: 60%; }

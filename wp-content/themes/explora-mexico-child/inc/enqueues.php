@@ -60,7 +60,7 @@ function emt_enqueue_site_assets() {
     }
 
     $deps   = array( wp_style_is( 'emt-components', 'enqueued' ) ? 'emt-components' : 'emt-tokens' );
-    $styles = array( 'header', 'mega-menu', 'footer', 'tour-card', 'asesor-card', 'lang-switcher', 'whatsapp-float', 'breadcrumbs' );
+    $styles = array( 'header', 'mega-menu', 'footer', 'tour-card', 'asesor-card', 'lang-switcher', 'whatsapp-float', 'breadcrumbs', 'archive-hero' );
     foreach ( $styles as $s ) {
         $file = "$dir/assets/css/$s.css";
         if ( file_exists( $file ) ) {

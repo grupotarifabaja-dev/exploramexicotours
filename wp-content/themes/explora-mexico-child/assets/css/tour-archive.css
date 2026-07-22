@@ -2,51 +2,8 @@
    TOUR ARCHIVE / TAXONOMÍAS (doc maestro §8.2)
    ============================================================ */
 
-/* ---- Header de archivo / taxonomía (rediseño 2026) ----
-   Adopta el sistema: heading serape sobre sección oscura, o foto editable
-   del destino con overlay para texto legible. Reemplaza la banda azul plana. */
-.emt-archive-hero {
-  position: relative;
-  color: var(--emt-on-dark);
-  padding-block: clamp(2.75rem, 6vw, 4.5rem);
-  overflow: hidden;
-  background: var(--emt-surface-dark);
-}
-.emt-archive-hero--plain { background: var(--emt-surface-dark); }
-.emt-archive-hero--photo { background: var(--emt-azul-profundo); }
-
-/* Foto de fondo + overlay estándar para legibilidad del texto blanco */
-.emt-archive-hero__media { position: absolute; inset: 0; z-index: 0; }
-.emt-archive-hero__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.emt-archive-hero--photo::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  background: linear-gradient(180deg, rgba(0, 20, 45, 0.55) 0%, rgba(0, 20, 45, 0.42) 42%, rgba(0, 20, 45, 0.85) 100%);
-}
-.emt-archive-hero__inner { position: relative; z-index: 2; }
-
-/* Heading dentro del hero: izquierda, títulos claros */
-.emt-archive-hero .emt-breadcrumbs { margin-top: 0; margin-bottom: var(--emt-spacing-md); }
-.emt-archive-hero__heading { margin-bottom: var(--emt-spacing-md); gap: 0.5rem; }
-.emt-archive-hero .emt-title { color: var(--emt-blanco); }
-.emt-archive-hero .emt-eyebrow { color: var(--emt-turquesa); }
-.emt-archive-hero__sub { color: rgba(233, 241, 248, 0.85); max-width: 60ch; }
-.emt-archive-hero__count {
-  margin: 0;
-  font-size: var(--emt-fs-sm);
-  font-weight: var(--emt-fw-semibold);
-  color: var(--emt-on-dark);
-  opacity: 0.92;
-}
-
-/* Breadcrumbs legibles sobre el hero oscuro */
-.emt-archive-hero .emt-breadcrumbs__item,
-.emt-archive-hero .emt-breadcrumbs__item:not(:first-child)::before,
-.emt-archive-hero .emt-breadcrumbs [aria-current="page"] { color: rgba(233, 241, 248, 0.72); }
-.emt-archive-hero .emt-breadcrumbs__item a { color: var(--emt-blanco); }
-.emt-archive-hero .emt-breadcrumbs__item a:hover { color: var(--emt-turquesa); }
+/* El header de archivo (.emt-archive-hero) se movio a archive-hero.css
+   (compartido: Tours, Destinos y Asesores). */
 
 .emt-listing {
   display: grid;
