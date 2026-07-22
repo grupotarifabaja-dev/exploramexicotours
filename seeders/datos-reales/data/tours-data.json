@@ -1,1199 +1,1755 @@
 {
-    "tours": [
+  "tours": [
+    {
+      "titulo": "Xantolo · Día de Muertos en la Huasteca Potosina",
+      "titulo_en": "Xantolo · Day of the Dead in the Huasteca Potosina",
+      "slug": "xantolo-dia-de-muertos-huasteca",
+      "destino": "San Luis Potosí",
+      "categoria": "Cultural",
+      "experiencias": [
+        "Día de Muertos",
+        "Aventura y naturaleza",
+        "Cultura"
+      ],
+      "descripcion_breve": "Déjate sorprender por los escenarios acuáticos de la Huasteca Potosina y la festividad del Xantolo (día de muertos) que se celebra con ofrendas, altares, música, baile y gastronomía creando una atmósfera de respeto, alegría y memoria.",
+      "descripcion_breve_en": "Be amazed by the water landscapes of the Huasteca Potosina and the Xantolo festival (Day of the Dead) celebrated with offerings, altars, music, dance and gastronomy, creating an atmosphere of respect, joy and memory.",
+      "precio_desde": 5245,
+      "precio_nota": "Menor 6-12. Adulto desde $6,019 (TPL) / $6,389 (DBL)",
+      "duracion_texto": "3 días / 2 noches",
+      "duracion_horas": 72,
+      "dificultad": "moderada",
+      "idiomas": [
+        "es",
+        "en"
+      ],
+      "punto_salida": "Av. Cruz del Sur 2371, Jardines de la Cruz, CP 44950, Guadalajara, Jalisco",
+      "salida_garantizada": true,
+      "pickup_hotel": false,
+      "fecha_viaje": "30 octubre – 1 noviembre 2026",
+      "fotos": [
+        "huasteca-puente-flores.jpg",
+        "huasteca-tamul-1.jpg",
+        "huasteca-cascada.jpg",
+        "huasteca-rafting.jpg"
+      ],
+      "incluye": [
+        "Transporte en van, servicio compartido",
+        "Seguro de viajero en transporte",
+        "Traslados acordes a itinerario",
+        "2 noches de alojamiento Hotel 3*",
+        "Admisiones en sitios a visitar",
+        "Guía local",
+        "Chaleco salvavidas, remo y panga en Cascada de Tamul",
+        "Chaleco y llanta para tubbing en Cascada El Meco",
+        "Asistencia de staff durante el viaje",
+        "IVA"
+      ],
+      "no_incluye": [
+        "Alimentos y bebidas",
+        "Renta de chalecos en Minas Viejas y Micos",
+        "Actividad de salto de cascadas en Micos",
+        "Festival de Las Ánimas en Tamasopo (evento nocturno)",
+        "Seguro por actividades de naturaleza"
+      ],
+      "itinerario": [
         {
-            "titulo": "Xantolo · Día de Muertos en la Huasteca Potosina",
-            "titulo_en": "Xantolo · Day of the Dead in the Huasteca Potosina",
-            "slug": "xantolo-dia-de-muertos-huasteca",
-            "destino": "San Luis Potosí",
-            "categoria": "Cultural",
-            "experiencias": [
-                "Día de Muertos",
-                "Aventura y naturaleza",
-                "Cultura"
-            ],
-            "descripcion_breve": "Déjate sorprender por los escenarios acuáticos de la Huasteca Potosina y la festividad del Xantolo (día de muertos) que se celebra con ofrendas, altares, música, baile y gastronomía creando una atmósfera de respeto, alegría y memoria.",
-            "descripcion_breve_en": "Be amazed by the water landscapes of the Huasteca Potosina and the Xantolo festival (Day of the Dead) celebrated with offerings, altars, music, dance and gastronomy, creating an atmosphere of respect, joy and memory.",
-            "precio_desde": 5245,
-            "precio_nota": "Menor 6-12. Adulto desde $6,019 (TPL) / $6,389 (DBL)",
-            "duracion_texto": "3 días / 2 noches",
-            "duracion_horas": 72,
-            "dificultad": "moderada",
-            "idiomas": [
-                "es",
-                "en"
-            ],
-            "punto_salida": "Av. Cruz del Sur 2371, Jardines de la Cruz, CP 44950, Guadalajara, Jalisco",
-            "salida_garantizada": true,
-            "pickup_hotel": false,
-            "fecha_viaje": "30 octubre – 1 noviembre 2026",
-            "fotos": [
-                "huasteca-puente-flores.jpg",
-                "huasteca-tamul-1.jpg",
-                "huasteca-cascada.jpg",
-                "huasteca-rafting.jpg"
-            ],
-            "incluye": [
-                "Transporte en van, servicio compartido",
-                "Seguro de viajero en transporte",
-                "Traslados acordes a itinerario",
-                "2 noches de alojamiento Hotel 3*",
-                "Admisiones en sitios a visitar",
-                "Guía local",
-                "Chaleco salvavidas, remo y panga en Cascada de Tamul",
-                "Chaleco y llanta para tubbing en Cascada El Meco",
-                "Asistencia de staff durante el viaje",
-                "IVA"
-            ],
-            "no_incluye": [
-                "Alimentos y bebidas",
-                "Renta de chalecos en Minas Viejas y Micos",
-                "Actividad de salto de cascadas en Micos",
-                "Festival de Las Ánimas en Tamasopo (evento nocturno)",
-                "Seguro por actividades de naturaleza"
-            ],
-            "itinerario": [
-                {
-                    "dia": 1,
-                    "titulo": "Guadalajara – Cascadas de Tamasopo – Ciudad Valles",
-                    "descripcion": "05:00 hrs salida del punto de encuentro con destino a Cascadas de Tamasopo. Arribo y tiempo libre para disfrutar de los escenarios naturales. Alojamiento en Ciudad Valles."
-                },
-                {
-                    "dia": 2,
-                    "titulo": "Ciudad Valles – El Meco – Minas Viejas – Micos",
-                    "descripcion": "Visita a Cascada El Meco para tubbing, Cascada de Minas Viejas y Cascadas de Micos para fotografías. Por la noche, centro de Ciudad Valles para admirar altares y ofrendas del Xantolo."
-                },
-                {
-                    "dia": 3,
-                    "titulo": "Ciudad Valles – Cascada de Tamul – Guadalajara",
-                    "descripcion": "Visita a la Cascada de Tamul y la Cueva del Agua. Al finalizar, regreso a Guadalajara. Fin de servicios."
-                }
-            ],
-            "politica_cancelacion": "Cancelaciones con penalización del 30% del valor del viaje. Entre 45 y 30 días antes: 80% de penalización. Entre 29 y 0 días: 100% de penalización. No show el día del viaje: 100% de penalidad, sin reembolso. Explora México Tours podrá cancelar el viaje si no se completa el mínimo de personas, con reembolso total al cliente.",
-            "destacado": true,
-            "orden_destacado": 1
+          "dia": 1,
+          "titulo": "Guadalajara – Cascadas de Tamasopo – Ciudad Valles",
+          "descripcion": "05:00 hrs salida del punto de encuentro con destino a Cascadas de Tamasopo. Arribo y tiempo libre para disfrutar de los escenarios naturales. Alojamiento en Ciudad Valles."
         },
         {
-            "titulo": "Día de Muertos en Michoacán",
-            "titulo_en": "Day of the Dead in Michoacán",
-            "slug": "dia-de-muertos-michoacan",
-            "destino": "Michoacán",
-            "categoria": "Cultural",
-            "experiencias": [
-                "Día de Muertos",
-                "Cultura"
-            ],
-            "descripcion_breve": "Dentro del conjunto de manifestaciones culturales de Michoacán destacan las relacionadas con el Día de Muertos, particularmente en las comunidades indígenas Purépecha, un ritual con profunda significación más allá de su vistosidad.",
-            "descripcion_breve_en": "Among Michoacán's cultural expressions, those related to the Day of the Dead stand out, particularly in the indigenous Purépecha communities — a ritual with deep meaning beyond its visual beauty.",
-            "precio_desde": 4099,
-            "precio_nota": "Menor 6-12. Adulto desde $4,179 (CuADPL) / $4,859 (DBL)",
-            "duracion_texto": "3 días / 2 noches",
-            "duracion_horas": 72,
-            "dificultad": "moderada",
-            "idiomas": [
-                "es",
-                "en"
-            ],
-            "punto_salida": "Av. Cruz del Sur 2371, Jardines de la Cruz, CP 44950, Guadalajara, Jalisco",
-            "salida_garantizada": true,
-            "pickup_hotel": false,
-            "fecha_viaje": "31 octubre – 2 noviembre 2026",
-            "fotos": [
-                "michoacan-trajes.jpg"
-            ],
-            "incluye": [
-                "Transporte en van, servicio compartido",
-                "Seguro de viajero en transporte",
-                "Traslados acordes a itinerario",
-                "2 noches de alojamiento particular 3*",
-                "Embarcación para visita a Isla de Janitzio",
-                "Asistencia de staff durante el viaje",
-                "IVA"
-            ],
-            "no_incluye": [
-                "Alimentos y bebidas",
-                "Paseo en tranvía en el centro de Morelia",
-                "Admisión a museos y zonas arqueológicas",
-                "Propinas",
-                "Seguro de gastos médicos de viaje"
-            ],
-            "itinerario": [
-                {
-                    "dia": 1,
-                    "titulo": "Guadalajara – Morelia",
-                    "descripcion": "06:00 hrs salida con destino a Capula, tiempo libre para desayuno y compras de artesanías. Visita a Isla de Janitzio. Por la tarde, regreso a Morelia para alojamiento."
-                },
-                {
-                    "dia": 2,
-                    "titulo": "Morelia – Zona lacustre de Pátzcuaro – Morelia",
-                    "descripcion": "Visita a Tzurumútaro y su cementerio decorado con cempasúchil, Pátzcuaro y la Plaza Vasco de Quiroga, Tzintzuntzan con Las Yácatas y el Ex convento de Santa Ana. Medianoche, regreso a Morelia."
-                },
-                {
-                    "dia": 3,
-                    "titulo": "Morelia – Guadalajara",
-                    "descripcion": "Mañana libre para el centro de la ciudad, museos o tranvía. Después de la comida, regreso a Guadalajara. Fin de servicios."
-                }
-            ],
-            "politica_cancelacion": "Cancelaciones con penalización del 30% del valor del viaje. Entre 45 y 30 días antes: 80% de penalización. Entre 29 y 0 días: 100% de penalización. No show el día del viaje: 100% de penalidad, sin reembolso. Explora México Tours podrá cancelar el viaje si no se completa el mínimo de personas, con reembolso total al cliente.",
-            "destacado": true,
-            "orden_destacado": 2
+          "dia": 2,
+          "titulo": "Ciudad Valles – El Meco – Minas Viejas – Micos",
+          "descripcion": "Visita a Cascada El Meco para tubbing, Cascada de Minas Viejas y Cascadas de Micos para fotografías. Por la noche, centro de Ciudad Valles para admirar altares y ofrendas del Xantolo."
         },
         {
-            "titulo": "Día de Muertos en Mixquic",
-            "titulo_en": "Day of the Dead in Mixquic",
-            "slug": "dia-de-muertos-en-mixquic",
-            "destino": "Ciudad de México",
-            "categoria": "Cultural",
-            "experiencias": [
-                "Día de Muertos",
-                "Cultura"
-            ],
-            "descripcion_breve": "El barrio mágico de Mixquic da la bienvenida a los fieles difuntos con las tradicionales ofrendas llenas de comida, bebidas y objetos personales de las personas fallecidas \"La alumbrada\". Todas las casas se impregnan del olor que desprende la flor de cempasúchil, las frutas, el sahumerio con incienso y las veladoras. Apreciarás esta tradición milenaria 100 % mexicana, donde el culto y costumbres hacia la muerte se conjuntan y hacen de ésta una experiencia única en el mundo.",
-            "descripcion_breve_en": "",
-            "precio_desde": null,
-            "precio_nota": "Tarifa por persona. Consultar disponibilidad. Capacidad: mínimo 2 / máximo 4 (10 lugares).",
-            "duracion_texto": "11 horas",
-            "duracion_horas": 11,
-            "dificultad": "facil",
-            "idiomas": [
-                "es"
-            ],
-            "punto_salida": "Hotel Barceló Centro CDMX",
-            "salida_garantizada": false,
-            "pickup_hotel": true,
-            "fecha_viaje": "2 noviembre 2026",
-            "fotos": [
-                "dia-de-muertos-en-mixquic__DSC_0077_(2).jpg",
-                "dia-de-muertos-en-mixquic__Getty-Veladoras-597c93c65f9b58928bdc78f4.jpg",
-                "dia-de-muertos-en-mixquic__experiencias-dia-muertos.jpg"
-            ],
-            "incluye": [
-                "Transporte en van, servicio compartido",
-                "Seguro de viajero en transporte",
-                "Traslados acordes a itinerario",
-                "Guía local",
-                "Visita a cementerio",
-                "IVA"
-            ],
-            "no_incluye": [
-                "Alimentos",
-                "Bebidas",
-                "Entrada a Ex convento San Andrés Apóstol",
-                "Propinas",
-                "Seguro de gastos médicos de viaje"
-            ],
-            "itinerario": [
-                {
-                    "dia": 1,
-                    "titulo": "Día único · Mixquic",
-                    "descripcion": "12:45 hrs cita en punto de encuentro. 13:00 hrs salida a Mixquic. 22:00 hrs fin de actividades y regreso a punto de salida. 23:45 hrs arribo a Ciudad de México, Hotel Barceló Centro CDMX. Fin de servicios."
-                }
-            ],
-            "politica_cancelacion": "Los horarios del itinerario son aproximados y podrían sufrir cambios sin previo aviso según las decisiones de las comunidades a visitar, condiciones de tráfico o cierres viales. Explora México Tours podrá realizar la cancelación total del viaje si no se completa el mínimo de personas para operar la excursión, comprometiéndose a realizar el reembolso total del importe pagado por el cliente. Cancelaciones con penalización del 30% del valor del viaje; entre 45 y 30 días antes, 80%; entre 29 y 0 días, 100%. No show el día del viaje: 100% de penalidad, sin reembolso."
-        },
-        {
-            "titulo": "Barrancas del Cobre",
-            "titulo_en": "Copper Canyon",
-            "slug": "barrancas-del-cobre",
-            "destino": "Chihuahua",
-            "categoria": "Cultural",
-            "experiencias": [
-                "Aventura y naturaleza",
-                "Cultura"
-            ],
-            "descripcion_breve": "Barrancas del Cobre es un impresionante sistema de cañones ubicado en Chihuahua, reconocido por su belleza natural, su biodiversidad y riqueza cultural. Con paisajes espectaculares, miradores únicos y un ferrocarril que atraviesa la sierra y la montaña, es uno de los destinos imperdibles de México.",
-            "descripcion_breve_en": "",
-            "precio_desde": null,
-            "precio_nota": "Tarifa por persona desde, se requiere confirmar disponibilidad. Ocupaciones: DBL/TPL/CuADPL adulto y Menor 6-12.",
-            "duracion_texto": "5 días / 4 noches",
-            "duracion_horas": 120,
-            "dificultad": "facil",
-            "idiomas": [
-                "es"
-            ],
-            "punto_salida": "Recogida en aeropuerto de Chihuahua o Sinaloa según inicie el itinerario",
-            "salida_garantizada": false,
-            "pickup_hotel": false,
-            "fecha_viaje": "Todo el año, sujeto a disponibilidad",
-            "fotos": [
-                "barrancas-del-cobre__77c16123-a1a2-4ce2-b073-5d99a7dc99d0.jpg",
-                "barrancas-del-cobre__IMG_5191.jpg",
-                "barrancas-del-cobre__IMG_5328.jpg",
-                "barrancas-del-cobre__IMG_5432.jpg",
-                "barrancas-del-cobre__WhatsApp_Image_2022-01-24_at_10.17.22.jpg",
-                "barrancas-del-cobre__WhatsApp_Image_2022-01-24_at_10.19.35.jpg"
-            ],
-            "incluye": [
-                "Transporte desde y hacia el aeropuerto",
-                "Seguro de viajero en transporte",
-                "Traslados acordes a itinerario",
-                "4 noches de alojamiento",
-                "City tour en el centro de Chihuahua",
-                "Visita comunidad menonita",
-                "Tour valle Tarahumara",
-                "Tour miradores",
-                "Visita parque de Aventura Barrancas del Cobre",
-                "Boleto de tren Chepe Express categoría ejecutiva",
-                "IVA"
-            ],
-            "no_incluye": [
-                "Vuelos de ciudad de origen",
-                "Alimentos",
-                "Bebidas",
-                "Admisiones en lugares a visitar",
-                "Pagos ejidales",
-                "Actividades en parque de aventuras",
-                "Tours adicionales",
-                "Seguro por actividades de naturaleza"
-            ],
-            "itinerario": [
-                {
-                    "dia": 1,
-                    "titulo": "Chihuahua",
-                    "descripcion": "Llegada al Aeropuerto de Chihuahua donde serán recibidos con cartel con su nombre para traslado al hotel. Día libre para dar un paseo opcional por la ciudad y visitar sus atractivos turísticos: el Museo de Pancho Villa (cerrado los lunes), Palacio de Gobierno y sus murales, Catedral, Acueducto Colonial, la zona residencial Quinta Gameros, el Calabozo de Miguel Hidalgo y el Centro Histórico. Alojamiento en Chihuahua."
-                },
-                {
-                    "dia": 2,
-                    "titulo": "Chihuahua – Creel",
-                    "descripcion": "08:30 am cita en lobby del hotel para traslado en transporte terrestre con destino a Creel, Pueblo Mágico. En el trayecto visitaremos la Comunidad Menonita en Cuauhtémoc (cerrado los domingos). A la llegada, paseo por los alrededores de Creel: Lago de Arareko, Valle de Los Hongos y Valle de las Ranas, Misión Jesuita de San Ignacio y una cueva habitada por Tarahumaras. Tarde libre. Alojamiento en Creel."
-                },
-                {
-                    "dia": 3,
-                    "titulo": "Creel – Divisadero – Barrancas",
-                    "descripcion": "08:30 am traslado por carretera a Posada Barrancas Divisadero y tour miradores incluido para visitar el parque de aventura. Podrá visitar los distintos miradores, paseo en teleférico y tirolesas (opcional no incluido), piedra volada y puente colgante. Degustación opcional de las típicas gorditas de Divisadero. Tarde libre para disfrutar de las vistas. Alojamiento en Barrancas del Cobre."
-                },
-                {
-                    "dia": 4,
-                    "titulo": "Barrancas – Divisadero – El Fuerte",
-                    "descripcion": "08:30 hrs traslado a estación Divisadero para abordar el tren Chepe Express con destino al Pueblo Mágico colonial de El Fuerte, una de las obras maestras de la ingeniería mexicana con sus puentes y túneles. Llegada a El Fuerte a las 02:35 pm, recepción y traslado al hotel. Tarde libre para caminar por las calles empedradas, visitar su iglesia colonial, el palacio municipal y el museo local. Alojamiento en El Fuerte."
-                },
-                {
-                    "dia": 5,
-                    "titulo": "El Fuerte – Aeropuerto de Los Mochis",
-                    "descripcion": "Mañana libre y traslado al aeropuerto de Los Mochis según el horario de salida de su vuelo. Fin de servicios."
-                }
-            ],
-            "politica_cancelacion": "El itinerario puede estar sujeto a cambios por políticas de Ferromex. Los lunes los museos en Chihuahua están cerrados; los domingos el museo Menonita se encuentra cerrado. Al abordar el tren Chepe se requerirá identificación oficial vigente con fotografía. Explora México Tours no permitirá cancelaciones, pero sí cambios de fecha conforme a los términos y condiciones del proveedor final. Si el cliente el día del viaje no se presenta, aplica como NO SHOW y genera el 100% de penalidad. Solo puede haber 1 persona por asiento; niños de 1 año en adelante ocupan asiento.",
-            "destacado": true,
-            "orden_destacado": 3
-        },
-        {
-            "titulo": "Oaxaca Ciudad",
-            "titulo_en": "Oaxaca City",
-            "slug": "oaxaca-ciudad",
-            "destino": "Oaxaca",
-            "categoria": "Cultural",
-            "experiencias": [
-                "Cultura",
-                "Gastronómico",
-                "Aventura y naturaleza"
-            ],
-            "descripcion_breve": "Un destino lleno de cultura, gastronomía y arte que posiciona a Oaxaca como uno de los favoritos en México. La riqueza de la cocina oaxaqueña enamora a cualquiera, sus edificios conservan la arquitectura colonial, coloridos murales y el arte del barro negro y los alebrijes.",
-            "descripcion_breve_en": "",
-            "precio_desde": null,
-            "precio_nota": "Tarifa por persona desde, se requiere confirmar disponibilidad. Ocupaciones: DBL/TPL/CuADPL adulto y Menor 3-12.",
-            "duracion_texto": "5 días / 4 noches",
-            "duracion_horas": 120,
-            "dificultad": "facil",
-            "idiomas": [
-                "es",
-                "en"
-            ],
-            "punto_salida": "Recogida en aeropuerto de Oaxaca",
-            "salida_garantizada": false,
-            "pickup_hotel": false,
-            "fecha_viaje": "Todo el año, sujeto a disponibilidad",
-            "fotos": [
-                "oaxaca-ciudad__IMG_2858.jpg",
-                "oaxaca-ciudad__IMG_4733.jpg",
-                "oaxaca-ciudad__OAXACA.jpg",
-                "oaxaca-ciudad__WhatsApp_Image_2026-06-18_at_18.38.43.jpg"
-            ],
-            "incluye": [
-                "Transporte desde y hacia el aeropuerto",
-                "Seguro de viaje en transporte",
-                "Traslados acordes a itinerario",
-                "4 noches de alojamiento",
-                "IVA"
-            ],
-            "no_incluye": [
-                "Alimentos",
-                "Bebidas",
-                "Vuelos",
-                "Gastos personales",
-                "Propinas",
-                "Seguro por actividades de naturaleza"
-            ],
-            "itinerario": [
-                {
-                    "dia": 1,
-                    "titulo": "Oaxaca",
-                    "descripcion": "Llegada al aeropuerto de Oaxaca, traslado a su hotel y tarde libre."
-                },
-                {
-                    "dia": 2,
-                    "titulo": "Oaxaca – Árbol del Tule – Mitla y Hierve el Agua",
-                    "descripcion": "Comenzamos frente al Árbol del Tule con su imponente copa y altura, seguimos hacia Teotitlán del Valle para entender el teñido natural, admiramos las grecas milenarias de Mitla, caminamos frente a las cascadas de Hierve el Agua y terminamos disfrutando de un mezcal artesanal."
-                },
-                {
-                    "dia": 3,
-                    "titulo": "Oaxaca – Monte Albán – Alebrijes y Barro Negro",
-                    "descripcion": "Inicia en Monte Albán, antigua capital zapoteca, caminando entre templos y terrazas. Continúa hacia Arrazola, donde los alebrijes cobran vida en un taller auténtico: tallado, pintado y técnicas tradicionales sin compras obligadas. Finaliza en San Bartolo Coyotepec, famoso por su barro negro."
-                },
-                {
-                    "dia": 4,
-                    "titulo": "Centro de Oaxaca y tarde libre",
-                    "descripcion": "Recorrido de medio día caminando por el centro de Oaxaca: el zócalo, la catedral, el templo de Santo Domingo y sus coloridas calles. Resto de la tarde libre para compras, museos o degustar mezcal."
-                },
-                {
-                    "dia": 5,
-                    "titulo": "Aeropuerto de Oaxaca",
-                    "descripcion": "Traslado al aeropuerto de Oaxaca. Fin de servicios."
-                }
-            ],
-            "politica_cancelacion": "El itinerario puede estar sujeto a cambio. Explora México Tours no permitirá cancelaciones, pero sí cambios de fecha conforme a los términos y condiciones del proveedor final. Si el cliente el día del viaje no se presenta, aplica como NO SHOW y genera el 100% de penalidad. Solo puede haber 1 persona por asiento; niños de 1 año en adelante ocupan asiento."
-        },
-        {
-            "titulo": "Oaxaca y sus Playas",
-            "titulo_en": "Oaxaca and its Beaches",
-            "slug": "oaxaca-y-sus-playas",
-            "destino": "Oaxaca",
-            "categoria": "Aventura",
-            "experiencias": [
-                "Aventura y naturaleza"
-            ],
-            "descripcion_breve": "Las playas de Oaxaca son un destino de la costa del Pacífico que se caracteriza por sus atractivos naturales, aguas cálidas y ambiente relajado. Aquí podrás disfrutar de espectaculares atardeceres, gastronomía local y aguas cristalinas.",
-            "descripcion_breve_en": "",
-            "precio_desde": null,
-            "precio_nota": "Tarifa por persona desde, se requiere confirmar disponibilidad. Ocupaciones: DBL/TPL/CuADPL adulto y Menor 3-12.",
-            "duracion_texto": "5 días / 4 noches",
-            "duracion_horas": 120,
-            "dificultad": "facil",
-            "idiomas": [
-                "es"
-            ],
-            "punto_salida": "Recogida en aeropuerto (Puerto Escondido / Huatulco)",
-            "salida_garantizada": false,
-            "pickup_hotel": false,
-            "fecha_viaje": "Todo el año, sujeto a disponibilidad",
-            "fotos": [
-                "oaxaca-y-sus-playas__IMG_2019.jpg",
-                "oaxaca-y-sus-playas__IMG_2100.jpg",
-                "oaxaca-y-sus-playas__IMG_2464.jpg",
-                "oaxaca-y-sus-playas__luminiscencia.jpg"
-            ],
-            "incluye": [
-                "Transporte desde y hacia el aeropuerto",
-                "Seguro de viaje en transporte",
-                "Traslados acordes a itinerario",
-                "Alojamiento",
-                "IVA"
-            ],
-            "no_incluye": [
-                "Alimentos",
-                "Bebidas",
-                "Vuelos",
-                "Gastos personales",
-                "Propinas",
-                "Seguro por actividades de naturaleza"
-            ],
-            "itinerario": [
-                {
-                    "dia": 1,
-                    "titulo": "Llegada a la costa",
-                    "descripcion": "Llegada al aeropuerto, traslado al hotel y tarde libre para disfrutar de la playa."
-                }
-            ],
-            "politica_cancelacion": "El itinerario puede estar sujeto a cambio. Explora México Tours no permitirá cancelaciones, pero sí cambios de fecha conforme a los términos y condiciones del proveedor final. Si el cliente el día del viaje no se presenta, aplica como NO SHOW y genera el 100% de penalidad. Solo puede haber 1 persona por asiento; niños de 1 año en adelante ocupan asiento."
-        },
-        {
-            "titulo": "Explora Chiapas",
-            "titulo_en": "Explore Chiapas",
-            "slug": "explora-chiapas",
-            "destino": "Chiapas",
-            "categoria": "Aventura",
-            "experiencias": [
-                "Aventura y naturaleza",
-                "Cultura"
-            ],
-            "descripcion_breve": "Chiapas es el estado con más contrastes culturales y naturales, engloba ecosistemas tan diversos que lo convierten en uno de los favoritos para visitar en nuestro país. Un lugar fascinante lleno de naturaleza, tradiciones y colores.",
-            "descripcion_breve_en": "",
-            "precio_desde": null,
-            "precio_nota": "Tarifa por persona desde, se requiere confirmar disponibilidad. Ocupaciones: DBL/TPL/CuADPL adulto y Menor 3-12.",
-            "duracion_texto": "5 días / 4 noches",
-            "duracion_horas": 120,
-            "dificultad": "facil",
-            "idiomas": [
-                "es",
-                "en"
-            ],
-            "punto_salida": "Recogida en aeropuerto de Tuxtla Gutiérrez",
-            "salida_garantizada": false,
-            "pickup_hotel": false,
-            "fecha_viaje": "Todo el año, sujeto a disponibilidad",
-            "fotos": [
-                "explora-chiapas__DSC_0064_(2).jpg",
-                "explora-chiapas__DSC_0339.jpg",
-                "explora-chiapas__DSC_0935.jpg",
-                "explora-chiapas__IMG_1257.jpg"
-            ],
-            "incluye": [
-                "Transporte desde y hacia el aeropuerto",
-                "Seguro de viaje en transporte",
-                "Traslados acordes a itinerario",
-                "Admisiones en sitios a visitar",
-                "4 noches de alojamiento",
-                "IVA"
-            ],
-            "no_incluye": [
-                "Alimentos",
-                "Bebidas",
-                "Vuelos",
-                "Gastos personales",
-                "Propinas",
-                "Seguro por actividades de naturaleza"
-            ],
-            "itinerario": [
-                {
-                    "dia": 1,
-                    "titulo": "Aeropuerto Tuxtla Gutiérrez – San Cristóbal de las Casas",
-                    "descripcion": "Llegada al aeropuerto de Tuxtla Gutiérrez y traslado a su hotel en San Cristóbal de las Casas. Registro en hotel y noche libre para descansar."
-                },
-                {
-                    "dia": 2,
-                    "titulo": "San Cristóbal – Agua Azul, Misol-Ha y Palenque",
-                    "descripcion": "Salida temprano hacia Palenque. Escala en Ocosingo para desayunar. Visita al Parque Cascadas de Agua Azul, formado por la unión de los ríos Otulún, Shumuljá y Tulijá. Continuación a la Cascada de Misol-Ha (40 m de altura). Recorrido guiado por la Zona Arqueológica de Palenque, uno de los sitios mayas más importantes de Mesoamérica. Regreso a San Cristóbal."
-                },
-                {
-                    "dia": 3,
-                    "titulo": "San Cristóbal – Cascadas de El Chiflón – Lagunas de Montebello",
-                    "descripcion": "Visita a las Cascadas de El Chiflón, cadena de cascadas formada por el Río San Vicente (El Suspiro, Ala de Ángel, Arco Iris, Quinceañera y la principal, Velo de Novia, de 120 m). Continuación a las Lagunas de Montebello, donde visitaremos Tziscao y el lago internacional en la frontera con Guatemala. Regreso a San Cristóbal."
-                },
-                {
-                    "dia": 4,
-                    "titulo": "San Cristóbal – Cañón del Sumidero – Chiapa de Corzo",
-                    "descripcion": "Visita a los miradores del Cañón del Sumidero. Recorrido en lancha de 1 hora 50 minutos sobre el río Grijalva: la presa de Chicoasén, la cueva de la virgen y el árbol de navidad. Tiempo libre en el pueblo mágico de Chiapa de Corzo. Regreso a San Cristóbal."
-                },
-                {
-                    "dia": 5,
-                    "titulo": "San Cristóbal – Aeropuerto de Tuxtla Gutiérrez",
-                    "descripcion": "Mañana libre y, a la hora acordada, traslado al aeropuerto de Tuxtla Gutiérrez. Fin de servicios."
-                }
-            ],
-            "politica_cancelacion": "El itinerario puede estar sujeto a cambio. Explora México Tours no permitirá cancelaciones, pero sí cambios de fecha conforme a los términos y condiciones del proveedor final. Si el cliente el día del viaje no se presenta, aplica como NO SHOW y genera el 100% de penalidad. Solo puede haber 1 persona por asiento; niños de 1 año en adelante ocupan asiento."
-        },
-        {
-            "titulo": "Ciudades Coloniales",
-            "titulo_en": "Colonial Cities",
-            "slug": "ciudades-coloniales",
-            "destino": "Querétaro – Guanajuato – Michoacán",
-            "categoria": "Cultural",
-            "experiencias": [
-                "Cultura"
-            ],
-            "descripcion_breve": "Explora el corazón colonial de México. Recorre los encantadores callejones de Guanajuato, admira la elegancia histórica de Querétaro y descubre la riqueza cultural de Michoacán. Tres estados del centro de México que comparten historia, arquitectura virreinal y cultura.",
-            "descripcion_breve_en": "",
-            "precio_desde": null,
-            "precio_nota": "Tarifa por persona. Máximo 4 personas en habitación incluyendo menores. Bebés deben llevar asiento asignado.",
-            "duracion_texto": "7 días / 6 noches",
-            "duracion_horas": 168,
-            "dificultad": "facil",
-            "idiomas": [
-                "es",
-                "en"
-            ],
-            "punto_salida": "Inicia en Ciudad de México o Guadalajara (hotel o aeropuerto), antes de las 12:00 hrs",
-            "salida_garantizada": false,
-            "pickup_hotel": true,
-            "fecha_viaje": "Todo el año, sujeto a disponibilidad",
-            "fotos": [
-                "ciudades-coloniales__DSC_0392.jpg",
-                "ciudades-coloniales__DSC_0442.jpg",
-                "ciudades-coloniales__IMG_1306.jpg",
-                "ciudades-coloniales__IMG_1320.jpg",
-                "ciudades-coloniales__IMG_1477.jpg"
-            ],
-            "incluye": [
-                "Transporte en servicio compartido",
-                "Traslados acordes a itinerario",
-                "Tours acordes a itinerario",
-                "Seguro de viajero en transporte",
-                "Noches de alojamiento",
-                "IVA"
-            ],
-            "no_incluye": [
-                "Alimentos",
-                "Bebidas",
-                "Admisión a museos no mencionados",
-                "Gastos personales",
-                "Propinas",
-                "Seguro de gastos médicos de viaje"
-            ],
-            "itinerario": [
-                {
-                    "dia": 1,
-                    "titulo": "Ciudad de México – Morelia",
-                    "descripcion": "12:00 hrs salida del punto de encuentro (hotel o aeropuerto de CDMX) y traslado a Morelia. Por la tarde, paseo por el centro de la ciudad. Alojamiento en Morelia."
-                },
-                {
-                    "dia": 2,
-                    "titulo": "Morelia – Ruta Vasco de Quiroga – Morelia",
-                    "descripcion": "La Ruta Don Vasco es un recorrido turístico y cultural por Michoacán siguiendo los pasos del misionero Vasco de Quiroga, visitando Pátzcuaro, Tzintzuntzan y Quiroga. Regreso a Morelia."
-                },
-                {
-                    "dia": 3,
-                    "titulo": "Morelia – Querétaro",
-                    "descripcion": "Después del desayuno, salida hacia Querétaro. Por la tarde, recorrido en tranvía para conocer la ciudad. Alojamiento en Querétaro."
-                },
-                {
-                    "dia": 4,
-                    "titulo": "Querétaro – Ruta del Vino – Querétaro",
-                    "descripcion": "Salida hacia la ruta del vino visitando los pueblos mágicos de Tequisquiapan y San Sebastián de Bernal. Degustación de quesos y visita a uno de los viñedos más antiguos de la ruta. Regreso a Querétaro."
-                },
-                {
-                    "dia": 5,
-                    "titulo": "Querétaro – Guanajuato",
-                    "descripcion": "Traslado a Guanajuato. Por la tarde, recorrido caminando por calles y callejones. Por la noche, actividad con una tradicional estudiantina. Alojamiento en Guanajuato."
-                },
-                {
-                    "dia": 6,
-                    "titulo": "Guanajuato – Ruta de la Independencia – Guanajuato",
-                    "descripcion": "Visita a Dolores Hidalgo, cuna de la Independencia, el santuario de Atotonilco y San Miguel de Allende, con su Parroquia de San Miguel Arcángel. Regreso a Guanajuato."
-                },
-                {
-                    "dia": 7,
-                    "titulo": "Guanajuato – Guadalajara",
-                    "descripcion": "Recorrido guiado por Guanajuato: Museo de las Momias, Monumento a El Pípila, túneles, mina del barrio de Valenciana, Iglesia de San Cayetano y mercado local. 16:00 hrs traslado a Guadalajara (aeropuerto u hotel). Fin de servicios."
-                }
-            ],
-            "politica_cancelacion": "Los horarios del itinerario son aproximados. Los traslados serán en servicio compartido o privado según la operación. Categoría de hoteles de 3 estrellas. Máxima ocupación 4 personas incluyendo niños o bebés. Equipaje flexible no mayor a 15 kilos por pasajero. Actividad recomendada para mayores de 6 años y menores de 75 años con movilidad. Explora México Tours no permitirá cancelaciones, pero sí cambios de fecha conforme a los términos del proveedor. NO SHOW genera 100% de penalidad."
-        },
-        {
-            "titulo": "Tour Tequila “Tradición con distinción”",
-            "titulo_en": "Tequila Tour “Tradition with Distinction”",
-            "slug": "tour-tequila-tradicion-con-distincion",
-            "destino": "Jalisco",
-            "categoria": "Cultural",
-            "experiencias": [
-                "Cultura",
-                "Gastronómico"
-            ],
-            "descripcion_breve": "Disfruta de un recorrido diseñado para quienes buscan experiencias memorables, transportación de lujo, gastronomía selecta, atención personalizada y acceso a la auténtica cultura tequilera. Descubre el arte del tequila artesanal mediante una experiencia inmersiva en nuestra destilería familiar y aprende los secretos detrás de nuestro tequila premium y conecta con el origen. Te recibimos con cantarito en mano, conoce el cuidado y cultivo de la planta de agave, visita la destilería donde conocerás de mano de los expertos el proceso de destilación y concluye con una cata guiada de 3 de nuestras expresiones: tequila blanco, tequila reposado y tequila añejo.",
-            "precio_desde": null,
-            "precios_vehiculo": [
-                {
-                    "capacidad": "2 pax",
-                    "vehiculo": "Suburban línea nueva",
-                    "precio": null
-                },
-                {
-                    "capacidad": "3 pax",
-                    "vehiculo": "Suburban línea nueva",
-                    "precio": null
-                },
-                {
-                    "capacidad": "4 pax",
-                    "vehiculo": "Suburban línea nueva",
-                    "precio": null
-                },
-                {
-                    "capacidad": "5 pax",
-                    "vehiculo": "Suburban línea nueva",
-                    "precio": null
-                },
-                {
-                    "capacidad": "6 pax",
-                    "vehiculo": "Suburban línea nueva",
-                    "precio": null
-                },
-                {
-                    "capacidad": "7-10 pax",
-                    "vehiculo": "Sprinter Lux",
-                    "precio": null
-                }
-            ],
-            "precio_nota": "Precio por persona según capacidad del grupo y vehículo. Reserva mínima 15 días antes, máxima 3 meses. Solicitudes especiales (pedidas de mano, aniversarios, eventos): contáctanos. Si esta destilería no es de tu interés, agenda con la destilería de tu preferencia.",
-            "duracion_texto": "1 día (13 horas)",
-            "duracion_horas": 13,
-            "dificultad": "facil",
-            "idiomas": [
-                "es",
-                "en"
-            ],
-            "punto_salida": "Hoteles o Airbnb en Zona Guadalajara Centro, Zapopan Centro, Tlaquepaque Centro, Zona Expo y Zona Andares",
-            "salida_garantizada": false,
-            "pickup_hotel": true,
-            "fecha_viaje": "Todo el año (10:00–23:00 hrs)",
-            "fotos": [
-                "tour-tequila-tradicion-con-distincion__01.jpg",
-                "tour-tequila-tradicion-con-distincion__02.jpg",
-                "tour-tequila-tradicion-con-distincion__03.jpg",
-                "tour-tequila-tradicion-con-distincion__04.jpg",
-                "tour-tequila-tradicion-con-distincion__05.jpg",
-                "tour-tequila-tradicion-con-distincion__06.jpg",
-                "tour-tequila-tradicion-con-distincion__07.jpg",
-                "tour-tequila-tradicion-con-distincion__08.jpg"
-            ],
-            "incluye": [
-                "Transportación en servicio privado acorde a itinerario",
-                "Chofer certificado",
-                "Guía tequilier durante todo el recorrido",
-                "Bebidas refrescantes y snacks a bordo",
-                "Seguro de viajero a bordo de transporte",
-                "Admisión y recorrido por fábrica de tequila premium artesanal",
-                "Cata de tequila guiada por maestro tequilero",
-                "Parada en el centro de Tequila para fotografías",
-                "Degustación de tequila en bar local",
-                "Cena maridaje a 3 tiempos",
-                "IVA"
-            ],
-            "no_incluye": [
-                "Gastos personales",
-                "Propinas"
-            ],
-            "itinerario": [
-                {
-                    "dia": 1,
-                    "titulo": "Tequila premium de día completo",
-                    "descripcion": "10:00 hrs pick up en punto acordado. 10:15 salida a Tequila. 11:30 arribo a destilería e inicio de recorrido. 14:00 traslado al centro de Tequila: tiempo para comer y visitar la Parroquia de Santiago Apóstol, la Plaza principal y su quiosco, el callejón José Cuervo y el Museo Nacional del Tequila (admisión no incluida). 16:30 cita íntima para degustar los sabores del agave: copa de bienvenida de pulque tradicional, introducción al mundo del agave y degustación guiada de cuatro variedades de tequila acompañada de chocolate, quesos y bocadillos de la región. 18:30 cena maridaje en lugar secreto. 21:30 regreso a Guadalajara. 23:00 arribo y fin de servicios."
-                }
-            ],
-            "politica_cancelacion": "Actividad recomendada para mayores de 18 años (no disponible para menores de 17). No sugerimos este viaje a mujeres embarazadas ni personas con lesiones en rodillas, espalda o cirugías recientes. Para reservar: nombre completo de participantes, celular y un contacto de emergencia que no asista, vía WhatsApp (+52) 33 1048 0670 o reserva@exploramexicotours.com. Explora México Tours actúa como intermediario entre el cliente y los servicios contratados. Cancelaciones: 30% de penalización; entre 45 y 30 días antes, 80%; entre 29 y 0 días, 100%. NO SHOW el día del viaje: 100% de penalidad, sin reembolso ni abono a otro viaje."
-        },
-        {
-            "titulo": "Tour a Tequila en tren José Cuervo Express (Atardecer)",
-            "titulo_en": "Tequila Tour on the José Cuervo Express Train (Sunset)",
-            "slug": "tour-tequila-jose-cuervo-express",
-            "destino": "Jalisco",
-            "categoria": "Cultural",
-            "experiencias": [
-                "Cultura",
-                "Gastronómico"
-            ],
-            "descripcion_breve": "Explora Tequila en una experiencia inolvidable en el ¡José Cuervo Express! El único tren de pasajeros estilo antiguo de todo México, el mejor modo de vivir el pueblo de Tequila y los impresionantes paisajes de los campos de agave, patrimonio natural de la humanidad. Conocerás el Pueblo Mágico de Tequila con un día repleto de actividades: juegos, música, espectáculo, y aprenderás todo sobre la producción del tequila.",
-            "precio_desde": null,
-            "precios_vehiculo": [
-                {
-                    "capacidad": "2 pax",
-                    "vehiculo": "Sedán",
-                    "precio": null
-                },
-                {
-                    "capacidad": "3 pax",
-                    "vehiculo": "Sedán",
-                    "precio": null
-                },
-                {
-                    "capacidad": "4 pax",
-                    "vehiculo": "Sedán Full Size",
-                    "precio": null
-                },
-                {
-                    "capacidad": "5 pax",
-                    "vehiculo": "Suburban",
-                    "precio": null
-                },
-                {
-                    "capacidad": "6 pax",
-                    "vehiculo": "Suburban",
-                    "precio": null
-                },
-                {
-                    "capacidad": "7 pax",
-                    "vehiculo": "Toyota o similar",
-                    "precio": null
-                },
-                {
-                    "capacidad": "8 pax",
-                    "vehiculo": "Toyota o similar",
-                    "precio": null
-                },
-                {
-                    "capacidad": "9 pax",
-                    "vehiculo": "Toyota o similar",
-                    "precio": null
-                },
-                {
-                    "capacidad": "10 pax",
-                    "vehiculo": "Toyota o similar",
-                    "precio": null
-                },
-                {
-                    "capacidad": "11-15 pax",
-                    "vehiculo": "Sprinter regular",
-                    "precio": null
-                },
-                {
-                    "capacidad": "16-19 pax",
-                    "vehiculo": "Sprinter regular",
-                    "precio": null
-                }
-            ],
-            "precio_nota": "Vagón de tren categoría EXPRESS. Precio por persona según capacidad del grupo. Reserva con 15 días a 3 meses de anticipación. Si llevas niños o menores de edad, contáctanos para una propuesta a tu medida.",
-            "duracion_texto": "1 día (12 horas)",
-            "duracion_horas": 12,
-            "dificultad": "facil",
-            "idiomas": [
-                "es",
-                "en"
-            ],
-            "punto_salida": "Hoteles o Airbnb en Zona Guadalajara Centro, Zapopan Centro, Tlaquepaque Centro, Zona Expo y Zona Andares",
-            "salida_garantizada": false,
-            "pickup_hotel": true,
-            "fecha_viaje": "Todos los días (sujeto a disponibilidad)",
-            "fotos": [
-                "tour-tequila-jose-cuervo-express__01.jpg",
-                "tour-tequila-jose-cuervo-express__02.jpg",
-                "tour-tequila-jose-cuervo-express__03.jpg"
-            ],
-            "incluye": [
-                "Transportación redonda desde tu alojamiento a las estaciones del tren en servicio privado",
-                "Traslado terrestre compartido Guadalajara–Tequila",
-                "Traslado en tren ruta Tequila–Guadalajara al atardecer",
-                "Categoría de vagón EXPRESS",
-                "Vista panorámica del paisaje agavero desde el tren",
-                "Visita a los campos de agave con demostración de jima",
-                "Servicio de alimentos ligeros y coctelería con tequilas de la casa",
-                "Juego de lotería conmemorativo",
-                "Catado educativo a una copa guiado por un Experto Tequilero",
-                "Recorrido por la destilería La Rojeña®",
-                "Acceso al Centro Cultural Juan Beckmann Gallardo",
-                "Tiempo libre para comer y conocer el Pueblo Mágico de Tequila",
-                "Espectáculo mexicano",
-                "Tradicional brindis con uno de los tequilas de la casa",
-                "IVA"
-            ],
-            "no_incluye": [
-                "Alimentos",
-                "Bebidas",
-                "Gastos personales",
-                "Propinas"
-            ],
-            "itinerario": [
-                {
-                    "dia": 1,
-                    "titulo": "Campos, el origen de la historia (Atardecer)",
-                    "descripcion": "07:00 hrs pick up de pasajeros en punto acordado. Traslado terrestre compartido Guadalajara–Tequila con visita a los campos de agave y demostración de jima. Día completo de actividades en el Pueblo Mágico de Tequila: recorrido por la destilería La Rojeña®, Centro Cultural Juan Beckmann Gallardo, tiempo libre para comer y pasear. Al atardecer, regreso en el tren José Cuervo Express (vagón Express) con alimentos ligeros, coctelería, lotería, catado educativo, espectáculo mexicano y brindis tradicional. Arribo a Guadalajara y fin de servicios (22:00 hrs aprox.)."
-                }
-            ],
-            "politica_cancelacion": "Una vez emitidos los boletos del tren no se permiten cancelaciones. Cambios de fecha sujetos a los términos del proveedor. Explora México Tours actúa como intermediario entre el cliente y los servicios contratados. NO SHOW genera 100% de penalidad."
-        },
-        {
-            "titulo": "Tour Tequila y destilería “La Rojeña” José Cuervo",
-            "titulo_en": "Tequila Tour & “La Rojeña” José Cuervo Distillery",
-            "slug": "tour-tequila-la-rojena",
-            "destino": "Jalisco",
-            "categoria": "Cultural",
-            "experiencias": [
-                "Cultura",
-                "Gastronómico"
-            ],
-            "descripcion_breve": "Explora la región de Jalisco, cuna de la bebida nacional, reconocida en México y el mundo, la cual lleva su mismo nombre: ¡Tequila! Podrás recorrer su plaza, caminar por sus calles y tomar fotografías de sus bellos paisajes. Visitarás una destilería y conocerás sus impresionantes instalaciones que brindan experiencias únicas. También aprenderás a detalle sobre el proceso de elaboración de esta bebida para finalmente degustar los tequilas que ahí se elaboran.",
-            "precio_desde": null,
-            "precios_vehiculo": [
-                {
-                    "capacidad": "2 pax",
-                    "vehiculo": "Sedán",
-                    "precio": null
-                },
-                {
-                    "capacidad": "3 pax",
-                    "vehiculo": "Sedán",
-                    "precio": null
-                },
-                {
-                    "capacidad": "4 pax",
-                    "vehiculo": "Sedán Full Size",
-                    "precio": null
-                },
-                {
-                    "capacidad": "5 pax",
-                    "vehiculo": "Suburban",
-                    "precio": null
-                },
-                {
-                    "capacidad": "6 pax",
-                    "vehiculo": "Suburban",
-                    "precio": null
-                },
-                {
-                    "capacidad": "7 pax",
-                    "vehiculo": "Toyota o Urban",
-                    "precio": null
-                },
-                {
-                    "capacidad": "8 pax",
-                    "vehiculo": "Toyota o Urban",
-                    "precio": null
-                },
-                {
-                    "capacidad": "9 pax",
-                    "vehiculo": "Toyota o Urban",
-                    "precio": null
-                },
-                {
-                    "capacidad": "10 pax",
-                    "vehiculo": "Toyota o Urban",
-                    "precio": null
-                },
-                {
-                    "capacidad": "11-15 pax",
-                    "vehiculo": "Sprinter regular",
-                    "precio": null
-                },
-                {
-                    "capacidad": "16-19 pax",
-                    "vehiculo": "Sprinter regular",
-                    "precio": null
-                }
-            ],
-            "precio_nota": "Precio por persona según capacidad del grupo. Reserva mínima 72 horas antes, máxima 3 meses. Si llevas niños o menores de edad, contáctanos para una propuesta a tu medida.",
-            "duracion_texto": "1 día (10 horas)",
-            "duracion_horas": 10,
-            "dificultad": "facil",
-            "idiomas": [
-                "es",
-                "en"
-            ],
-            "punto_salida": "Hoteles o Airbnb en Zona Guadalajara Centro, Zapopan Centro, Tlaquepaque Centro, Zona Expo y Zona Andares",
-            "salida_garantizada": false,
-            "pickup_hotel": true,
-            "fecha_viaje": "Lunes a sábado (no opera Navidad ni Año Nuevo)",
-            "fotos": [
-                "tour-tequila-la-rojena__01.jpg",
-                "tour-tequila-la-rojena__02.jpg",
-                "tour-tequila-la-rojena__03.jpg",
-                "tour-tequila-la-rojena__04.jpg",
-                "tour-tequila-la-rojena__05.jpg",
-                "tour-tequila-la-rojena__06.jpg"
-            ],
-            "incluye": [
-                "Transportación en servicio privado acorde a itinerario",
-                "Chofer certificado",
-                "Seguro de viajero a bordo de transporte",
-                "Admisión y recorrido por fábrica de tequila",
-                "Degustación de tequila de destilería",
-                "Tiempo libre en las instalaciones de la destilería",
-                "Tiempo libre en el centro del Pueblo Mágico de Tequila",
-                "Tiempo libre para comer, pasear y compras",
-                "IVA"
-            ],
-            "no_incluye": [
-                "Alimentos",
-                "Bebidas",
-                "Entrada a museos",
-                "Gastos personales",
-                "Propinas"
-            ],
-            "itinerario": [
-                {
-                    "dia": 1,
-                    "titulo": "La Rojeña y Pueblo Mágico de Tequila",
-                    "descripcion": "09:00 hrs pick up en punto acordado. 09:15 salida con destino a Tequila. 10:30 arribo al centro de Tequila. 11:00 inicio de recorrido José Cuervo La Rojeña. 13:00 tiempo para comer y visitar la Parroquia de Santiago Apóstol, la Plaza principal y su quiosco, el callejón José Cuervo y el Museo Nacional del Tequila (admisión no incluida). 15:00 salida con destino a Cantaritos de Amatitán (parada opcional). 17:30 regreso a Guadalajara. 19:00 arribo, drop off y fin de servicios."
-                }
-            ],
-            "politica_cancelacion": "Una vez emitidos los boletos no se permiten cancelaciones. Las cancelaciones deberán avisarse con 48 horas de anticipación para reagendar la visita en una fecha posterior. No hay reembolsos; en caso de cancelar, la visita será reagendada durante el mes en curso."
-        },
-        {
-            "titulo": "Tour Tequila Jornalero",
-            "titulo_en": "Jornalero Tequila Tour",
-            "slug": "tour-tequila-jornalero",
-            "destino": "Jalisco",
-            "categoria": "Cultural",
-            "experiencias": [
-                "Cultura",
-                "Gastronómico"
-            ],
-            "descripcion_breve": "Explora el lugar que da vida al Tequila, y conoce las manos involucradas detrás de cada trago de tu copa. Caminemos justo donde inicia la cadena productiva de este espirituoso: en los campos de agave. Échales un vistazo a las labores del campo y vive una experiencia gastronómica al estilo de los jornaleros. Conocerás el proceso de producción, desde la plantación hasta la destilación, para lograr entender cada una de las expresiones de este espirituoso. ¡Te adentrarás en la cultura tequilera!",
-            "precio_desde": null,
-            "precios_vehiculo": [
-                {
-                    "capacidad": "2 pax",
-                    "vehiculo": "Sedán",
-                    "precio": null
-                },
-                {
-                    "capacidad": "3 pax",
-                    "vehiculo": "Sedán",
-                    "precio": null
-                },
-                {
-                    "capacidad": "4 pax",
-                    "vehiculo": "Sedán Full Size",
-                    "precio": null
-                },
-                {
-                    "capacidad": "5 pax",
-                    "vehiculo": "Suburban",
-                    "precio": null
-                },
-                {
-                    "capacidad": "6 pax",
-                    "vehiculo": "Suburban",
-                    "precio": null
-                },
-                {
-                    "capacidad": "7 pax",
-                    "vehiculo": "Toyota o Urban",
-                    "precio": null
-                },
-                {
-                    "capacidad": "8 pax",
-                    "vehiculo": "Toyota o Urban",
-                    "precio": null
-                },
-                {
-                    "capacidad": "9 pax",
-                    "vehiculo": "Toyota o Urban",
-                    "precio": null
-                },
-                {
-                    "capacidad": "10 pax",
-                    "vehiculo": "Toyota o Urban",
-                    "precio": null
-                },
-                {
-                    "capacidad": "11-15 pax",
-                    "vehiculo": "Sprinter regular",
-                    "precio": null
-                },
-                {
-                    "capacidad": "16-19 pax",
-                    "vehiculo": "Sprinter regular",
-                    "precio": null
-                }
-            ],
-            "precio_nota": "Precio por persona según capacidad del grupo. Reserva mínima 72 horas antes, máxima 3 meses. Actividad no disponible para menores de 17 años.",
-            "duracion_texto": "1 día (10 horas)",
-            "duracion_horas": 10,
-            "dificultad": "facil",
-            "idiomas": [
-                "es",
-                "en"
-            ],
-            "punto_salida": "Hoteles o Airbnb en Zona Guadalajara Centro, Zapopan Centro, Tlaquepaque Centro, Zona Expo y Zona Andares",
-            "salida_garantizada": false,
-            "pickup_hotel": true,
-            "fecha_viaje": "Lunes a sábado (español: L-Mi-V · inglés: Ma-J-S). Domingos bajo solicitud especial. No opera Navidad ni Año Nuevo",
-            "fotos": [
-                "tour-tequila-jornalero__01.jpg",
-                "tour-tequila-jornalero__02.jpg",
-                "tour-tequila-jornalero__03.jpg",
-                "tour-tequila-jornalero__04.jpg",
-                "tour-tequila-jornalero__05.jpg",
-                "tour-tequila-jornalero__06.jpg",
-                "tour-tequila-jornalero__07.jpg",
-                "tour-tequila-jornalero__08.jpg",
-                "tour-tequila-jornalero__09.jpg",
-                "tour-tequila-jornalero__10.jpg"
-            ],
-            "incluye": [
-                "Transportación de acuerdo a itinerario",
-                "Chofer certificado",
-                "Seguro de viajero a bordo de transporte",
-                "Guía tequillier",
-                "Admisión a destilería artesanal categoría premium",
-                "Visita a campos de agave",
-                "Actividad y demostración de uso de utensilios en el campo agavero",
-                "Desayuno rústico mexicano a pie de campo",
-                "Cantarito con receta de la casa",
-                "Recorrido guiado en fábrica y explicación del proceso de elaboración",
-                "Cata guiada por expertos tequileros (blanco, reposado y añejo) + copa extra de tu expresión favorita",
-                "Visita al Pueblo Mágico de Tequila",
-                "Tiempo libre",
-                "IVA"
-            ],
-            "no_incluye": [
-                "Alimentos",
-                "Bebidas",
-                "Entrada a museos",
-                "Gastos personales",
-                "Propinas"
-            ],
-            "itinerario": [
-                {
-                    "dia": 1,
-                    "titulo": "Campos de agave y destilería artesanal",
-                    "descripcion": "07:40 hrs pick up en punto acordado. 07:50 salida con destino a Tequila. 09:00 arribo a destilería e inicio de recorrido: campos de agave, demostración de labores del campo, desayuno rústico a pie de campo, recorrido de fábrica y cata guiada. 12:00 traslado al centro de Tequila. 12:30 tiempo para comer y visitar la Parroquia de Santiago Apóstol, la Plaza principal y su quiosco, el callejón José Cuervo y el Museo Nacional del Tequila (admisión no incluida). 14:30 salida con destino a Cantaritos de Amatitán. 17:00 regreso a Guadalajara. 18:15 arribo, drop off y fin de servicios."
-                }
-            ],
-            "politica_cancelacion": "Una vez emitidos los boletos no se permiten cancelaciones. Las cancelaciones deberán avisarse con 72 horas de anticipación para reagendar la visita en una fecha posterior. No hay reembolsos; la visita será reagendada durante el mes en curso sujeto a disponibilidad."
-        },
-        {
-            "titulo": "Tour Tequila a tu alcance",
-            "titulo_en": "Tequila Within Reach Tour",
-            "slug": "tour-tequila-a-tu-alcance",
-            "destino": "Jalisco",
-            "categoria": "Cultural",
-            "experiencias": [
-                "Cultura",
-                "Gastronómico"
-            ],
-            "descripcion_breve": "Explora la magia de Tequila en una experiencia accesible y llena de tradición. Recorre los paisajes agaveros, conoce el proceso de elaboración, disfruta de una degustación y explora el encantador pueblo de Tequila a tu propio ritmo. Un tour diseñado para quienes desean vivir la cultura tequilera, divertirse y crear recuerdos inolvidables.",
-            "precio_desde": 986,
-            "precios_vehiculo": [
-                {
-                    "capacidad": "2 pax",
-                    "vehiculo": "Sedán",
-                    "precio": 3249
-                },
-                {
-                    "capacidad": "3 pax",
-                    "vehiculo": "Sedán",
-                    "precio": 2240
-                },
-                {
-                    "capacidad": "4 pax",
-                    "vehiculo": "Sedán Full Size",
-                    "precio": 1914
-                },
-                {
-                    "capacidad": "5 pax",
-                    "vehiculo": "Suburban",
-                    "precio": 2310
-                },
-                {
-                    "capacidad": "6 pax",
-                    "vehiculo": "Suburban",
-                    "precio": 1961
-                },
-                {
-                    "capacidad": "7 pax",
-                    "vehiculo": "Toyota o Urban",
-                    "precio": 1769
-                },
-                {
-                    "capacidad": "8 pax",
-                    "vehiculo": "Toyota o Urban",
-                    "precio": 1576
-                },
-                {
-                    "capacidad": "9 pax",
-                    "vehiculo": "Toyota o Urban",
-                    "precio": 1425
-                },
-                {
-                    "capacidad": "10 pax",
-                    "vehiculo": "Toyota o Urban",
-                    "precio": 1304
-                },
-                {
-                    "capacidad": "11-15 pax",
-                    "vehiculo": "Sprinter regular",
-                    "precio": 1206
-                },
-                {
-                    "capacidad": "16-19 pax",
-                    "vehiculo": "Sprinter regular",
-                    "precio": 986
-                }
-            ],
-            "precio_nota": "Precio por persona en MXN según capacidad del grupo y vehículo. Reserva mínima 72 horas antes, máxima 3 meses. Si llevas menores de edad, contáctanos para una opción a tu medida.",
-            "duracion_texto": "1 día (10 horas)",
-            "duracion_horas": 10,
-            "dificultad": "facil",
-            "idiomas": [
-                "es",
-                "en"
-            ],
-            "punto_salida": "Hoteles o Airbnb en Zona Guadalajara Centro, Zapopan Centro, Tlaquepaque Centro, Zona Expo y Zona Andares",
-            "salida_garantizada": false,
-            "pickup_hotel": true,
-            "fecha_viaje": "Lunes a domingo (no opera Navidad ni Año Nuevo)",
-            "fotos": [
-                "tour-tequila-a-tu-alcance__01.jpg",
-                "tour-tequila-a-tu-alcance__02.jpg",
-                "tour-tequila-a-tu-alcance__03.jpg",
-                "tour-tequila-a-tu-alcance__04.jpg",
-                "tour-tequila-a-tu-alcance__05.jpg",
-                "tour-tequila-a-tu-alcance__06.jpg",
-                "tour-tequila-a-tu-alcance__07.jpg",
-                "tour-tequila-a-tu-alcance__08.jpg"
-            ],
-            "incluye": [
-                "Transportación acorde a itinerario",
-                "Chofer certificado",
-                "Seguro de viajero a bordo de transporte",
-                "Admisión a destilería local",
-                "Recorrido guiado en fábrica",
-                "Explicación del proceso de elaboración de tequila",
-                "Degustación de tequila",
-                "Visita al Pueblo Mágico de Tequila",
-                "Tiempo libre",
-                "IVA"
-            ],
-            "no_incluye": [
-                "Alimentos",
-                "Bebidas",
-                "Entrada a museos",
-                "Gastos personales",
-                "Propinas"
-            ],
-            "itinerario": [
-                {
-                    "dia": 1,
-                    "titulo": "Tequila a tu ritmo",
-                    "descripcion": "09:00 hrs pick up en punto acordado. 09:15 salida con destino a Tequila. 10:30 arribo al centro de Tequila. 11:00 inicio de recorrido en destilería local. 13:00 tiempo para comer y visitar la Parroquia de Santiago Apóstol, la Plaza principal y su quiosco, el callejón José Cuervo y el Museo Nacional del Tequila (admisión no incluida). 15:00 salida con destino a Cantaritos de Amatitán (parada opcional). 17:30 regreso a Guadalajara. 19:00 arribo, drop off y fin de servicios."
-                }
-            ],
-            "politica_cancelacion": "Una vez emitidos los boletos no se permiten cancelaciones. Las cancelaciones deberán avisarse con 72 horas de anticipación para reagendar la visita; tendrás 6 meses para utilizar tu servicio, sujeto a disponibilidad y nivelación tarifaria. No hay reembolsos ni se toma a cuenta de otro servicio."
-        },
-        {
-            "titulo": "Tour Tequilero hasta los huesos",
-            "titulo_en": "Tequilero to the Bone Tour",
-            "slug": "tour-tequilero-hasta-los-huesos",
-            "destino": "Jalisco",
-            "categoria": "Cultural",
-            "experiencias": [
-                "Cultura",
-                "Día de Muertos",
-                "Gastronómico"
-            ],
-            "descripcion_breve": "Explora la magia del Día de Muertos en Tequila y el festival “Tequilero hasta los huesos”, donde disfrutarás de un espectacular desfile de catrinas, altares, ofrendas tradicionales, música en vivo, gastronomía típica y todo el encanto de la cultura mexicana. Tour compartido con disponibilidad de máximo 18 espacios.",
-            "precio_desde": null,
-            "precios_vehiculo": [],
-            "precio_nota": "Tour compartido, precio por persona (por definir edición 2026). Máximo 18 espacios. Reserva mínima 72 horas antes, máxima 3 meses. Si llevas menores de edad, contáctanos para una opción a tu medida.",
-            "duracion_texto": "1 día (12 horas)",
-            "duracion_horas": 12,
-            "dificultad": "facil",
-            "idiomas": [
-                "es",
-                "en"
-            ],
-            "punto_salida": "Punto de encuentro",
-            "salida_garantizada": false,
-            "pickup_hotel": false,
-            "fecha_viaje": "Temporada Día de Muertos (edición 2026 por confirmar)",
-            "fotos": [
-                "tour-tequilero-hasta-los-huesos__01.jpg",
-                "tour-tequilero-hasta-los-huesos__02.jpg",
-                "tour-tequilero-hasta-los-huesos__03.jpg",
-                "tour-tequilero-hasta-los-huesos__04.jpg",
-                "tour-tequilero-hasta-los-huesos__05.jpg"
-            ],
-            "incluye": [
-                "Transportación en servicio compartido",
-                "Coordinador de grupo",
-                "Admisión y recorrido por fábrica de tequila",
-                "Visita al centro de Tequila para comida, compras y fotografías",
-                "Seguro de viajero a bordo de transporte",
-                "Cena maridaje con tequila",
-                "IVA"
-            ],
-            "no_incluye": [
-                "Alimentos",
-                "Bebidas",
-                "Entrada a museos",
-                "Gastos personales",
-                "Propinas"
-            ],
-            "itinerario": [
-                {
-                    "dia": 1,
-                    "titulo": "Día de Muertos en Tequila",
-                    "descripcion": "10:45 hrs pick up en punto de encuentro. 11:00 salida con destino a Tequila. 13:00 arribo a destilería local para recorrido. 16:00 tiempo libre en el centro de Tequila: Parroquia de Santiago Apóstol, Plaza principal, quiosco, callejón José Cuervo, Museo Nacional del Tequila (admisión no incluida), altares y ofrendas del festival. 19:00 cata y cena maridaje. 21:00 regreso a Guadalajara. 23:00 arribo al punto de encuentro y fin de servicios."
-                }
-            ],
-            "politica_cancelacion": "Actividad recomendada para mayores de 18 años (no disponible para menores de 17). No sugerimos este viaje a mujeres embarazadas ni personas con lesiones o cirugías recientes. Explora México Tours podrá cancelar el viaje si no se completa el mínimo de personas, reembolsando el importe total. Para reservar: nombre completo, celular y contacto de emergencia vía WhatsApp (+52) 33 1048 0670 o reserva@exploramexicotours.com. Cancelaciones: 30% de penalización; entre 45 y 30 días, 80%; entre 29 y 0 días, 100%. NO SHOW: 100% de penalidad."
+          "dia": 3,
+          "titulo": "Ciudad Valles – Cascada de Tamul – Guadalajara",
+          "descripcion": "Visita a la Cascada de Tamul y la Cueva del Agua. Al finalizar, regreso a Guadalajara. Fin de servicios."
         }
-    ]
+      ],
+      "politica_cancelacion": "Cancelaciones con penalización del 30% del valor del viaje. Entre 45 y 30 días antes: 80% de penalización. Entre 29 y 0 días: 100% de penalización. No show el día del viaje: 100% de penalidad, sin reembolso. Explora México Tours podrá cancelar el viaje si no se completa el mínimo de personas, con reembolso total al cliente.",
+      "destacado": true,
+      "orden_destacado": 1
+    },
+    {
+      "titulo": "Día de Muertos en Michoacán",
+      "titulo_en": "Day of the Dead in Michoacán",
+      "slug": "dia-de-muertos-michoacan",
+      "destino": "Michoacán",
+      "categoria": "Cultural",
+      "experiencias": [
+        "Día de Muertos",
+        "Cultura"
+      ],
+      "descripcion_breve": "Dentro del conjunto de manifestaciones culturales de Michoacán destacan las relacionadas con el Día de Muertos, particularmente en las comunidades indígenas Purépecha, un ritual con profunda significación más allá de su vistosidad.",
+      "descripcion_breve_en": "Among Michoacán's cultural expressions, those related to the Day of the Dead stand out, particularly in the indigenous Purépecha communities — a ritual with deep meaning beyond its visual beauty.",
+      "precio_desde": 4099,
+      "precio_nota": "Menor 6-12. Adulto desde $4,179 (CuADPL) / $4,859 (DBL)",
+      "duracion_texto": "3 días / 2 noches",
+      "duracion_horas": 72,
+      "dificultad": "moderada",
+      "idiomas": [
+        "es",
+        "en"
+      ],
+      "punto_salida": "Av. Cruz del Sur 2371, Jardines de la Cruz, CP 44950, Guadalajara, Jalisco",
+      "salida_garantizada": true,
+      "pickup_hotel": false,
+      "fecha_viaje": "31 octubre – 2 noviembre 2026",
+      "fotos": [
+        "michoacan-trajes.jpg"
+      ],
+      "incluye": [
+        "Transporte en van, servicio compartido",
+        "Seguro de viajero en transporte",
+        "Traslados acordes a itinerario",
+        "2 noches de alojamiento particular 3*",
+        "Embarcación para visita a Isla de Janitzio",
+        "Asistencia de staff durante el viaje",
+        "IVA"
+      ],
+      "no_incluye": [
+        "Alimentos y bebidas",
+        "Paseo en tranvía en el centro de Morelia",
+        "Admisión a museos y zonas arqueológicas",
+        "Propinas",
+        "Seguro de gastos médicos de viaje"
+      ],
+      "itinerario": [
+        {
+          "dia": 1,
+          "titulo": "Guadalajara – Morelia",
+          "descripcion": "06:00 hrs salida con destino a Capula, tiempo libre para desayuno y compras de artesanías. Visita a Isla de Janitzio. Por la tarde, regreso a Morelia para alojamiento."
+        },
+        {
+          "dia": 2,
+          "titulo": "Morelia – Zona lacustre de Pátzcuaro – Morelia",
+          "descripcion": "Visita a Tzurumútaro y su cementerio decorado con cempasúchil, Pátzcuaro y la Plaza Vasco de Quiroga, Tzintzuntzan con Las Yácatas y el Ex convento de Santa Ana. Medianoche, regreso a Morelia."
+        },
+        {
+          "dia": 3,
+          "titulo": "Morelia – Guadalajara",
+          "descripcion": "Mañana libre para el centro de la ciudad, museos o tranvía. Después de la comida, regreso a Guadalajara. Fin de servicios."
+        }
+      ],
+      "politica_cancelacion": "Cancelaciones con penalización del 30% del valor del viaje. Entre 45 y 30 días antes: 80% de penalización. Entre 29 y 0 días: 100% de penalización. No show el día del viaje: 100% de penalidad, sin reembolso. Explora México Tours podrá cancelar el viaje si no se completa el mínimo de personas, con reembolso total al cliente.",
+      "destacado": true,
+      "orden_destacado": 2
+    },
+    {
+      "titulo": "Día de Muertos en Mixquic",
+      "titulo_en": "Day of the Dead in Mixquic",
+      "slug": "dia-de-muertos-en-mixquic",
+      "destino": "Ciudad de México",
+      "categoria": "Cultural",
+      "experiencias": [
+        "Día de Muertos",
+        "Cultura"
+      ],
+      "descripcion_breve": "El barrio mágico de Mixquic da la bienvenida a los fieles difuntos con las tradicionales ofrendas llenas de comida, bebidas y objetos personales de las personas fallecidas \"La alumbrada\". Todas las casas se impregnan del olor que desprende la flor de cempasúchil, las frutas, el sahumerio con incienso y las veladoras. Apreciarás esta tradición milenaria 100 % mexicana, donde el culto y costumbres hacia la muerte se conjuntan y hacen de ésta una experiencia única en el mundo.",
+      "descripcion_breve_en": "",
+      "precio_desde": null,
+      "precio_nota": "Tarifa por persona. Consultar disponibilidad. Capacidad: mínimo 2 / máximo 4 (10 lugares).",
+      "duracion_texto": "11 horas",
+      "duracion_horas": 11,
+      "dificultad": "facil",
+      "idiomas": [
+        "es"
+      ],
+      "punto_salida": "Hotel Barceló Centro CDMX",
+      "salida_garantizada": false,
+      "pickup_hotel": true,
+      "fecha_viaje": "2 noviembre 2026",
+      "fotos": [
+        "dia-de-muertos-en-mixquic__DSC_0077_(2).jpg",
+        "dia-de-muertos-en-mixquic__Getty-Veladoras-597c93c65f9b58928bdc78f4.jpg",
+        "dia-de-muertos-en-mixquic__experiencias-dia-muertos.jpg"
+      ],
+      "incluye": [
+        "Transporte en van, servicio compartido",
+        "Seguro de viajero en transporte",
+        "Traslados acordes a itinerario",
+        "Guía local",
+        "Visita a cementerio",
+        "IVA"
+      ],
+      "no_incluye": [
+        "Alimentos",
+        "Bebidas",
+        "Entrada a Ex convento San Andrés Apóstol",
+        "Propinas",
+        "Seguro de gastos médicos de viaje"
+      ],
+      "itinerario": [
+        {
+          "dia": 1,
+          "titulo": "Día único · Mixquic",
+          "descripcion": "12:45 hrs cita en punto de encuentro. 13:00 hrs salida a Mixquic. 22:00 hrs fin de actividades y regreso a punto de salida. 23:45 hrs arribo a Ciudad de México, Hotel Barceló Centro CDMX. Fin de servicios."
+        }
+      ],
+      "politica_cancelacion": "Los horarios del itinerario son aproximados y podrían sufrir cambios sin previo aviso según las decisiones de las comunidades a visitar, condiciones de tráfico o cierres viales. Explora México Tours podrá realizar la cancelación total del viaje si no se completa el mínimo de personas para operar la excursión, comprometiéndose a realizar el reembolso total del importe pagado por el cliente. Cancelaciones con penalización del 30% del valor del viaje; entre 45 y 30 días antes, 80%; entre 29 y 0 días, 100%. No show el día del viaje: 100% de penalidad, sin reembolso."
+    },
+    {
+      "titulo": "Barrancas del Cobre",
+      "titulo_en": "Copper Canyon",
+      "slug": "barrancas-del-cobre",
+      "destino": "Chihuahua",
+      "categoria": "Cultural",
+      "experiencias": [
+        "Aventura y naturaleza",
+        "Cultura"
+      ],
+      "descripcion_breve": "Barrancas del Cobre es un impresionante sistema de cañones ubicado en Chihuahua, reconocido por su belleza natural, su biodiversidad y riqueza cultural. Con paisajes espectaculares, miradores únicos y un ferrocarril que atraviesa la sierra y la montaña, es uno de los destinos imperdibles de México.",
+      "descripcion_breve_en": "",
+      "precio_desde": null,
+      "precio_nota": "Tarifa por persona desde, se requiere confirmar disponibilidad. Ocupaciones: DBL/TPL/CuADPL adulto y Menor 6-12.",
+      "duracion_texto": "5 días / 4 noches",
+      "duracion_horas": 120,
+      "dificultad": "facil",
+      "idiomas": [
+        "es"
+      ],
+      "punto_salida": "Recogida en aeropuerto de Chihuahua o Sinaloa según inicie el itinerario",
+      "salida_garantizada": false,
+      "pickup_hotel": false,
+      "fecha_viaje": "Todo el año, sujeto a disponibilidad",
+      "fotos": [
+        "barrancas-del-cobre__77c16123-a1a2-4ce2-b073-5d99a7dc99d0.jpg",
+        "barrancas-del-cobre__IMG_5191.jpg",
+        "barrancas-del-cobre__IMG_5328.jpg",
+        "barrancas-del-cobre__IMG_5432.jpg",
+        "barrancas-del-cobre__WhatsApp_Image_2022-01-24_at_10.17.22.jpg",
+        "barrancas-del-cobre__WhatsApp_Image_2022-01-24_at_10.19.35.jpg"
+      ],
+      "incluye": [
+        "Transporte desde y hacia el aeropuerto",
+        "Seguro de viajero en transporte",
+        "Traslados acordes a itinerario",
+        "4 noches de alojamiento",
+        "City tour en el centro de Chihuahua",
+        "Visita comunidad menonita",
+        "Tour valle Tarahumara",
+        "Tour miradores",
+        "Visita parque de Aventura Barrancas del Cobre",
+        "Boleto de tren Chepe Express categoría ejecutiva",
+        "IVA"
+      ],
+      "no_incluye": [
+        "Vuelos de ciudad de origen",
+        "Alimentos",
+        "Bebidas",
+        "Admisiones en lugares a visitar",
+        "Pagos ejidales",
+        "Actividades en parque de aventuras",
+        "Tours adicionales",
+        "Seguro por actividades de naturaleza"
+      ],
+      "itinerario": [
+        {
+          "dia": 1,
+          "titulo": "Chihuahua",
+          "descripcion": "Llegada al Aeropuerto de Chihuahua donde serán recibidos con cartel con su nombre para traslado al hotel. Día libre para dar un paseo opcional por la ciudad y visitar sus atractivos turísticos: el Museo de Pancho Villa (cerrado los lunes), Palacio de Gobierno y sus murales, Catedral, Acueducto Colonial, la zona residencial Quinta Gameros, el Calabozo de Miguel Hidalgo y el Centro Histórico. Alojamiento en Chihuahua."
+        },
+        {
+          "dia": 2,
+          "titulo": "Chihuahua – Creel",
+          "descripcion": "08:30 am cita en lobby del hotel para traslado en transporte terrestre con destino a Creel, Pueblo Mágico. En el trayecto visitaremos la Comunidad Menonita en Cuauhtémoc (cerrado los domingos). A la llegada, paseo por los alrededores de Creel: Lago de Arareko, Valle de Los Hongos y Valle de las Ranas, Misión Jesuita de San Ignacio y una cueva habitada por Tarahumaras. Tarde libre. Alojamiento en Creel."
+        },
+        {
+          "dia": 3,
+          "titulo": "Creel – Divisadero – Barrancas",
+          "descripcion": "08:30 am traslado por carretera a Posada Barrancas Divisadero y tour miradores incluido para visitar el parque de aventura. Podrá visitar los distintos miradores, paseo en teleférico y tirolesas (opcional no incluido), piedra volada y puente colgante. Degustación opcional de las típicas gorditas de Divisadero. Tarde libre para disfrutar de las vistas. Alojamiento en Barrancas del Cobre."
+        },
+        {
+          "dia": 4,
+          "titulo": "Barrancas – Divisadero – El Fuerte",
+          "descripcion": "08:30 hrs traslado a estación Divisadero para abordar el tren Chepe Express con destino al Pueblo Mágico colonial de El Fuerte, una de las obras maestras de la ingeniería mexicana con sus puentes y túneles. Llegada a El Fuerte a las 02:35 pm, recepción y traslado al hotel. Tarde libre para caminar por las calles empedradas, visitar su iglesia colonial, el palacio municipal y el museo local. Alojamiento en El Fuerte."
+        },
+        {
+          "dia": 5,
+          "titulo": "El Fuerte – Aeropuerto de Los Mochis",
+          "descripcion": "Mañana libre y traslado al aeropuerto de Los Mochis según el horario de salida de su vuelo. Fin de servicios."
+        }
+      ],
+      "politica_cancelacion": "El itinerario puede estar sujeto a cambios por políticas de Ferromex. Los lunes los museos en Chihuahua están cerrados; los domingos el museo Menonita se encuentra cerrado. Al abordar el tren Chepe se requerirá identificación oficial vigente con fotografía. Explora México Tours no permitirá cancelaciones, pero sí cambios de fecha conforme a los términos y condiciones del proveedor final. Si el cliente el día del viaje no se presenta, aplica como NO SHOW y genera el 100% de penalidad. Solo puede haber 1 persona por asiento; niños de 1 año en adelante ocupan asiento.",
+      "destacado": true,
+      "orden_destacado": 3
+    },
+    {
+      "titulo": "Oaxaca Ciudad",
+      "titulo_en": "Oaxaca City",
+      "slug": "oaxaca-ciudad",
+      "destino": "Oaxaca",
+      "categoria": "Cultural",
+      "experiencias": [
+        "Cultura",
+        "Gastronómico",
+        "Aventura y naturaleza"
+      ],
+      "descripcion_breve": "Un destino lleno de cultura, gastronomía y arte que posiciona a Oaxaca como uno de los favoritos en México. La riqueza de la cocina oaxaqueña enamora a cualquiera, sus edificios conservan la arquitectura colonial, coloridos murales y el arte del barro negro y los alebrijes.",
+      "descripcion_breve_en": "",
+      "precio_desde": null,
+      "precio_nota": "Tarifa por persona desde, se requiere confirmar disponibilidad. Ocupaciones: DBL/TPL/CuADPL adulto y Menor 3-12.",
+      "duracion_texto": "5 días / 4 noches",
+      "duracion_horas": 120,
+      "dificultad": "facil",
+      "idiomas": [
+        "es",
+        "en"
+      ],
+      "punto_salida": "Recogida en aeropuerto de Oaxaca",
+      "salida_garantizada": false,
+      "pickup_hotel": false,
+      "fecha_viaje": "Todo el año, sujeto a disponibilidad",
+      "fotos": [
+        "oaxaca-ciudad__IMG_2858-fix.jpg",
+        "oaxaca-ciudad__IMG_4733.jpg",
+        "oaxaca-ciudad__OAXACA.jpg",
+        "oaxaca-ciudad__WhatsApp_Image_2026-06-18_at_18.38.43.jpg"
+      ],
+      "incluye": [
+        "Transporte desde y hacia el aeropuerto",
+        "Seguro de viaje en transporte",
+        "Traslados acordes a itinerario",
+        "4 noches de alojamiento",
+        "IVA"
+      ],
+      "no_incluye": [
+        "Alimentos",
+        "Bebidas",
+        "Vuelos",
+        "Gastos personales",
+        "Propinas",
+        "Seguro por actividades de naturaleza"
+      ],
+      "itinerario": [
+        {
+          "dia": 1,
+          "titulo": "Oaxaca",
+          "descripcion": "Llegada al aeropuerto de Oaxaca, traslado a su hotel y tarde libre."
+        },
+        {
+          "dia": 2,
+          "titulo": "Oaxaca – Árbol del Tule – Mitla y Hierve el Agua",
+          "descripcion": "Comenzamos frente al Árbol del Tule con su imponente copa y altura, seguimos hacia Teotitlán del Valle para entender el teñido natural, admiramos las grecas milenarias de Mitla, caminamos frente a las cascadas de Hierve el Agua y terminamos disfrutando de un mezcal artesanal."
+        },
+        {
+          "dia": 3,
+          "titulo": "Oaxaca – Monte Albán – Alebrijes y Barro Negro",
+          "descripcion": "Inicia en Monte Albán, antigua capital zapoteca, caminando entre templos y terrazas. Continúa hacia Arrazola, donde los alebrijes cobran vida en un taller auténtico: tallado, pintado y técnicas tradicionales sin compras obligadas. Finaliza en San Bartolo Coyotepec, famoso por su barro negro."
+        },
+        {
+          "dia": 4,
+          "titulo": "Centro de Oaxaca y tarde libre",
+          "descripcion": "Recorrido de medio día caminando por el centro de Oaxaca: el zócalo, la catedral, el templo de Santo Domingo y sus coloridas calles. Resto de la tarde libre para compras, museos o degustar mezcal."
+        },
+        {
+          "dia": 5,
+          "titulo": "Aeropuerto de Oaxaca",
+          "descripcion": "Traslado al aeropuerto de Oaxaca. Fin de servicios."
+        }
+      ],
+      "politica_cancelacion": "El itinerario puede estar sujeto a cambio. Explora México Tours no permitirá cancelaciones, pero sí cambios de fecha conforme a los términos y condiciones del proveedor final. Si el cliente el día del viaje no se presenta, aplica como NO SHOW y genera el 100% de penalidad. Solo puede haber 1 persona por asiento; niños de 1 año en adelante ocupan asiento."
+    },
+    {
+      "titulo": "Oaxaca y sus Playas",
+      "titulo_en": "Oaxaca and its Beaches",
+      "slug": "oaxaca-y-sus-playas",
+      "destino": "Oaxaca",
+      "categoria": "Aventura",
+      "experiencias": [
+        "Aventura y naturaleza"
+      ],
+      "descripcion_breve": "Las playas de Oaxaca son un destino de la costa del Pacífico que se caracteriza por sus atractivos naturales, aguas cálidas y ambiente relajado. Aquí podrás disfrutar de espectaculares atardeceres, gastronomía local y aguas cristalinas.",
+      "descripcion_breve_en": "",
+      "precio_desde": null,
+      "precio_nota": "Tarifa por persona desde, se requiere confirmar disponibilidad. Ocupaciones: DBL/TPL/CuADPL adulto y Menor 3-12.",
+      "duracion_texto": "5 días / 4 noches",
+      "duracion_horas": 120,
+      "dificultad": "facil",
+      "idiomas": [
+        "es"
+      ],
+      "punto_salida": "Recogida en aeropuerto (Puerto Escondido / Huatulco)",
+      "salida_garantizada": false,
+      "pickup_hotel": false,
+      "fecha_viaje": "Todo el año, sujeto a disponibilidad",
+      "fotos": [
+        "oaxaca-y-sus-playas__IMG_2019.jpg",
+        "oaxaca-y-sus-playas__IMG_2100.jpg",
+        "oaxaca-y-sus-playas__IMG_2464.jpg",
+        "oaxaca-y-sus-playas__luminiscencia.jpg"
+      ],
+      "incluye": [
+        "Transporte desde y hacia el aeropuerto",
+        "Seguro de viaje en transporte",
+        "Traslados acordes a itinerario",
+        "Alojamiento",
+        "IVA"
+      ],
+      "no_incluye": [
+        "Alimentos",
+        "Bebidas",
+        "Vuelos",
+        "Gastos personales",
+        "Propinas",
+        "Seguro por actividades de naturaleza"
+      ],
+      "itinerario": [
+        {
+          "dia": 1,
+          "titulo": "Llegada a la costa",
+          "descripcion": "Llegada al aeropuerto, traslado al hotel y tarde libre para disfrutar de la playa."
+        }
+      ],
+      "politica_cancelacion": "El itinerario puede estar sujeto a cambio. Explora México Tours no permitirá cancelaciones, pero sí cambios de fecha conforme a los términos y condiciones del proveedor final. Si el cliente el día del viaje no se presenta, aplica como NO SHOW y genera el 100% de penalidad. Solo puede haber 1 persona por asiento; niños de 1 año en adelante ocupan asiento."
+    },
+    {
+      "titulo": "Explora Chiapas",
+      "titulo_en": "Explore Chiapas",
+      "slug": "explora-chiapas",
+      "destino": "Chiapas",
+      "categoria": "Aventura",
+      "experiencias": [
+        "Aventura y naturaleza",
+        "Cultura"
+      ],
+      "descripcion_breve": "Chiapas es el estado con más contrastes culturales y naturales, engloba ecosistemas tan diversos que lo convierten en uno de los favoritos para visitar en nuestro país. Un lugar fascinante lleno de naturaleza, tradiciones y colores.",
+      "descripcion_breve_en": "",
+      "precio_desde": null,
+      "precio_nota": "Tarifa por persona desde, se requiere confirmar disponibilidad. Ocupaciones: DBL/TPL/CuADPL adulto y Menor 3-12.",
+      "duracion_texto": "5 días / 4 noches",
+      "duracion_horas": 120,
+      "dificultad": "facil",
+      "idiomas": [
+        "es",
+        "en"
+      ],
+      "punto_salida": "Recogida en aeropuerto de Tuxtla Gutiérrez",
+      "salida_garantizada": false,
+      "pickup_hotel": false,
+      "fecha_viaje": "Todo el año, sujeto a disponibilidad",
+      "fotos": [
+        "explora-chiapas__DSC_0064_(2).jpg",
+        "explora-chiapas__DSC_0339.jpg",
+        "explora-chiapas__DSC_0935.jpg",
+        "explora-chiapas__IMG_1257.jpg"
+      ],
+      "incluye": [
+        "Transporte desde y hacia el aeropuerto",
+        "Seguro de viaje en transporte",
+        "Traslados acordes a itinerario",
+        "Admisiones en sitios a visitar",
+        "4 noches de alojamiento",
+        "IVA"
+      ],
+      "no_incluye": [
+        "Alimentos",
+        "Bebidas",
+        "Vuelos",
+        "Gastos personales",
+        "Propinas",
+        "Seguro por actividades de naturaleza"
+      ],
+      "itinerario": [
+        {
+          "dia": 1,
+          "titulo": "Aeropuerto Tuxtla Gutiérrez – San Cristóbal de las Casas",
+          "descripcion": "Llegada al aeropuerto de Tuxtla Gutiérrez y traslado a su hotel en San Cristóbal de las Casas. Registro en hotel y noche libre para descansar."
+        },
+        {
+          "dia": 2,
+          "titulo": "San Cristóbal – Agua Azul, Misol-Ha y Palenque",
+          "descripcion": "Salida temprano hacia Palenque. Escala en Ocosingo para desayunar. Visita al Parque Cascadas de Agua Azul, formado por la unión de los ríos Otulún, Shumuljá y Tulijá. Continuación a la Cascada de Misol-Ha (40 m de altura). Recorrido guiado por la Zona Arqueológica de Palenque, uno de los sitios mayas más importantes de Mesoamérica. Regreso a San Cristóbal."
+        },
+        {
+          "dia": 3,
+          "titulo": "San Cristóbal – Cascadas de El Chiflón – Lagunas de Montebello",
+          "descripcion": "Visita a las Cascadas de El Chiflón, cadena de cascadas formada por el Río San Vicente (El Suspiro, Ala de Ángel, Arco Iris, Quinceañera y la principal, Velo de Novia, de 120 m). Continuación a las Lagunas de Montebello, donde visitaremos Tziscao y el lago internacional en la frontera con Guatemala. Regreso a San Cristóbal."
+        },
+        {
+          "dia": 4,
+          "titulo": "San Cristóbal – Cañón del Sumidero – Chiapa de Corzo",
+          "descripcion": "Visita a los miradores del Cañón del Sumidero. Recorrido en lancha de 1 hora 50 minutos sobre el río Grijalva: la presa de Chicoasén, la cueva de la virgen y el árbol de navidad. Tiempo libre en el pueblo mágico de Chiapa de Corzo. Regreso a San Cristóbal."
+        },
+        {
+          "dia": 5,
+          "titulo": "San Cristóbal – Aeropuerto de Tuxtla Gutiérrez",
+          "descripcion": "Mañana libre y, a la hora acordada, traslado al aeropuerto de Tuxtla Gutiérrez. Fin de servicios."
+        }
+      ],
+      "politica_cancelacion": "El itinerario puede estar sujeto a cambio. Explora México Tours no permitirá cancelaciones, pero sí cambios de fecha conforme a los términos y condiciones del proveedor final. Si el cliente el día del viaje no se presenta, aplica como NO SHOW y genera el 100% de penalidad. Solo puede haber 1 persona por asiento; niños de 1 año en adelante ocupan asiento."
+    },
+    {
+      "titulo": "Ciudades Coloniales",
+      "titulo_en": "Colonial Cities",
+      "slug": "ciudades-coloniales",
+      "destino": "Querétaro – Guanajuato – Michoacán",
+      "categoria": "Cultural",
+      "experiencias": [
+        "Cultura"
+      ],
+      "descripcion_breve": "Explora el corazón colonial de México. Recorre los encantadores callejones de Guanajuato, admira la elegancia histórica de Querétaro y descubre la riqueza cultural de Michoacán. Tres estados del centro de México que comparten historia, arquitectura virreinal y cultura.",
+      "descripcion_breve_en": "",
+      "precio_desde": null,
+      "precio_nota": "Tarifa por persona. Máximo 4 personas en habitación incluyendo menores. Bebés deben llevar asiento asignado.",
+      "duracion_texto": "7 días / 6 noches",
+      "duracion_horas": 168,
+      "dificultad": "facil",
+      "idiomas": [
+        "es",
+        "en"
+      ],
+      "punto_salida": "Inicia en Ciudad de México o Guadalajara (hotel o aeropuerto), antes de las 12:00 hrs",
+      "salida_garantizada": false,
+      "pickup_hotel": true,
+      "fecha_viaje": "Todo el año, sujeto a disponibilidad",
+      "fotos": [
+        "ciudades-coloniales__DSC_0392-fix.jpg",
+        "ciudades-coloniales__DSC_0442.jpg",
+        "ciudades-coloniales__IMG_1306.jpg",
+        "ciudades-coloniales__IMG_1320.jpg",
+        "ciudades-coloniales__IMG_1477.jpg"
+      ],
+      "incluye": [
+        "Transporte en servicio compartido",
+        "Traslados acordes a itinerario",
+        "Tours acordes a itinerario",
+        "Seguro de viajero en transporte",
+        "Noches de alojamiento",
+        "IVA"
+      ],
+      "no_incluye": [
+        "Alimentos",
+        "Bebidas",
+        "Admisión a museos no mencionados",
+        "Gastos personales",
+        "Propinas",
+        "Seguro de gastos médicos de viaje"
+      ],
+      "itinerario": [
+        {
+          "dia": 1,
+          "titulo": "Ciudad de México – Morelia",
+          "descripcion": "12:00 hrs salida del punto de encuentro (hotel o aeropuerto de CDMX) y traslado a Morelia. Por la tarde, paseo por el centro de la ciudad. Alojamiento en Morelia."
+        },
+        {
+          "dia": 2,
+          "titulo": "Morelia – Ruta Vasco de Quiroga – Morelia",
+          "descripcion": "La Ruta Don Vasco es un recorrido turístico y cultural por Michoacán siguiendo los pasos del misionero Vasco de Quiroga, visitando Pátzcuaro, Tzintzuntzan y Quiroga. Regreso a Morelia."
+        },
+        {
+          "dia": 3,
+          "titulo": "Morelia – Querétaro",
+          "descripcion": "Después del desayuno, salida hacia Querétaro. Por la tarde, recorrido en tranvía para conocer la ciudad. Alojamiento en Querétaro."
+        },
+        {
+          "dia": 4,
+          "titulo": "Querétaro – Ruta del Vino – Querétaro",
+          "descripcion": "Salida hacia la ruta del vino visitando los pueblos mágicos de Tequisquiapan y San Sebastián de Bernal. Degustación de quesos y visita a uno de los viñedos más antiguos de la ruta. Regreso a Querétaro."
+        },
+        {
+          "dia": 5,
+          "titulo": "Querétaro – Guanajuato",
+          "descripcion": "Traslado a Guanajuato. Por la tarde, recorrido caminando por calles y callejones. Por la noche, actividad con una tradicional estudiantina. Alojamiento en Guanajuato."
+        },
+        {
+          "dia": 6,
+          "titulo": "Guanajuato – Ruta de la Independencia – Guanajuato",
+          "descripcion": "Visita a Dolores Hidalgo, cuna de la Independencia, el santuario de Atotonilco y San Miguel de Allende, con su Parroquia de San Miguel Arcángel. Regreso a Guanajuato."
+        },
+        {
+          "dia": 7,
+          "titulo": "Guanajuato – Guadalajara",
+          "descripcion": "Recorrido guiado por Guanajuato: Museo de las Momias, Monumento a El Pípila, túneles, mina del barrio de Valenciana, Iglesia de San Cayetano y mercado local. 16:00 hrs traslado a Guadalajara (aeropuerto u hotel). Fin de servicios."
+        }
+      ],
+      "politica_cancelacion": "Los horarios del itinerario son aproximados. Los traslados serán en servicio compartido o privado según la operación. Categoría de hoteles de 3 estrellas. Máxima ocupación 4 personas incluyendo niños o bebés. Equipaje flexible no mayor a 15 kilos por pasajero. Actividad recomendada para mayores de 6 años y menores de 75 años con movilidad. Explora México Tours no permitirá cancelaciones, pero sí cambios de fecha conforme a los términos del proveedor. NO SHOW genera 100% de penalidad."
+    },
+    {
+      "titulo": "Tour Tequila “Tradición con distinción”",
+      "titulo_en": "Tequila Tour “Tradition with Distinction”",
+      "slug": "tour-tequila-tradicion-con-distincion",
+      "destino": "Jalisco",
+      "categoria": "Cultural",
+      "experiencias": [
+        "Cultura",
+        "Gastronómico"
+      ],
+      "descripcion_breve": "Disfruta de un recorrido diseñado para quienes buscan experiencias memorables, transportación de lujo, gastronomía selecta, atención personalizada y acceso a la auténtica cultura tequilera. Descubre el arte del tequila artesanal mediante una experiencia inmersiva en nuestra destilería familiar y aprende los secretos detrás de nuestro tequila premium y conecta con el origen. Te recibimos con cantarito en mano, conoce el cuidado y cultivo de la planta de agave, visita la destilería donde conocerás de mano de los expertos el proceso de destilación y concluye con una cata guiada de 3 de nuestras expresiones: tequila blanco, tequila reposado y tequila añejo.",
+      "precio_desde": null,
+      "precios_vehiculo": [
+        {
+          "capacidad": "2 pax",
+          "vehiculo": "Suburban línea nueva",
+          "precio": null
+        },
+        {
+          "capacidad": "3 pax",
+          "vehiculo": "Suburban línea nueva",
+          "precio": null
+        },
+        {
+          "capacidad": "4 pax",
+          "vehiculo": "Suburban línea nueva",
+          "precio": null
+        },
+        {
+          "capacidad": "5 pax",
+          "vehiculo": "Suburban línea nueva",
+          "precio": null
+        },
+        {
+          "capacidad": "6 pax",
+          "vehiculo": "Suburban línea nueva",
+          "precio": null
+        },
+        {
+          "capacidad": "7-10 pax",
+          "vehiculo": "Sprinter Lux",
+          "precio": null
+        }
+      ],
+      "precio_nota": "Precio por persona según capacidad del grupo y vehículo. Reserva mínima 15 días antes, máxima 3 meses. Solicitudes especiales (pedidas de mano, aniversarios, eventos): contáctanos. Si esta destilería no es de tu interés, agenda con la destilería de tu preferencia.",
+      "duracion_texto": "1 día (13 horas)",
+      "duracion_horas": 13,
+      "dificultad": "facil",
+      "idiomas": [
+        "es",
+        "en"
+      ],
+      "punto_salida": "Hoteles o Airbnb en Zona Guadalajara Centro, Zapopan Centro, Tlaquepaque Centro, Zona Expo y Zona Andares",
+      "salida_garantizada": false,
+      "pickup_hotel": true,
+      "fecha_viaje": "Todo el año (10:00–23:00 hrs)",
+      "fotos": [
+        "tour-tequila-tradicion-con-distincion__01.jpg",
+        "tour-tequila-tradicion-con-distincion__02.jpg",
+        "tour-tequila-tradicion-con-distincion__03.jpg",
+        "tour-tequila-tradicion-con-distincion__04.jpg",
+        "tour-tequila-tradicion-con-distincion__05.jpg",
+        "tour-tequila-tradicion-con-distincion__06.jpg",
+        "tour-tequila-tradicion-con-distincion__07.jpg",
+        "tour-tequila-tradicion-con-distincion__08.jpg"
+      ],
+      "incluye": [
+        "Transportación en servicio privado acorde a itinerario",
+        "Chofer certificado",
+        "Guía tequilier durante todo el recorrido",
+        "Bebidas refrescantes y snacks a bordo",
+        "Seguro de viajero a bordo de transporte",
+        "Admisión y recorrido por fábrica de tequila premium artesanal",
+        "Cata de tequila guiada por maestro tequilero",
+        "Parada en el centro de Tequila para fotografías",
+        "Degustación de tequila en bar local",
+        "Cena maridaje a 3 tiempos",
+        "IVA"
+      ],
+      "no_incluye": [
+        "Gastos personales",
+        "Propinas"
+      ],
+      "itinerario": [
+        {
+          "dia": 1,
+          "titulo": "Tequila premium de día completo",
+          "descripcion": "10:00 hrs pick up en punto acordado. 10:15 salida a Tequila. 11:30 arribo a destilería e inicio de recorrido. 14:00 traslado al centro de Tequila: tiempo para comer y visitar la Parroquia de Santiago Apóstol, la Plaza principal y su quiosco, el callejón José Cuervo y el Museo Nacional del Tequila (admisión no incluida). 16:30 cita íntima para degustar los sabores del agave: copa de bienvenida de pulque tradicional, introducción al mundo del agave y degustación guiada de cuatro variedades de tequila acompañada de chocolate, quesos y bocadillos de la región. 18:30 cena maridaje en lugar secreto. 21:30 regreso a Guadalajara. 23:00 arribo y fin de servicios."
+        }
+      ],
+      "politica_cancelacion": "Actividad recomendada para mayores de 18 años (no disponible para menores de 17). No sugerimos este viaje a mujeres embarazadas ni personas con lesiones en rodillas, espalda o cirugías recientes. Para reservar: nombre completo de participantes, celular y un contacto de emergencia que no asista, vía WhatsApp (+52) 33 1048 0670 o reserva@exploramexicotours.com. Explora México Tours actúa como intermediario entre el cliente y los servicios contratados. Cancelaciones: 30% de penalización; entre 45 y 30 días antes, 80%; entre 29 y 0 días, 100%. NO SHOW el día del viaje: 100% de penalidad, sin reembolso ni abono a otro viaje."
+    },
+    {
+      "titulo": "Tour a Tequila en tren José Cuervo Express (Atardecer)",
+      "titulo_en": "Tequila Tour on the José Cuervo Express Train (Sunset)",
+      "slug": "tour-tequila-jose-cuervo-express",
+      "destino": "Jalisco",
+      "categoria": "Cultural",
+      "experiencias": [
+        "Cultura",
+        "Gastronómico"
+      ],
+      "descripcion_breve": "Explora Tequila en una experiencia inolvidable en el ¡José Cuervo Express! El único tren de pasajeros estilo antiguo de todo México, el mejor modo de vivir el pueblo de Tequila y los impresionantes paisajes de los campos de agave, patrimonio natural de la humanidad. Conocerás el Pueblo Mágico de Tequila con un día repleto de actividades: juegos, música, espectáculo, y aprenderás todo sobre la producción del tequila.",
+      "precio_desde": null,
+      "precios_vehiculo": [
+        {
+          "capacidad": "2 pax",
+          "vehiculo": "Sedán",
+          "precio": null
+        },
+        {
+          "capacidad": "3 pax",
+          "vehiculo": "Sedán",
+          "precio": null
+        },
+        {
+          "capacidad": "4 pax",
+          "vehiculo": "Sedán Full Size",
+          "precio": null
+        },
+        {
+          "capacidad": "5 pax",
+          "vehiculo": "Suburban",
+          "precio": null
+        },
+        {
+          "capacidad": "6 pax",
+          "vehiculo": "Suburban",
+          "precio": null
+        },
+        {
+          "capacidad": "7 pax",
+          "vehiculo": "Toyota o similar",
+          "precio": null
+        },
+        {
+          "capacidad": "8 pax",
+          "vehiculo": "Toyota o similar",
+          "precio": null
+        },
+        {
+          "capacidad": "9 pax",
+          "vehiculo": "Toyota o similar",
+          "precio": null
+        },
+        {
+          "capacidad": "10 pax",
+          "vehiculo": "Toyota o similar",
+          "precio": null
+        },
+        {
+          "capacidad": "11-15 pax",
+          "vehiculo": "Sprinter regular",
+          "precio": null
+        },
+        {
+          "capacidad": "16-19 pax",
+          "vehiculo": "Sprinter regular",
+          "precio": null
+        }
+      ],
+      "precio_nota": "Vagón de tren categoría EXPRESS. Precio por persona según capacidad del grupo. Reserva con 15 días a 3 meses de anticipación. Si llevas niños o menores de edad, contáctanos para una propuesta a tu medida.",
+      "duracion_texto": "1 día (12 horas)",
+      "duracion_horas": 12,
+      "dificultad": "facil",
+      "idiomas": [
+        "es",
+        "en"
+      ],
+      "punto_salida": "Hoteles o Airbnb en Zona Guadalajara Centro, Zapopan Centro, Tlaquepaque Centro, Zona Expo y Zona Andares",
+      "salida_garantizada": false,
+      "pickup_hotel": true,
+      "fecha_viaje": "Todos los días (sujeto a disponibilidad)",
+      "fotos": [
+        "tour-tequila-jose-cuervo-express__01.jpg",
+        "tour-tequila-jose-cuervo-express__02.jpg",
+        "tour-tequila-jose-cuervo-express__03.jpg"
+      ],
+      "incluye": [
+        "Transportación redonda desde tu alojamiento a las estaciones del tren en servicio privado",
+        "Traslado terrestre compartido Guadalajara–Tequila",
+        "Traslado en tren ruta Tequila–Guadalajara al atardecer",
+        "Categoría de vagón EXPRESS",
+        "Vista panorámica del paisaje agavero desde el tren",
+        "Visita a los campos de agave con demostración de jima",
+        "Servicio de alimentos ligeros y coctelería con tequilas de la casa",
+        "Juego de lotería conmemorativo",
+        "Catado educativo a una copa guiado por un Experto Tequilero",
+        "Recorrido por la destilería La Rojeña®",
+        "Acceso al Centro Cultural Juan Beckmann Gallardo",
+        "Tiempo libre para comer y conocer el Pueblo Mágico de Tequila",
+        "Espectáculo mexicano",
+        "Tradicional brindis con uno de los tequilas de la casa",
+        "IVA"
+      ],
+      "no_incluye": [
+        "Alimentos",
+        "Bebidas",
+        "Gastos personales",
+        "Propinas"
+      ],
+      "itinerario": [
+        {
+          "dia": 1,
+          "titulo": "Campos, el origen de la historia (Atardecer)",
+          "descripcion": "07:00 hrs pick up de pasajeros en punto acordado. Traslado terrestre compartido Guadalajara–Tequila con visita a los campos de agave y demostración de jima. Día completo de actividades en el Pueblo Mágico de Tequila: recorrido por la destilería La Rojeña®, Centro Cultural Juan Beckmann Gallardo, tiempo libre para comer y pasear. Al atardecer, regreso en el tren José Cuervo Express (vagón Express) con alimentos ligeros, coctelería, lotería, catado educativo, espectáculo mexicano y brindis tradicional. Arribo a Guadalajara y fin de servicios (22:00 hrs aprox.)."
+        }
+      ],
+      "politica_cancelacion": "Una vez emitidos los boletos del tren no se permiten cancelaciones. Cambios de fecha sujetos a los términos del proveedor. Explora México Tours actúa como intermediario entre el cliente y los servicios contratados. NO SHOW genera 100% de penalidad."
+    },
+    {
+      "titulo": "Tour Tequila y destilería “La Rojeña” José Cuervo",
+      "titulo_en": "Tequila Tour & “La Rojeña” José Cuervo Distillery",
+      "slug": "tour-tequila-la-rojena",
+      "destino": "Jalisco",
+      "categoria": "Cultural",
+      "experiencias": [
+        "Cultura",
+        "Gastronómico"
+      ],
+      "descripcion_breve": "Explora la región de Jalisco, cuna de la bebida nacional, reconocida en México y el mundo, la cual lleva su mismo nombre: ¡Tequila! Podrás recorrer su plaza, caminar por sus calles y tomar fotografías de sus bellos paisajes. Visitarás una destilería y conocerás sus impresionantes instalaciones que brindan experiencias únicas. También aprenderás a detalle sobre el proceso de elaboración de esta bebida para finalmente degustar los tequilas que ahí se elaboran.",
+      "precio_desde": null,
+      "precios_vehiculo": [
+        {
+          "capacidad": "2 pax",
+          "vehiculo": "Sedán",
+          "precio": null
+        },
+        {
+          "capacidad": "3 pax",
+          "vehiculo": "Sedán",
+          "precio": null
+        },
+        {
+          "capacidad": "4 pax",
+          "vehiculo": "Sedán Full Size",
+          "precio": null
+        },
+        {
+          "capacidad": "5 pax",
+          "vehiculo": "Suburban",
+          "precio": null
+        },
+        {
+          "capacidad": "6 pax",
+          "vehiculo": "Suburban",
+          "precio": null
+        },
+        {
+          "capacidad": "7 pax",
+          "vehiculo": "Toyota o Urban",
+          "precio": null
+        },
+        {
+          "capacidad": "8 pax",
+          "vehiculo": "Toyota o Urban",
+          "precio": null
+        },
+        {
+          "capacidad": "9 pax",
+          "vehiculo": "Toyota o Urban",
+          "precio": null
+        },
+        {
+          "capacidad": "10 pax",
+          "vehiculo": "Toyota o Urban",
+          "precio": null
+        },
+        {
+          "capacidad": "11-15 pax",
+          "vehiculo": "Sprinter regular",
+          "precio": null
+        },
+        {
+          "capacidad": "16-19 pax",
+          "vehiculo": "Sprinter regular",
+          "precio": null
+        }
+      ],
+      "precio_nota": "Precio por persona según capacidad del grupo. Reserva mínima 72 horas antes, máxima 3 meses. Si llevas niños o menores de edad, contáctanos para una propuesta a tu medida.",
+      "duracion_texto": "1 día (10 horas)",
+      "duracion_horas": 10,
+      "dificultad": "facil",
+      "idiomas": [
+        "es",
+        "en"
+      ],
+      "punto_salida": "Hoteles o Airbnb en Zona Guadalajara Centro, Zapopan Centro, Tlaquepaque Centro, Zona Expo y Zona Andares",
+      "salida_garantizada": false,
+      "pickup_hotel": true,
+      "fecha_viaje": "Lunes a sábado (no opera Navidad ni Año Nuevo)",
+      "fotos": [
+        "tour-tequila-la-rojena__01.jpg",
+        "tour-tequila-la-rojena__02.jpg",
+        "tour-tequila-la-rojena__03.jpg",
+        "tour-tequila-la-rojena__04.jpg",
+        "tour-tequila-la-rojena__05.jpg",
+        "tour-tequila-la-rojena__06.jpg"
+      ],
+      "incluye": [
+        "Transportación en servicio privado acorde a itinerario",
+        "Chofer certificado",
+        "Seguro de viajero a bordo de transporte",
+        "Admisión y recorrido por fábrica de tequila",
+        "Degustación de tequila de destilería",
+        "Tiempo libre en las instalaciones de la destilería",
+        "Tiempo libre en el centro del Pueblo Mágico de Tequila",
+        "Tiempo libre para comer, pasear y compras",
+        "IVA"
+      ],
+      "no_incluye": [
+        "Alimentos",
+        "Bebidas",
+        "Entrada a museos",
+        "Gastos personales",
+        "Propinas"
+      ],
+      "itinerario": [
+        {
+          "dia": 1,
+          "titulo": "La Rojeña y Pueblo Mágico de Tequila",
+          "descripcion": "09:00 hrs pick up en punto acordado. 09:15 salida con destino a Tequila. 10:30 arribo al centro de Tequila. 11:00 inicio de recorrido José Cuervo La Rojeña. 13:00 tiempo para comer y visitar la Parroquia de Santiago Apóstol, la Plaza principal y su quiosco, el callejón José Cuervo y el Museo Nacional del Tequila (admisión no incluida). 15:00 salida con destino a Cantaritos de Amatitán (parada opcional). 17:30 regreso a Guadalajara. 19:00 arribo, drop off y fin de servicios."
+        }
+      ],
+      "politica_cancelacion": "Una vez emitidos los boletos no se permiten cancelaciones. Las cancelaciones deberán avisarse con 48 horas de anticipación para reagendar la visita en una fecha posterior. No hay reembolsos; en caso de cancelar, la visita será reagendada durante el mes en curso."
+    },
+    {
+      "titulo": "Tour Tequila Jornalero",
+      "titulo_en": "Jornalero Tequila Tour",
+      "slug": "tour-tequila-jornalero",
+      "destino": "Jalisco",
+      "categoria": "Cultural",
+      "experiencias": [
+        "Cultura",
+        "Gastronómico"
+      ],
+      "descripcion_breve": "Explora el lugar que da vida al Tequila, y conoce las manos involucradas detrás de cada trago de tu copa. Caminemos justo donde inicia la cadena productiva de este espirituoso: en los campos de agave. Échales un vistazo a las labores del campo y vive una experiencia gastronómica al estilo de los jornaleros. Conocerás el proceso de producción, desde la plantación hasta la destilación, para lograr entender cada una de las expresiones de este espirituoso. ¡Te adentrarás en la cultura tequilera!",
+      "precio_desde": null,
+      "precios_vehiculo": [
+        {
+          "capacidad": "2 pax",
+          "vehiculo": "Sedán",
+          "precio": null
+        },
+        {
+          "capacidad": "3 pax",
+          "vehiculo": "Sedán",
+          "precio": null
+        },
+        {
+          "capacidad": "4 pax",
+          "vehiculo": "Sedán Full Size",
+          "precio": null
+        },
+        {
+          "capacidad": "5 pax",
+          "vehiculo": "Suburban",
+          "precio": null
+        },
+        {
+          "capacidad": "6 pax",
+          "vehiculo": "Suburban",
+          "precio": null
+        },
+        {
+          "capacidad": "7 pax",
+          "vehiculo": "Toyota o Urban",
+          "precio": null
+        },
+        {
+          "capacidad": "8 pax",
+          "vehiculo": "Toyota o Urban",
+          "precio": null
+        },
+        {
+          "capacidad": "9 pax",
+          "vehiculo": "Toyota o Urban",
+          "precio": null
+        },
+        {
+          "capacidad": "10 pax",
+          "vehiculo": "Toyota o Urban",
+          "precio": null
+        },
+        {
+          "capacidad": "11-15 pax",
+          "vehiculo": "Sprinter regular",
+          "precio": null
+        },
+        {
+          "capacidad": "16-19 pax",
+          "vehiculo": "Sprinter regular",
+          "precio": null
+        }
+      ],
+      "precio_nota": "Precio por persona según capacidad del grupo. Reserva mínima 72 horas antes, máxima 3 meses. Actividad no disponible para menores de 17 años.",
+      "duracion_texto": "1 día (10 horas)",
+      "duracion_horas": 10,
+      "dificultad": "facil",
+      "idiomas": [
+        "es",
+        "en"
+      ],
+      "punto_salida": "Hoteles o Airbnb en Zona Guadalajara Centro, Zapopan Centro, Tlaquepaque Centro, Zona Expo y Zona Andares",
+      "salida_garantizada": false,
+      "pickup_hotel": true,
+      "fecha_viaje": "Lunes a sábado (español: L-Mi-V · inglés: Ma-J-S). Domingos bajo solicitud especial. No opera Navidad ni Año Nuevo",
+      "fotos": [
+        "tour-tequila-jornalero__01.jpg",
+        "tour-tequila-jornalero__02.jpg",
+        "tour-tequila-jornalero__03.jpg",
+        "tour-tequila-jornalero__04.jpg",
+        "tour-tequila-jornalero__05-fix.jpg",
+        "tour-tequila-jornalero__06.jpg",
+        "tour-tequila-jornalero__07.jpg",
+        "tour-tequila-jornalero__08.jpg",
+        "tour-tequila-jornalero__09.jpg",
+        "tour-tequila-jornalero__10.jpg"
+      ],
+      "incluye": [
+        "Transportación de acuerdo a itinerario",
+        "Chofer certificado",
+        "Seguro de viajero a bordo de transporte",
+        "Guía tequillier",
+        "Admisión a destilería artesanal categoría premium",
+        "Visita a campos de agave",
+        "Actividad y demostración de uso de utensilios en el campo agavero",
+        "Desayuno rústico mexicano a pie de campo",
+        "Cantarito con receta de la casa",
+        "Recorrido guiado en fábrica y explicación del proceso de elaboración",
+        "Cata guiada por expertos tequileros (blanco, reposado y añejo) + copa extra de tu expresión favorita",
+        "Visita al Pueblo Mágico de Tequila",
+        "Tiempo libre",
+        "IVA"
+      ],
+      "no_incluye": [
+        "Alimentos",
+        "Bebidas",
+        "Entrada a museos",
+        "Gastos personales",
+        "Propinas"
+      ],
+      "itinerario": [
+        {
+          "dia": 1,
+          "titulo": "Campos de agave y destilería artesanal",
+          "descripcion": "07:40 hrs pick up en punto acordado. 07:50 salida con destino a Tequila. 09:00 arribo a destilería e inicio de recorrido: campos de agave, demostración de labores del campo, desayuno rústico a pie de campo, recorrido de fábrica y cata guiada. 12:00 traslado al centro de Tequila. 12:30 tiempo para comer y visitar la Parroquia de Santiago Apóstol, la Plaza principal y su quiosco, el callejón José Cuervo y el Museo Nacional del Tequila (admisión no incluida). 14:30 salida con destino a Cantaritos de Amatitán. 17:00 regreso a Guadalajara. 18:15 arribo, drop off y fin de servicios."
+        }
+      ],
+      "politica_cancelacion": "Una vez emitidos los boletos no se permiten cancelaciones. Las cancelaciones deberán avisarse con 72 horas de anticipación para reagendar la visita en una fecha posterior. No hay reembolsos; la visita será reagendada durante el mes en curso sujeto a disponibilidad."
+    },
+    {
+      "titulo": "Tour Tequila a tu alcance",
+      "titulo_en": "Tequila Within Reach Tour",
+      "slug": "tour-tequila-a-tu-alcance",
+      "destino": "Jalisco",
+      "categoria": "Cultural",
+      "experiencias": [
+        "Cultura",
+        "Gastronómico"
+      ],
+      "descripcion_breve": "Explora la magia de Tequila en una experiencia accesible y llena de tradición. Recorre los paisajes agaveros, conoce el proceso de elaboración, disfruta de una degustación y explora el encantador pueblo de Tequila a tu propio ritmo. Un tour diseñado para quienes desean vivir la cultura tequilera, divertirse y crear recuerdos inolvidables.",
+      "precio_desde": 986,
+      "precios_vehiculo": [
+        {
+          "capacidad": "2 pax",
+          "vehiculo": "Sedán",
+          "precio": 3249
+        },
+        {
+          "capacidad": "3 pax",
+          "vehiculo": "Sedán",
+          "precio": 2240
+        },
+        {
+          "capacidad": "4 pax",
+          "vehiculo": "Sedán Full Size",
+          "precio": 1914
+        },
+        {
+          "capacidad": "5 pax",
+          "vehiculo": "Suburban",
+          "precio": 2310
+        },
+        {
+          "capacidad": "6 pax",
+          "vehiculo": "Suburban",
+          "precio": 1961
+        },
+        {
+          "capacidad": "7 pax",
+          "vehiculo": "Toyota o Urban",
+          "precio": 1769
+        },
+        {
+          "capacidad": "8 pax",
+          "vehiculo": "Toyota o Urban",
+          "precio": 1576
+        },
+        {
+          "capacidad": "9 pax",
+          "vehiculo": "Toyota o Urban",
+          "precio": 1425
+        },
+        {
+          "capacidad": "10 pax",
+          "vehiculo": "Toyota o Urban",
+          "precio": 1304
+        },
+        {
+          "capacidad": "11-15 pax",
+          "vehiculo": "Sprinter regular",
+          "precio": 1206
+        },
+        {
+          "capacidad": "16-19 pax",
+          "vehiculo": "Sprinter regular",
+          "precio": 986
+        }
+      ],
+      "precio_nota": "Precio por persona en MXN según capacidad del grupo y vehículo. Reserva mínima 72 horas antes, máxima 3 meses. Si llevas menores de edad, contáctanos para una opción a tu medida.",
+      "duracion_texto": "1 día (10 horas)",
+      "duracion_horas": 10,
+      "dificultad": "facil",
+      "idiomas": [
+        "es",
+        "en"
+      ],
+      "punto_salida": "Hoteles o Airbnb en Zona Guadalajara Centro, Zapopan Centro, Tlaquepaque Centro, Zona Expo y Zona Andares",
+      "salida_garantizada": false,
+      "pickup_hotel": true,
+      "fecha_viaje": "Lunes a domingo (no opera Navidad ni Año Nuevo)",
+      "fotos": [
+        "tour-tequila-a-tu-alcance__01.jpg",
+        "tour-tequila-a-tu-alcance__02.jpg",
+        "tour-tequila-a-tu-alcance__03.jpg",
+        "tour-tequila-a-tu-alcance__04.jpg",
+        "tour-tequila-a-tu-alcance__05.jpg",
+        "tour-tequila-a-tu-alcance__06.jpg",
+        "tour-tequila-a-tu-alcance__07.jpg",
+        "tour-tequila-a-tu-alcance__08.jpg"
+      ],
+      "incluye": [
+        "Transportación acorde a itinerario",
+        "Chofer certificado",
+        "Seguro de viajero a bordo de transporte",
+        "Admisión a destilería local",
+        "Recorrido guiado en fábrica",
+        "Explicación del proceso de elaboración de tequila",
+        "Degustación de tequila",
+        "Visita al Pueblo Mágico de Tequila",
+        "Tiempo libre",
+        "IVA"
+      ],
+      "no_incluye": [
+        "Alimentos",
+        "Bebidas",
+        "Entrada a museos",
+        "Gastos personales",
+        "Propinas"
+      ],
+      "itinerario": [
+        {
+          "dia": 1,
+          "titulo": "Tequila a tu ritmo",
+          "descripcion": "09:00 hrs pick up en punto acordado. 09:15 salida con destino a Tequila. 10:30 arribo al centro de Tequila. 11:00 inicio de recorrido en destilería local. 13:00 tiempo para comer y visitar la Parroquia de Santiago Apóstol, la Plaza principal y su quiosco, el callejón José Cuervo y el Museo Nacional del Tequila (admisión no incluida). 15:00 salida con destino a Cantaritos de Amatitán (parada opcional). 17:30 regreso a Guadalajara. 19:00 arribo, drop off y fin de servicios."
+        }
+      ],
+      "politica_cancelacion": "Una vez emitidos los boletos no se permiten cancelaciones. Las cancelaciones deberán avisarse con 72 horas de anticipación para reagendar la visita; tendrás 6 meses para utilizar tu servicio, sujeto a disponibilidad y nivelación tarifaria. No hay reembolsos ni se toma a cuenta de otro servicio."
+    },
+    {
+      "titulo": "Tour Tequilero hasta los huesos",
+      "titulo_en": "Tequilero to the Bone Tour",
+      "slug": "tour-tequilero-hasta-los-huesos",
+      "destino": "Jalisco",
+      "categoria": "Cultural",
+      "experiencias": [
+        "Cultura",
+        "Día de Muertos",
+        "Gastronómico"
+      ],
+      "descripcion_breve": "Explora la magia del Día de Muertos en Tequila y el festival “Tequilero hasta los huesos”, donde disfrutarás de un espectacular desfile de catrinas, altares, ofrendas tradicionales, música en vivo, gastronomía típica y todo el encanto de la cultura mexicana. Tour compartido con disponibilidad de máximo 18 espacios.",
+      "precio_desde": null,
+      "precios_vehiculo": [],
+      "precio_nota": "Tour compartido, precio por persona (por definir edición 2026). Máximo 18 espacios. Reserva mínima 72 horas antes, máxima 3 meses. Si llevas menores de edad, contáctanos para una opción a tu medida.",
+      "duracion_texto": "1 día (12 horas)",
+      "duracion_horas": 12,
+      "dificultad": "facil",
+      "idiomas": [
+        "es",
+        "en"
+      ],
+      "punto_salida": "Punto de encuentro",
+      "salida_garantizada": false,
+      "pickup_hotel": false,
+      "fecha_viaje": "Temporada Día de Muertos (edición 2026 por confirmar)",
+      "fotos": [
+        "tour-tequilero-hasta-los-huesos__01.jpg",
+        "tour-tequilero-hasta-los-huesos__02.jpg",
+        "tour-tequilero-hasta-los-huesos__03.jpg",
+        "tour-tequilero-hasta-los-huesos__04.jpg",
+        "tour-tequilero-hasta-los-huesos__05.jpg"
+      ],
+      "incluye": [
+        "Transportación en servicio compartido",
+        "Coordinador de grupo",
+        "Admisión y recorrido por fábrica de tequila",
+        "Visita al centro de Tequila para comida, compras y fotografías",
+        "Seguro de viajero a bordo de transporte",
+        "Cena maridaje con tequila",
+        "IVA"
+      ],
+      "no_incluye": [
+        "Alimentos",
+        "Bebidas",
+        "Entrada a museos",
+        "Gastos personales",
+        "Propinas"
+      ],
+      "itinerario": [
+        {
+          "dia": 1,
+          "titulo": "Día de Muertos en Tequila",
+          "descripcion": "10:45 hrs pick up en punto de encuentro. 11:00 salida con destino a Tequila. 13:00 arribo a destilería local para recorrido. 16:00 tiempo libre en el centro de Tequila: Parroquia de Santiago Apóstol, Plaza principal, quiosco, callejón José Cuervo, Museo Nacional del Tequila (admisión no incluida), altares y ofrendas del festival. 19:00 cata y cena maridaje. 21:00 regreso a Guadalajara. 23:00 arribo al punto de encuentro y fin de servicios."
+        }
+      ],
+      "politica_cancelacion": "Actividad recomendada para mayores de 18 años (no disponible para menores de 17). No sugerimos este viaje a mujeres embarazadas ni personas con lesiones o cirugías recientes. Explora México Tours podrá cancelar el viaje si no se completa el mínimo de personas, reembolsando el importe total. Para reservar: nombre completo, celular y contacto de emergencia vía WhatsApp (+52) 33 1048 0670 o reserva@exploramexicotours.com. Cancelaciones: 30% de penalización; entre 45 y 30 días, 80%; entre 29 y 0 días, 100%. NO SHOW: 100% de penalidad."
+    },
+    {
+      "titulo": "Guadalajara y Tlaquepaque",
+      "slug": "guadalajara-y-tlaquepaque",
+      "descripcion_breve": "Explora Guadalajara, capital de Jalisco, cuna del Mariachi y del Tequila. Conoce más sobre el trasfondo de esta moderna ciudad, repleta de arte, arquitectura, gastronomía y más de 500 años de historia. Vive la Perla Tapatía a través de su patrimonio y de sus tradiciones de renombre internacional. Además, descubre con tus propios ojos por qué Tlaquepaque es reconocido como un Pueblo Mágico de México, con sus encantadoras calles llenas de galerías de arte y folklore.",
+      "destino": "Jalisco",
+      "categoria": "Cultural",
+      "experiencias": [],
+      "dificultad": "facil",
+      "idiomas": [
+        "es",
+        "en"
+      ],
+      "duracion_texto": "Tour de un día (10 horas)",
+      "duracion_horas": 10,
+      "punto_salida": "Guadalajara (pick-up en hotel/Airbnb: Centro, Zapopan, Tlaquepaque, Expo, Andares)",
+      "fecha_viaje": "Opera todos los días, los lunes el museo Hospicio Cabañas se encuentra cerrado. No opera 25 y 31 de diciembre.",
+      "precio_desde": null,
+      "precio_nota": "Tarifa por vehículo según ocupación (Sedán, Suburban, Toyota/Urban, Sprinter). Solicita tu cotización.",
+      "precios_vehiculo": [],
+      "incluye": [
+        "Transportación en servicio privado acorde a itinerario",
+        "chofer certificado",
+        "guía certificado",
+        "seguro de viajero a bordo de transporte",
+        "admisión a Museo Hospicio Cabañas",
+        "tiempo libre para comida",
+        "compras y fotografías en Tlaquepaque",
+        "IVA"
+      ],
+      "no_incluye": [
+        "Alimentos",
+        "gastos personales y propinas"
+      ],
+      "itinerario": [
+        {
+          "dia": 1,
+          "titulo": "Itinerario del día",
+          "descripcion": "09:30 hrs. Pick up pasajeros en punto acordado por el cliente. 10:00 hrs. Arribo al centro de Guadalajara para recorrido Cruz de plazas y Hospicio Cabañas. 13:30 hrs. Salida con destino a Tlaquepaque. 14:30 hrs. Arribo a Tlaquepaque y tiempo para comida. 16:00 hrs. Visita a taller de dulces mexicanos y tiempo libre. 18:00 hrs. Traslado de regreso a su hotel. 19:00 hrs. Dejada de pasajeros en su hotel y FIN DE SERVICIOS."
+        }
+      ],
+      "politica_cancelacion": "Actividad recomendada para toda la familia. No sugerimos este viaje a mujeres embarazadas, personas con lesiones en rodillas, espalda o cirugías recientes. Para reservar requerimos nombre completo de participantes de viaje, número celular, y un contacto de emergencia que no asista al viaje, la información la puedes enviar a través de nuestro número de WhatsApp: (+52)3310480670 o correo electrónico: reserva@explormexicotours.com. Cabe destacar que desde el momento que realizas la reservación de tu viaje, nosotros actuamos únicamente como intermediarios entre tú y los servicios contratados, de igual forma aceptas sus condiciones de no show, cancelación, así como otros términos y condiciones adicionales que puedan aplicar por parte del proveedor final. Queda establecido que Explora México Tours, sus representantes y el cliente no incurrirán en responsabilidad alguna por la cancelación o suspensión de la prestación de uno o varios servicios señalados en este itinerario, siendo estos por caso fortuito o fuerza mayor tales como: pandemia, guerra, rebelión, sabotaje, motín, huracán, terremoto, circunstancias meteorológicas, actos de autoridad gubernamental, disturbios por crimen organizado, manifestaciones sociales o cualquier otro hecho ajeno a la voluntad de la empresa y el cliente. Los costos generados por las circunstancias antes mencionadas como alimentación, noches adicionales, atención médica, atención psicológica, traslados a su lugar de origen deberán ser cubiertos por el cliente final. Explora México Tours permitirán cancelaciones con penalización del 30% del valor del viaje. Cancelaciones entre 45 y 30 días antes del viaje habrá una penalización del 80% del valor del viaje. Cancelaciones generadas entre 29 y 0 días a la fecha del viaje, causará el 100% de penalidad del valor del viaje. Cancelaciones generadas por parte del cliente el día del viaje o si no se presente, aplica como NO SHOW y genera el 100% de PENALIDAD, no habrá reembolso, ni se abona a otro viaje. El cliente es responsable de sus acciones, por lo tanto, en caso de accidente, lesiones o gastos médicos deslinda a Explora México Tours y sus representantes de cualquier situación ajena al servicio prestado salvo el seguro de viajero que aplique durante los trayectos de viaje.",
+      "peek_url": "#",
+      "fotos": [
+        "guadalajara-y-tlaquepaque__img-3805.jpg",
+        "guadalajara-y-tlaquepaque__img-0128-2.jpg",
+        "guadalajara-y-tlaquepaque__tlaquepaque.jpg",
+        "guadalajara-y-tlaquepaque__img-6730-2.jpg",
+        "guadalajara-y-tlaquepaque__1625edc5-b91c-474b-abd4-a75cfa681a72.jpg"
+      ],
+      "titulo_en": "",
+      "descripcion_breve_en": "",
+      "destacado": 0,
+      "orden_destacado": 0,
+      "salida_garantizada": 0,
+      "pickup_hotel": 1
+    },
+    {
+      "titulo": "Chapala y Ajijic",
+      "slug": "chapala-y-ajijic",
+      "descripcion_breve": "Explora el Lago de Chapala, el lago más grande de México. Está situado entre los estados de Jalisco y Michoacán, es magnífico por su agradable clima y sus hermosos paisajes. En su bella ribera se encuentran Chapala y Ajijic, dos encantadores pueblos con mucha tranquilidad que ofrecer. Chapala cuenta con un precioso malecón, perfecto para capturar el azul del cielo y del lago. Sin dejar atrás a Ajijic, pueblo mágico que encanta por su sencillez y sus coloridas calles.",
+      "destino": "Jalisco",
+      "categoria": "Cultural",
+      "experiencias": [],
+      "dificultad": "facil",
+      "idiomas": [
+        "es",
+        "en"
+      ],
+      "duracion_texto": "Tour de un día (10 horas)",
+      "duracion_horas": 10,
+      "punto_salida": "Guadalajara (pick-up en hotel/Airbnb: Centro, Zapopan, Tlaquepaque, Expo, Andares)",
+      "fecha_viaje": "Opera todos los días, excepto 25 y 31 de diciembre.",
+      "precio_desde": null,
+      "precio_nota": "Tarifa por vehículo según ocupación (Sedán, Suburban, Toyota/Urban, Sprinter). Solicita tu cotización.",
+      "precios_vehiculo": [],
+      "incluye": [
+        "Transportación en servicio privado acorde a itinerario",
+        "chofer certificado",
+        "guía local",
+        "seguro de viajero a bordo de transporte",
+        "IVA"
+      ],
+      "no_incluye": [
+        "Alimentos",
+        "gastos personales y propinas"
+      ],
+      "itinerario": [
+        {
+          "dia": 1,
+          "titulo": "Itinerario del día",
+          "descripcion": "09:30 hrs. Pick up pasajeros en punto acordado por el cliente. 10:30 hrs. Parada opcional en la tienda charra más grande de Latinoamérica, 12:00 Arribo al malecón de Chapala, tiempo libre para c. 14:00 hrs. Traslado a Ajijic para comida, visitar su plaza principal iglesia y el muro de las calaveras y su malecón. 18:00 hrs. Regreso a Guadalajara. 19:30 hrs. Dejada de pasajeros en su hotel y FIN DE SERVICIOS."
+        }
+      ],
+      "politica_cancelacion": "Actividad recomendada para toda la familia. No sugerimos este viaje a mujeres embarazadas, personas con lesiones en rodillas, espalda o cirugías recientes. Para reservar requerimos nombre completo de participantes de viaje, número celular, y un contacto de emergencia que no asista al viaje, la información la puedes enviar a través de nuestro número de WhatsApp: (+52)3310480670 o correo electrónico: reserva@explormexicotours.com. Cabe destacar que desde el momento que realizas la reservación de tu viaje, nosotros actuamos únicamente como intermediarios entre tú y los servicios contratados, de igual forma aceptas sus condiciones de no show, cancelación, así como otros términos y condiciones adicionales que puedan aplicar por parte del proveedor final. Queda establecido que Explora México Tours, sus representantes y el cliente no incurrirán en responsabilidad alguna por la cancelación o suspensión de la prestación de uno o varios servicios señalados en este itinerario, siendo estos por caso fortuito o fuerza mayor tales como: pandemia, guerra, rebelión, sabotaje, motín, huracán, terremoto, circunstancias meteorológicas, actos de autoridad gubernamental, disturbios por crimen organizado, manifestaciones sociales o cualquier otro hecho ajeno a la voluntad de la empresa y el cliente. Los costos generados por las circunstancias antes mencionadas como alimentación, noches adicionales, atención médica, atención psicológica, traslados a su lugar de origen deberán ser cubiertos por el cliente final. Explora México Tours permitirán cancelaciones con penalización del 30% del valor del viaje. Cancelaciones entre 45 y 30 días antes del viaje habrá una penalización del 80% del valor del viaje. Cancelaciones generadas entre 29 y 0 días a la fecha del viaje, causará el 100% de penalidad del valor del viaje. Cancelaciones generadas por parte del cliente el día del viaje o si no se presente, aplica como NO SHOW y genera el 100% de PENALIDAD, no habrá reembolso, ni se abona a otro viaje. El cliente es responsable de sus acciones, por lo tanto, en caso de accidente, lesiones o gastos médicos deslinda a Explora México Tours y sus representantes de cualquier situación ajena al servicio prestado salvo el seguro de viajero que aplique durante los trayectos de viaje.",
+      "peek_url": "#",
+      "fotos": [
+        "chapala-y-ajijic__dsc-0305-2.jpg",
+        "chapala-y-ajijic__img-0468.jpg",
+        "chapala-y-ajijic__img-0474.jpg",
+        "chapala-y-ajijic__473668644-1507765437279320-5898015139617180445-n.jpg",
+        "chapala-y-ajijic__img-1765.jpg"
+      ],
+      "titulo_en": "",
+      "descripcion_breve_en": "",
+      "destacado": 0,
+      "orden_destacado": 0,
+      "salida_garantizada": 0,
+      "pickup_hotel": 1
+    },
+    {
+      "titulo": "Mazamitla",
+      "slug": "mazamitla",
+      "descripcion_breve": "Explora Mazamitla “Lugar de Venados”, también conocido como la Suiza Mexicana por sus paisajes montañosos y su bosque de encanto. En este Pueblo Mágico podrás caminar por las calles del pueblo entre sus encantadoras viviendas y visitar la plaza principal. Además, emprende la aventura por la Sierra del Tigre y visita productores locales. Vive una experiencia única en la Sierra del Tigre de hermosos paisajes, y aprecia toda la majestuosidad del bosque y lo encantador del pueblo. Por la tarde tendrás oportunidad de caminar por sus calles o pasear en un vehículo todo terreno y conocer sus mejores vistas y alrededores.",
+      "destino": "Jalisco",
+      "categoria": "Ecoturismo",
+      "experiencias": [],
+      "dificultad": "facil",
+      "idiomas": [
+        "es",
+        "en"
+      ],
+      "duracion_texto": "Tour de un día (12 horas)",
+      "duracion_horas": 12,
+      "punto_salida": "Guadalajara (pick-up en hotel/Airbnb: Centro, Zapopan, Tlaquepaque, Expo, Andares)",
+      "fecha_viaje": "Opera todos los días, excepto 25 y 31 de diciembre.",
+      "precio_desde": null,
+      "precio_nota": "Tarifa por vehículo según ocupación (Sedán, Suburban, Toyota/Urban, Sprinter). Solicita tu cotización.",
+      "precios_vehiculo": [],
+      "incluye": [
+        "Transportación en servicio privado acorde a itinerario",
+        "chofer certificado",
+        "recorrido por sierra del tigre en vehículo tipo safari visitando una fábrica de conservas",
+        "la casa de los quesos",
+        "visita el centro de Mazamitla",
+        "y tiempo para comer",
+        "Después de la comida tendrás oportunidad de caminar por su plaza o bien rentar un vehículo todo terreno (rzr o cuatrimoto no incluido) que te llevara a conocer los miradores del pueblo",
+        "IVA"
+      ],
+      "no_incluye": [
+        "Alimentos",
+        "gastos personales",
+        "rzr o cuatrimoto y propinas"
+      ],
+      "itinerario": [
+        {
+          "dia": 1,
+          "titulo": "Itinerario del día",
+          "descripcion": "08:30 hrs. Pick up pasajeros en punto acordado por el cliente. 11:00 hrs. Arribo a Mazamitla y traslado a punto de encuentro para recorrido sierra del tigre. 12:00 hrs. Inicio de recorrido Sierra del Tigre. 14:30 hrs. Regreso de recorrido y tiempo para comida. 16:00 hrs. Tiempo libre en el centro de Mazamitla y bien rentar vehículo todo terreno para recorrido. 18:00 hrs. Regreso a Guadalajara. 20:30 hrs. Dejada de pasajeros en su hotel y FIN DE SERVICIOS."
+        }
+      ],
+      "politica_cancelacion": "Actividad recomendada para toda la familia. No sugerimos este viaje a mujeres embarazadas, personas con lesiones en rodillas, espalda o cirugías recientes. Para reservar requerimos nombre completo de participantes de viaje, número celular, y un contacto de emergencia que no asista al viaje, la información la puedes enviar a través de nuestro número de WhatsApp: (+52)3310480670 o correo electrónico: reserva@explormexicotours.com. Cabe destacar que desde el momento que realizas la reservación de tu viaje, nosotros actuamos únicamente como intermediarios entre tú y los servicios contratados, de igual forma aceptas sus condiciones de no show, cancelación, así como otros términos y condiciones adicionales que puedan aplicar por parte del proveedor final. Queda establecido que Explora México Tours, sus representantes y el cliente no incurrirán en responsabilidad alguna por la cancelación o suspensión de la prestación de uno o varios servicios señalados en este itinerario, siendo estos por caso fortuito o fuerza mayor tales como: pandemia, guerra, rebelión, sabotaje, motín, huracán, terremoto, circunstancias meteorológicas, actos de autoridad gubernamental, disturbios por crimen organizado, manifestaciones sociales o cualquier otro hecho ajeno a la voluntad de la empresa y el cliente. Los costos generados por las circunstancias antes mencionadas como alimentación, noches adicionales, atención médica, atención psicológica, traslados a su lugar de origen deberán ser cubiertos por el cliente final. Explora México Tours permitirán cancelaciones con penalización del 30% del valor del viaje. Cancelaciones entre 45 y 30 días antes del viaje habrá una penalización del 80% del valor del viaje. Cancelaciones generadas entre 29 y 0 días a la fecha del viaje, causará el 100% de penalidad del valor del viaje. Cancelaciones generadas por parte del cliente el día del viaje o si no se presente, aplica como NO SHOW y genera el 100% de PENALIDAD, no habrá reembolso, ni se abona a otro viaje. El cliente es responsable de sus acciones, por lo tanto, en caso de accidente, lesiones o gastos médicos deslinda a Explora México Tours y sus representantes de cualquier situación ajena al servicio prestado salvo el seguro de viajero que aplique durante los trayectos de viaje.",
+      "peek_url": "#",
+      "fotos": [
+        "mazamitla__img-3857.jpg",
+        "mazamitla__img-0011.jpg",
+        "mazamitla__img-3848.jpg",
+        "mazamitla__img-3850.jpg",
+        "mazamitla__img-3882.jpg"
+      ],
+      "titulo_en": "",
+      "descripcion_breve_en": "",
+      "destacado": 0,
+      "orden_destacado": 0,
+      "salida_garantizada": 0,
+      "pickup_hotel": 1
+    },
+    {
+      "titulo": "Cañonismo en Jalisco",
+      "slug": "canonismo-en-jalisco",
+      "descripcion_breve": "El cañón de Comala en el municipio de Chiquilistlán Jalisco es un impresionante paraíso natural rodeado de montañas cascadas y pozas naturales de agua cristalina. Se reconoce por tener formaciones rocosas y ser uno de los destinos para realizar cañonismo, esta actividad se conforma de un barranco con muchos saltos al agua entre 2 a 14 metros opcionales, 3 toboganes naturales entre 3 y 12 metros y un gran rappel de 17 metros sobre cascada, una aventura acuática con pozas azul turquesa ideal para principiantes y amantes de la aventura.",
+      "destino": "Jalisco",
+      "categoria": "Aventura",
+      "experiencias": [],
+      "dificultad": "alta",
+      "idiomas": [
+        "es",
+        "en"
+      ],
+      "duracion_texto": "Tour de un día (14 horas)",
+      "duracion_horas": 14,
+      "punto_salida": "Punto de encuentro (Guadalajara)",
+      "fecha_viaje": "Opera sábados y domingos de febrero a mayo",
+      "precio_desde": null,
+      "precio_nota": "Servicio compartido. Solicita tu cotización.",
+      "precios_vehiculo": [],
+      "incluye": [
+        "Transportación en servicio compartido en punto de encuentro",
+        "chofer certificado",
+        "guía especializado en cañonismo",
+        "equipo requerido para la actividad (traje neopreno, chaleco salvavidas)",
+        "comida",
+        "agua de sabor al finalizar la actividad",
+        "seguro contra accidentes durante la actividad de aventura",
+        "IVA"
+      ],
+      "no_incluye": [
+        "Desayuno",
+        "gastos personales",
+        "deducible en caso de accidente y propinas"
+      ],
+      "itinerario": [
+        {
+          "dia": 1,
+          "titulo": "Itinerario del día",
+          "descripcion": "06:00 hrs. Registro de participantes, tallaje de quipo y firma de carta responsiva. 07:00 hrs. Salida con destino a Chiquilistlan. 10:00 hrs. Arribo a Chiquilistlan, preparación de equipo, instrucciones de uso de equipo y seguridad e inicio del recorrido. 15:00 hrs. Finalización de la actividad y tiempo para cambiarse. 16:00 hrs. Tiempo para comida recorrido. 18:00 hrs. Regreso a Guadalajara. 21:00 hrs. Arribo a punto de encuentro y FIN DE SERVICIOS."
+        }
+      ],
+      "politica_cancelacion": "Actividad recomendada para mayores de 12 años y personas con condición física de media a alta. No sugerimos este viaje a mujeres embarazadas, personas con lesiones en rodillas, espalda o cirugías recientes. Para reservar requerimos nombre completo de participantes de viaje, número celular, y un contacto de emergencia que no asista al viaje, la información la puedes enviar a través de nuestro número de WhatsApp: (+52)3310480670 o correo electrónico: reserva@explormexicotours.com. Cabe destacar que desde el momento que realizas la reservación de tu viaje, nosotros actuamos únicamente como intermediarios entre tú y los servicios contratados, de igual forma aceptas sus condiciones de no show, cancelación, así como otros términos y condiciones adicionales que puedan aplicar por parte del proveedor final. Queda establecido que Explora México Tours, sus representantes y el cliente no incurrirán en responsabilidad alguna por la cancelación o suspensión de la prestación de uno o varios servicios señalados en este itinerario, siendo estos por caso fortuito o fuerza mayor tales como: pandemia, guerra, rebelión, sabotaje, motín, huracán, terremoto, circunstancias meteorológicas, actos de autoridad gubernamental, disturbios por crimen organizado, manifestaciones sociales o cualquier otro hecho ajeno a la voluntad de la empresa y el cliente. Los costos generados por las circunstancias antes mencionadas como alimentación, noches adicionales, atención médica, atención psicológica, traslados a su lugar de origen deberán ser cubiertos por el cliente final. Explora México Tours permitirán cancelaciones con penalización del 30% del valor del viaje. Cancelaciones entre 45 y 30 días antes del viaje habrá una penalización del 80% del valor del viaje. Cancelaciones generadas entre 29 y 0 días a la fecha del viaje, causará el 100% de penalidad del valor del viaje. Cancelaciones generadas por parte del cliente el día del viaje o si no se presente, aplica como NO SHOW y genera el 100% de PENALIDAD, no habrá reembolso, ni se abona a otro viaje. El cliente es responsable de sus acciones, por lo tanto, en caso de accidente, lesiones o gastos médicos deslinda a Explora México Tours y sus representantes de cualquier situación ajena al servicio prestado salvo el seguro de viajero que aplique durante los trayectos de viaje y la actividad que deberá ser reportado por el usuario el mismo día del siniestro.",
+      "peek_url": "#",
+      "fotos": [
+        "canonismo-en-jalisco__dsc-9244.jpg",
+        "canonismo-en-jalisco__dsc-9069.jpg",
+        "canonismo-en-jalisco__dsc-9030-copia.jpg",
+        "canonismo-en-jalisco__dsc-9262.jpg",
+        "canonismo-en-jalisco__gopr8471.jpg"
+      ],
+      "titulo_en": "",
+      "descripcion_breve_en": "",
+      "destacado": 0,
+      "orden_destacado": 0,
+      "salida_garantizada": 0,
+      "pickup_hotel": 0
+    },
+    {
+      "titulo": "Día de Muertos y Calaverandia",
+      "slug": "dia-de-muertos-y-calaverandia",
+      "descripcion_breve": "Explora la magia del día de Muertos en Guadalajara con sus múltiples actividades culturales y descubre Calaverandia, el parque temático que da vida a una de las tradiciones más emblemáticas de México. Disfruta de altares, ofrendas, un cementerio que actualmente es un museo, un tianguis mexicano dedicado exclusivamente a la venta de artesanías y de todo lo relacionado al armado de altares de muertos, un ambiente lleno de color y tradición.",
+      "destino": "Jalisco",
+      "categoria": "Cultural",
+      "experiencias": [],
+      "dificultad": "facil",
+      "idiomas": [
+        "es"
+      ],
+      "duracion_texto": "Tour de un día (10 horas)",
+      "duracion_horas": 10,
+      "punto_salida": "Guadalajara (pick-up en hotel/Airbnb: Centro, Zapopan, Tlaquepaque, Expo, Andares)",
+      "fecha_viaje": "Opera del 22 de octubre al 6 de noviembre.",
+      "precio_desde": null,
+      "precio_nota": "Tarifa por vehículo según ocupación (Sedán, Suburban, Toyota/Urban, Sprinter). Solicita tu cotización.",
+      "precios_vehiculo": [],
+      "incluye": [
+        "Transportación en servicio privado acorde a itinerario",
+        "chofer certificado",
+        "boleto de admisión Museo Panteón de Belén",
+        "visita tianguis de cartón",
+        "boleto de admisión general a calaverandia",
+        "seguro de viajero a bordo de transporte",
+        "IVA"
+      ],
+      "no_incluye": [
+        "Alimentos",
+        "gastos personales y propinas"
+      ],
+      "itinerario": [
+        {
+          "dia": 1,
+          "titulo": "Itinerario del día",
+          "descripcion": "14:00 hrs. Pick up pasajeros en punto acordado por el cliente. 15:00 hrs. Arribo al centro de Guadalajara para visitar Museo Panteón de Belén para recorrido. 16:30 hrs. Traslado al tianguis de cartón para visita y compras. 18:00 hrs. Salida con destino al parque temático Calaverandia. 19:30 hrs. Arribo al parque y tiempo para visitar. 23:00 hrs. Traslado de regreso al hotel FIN DE SERVICIOS."
+        }
+      ],
+      "politica_cancelacion": "Actividad recomendada para toda la familia. No sugerimos este viaje a mujeres embarazadas, personas con lesiones en rodillas, espalda o cirugías recientes. Para reservar requerimos nombre completo de participantes de viaje, número celular, y un contacto de emergencia que no asista al viaje, la información la puedes enviar a través de nuestro número de WhatsApp: (+52)3310480670 o correo electrónico: reserva@explormexicotours.com. Cabe destacar que desde el momento que realizas la reservación de tu viaje, nosotros actuamos únicamente como intermediarios entre tú y los servicios contratados, de igual forma aceptas sus condiciones de no show, cancelación, así como otros términos y condiciones adicionales que puedan aplicar por parte del proveedor final. Queda establecido que Explora México Tours, sus representantes y el cliente no incurrirán en responsabilidad alguna por la cancelación o suspensión de la prestación de uno o varios servicios señalados en este itinerario, siendo estos por caso fortuito o fuerza mayor tales como: pandemia, guerra, rebelión, sabotaje, motín, huracán, terremoto, circunstancias meteorológicas, actos de autoridad gubernamental, disturbios por crimen organizado, manifestaciones sociales o cualquier otro hecho ajeno a la voluntad de la empresa y el cliente. Los costos generados por las circunstancias antes mencionadas como alimentación, noches adicionales, atención médica, atención psicológica, traslados a su lugar de origen deberán ser cubiertos por el cliente final. Explora México Tours permitirán cancelaciones con penalización del 30% del valor del viaje. Cancelaciones entre 45 y 30 días antes del viaje habrá una penalización del 80% del valor del viaje. Cancelaciones generadas entre 29 y 0 días a la fecha del viaje, causará el 100% de penalidad del valor del viaje. Cancelaciones generadas por parte del cliente el día del viaje o si no se presente, aplica como NO SHOW y genera el 100% de PENALIDAD, no habrá reembolso, ni se abona a otro viaje. El cliente es responsable de sus acciones, por lo tanto, en caso de accidente, lesiones o gastos médicos deslinda a Explora México Tours y sus representantes de cualquier situación ajena al servicio prestado salvo el seguro de viajero que aplique durante los trayectos de viaje.",
+      "peek_url": "#",
+      "fotos": [
+        "dia-de-muertos-y-calaverandia__68f7c513d1915-calaverandia-plaza-gmxdot-jpg.jpg",
+        "dia-de-muertos-y-calaverandia__68f7c5223e430-calaverandia-inframundo-gmxdot-jpg.jpg",
+        "dia-de-muertos-y-calaverandia__img-2160.jpg",
+        "dia-de-muertos-y-calaverandia__img-2180.jpg",
+        "dia-de-muertos-y-calaverandia__img-2184.jpg"
+      ],
+      "titulo_en": "",
+      "descripcion_breve_en": "",
+      "destacado": 0,
+      "orden_destacado": 0,
+      "salida_garantizada": 0,
+      "pickup_hotel": 1
+    },
+    {
+      "titulo": "Guadalajara y Modelado en Barro",
+      "slug": "guadalajara-y-modelado-en-barro",
+      "descripcion_breve": "Comenzamos por recorrer el centro de Guadalajara, desde la catedral de Guadalajara pasando por la rotonda de los hombres ilustres, teatro Degollado, hasta llegar al Hospicio Cabañas considerado Patrimonio Cultural de la Humanidad por la majestuosidad del propio edificio sin pasar por alto los frescos pintados por Jose clemente Orozco. Continuamos nuestro camino a Tlaquepaque, nos espera una actividad en la que descubriremos como realizar figurillas o artesanías de pequeño formato de la mano de artesanas que logran hacer copias humanas casi idénticas en cada detalle, manos delicadas, ojos o rasgos finamente trabajados. Y las cuales serán su guía en una práctica de modelado en barro que les permitirá valorar el esfuerzo puesto encada artesanía, la cual se podrán llevar a casa. Después disfruta de tiempo libre en este adorable pueblo, para probar la gastronomía local, comprar recuerdos y artesanías, o simplemente recorrer sus pintorescas calles.",
+      "destino": "Jalisco",
+      "categoria": "Cultural",
+      "experiencias": [],
+      "dificultad": "facil",
+      "idiomas": [
+        "es",
+        "en"
+      ],
+      "duracion_texto": "Tour de un día (10 horas)",
+      "duracion_horas": 10,
+      "punto_salida": "Guadalajara (pick-up en hotel/Airbnb: Centro, Zapopan, Tlaquepaque, Expo, Andares)",
+      "fecha_viaje": "Opera todos los días, los lunes el museo Hospicio Cabañas se encuentra cerrado. No opera 25 y 31 de diciembre.",
+      "precio_desde": null,
+      "precio_nota": "Tarifa por vehículo según ocupación (Sedán, Suburban, Toyota/Urban, Sprinter). Solicita tu cotización.",
+      "precios_vehiculo": [],
+      "incluye": [
+        "Transportación en servicio privado acorde a itinerario",
+        "chofer certificado",
+        "guía certificado",
+        "seguro de viajero a bordo de transporte",
+        "admisión a Museo Hospicio Cabañas",
+        "tiempo libre para comida",
+        "experiencia de modelado en barro",
+        "IVA"
+      ],
+      "no_incluye": [
+        "Alimentos",
+        "gastos personales y propinas"
+      ],
+      "itinerario": [
+        {
+          "dia": 1,
+          "titulo": "Itinerario del día",
+          "descripcion": "09:30 hrs. Pick up pasajeros en punto acordado por el cliente. 10:00 hrs. Arribo al centro de Guadalajara para recorrido Cruz de plazas y Hospicio Cabañas. 13:30 hrs. Salida con destino a Tlaquepaque. 14:30 hrs. Arribo a Tlaquepaque y tiempo para comida. 16:00 hrs. Actividad de Modelado en barro. 18:30 hrs. Traslado de regreso a su hotel. 19:00 hrs. Dejada de pasajeros en su hotel y FIN DE SERVICIOS."
+        }
+      ],
+      "politica_cancelacion": "Actividad recomendada para toda la familia. No sugerimos este viaje a mujeres embarazadas, personas con lesiones en rodillas, espalda o cirugías recientes. Para reservar requerimos nombre completo de participantes de viaje, número celular, y un contacto de emergencia que no asista al viaje, la información la puedes enviar a través de nuestro número de WhatsApp: (+52)3310480670 o correo electrónico: reserva@explormexicotours.com. Cabe destacar que desde el momento que realizas la reservación de tu viaje, nosotros actuamos únicamente como intermediarios entre tú y los servicios contratados, de igual forma aceptas sus condiciones de no show, cancelación, así como otros términos y condiciones adicionales que puedan aplicar por parte del proveedor final. Queda establecido que Explora México Tours, sus representantes y el cliente no incurrirán en responsabilidad alguna por la cancelación o suspensión de la prestación de uno o varios servicios señalados en este itinerario, siendo estos por caso fortuito o fuerza mayor tales como: pandemia, guerra, rebelión, sabotaje, motín, huracán, terremoto, circunstancias meteorológicas, actos de autoridad gubernamental, disturbios por crimen organizado, manifestaciones sociales o cualquier otro hecho ajeno a la voluntad de la empresa y el cliente. Los costos generados por las circunstancias antes mencionadas como alimentación, noches adicionales, atención médica, atención psicológica, traslados a su lugar de origen deberán ser cubiertos por el cliente final. Explora México Tours permitirán cancelaciones con penalización del 30% del valor del viaje. Cancelaciones entre 45 y 30 días antes del viaje habrá una penalización del 80% del valor del viaje. Cancelaciones generadas entre 29 y 0 días a la fecha del viaje, causará el 100% de penalidad del valor del viaje. Cancelaciones generadas por parte del cliente el día del viaje o si no se presente, aplica como NO SHOW y genera el 100% de PENALIDAD, no habrá reembolso, ni se abona a otro viaje. El cliente es responsable de sus acciones, por lo tanto, en caso de accidente, lesiones o gastos médicos deslinda a Explora México Tours y sus representantes de cualquier situación ajena al servicio prestado salvo el seguro de viajero que aplique durante los trayectos de viaje.",
+      "peek_url": "#",
+      "fotos": [
+        "guadalajara-y-modelado-en-barro__img-2236.jpg",
+        "guadalajara-y-modelado-en-barro__53598aa1-4b45-408b-804f-72d1f9019049.jpg",
+        "guadalajara-y-modelado-en-barro__img-2408.jpg",
+        "guadalajara-y-modelado-en-barro__img-4626.jpg",
+        "guadalajara-y-modelado-en-barro__img-4665.jpg"
+      ],
+      "titulo_en": "",
+      "descripcion_breve_en": "",
+      "destacado": 0,
+      "orden_destacado": 0,
+      "salida_garantizada": 0,
+      "pickup_hotel": 1
+    },
+    {
+      "titulo": "Viñedos de Chapala",
+      "slug": "vinedos-de-chapala",
+      "descripcion_breve": "La ruta del vino de Chapala es una experiencia turística que combina paisajes, gastronomía regional y viñedos, durante el recorrido tendremos la oportunidad de visitar uno de los viñedos con espectaculares vistas al lago, tomar fotografías y degustar sus vinos en un ambiente relajado al finalizar tendremos tiempo de comida libre en Ajijic.",
+      "destino": "Jalisco",
+      "categoria": "Gastronomía",
+      "experiencias": [],
+      "dificultad": "facil",
+      "idiomas": [
+        "es",
+        "en"
+      ],
+      "duracion_texto": "Tour de un día (10 horas)",
+      "duracion_horas": 10,
+      "punto_salida": "Guadalajara (pick-up en hotel/Airbnb: Centro, Zapopan, Tlaquepaque, Expo, Andares)",
+      "fecha_viaje": "Esta actividad opera sábado y domingos",
+      "precio_desde": null,
+      "precio_nota": "Tarifa por vehículo según ocupación (Sedán, Suburban, Toyota/Urban, Sprinter). Solicita tu cotización.",
+      "precios_vehiculo": [],
+      "incluye": [
+        "Transportación en servicio privado acorde a itinerario",
+        "chofer certificado",
+        "recorrido en viñedo",
+        "degustación de 4 estilos de vino",
+        "tabla de charcutería compartida",
+        "tiempo para comida en Ajijic",
+        "seguro de viajero a bordo de transporte",
+        "IVA"
+      ],
+      "no_incluye": [
+        "Alimentos",
+        "gastos personales y propinas"
+      ],
+      "itinerario": [
+        {
+          "dia": 1,
+          "titulo": "Itinerario del día",
+          "descripcion": "10:00 hrs. Pick up pasajeros en punto acordado por el cliente. 11:45 hrs. Arribo a viñedos La Estramancia. 12:00 hrs. Recorrido y degustación. 14:00 hrs. Traslado a Ajijic para comida, visitar su plaza principal iglesia y el muro de las calaveras y su malecón. 18:00 hrs. Regreso a Guadalajara. 20:00 hrs. Dejada de pasajeros en su hotel y FIN DE SERVICIOS."
+        }
+      ],
+      "politica_cancelacion": "Actividad recomendada para mayores de 18 años. No sugerimos este viaje a mujeres embarazadas, personas con lesiones en rodillas, espalda o cirugías recientes. Para reservar requerimos nombre completo de participantes de viaje, número celular, y un contacto de emergencia que no asista al viaje, la información la puedes enviar a través de nuestro número de WhatsApp: (+52)3310480670 o correo electrónico: reserva@explormexicotours.com. Cabe destacar que desde el momento que realizas la reservación de tu viaje, nosotros actuamos únicamente como intermediarios entre tú y los servicios contratados, de igual forma aceptas sus condiciones de no show, cancelación, así como otros términos y condiciones adicionales que puedan aplicar por parte del proveedor final. Queda establecido que Explora México Tours, sus representantes y el cliente no incurrirán en responsabilidad alguna por la cancelación o suspensión de la prestación de uno o varios servicios señalados en este itinerario, siendo estos por caso fortuito o fuerza mayor tales como: pandemia, guerra, rebelión, sabotaje, motín, huracán, terremoto, circunstancias meteorológicas, actos de autoridad gubernamental, disturbios por crimen organizado, manifestaciones sociales o cualquier otro hecho ajeno a la voluntad de la empresa y el cliente. Los costos generados por las circunstancias antes mencionadas como alimentación, noches adicionales, atención médica, atención psicológica, traslados a su lugar de origen deberán ser cubiertos por el cliente final. Explora México Tours permitirán cancelaciones con penalización del 30% del valor del viaje. Cancelaciones entre 45 y 30 días antes del viaje habrá una penalización del 80% del valor del viaje. Cancelaciones generadas entre 29 y 0 días a la fecha del viaje, causará el 100% de penalidad del valor del viaje. Cancelaciones generadas por parte del cliente el día del viaje o si no se presente, aplica como NO SHOW y genera el 100% de PENALIDAD, no habrá reembolso, ni se abona a otro viaje. El cliente es responsable de sus acciones, por lo tanto, en caso de accidente, lesiones o gastos médicos deslinda a Explora México Tours y sus representantes de cualquier situación ajena al servicio prestado salvo el seguro de viajero que aplique durante los trayectos de viaje.",
+      "peek_url": "#",
+      "fotos": [
+        "vinedos-de-chapala__img-4356.jpg",
+        "vinedos-de-chapala__img-4367.jpg",
+        "vinedos-de-chapala__img-4369.jpg",
+        "vinedos-de-chapala__img-4380.jpg",
+        "vinedos-de-chapala__img-8330.jpg"
+      ],
+      "titulo_en": "",
+      "descripcion_breve_en": "",
+      "destacado": 0,
+      "orden_destacado": 0,
+      "salida_garantizada": 0,
+      "pickup_hotel": 1
+    },
+    {
+      "titulo": "Isla de Mezcala y Ajijic",
+      "slug": "isla-de-mezcala-y-ajijic",
+      "descripcion_breve": "La isla de Mezcala también conocida como Isla del Presidio, se localiza en frente al poblado de Mezcala de la Asunción, este lugar fue utilizado como punto estratégico del ejercito a manera de fuerte defensivo contra el gobierno español. Posteriormente El Presidio funcionó de 1826 a 1855 para los pueblos cercanos al Lago de Chapala de Jalisco y de Michoacán, donde la mayor parte de los criminales llegaban al Presidio de Mezcala acusados por crímenes de violación, al finalizar el recorrido continuamos nuestra visita con una parada para comida en Ajijic pueblo mágico que encanta por su sencillez, su malecón y coloridas calles.",
+      "destino": "Jalisco",
+      "categoria": "Cultural",
+      "experiencias": [],
+      "dificultad": "facil",
+      "idiomas": [
+        "es",
+        "en"
+      ],
+      "duracion_texto": "Tour de un día (10 horas)",
+      "duracion_horas": 10,
+      "punto_salida": "Guadalajara (pick-up en hotel/Airbnb: Centro, Zapopan, Tlaquepaque, Expo, Andares)",
+      "fecha_viaje": "Opera todos los días, excepto 25 y 31 de diciembre.",
+      "precio_desde": null,
+      "precio_nota": "Tarifa por vehículo según ocupación (Sedán, Suburban, Toyota/Urban, Sprinter). Solicita tu cotización.",
+      "precios_vehiculo": [],
+      "incluye": [
+        "Transportación en servicio privado acorde a itinerario",
+        "chofer certificado",
+        "guía local",
+        "embarcación a la Isla de Mezcala",
+        "seguro de viajero a bordo de transporte",
+        "IVA"
+      ],
+      "no_incluye": [
+        "Alimentos",
+        "gastos personales y propinas"
+      ],
+      "itinerario": [
+        {
+          "dia": 1,
+          "titulo": "Itinerario del día",
+          "descripcion": "09:30 hrs. Pick up pasajeros en punto acordado por el cliente. 11:00 hrs. Arribo a la Isla de Mezcala y tiempo para visitar,. 13:00 hrs. Traslado a Ajijic. 14:00 hrs. Arribo a Ajijic, tendremos tiempo libre para comida, caminar por sus calles, visitar su iglesia y tomar fotografías. 17:30 hrs. Regreso a Guadalajara. 19:30 hrs. Dejada de pasajeros en su hotel y FIN DE SERVICIOS."
+        }
+      ],
+      "politica_cancelacion": "Actividad recomendada para toda la familia. No sugerimos este viaje a mujeres embarazadas, personas con lesiones en rodillas, espalda o cirugías recientes. Para reservar requerimos nombre completo de participantes de viaje, número celular, y un contacto de emergencia que no asista al viaje, la información la puedes enviar a través de nuestro número de WhatsApp: (+52)3310480670 o correo electrónico: reserva@explormexicotours.com. Cabe destacar que desde el momento que realizas la reservación de tu viaje, nosotros actuamos únicamente como intermediarios entre tú y los servicios contratados, de igual forma aceptas sus condiciones de no show, cancelación, así como otros términos y condiciones adicionales que puedan aplicar por parte del proveedor final. Queda establecido que Explora México Tours, sus representantes y el cliente no incurrirán en responsabilidad alguna por la cancelación o suspensión de la prestación de uno o varios servicios señalados en este itinerario, siendo estos por caso fortuito o fuerza mayor tales como: pandemia, guerra, rebelión, sabotaje, motín, huracán, terremoto, circunstancias meteorológicas, actos de autoridad gubernamental, disturbios por crimen organizado, manifestaciones sociales o cualquier otro hecho ajeno a la voluntad de la empresa y el cliente. Los costos generados por las circunstancias antes mencionadas como alimentación, noches adicionales, atención médica, atención psicológica, traslados a su lugar de origen deberán ser cubiertos por el cliente final. Explora México Tours permitirán cancelaciones con penalización del 30% del valor del viaje. Cancelaciones entre 45 y 30 días antes del viaje habrá una penalización del 80% del valor del viaje. Cancelaciones generadas entre 29 y 0 días a la fecha del viaje, causará el 100% de penalidad del valor del viaje. Cancelaciones generadas por parte del cliente el día del viaje o si no se presente, aplica como NO SHOW y genera el 100% de PENALIDAD, no habrá reembolso, ni se abona a otro viaje. El cliente es responsable de sus acciones, por lo tanto, en caso de accidente, lesiones o gastos médicos deslinda a Explora México Tours y sus representantes de cualquier situación ajena al servicio prestado salvo el seguro de viajero que aplique durante los trayectos de viaje.",
+      "peek_url": "#",
+      "fotos": [
+        "isla-de-mezcala-y-ajijic__dsc-0224.jpg",
+        "isla-de-mezcala-y-ajijic__img-0054.jpg",
+        "isla-de-mezcala-y-ajijic__img-5407.jpg",
+        "isla-de-mezcala-y-ajijic__img-6756.jpg"
+      ],
+      "titulo_en": "",
+      "descripcion_breve_en": "",
+      "destacado": 0,
+      "orden_destacado": 0,
+      "salida_garantizada": 0,
+      "pickup_hotel": 1
+    },
+    {
+      "titulo": "Senderismo y Petroglifos Isla de Mezcala",
+      "slug": "senderismo-petroglifos-mezcala",
+      "titulo_en": "",
+      "descripcion_breve": "Los petroglifos de la Isla de Mezcala son grabados prehispánicos tallados en roca por antiguos habitantes de la región del lago de Chapala. Estos diseños incluyen figuras geométricas, representaciones humanas y elementos simbólicos que reflejan aspectos de su cosmovisión. Son un importante testimonio del patrimonio arqueológico de jalisco que contribuye al conocimiento de las culturas que habitaron en la región antes de la llegada de los españoles. Al finalizar haremos una parada breve para comida en la localidad de Ajijic un pueblo mágico que encanta por su sencillez y sus coloridas calles.",
+      "descripcion_breve_en": "",
+      "destino": "Jalisco",
+      "categoria": "Ecoturismo",
+      "experiencias": [],
+      "dificultad": "moderada",
+      "idiomas": [
+        "es",
+        "en"
+      ],
+      "duracion_texto": "Tour de un día (12 horas)",
+      "duracion_horas": 12,
+      "punto_salida": "Guadalajara (pick-up en hotel/Airbnb: Centro, Zapopan, Tlaquepaque, Expo, Andares)",
+      "fecha_viaje": "Opera en los meses de julio a febrero, excepto 25 y 31 de diciembre.",
+      "precio_desde": null,
+      "precio_nota": "Tarifa por vehículo según ocupación (Sedán, Suburban, Toyota/Urban). Solicita tu cotización.",
+      "precios_vehiculo": [],
+      "incluye": [
+        "Transportación en servicio privado acorde a itinerario",
+        "chofer certificado",
+        "guía local",
+        "seguro de viajero a bordo de transporte",
+        "box lunch",
+        "barrita energética",
+        "seguro por actividad de ecoturismo",
+        "IVA"
+      ],
+      "no_incluye": [
+        "Alimentos",
+        "deducible",
+        "gastos personales y propinas"
+      ],
+      "itinerario": [
+        {
+          "dia": 1,
+          "titulo": "Itinerario del día",
+          "descripcion": "06:00 hrs. Pick up pasajeros en punto acordado por el cliente. 07:30 hrs. Inicio de recorrido en sendero (duración de ascenso según ritmo del grupo 2.5 horas). 11:00 hrs. Regreso a punto de encuentro (duración de descenso según ritmo del grupo 2 horas). 13:00 hrs. Arribo a punto de encuentro y traslado a Ajijic. 14:00 hrs. Arribo a Ajijic y tiempo para comer. 16:00 hrs. Regreso a Guadalajara. 18:00 hrs. Dejada de pasajeros en su hotel y FIN DE SERVICIO."
+        }
+      ],
+      "politica_cancelacion": "Actividad recomendada para mayores de 12 años con condición física media a alta. No sugerimos este viaje a mujeres embarazadas, personas con lesiones en rodillas, espalda o cirugías recientes. Para reservar requerimos nombre completo de participantes de viaje, número celular, y un contacto de emergencia que no asista al viaje, la información la puedes enviar a través de nuestro número de WhatsApp: (+52)3310480670 o correo electrónico: reserva@explormexicotours.com. Cabe destacar que desde el momento que realizas la reservación de tu viaje, nosotros actuamos únicamente como intermediarios entre tú y los servicios contratados, de igual forma aceptas sus condiciones de no show, cancelación, así como otros términos y condiciones adicionales que puedan aplicar por parte del proveedor final. Queda establecido que Explora México Tours, sus representantes y el cliente no incurrirán en responsabilidad alguna por la cancelación o suspensión de la prestación de uno o varios servicios señalados en este itinerario, siendo estos por caso fortuito o fuerza mayor tales como: pandemia, guerra, rebelión, sabotaje, motín, huracán, terremoto, circunstancias meteorológicas, actos de autoridad gubernamental, disturbios por crimen organizado, manifestaciones sociales o cualquier otro hecho ajeno a la voluntad de la empresa y el cliente. Los costos generados por las circunstancias antes mencionadas como alimentación, noches adicionales, atención médica, atención psicológica, traslados a su lugar de origen deberán ser cubiertos por el cliente final. Explora México Tours permitirán cancelaciones con penalización del 30% del valor del viaje. Cancelaciones entre 45 y 30 días antes del viaje habrá una penalización del 80% del valor del viaje. Cancelaciones generadas entre 29 y 0 días a la fecha del viaje, causará el 100% de penalidad del valor del viaje. Cancelaciones generadas por parte del cliente el día del viaje o si no se presente, aplica como NO SHOW y genera el 100% de PENALIDAD, no habrá reembolso, ni se abona a otro viaje. El cliente es responsable de sus acciones, por lo tanto, en caso de accidente, lesiones o gastos médicos deslinda a Explora México Tours y sus representantes de cualquier situación ajena al servicio prestado salvo el seguro de viajero que aplique durante los trayectos de viaje.",
+      "peek_url": "#",
+      "destacado": 0,
+      "orden_destacado": 0,
+      "salida_garantizada": 0,
+      "pickup_hotel": 1,
+      "fotos": [
+        "senderismo-petroglifos-mezcala__img-0016.jpg",
+        "senderismo-petroglifos-mezcala__img-3434.jpg",
+        "senderismo-petroglifos-mezcala__img-3405.jpg",
+        "senderismo-petroglifos-mezcala__img-9996.jpg"
+      ]
+    },
+    {
+      "titulo": "Aventura en Bici Bosque La Primavera",
+      "slug": "aventura-en-bici-la-primavera",
+      "titulo_en": "",
+      "descripcion_breve": "Pedalea entre pinos y encinos por el Bosque La Primavera, área natural protegida a las afueras de Guadalajara (Zapopan). Un recorrido en bicicleta de montaña sobre terracería, con ascensos y descensos, ideal para quienes disfrutan del ciclismo al aire libre. Actividad guiada de medio día, con bicicleta y equipo incluidos.",
+      "descripcion_breve_en": "",
+      "destino": "Jalisco",
+      "categoria": "Aventura",
+      "experiencias": [],
+      "dificultad": "moderada",
+      "idiomas": [
+        "es",
+        "en"
+      ],
+      "duracion_texto": "Actividad de 5 horas (dos horarios: 8:00–13:00 h o 14:00–19:00 h)",
+      "duracion_horas": 5,
+      "punto_salida": "Guadalajara (pick-up en hotel/Airbnb: Centro, Zapopan, Tlaquepaque, Expo, Andares)",
+      "fecha_viaje": "Opera todo el año excepto 25 y 31 de diciembre. Dos horarios de salida.",
+      "precio_desde": null,
+      "precio_nota": "Tarifa por vehículo según ocupación (Sedán, Suburban). Solicita tu cotización.",
+      "precios_vehiculo": [],
+      "incluye": [
+        "Transportación en servicio privado acorde a itinerario",
+        "chofer certificado",
+        "guía local",
+        "seguro de viajero a bordo de transporte",
+        "bicicleta",
+        "casco",
+        "hidratación",
+        "barrita energética",
+        "seguro por actividad de ecoturismo",
+        "IVA"
+      ],
+      "no_incluye": [
+        "Alimentos",
+        "deducible",
+        "gastos personales y propinas"
+      ],
+      "itinerario": [
+        {
+          "dia": 1,
+          "titulo": "Itinerario del día",
+          "descripcion": "Dos horarios disponibles. Mañana — 08:00 Pick up en el punto acordado · 09:00 recogida de equipo e inicio del recorrido · 12:00 regreso al punto de encuentro y entrega de equipo · 13:00 dejada en el hotel y fin de servicio. Tarde — mismo esquema de 14:00 a 19:00 hrs."
+        }
+      ],
+      "politica_cancelacion": "Actividad recomendada para mayores de 12 años con condición física media a alta. No sugerimos este viaje a mujeres embarazadas, personas con lesiones en rodillas, espalda o cirugías recientes. Para reservar requerimos nombre completo de participantes de viaje, número celular, y un contacto de emergencia que no asista al viaje, la información la puedes enviar a través de nuestro número de WhatsApp: (+52)3310480670 o correo electrónico: reserva@explormexicotours.com. Cabe destacar que desde el momento que realizas la reservación de tu viaje, nosotros actuamos únicamente como intermediarios entre tú y los servicios contratados, de igual forma aceptas sus condiciones de no show, cancelación, así como otros términos y condiciones adicionales que puedan aplicar por parte del proveedor final. Queda establecido que Explora México Tours, sus representantes y el cliente no incurrirán en responsabilidad alguna por la cancelación o suspensión de la prestación de uno o varios servicios señalados en este itinerario, siendo estos por caso fortuito o fuerza mayor tales como: pandemia, guerra, rebelión, sabotaje, motín, huracán, terremoto, circunstancias meteorológicas, actos de autoridad gubernamental, disturbios por crimen organizado, manifestaciones sociales o cualquier otro hecho ajeno a la voluntad de la empresa y el cliente. Los costos generados por las circunstancias antes mencionadas como alimentación, noches adicionales, atención médica, atención psicológica, traslados a su lugar de origen deberán ser cubiertos por el cliente final. Explora México Tours permitirán cancelaciones con penalización del 30% del valor del viaje. Cancelaciones entre 45 y 30 días antes del viaje habrá una penalización del 80% del valor del viaje. Cancelaciones generadas entre 29 y 0 días a la fecha del viaje, causará el 100% de penalidad del valor del viaje. Cancelaciones generadas por parte del cliente el día del viaje o si no se presente, aplica como NO SHOW y genera el 100% de PENALIDAD, no habrá reembolso, ni se abona a otro viaje. El cliente es responsable de sus acciones, por lo tanto, en caso de accidente, lesiones o gastos médicos deslinda a Explora México Tours y sus representantes de cualquier situación ajena al servicio prestado salvo el seguro de viajero que aplique durante los trayectos de viaje.",
+      "peek_url": "#",
+      "destacado": 0,
+      "orden_destacado": 0,
+      "salida_garantizada": 0,
+      "pickup_hotel": 1,
+      "fotos": [
+        "aventura-en-bici-la-primavera__img-1845.jpg",
+        "aventura-en-bici-la-primavera__img-9424.jpg",
+        "aventura-en-bici-la-primavera__img-9431.jpg",
+        "aventura-en-bici-la-primavera__img-9870.jpg"
+      ]
+    }
+  ]
 }

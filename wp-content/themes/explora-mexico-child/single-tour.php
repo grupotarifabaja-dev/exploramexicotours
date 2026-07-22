@@ -63,7 +63,7 @@ while ( have_posts() ) :
             foreach ( $galeria as $g ) {
                 $full = $g['url'] ?? '';
                 if ( ! $full ) { continue; }
-                $gallery_imgs[] = array( 'full' => $full, 'alt' => $g['alt'] ?? '' );
+                $gallery_imgs[] = array( 'thumb' => $g['sizes']['medium'] ?? $full, 'display' => $g['sizes']['large'] ?? $full, 'full' => $full, 'alt' => $g['alt'] ?? '' );
             }
         }
         $lb_data = array_map( function ( $im ) { return array( 'src' => $im['full'], 'alt' => $im['alt'] ); }, $gallery_imgs );
@@ -90,14 +90,6 @@ while ( have_posts() ) :
                     <?php if ( $garantia ) : ?><span class="emt-flag emt-flag--ok"><?php echo esc_html( emt_t( 'salida_garantizada' ) ); ?></span><?php endif; ?>
                     <?php if ( $pickup ) : ?><span class="emt-flag emt-flag--pickup"><?php echo esc_html( emt_t( 'pickup_hotel' ) ); ?></span><?php endif; ?>
                 </div>
-                <?php if ( ! empty( $gallery_imgs ) ) : ?>
-                    <div class="emt-tour-hero__gallery" data-gallery>
-                        <button type="button" class="emt-btn emt-btn--ghost emt-tour-hero__gallery-btn" data-gallery-open="0">
-                            <?php echo esc_html( emt_t( 'ver_galeria' ) ); ?> (<?php echo count( $gallery_imgs ); ?>)
-                        </button>
-                        <script type="application/json" data-gallery-data><?php echo wp_json_encode( $lb_data ); ?></script>
-                    </div>
-                <?php endif; ?>
             </div>
         </section>
 
@@ -214,6 +206,23 @@ while ( have_posts() ) :
 
                 <!-- Sidebar de reserva -->
                 <aside class="emt-tour-aside">
+                    <?php if ( ! empty( $gallery_imgs ) ) : ?>
+                        <div class="emt-tour-side-gallery" data-gallery>
+                            <button type="button" class="emt-tour-side-gallery__main" data-gallery-open="0" aria-label="<?php echo esc_attr( emt_t( 'ver_galeria' ) ); ?>">
+                                <img src="<?php echo esc_url( $gallery_imgs[0]['display'] ); ?>" alt="<?php echo esc_attr( $gallery_imgs[0]['alt'] ?: $titulo ); ?>" />
+                            </button>
+                            <?php if ( count( $gallery_imgs ) > 1 ) : ?>
+                                <ul class="emt-tour-side-gallery__thumbs">
+                                    <?php foreach ( $gallery_imgs as $gi => $g ) : if ( $gi === 0 ) { continue; } ?>
+                                        <li><button type="button" class="emt-tour-side-gallery__thumb" data-gallery-open="<?php echo (int) $gi; ?>" aria-label="<?php echo esc_attr( emt_t( 'ver_galeria' ) . ' ' . ( $gi + 1 ) ); ?>">
+                                            <img src="<?php echo esc_url( $g['thumb'] ); ?>" alt="<?php echo esc_attr( $g['alt'] ); ?>" loading="lazy" decoding="async" />
+                                        </button></li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            <?php endif; ?>
+                            <script type="application/json" data-gallery-data><?php echo wp_json_encode( $lb_data ); ?></script>
+                        </div>
+                    <?php endif; ?>
                     <div class="emt-reserve-card">
                         <?php if ( ! empty( $precio ) ) : ?>
                             <p class="emt-reserve-card__price"><span><?php echo esc_html( emt_t( 'desde' ) ); ?></span><strong><?php echo esc_html( emt_format_price( $precio ) ); ?></strong></p>

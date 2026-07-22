@@ -20,6 +20,7 @@ $L_es = array(
     'servicios_t'  => 'Servicios',
     'flotilla_t'   => 'Nuestra flotilla',
     'flotilla_sub' => 'Unidades para cada tamaño de grupo y tipo de servicio.',
+    'flotilla_nota' => 'Imágenes de referencia; las unidades pueden variar según disponibilidad.',
     'pax'          => 'pasajeros',
     'clientes_t'   => 'Confían en nosotros',
     'cert_t'       => 'Certificaciones y reconocimientos',
@@ -59,6 +60,7 @@ $L_en = array(
     'servicios_t'  => 'Services',
     'flotilla_t'   => 'Our fleet',
     'flotilla_sub' => 'Vehicles for every group size and type of service.',
+    'flotilla_nota' => 'Reference images; actual vehicles may vary depending on availability.',
     'pax'          => 'passengers',
     'clientes_t'   => 'They trust us',
     'cert_t'       => 'Certifications & recognitions',
@@ -98,13 +100,13 @@ $servicios = ( $lang === 'en' )
 $flotilla = array(
     array( 'n' => 'Mercedes Benz Sprinter Lux', 'cap' => 20, 'icon' => '🚐', 'img' => array( 'sprinter-lux-1.jpg', 'sprinter-lux-2.jpg' ), 'feats_es' => 'Asientos reclinables, mesa de trabajo con portavasos, A/C, Smart TV, Bluetooth, audio tipo cine, cargadores USB y tipo C, aislante térmico, espacio para maletas, ventanas panorámicas.', 'feats_en' => 'Reclining seats, work table with cup holders, A/C, Smart TV, Bluetooth, cinema-grade audio, USB & USB-C chargers, thermal insulation, luggage space, panoramic windows.' ),
     array( 'n' => 'Mercedes Benz Sprinter Regular', 'cap' => 20, 'icon' => '🚐', 'img' => array( 'sprinter-regular-1.jpg', 'sprinter-regular-2.jpg' ), 'feats_es' => 'Asientos reclinables, A/C, TV y DVD, espacio para maletas, ventanas.', 'feats_en' => 'Reclining seats, A/C, TV & DVD, luggage space, windows.' ),
-    array( 'n' => 'Autobús (Irizar, Volvo, Marcopolo, Neobus)', 'cap' => '46–50', 'icon' => '🚌', 'feats_es' => 'A/C, TV, DVD, audio, cargadores, maletero interior, espacio para maletas, 1 o 2 puertas, ventanas panorámicas.', 'feats_en' => 'A/C, TV, DVD, audio, chargers, interior luggage rack, luggage space, 1 or 2 doors, panoramic windows.' ),
-    array( 'n' => 'Toyota Hiace / Urban / Transit', 'cap' => 12, 'icon' => '🚐', 'feats_es' => 'Asientos reclinables, A/C, TV, DVD, audio, parrilla porta equipaje (según unidad).', 'feats_en' => 'Reclining seats, A/C, TV, DVD, audio, roof luggage rack (per unit).' ),
+    array( 'n' => 'Autobús (Irizar, Volvo, Marcopolo, Neobus)', 'cap' => '46–50', 'icon' => '🚌', 'img' => array( 'autobus-irizar-1.jpg' ), 'feats_es' => 'A/C, TV, DVD, audio, cargadores, maletero interior, espacio para maletas, 1 o 2 puertas, ventanas panorámicas.', 'feats_en' => 'A/C, TV, DVD, audio, chargers, interior luggage rack, luggage space, 1 or 2 doors, panoramic windows.' ),
+    array( 'n' => 'Toyota Hiace / Urban / Transit', 'cap' => 12, 'icon' => '🚐', 'img' => array( 'hiace-1.jpg' ), 'feats_es' => 'Asientos reclinables, A/C, TV, DVD, audio, parrilla porta equipaje (según unidad).', 'feats_en' => 'Reclining seats, A/C, TV, DVD, audio, roof luggage rack (per unit).' ),
     array( 'n' => 'Suburban línea 2019', 'cap' => 6, 'icon' => '🚙', 'img' => array( 'suburban-2019-1.jpg', 'suburban-2019-2.jpg' ), 'feats_es' => 'A/C, vidrios y seguros eléctricos, DVD, vestiduras en piel, cajuela para maletas.', 'feats_en' => 'A/C, power windows & locks, DVD, leather upholstery, luggage trunk.' ),
     array( 'n' => 'Suburban línea nueva 2023', 'cap' => 6, 'icon' => '🚙', 'img' => array( 'suburban-nueva-1.jpg', 'suburban-nueva-2.jpg' ), 'feats_es' => 'A/C, vidrios y seguros eléctricos, DVD, vestiduras en piel, cajuela.', 'feats_en' => 'A/C, power windows & locks, DVD, leather upholstery, trunk.' ),
     array( 'n' => 'Camry 2023', 'cap' => 4, 'icon' => '🚗', 'img' => array( 'camry-1.jpg', 'camry-2.jpg' ), 'feats_es' => 'A/C, vidrios/seguros eléctricos, vestiduras en tela, cajuela, Bluetooth.', 'feats_en' => 'A/C, power windows/locks, fabric upholstery, trunk, Bluetooth.' ),
-    array( 'n' => 'Versa 2025', 'cap' => 3, 'icon' => '🚗', 'feats_es' => 'A/C, vidrios/seguros eléctricos, vestiduras en tela, cajuela, CarPlay, Bluetooth.', 'feats_en' => 'A/C, power windows/locks, fabric upholstery, trunk, CarPlay, Bluetooth.' ),
-    array( 'n' => 'Mini SUV Suzuki o Mitsubishi 2020', 'cap' => '6 (4 c/equipaje)', 'icon' => '🚙', 'feats_es' => 'A/C, vestiduras en tela, parrilla exterior, cajuela para bolsa de mano, CarPlay, Bluetooth.', 'feats_en' => 'A/C, fabric upholstery, exterior rack, carry-on trunk, CarPlay, Bluetooth.' ),
+    array( 'n' => 'Versa 2025', 'cap' => 3, 'icon' => '🚗', 'img' => array( 'versa-1.jpg' ), 'feats_es' => 'A/C, vidrios/seguros eléctricos, vestiduras en tela, cajuela, CarPlay, Bluetooth.', 'feats_en' => 'A/C, power windows/locks, fabric upholstery, trunk, CarPlay, Bluetooth.' ),
+    array( 'n' => 'Mini SUV Suzuki o Mitsubishi 2020', 'cap' => '6 (4 c/equipaje)', 'icon' => '🚙', 'img' => array( 'mini-suv-1.jpg' ), 'feats_es' => 'A/C, vestiduras en tela, parrilla exterior, cajuela para bolsa de mano, CarPlay, Bluetooth.', 'feats_en' => 'A/C, fabric upholstery, exterior rack, carry-on trunk, CarPlay, Bluetooth.' ),
 );
 
 $clientes = array( 'HCL Technologies', 'Wizeline', 'Wipro', 'TATA Consultancy Services', 'IGT', 'Rosewood Hotels', 'Aeries Tech', 'Tequileño', 'Nimbus', 'Sealed Air Corp', 'Diversey', 'Secretaría de Turismo de Jalisco', 'Casa Maestri', 'Arcos', 'Slalom', 'Greymatters', 'El Cristiano Tequila' );
@@ -184,6 +186,7 @@ get_header();
                     </article>
                 <?php endforeach; ?>
             </div>
+            <p class="emt-transfer-flotilla-nota">* <?php echo esc_html( $L['flotilla_nota'] ); ?></p>
         </div>
     </section>
 

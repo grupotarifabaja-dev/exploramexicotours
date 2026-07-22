@@ -25,5 +25,8 @@ COPY wp-content/themes/explora-mexico-child /opt/emt/theme/explora-mexico-child
 COPY deploy/docker-entrypoint-emt.sh /usr/local/bin/docker-entrypoint-emt.sh
 RUN chmod +x /usr/local/bin/docker-entrypoint-emt.sh
 
+# Semillas de datos reales (para el disparador temporal /?emt_run_seed=...).
+COPY seeders /opt/emt/seeders
+
 ENTRYPOINT ["/usr/local/bin/docker-entrypoint-emt.sh"]
 CMD ["apache2-foreground"]
