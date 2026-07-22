@@ -1636,6 +1636,120 @@
       "orden_destacado": 0,
       "salida_garantizada": 0,
       "pickup_hotel": 1
+    },
+    {
+      "titulo": "Senderismo y Petroglifos Isla de Mezcala",
+      "slug": "senderismo-petroglifos-mezcala",
+      "titulo_en": "",
+      "descripcion_breve": "Los petroglifos de la Isla de Mezcala son grabados prehispánicos tallados en roca por antiguos habitantes de la región del lago de Chapala. Estos diseños incluyen figuras geométricas, representaciones humanas y elementos simbólicos que reflejan aspectos de su cosmovisión. Son un importante testimonio del patrimonio arqueológico de jalisco que contribuye al conocimiento de las culturas que habitaron en la región antes de la llegada de los españoles. Al finalizar haremos una parada breve para comida en la localidad de Ajijic un pueblo mágico que encanta por su sencillez y sus coloridas calles.",
+      "descripcion_breve_en": "",
+      "destino": "Jalisco",
+      "categoria": "Ecoturismo",
+      "experiencias": [],
+      "dificultad": "moderada",
+      "idiomas": [
+        "es",
+        "en"
+      ],
+      "duracion_texto": "Tour de un día (12 horas)",
+      "duracion_horas": 12,
+      "punto_salida": "Guadalajara (pick-up en hotel/Airbnb: Centro, Zapopan, Tlaquepaque, Expo, Andares)",
+      "fecha_viaje": "Opera en los meses de julio a febrero, excepto 25 y 31 de diciembre.",
+      "precio_desde": null,
+      "precio_nota": "Tarifa por vehículo según ocupación (Sedán, Suburban, Toyota/Urban). Solicita tu cotización.",
+      "precios_vehiculo": [],
+      "incluye": [
+        "Transportación en servicio privado acorde a itinerario",
+        "chofer certificado",
+        "guía local",
+        "seguro de viajero a bordo de transporte",
+        "box lunch",
+        "barrita energética",
+        "seguro por actividad de ecoturismo",
+        "IVA"
+      ],
+      "no_incluye": [
+        "Alimentos",
+        "deducible",
+        "gastos personales y propinas"
+      ],
+      "itinerario": [
+        {
+          "dia": 1,
+          "titulo": "Itinerario del día",
+          "descripcion": "06:00 hrs. Pick up pasajeros en punto acordado por el cliente. 07:30 hrs. Inicio de recorrido en sendero (duración de ascenso según ritmo del grupo 2.5 horas). 11:00 hrs. Regreso a punto de encuentro (duración de descenso según ritmo del grupo 2 horas). 13:00 hrs. Arribo a punto de encuentro y traslado a Ajijic. 14:00 hrs. Arribo a Ajijic y tiempo para comer. 16:00 hrs. Regreso a Guadalajara. 18:00 hrs. Dejada de pasajeros en su hotel y FIN DE SERVICIO."
+        }
+      ],
+      "politica_cancelacion": "Actividad recomendada para mayores de 12 años con condición física media a alta. No sugerimos este viaje a mujeres embarazadas, personas con lesiones en rodillas, espalda o cirugías recientes. Para reservar requerimos nombre completo de participantes de viaje, número celular, y un contacto de emergencia que no asista al viaje, la información la puedes enviar a través de nuestro número de WhatsApp: (+52)3310480670 o correo electrónico: reserva@explormexicotours.com. Cabe destacar que desde el momento que realizas la reservación de tu viaje, nosotros actuamos únicamente como intermediarios entre tú y los servicios contratados, de igual forma aceptas sus condiciones de no show, cancelación, así como otros términos y condiciones adicionales que puedan aplicar por parte del proveedor final. Queda establecido que Explora México Tours, sus representantes y el cliente no incurrirán en responsabilidad alguna por la cancelación o suspensión de la prestación de uno o varios servicios señalados en este itinerario, siendo estos por caso fortuito o fuerza mayor tales como: pandemia, guerra, rebelión, sabotaje, motín, huracán, terremoto, circunstancias meteorológicas, actos de autoridad gubernamental, disturbios por crimen organizado, manifestaciones sociales o cualquier otro hecho ajeno a la voluntad de la empresa y el cliente. Los costos generados por las circunstancias antes mencionadas como alimentación, noches adicionales, atención médica, atención psicológica, traslados a su lugar de origen deberán ser cubiertos por el cliente final. Explora México Tours permitirán cancelaciones con penalización del 30% del valor del viaje. Cancelaciones entre 45 y 30 días antes del viaje habrá una penalización del 80% del valor del viaje. Cancelaciones generadas entre 29 y 0 días a la fecha del viaje, causará el 100% de penalidad del valor del viaje. Cancelaciones generadas por parte del cliente el día del viaje o si no se presente, aplica como NO SHOW y genera el 100% de PENALIDAD, no habrá reembolso, ni se abona a otro viaje. El cliente es responsable de sus acciones, por lo tanto, en caso de accidente, lesiones o gastos médicos deslinda a Explora México Tours y sus representantes de cualquier situación ajena al servicio prestado salvo el seguro de viajero que aplique durante los trayectos de viaje.",
+      "peek_url": "#",
+      "destacado": 0,
+      "orden_destacado": 0,
+      "salida_garantizada": 0,
+      "pickup_hotel": 1,
+      "fotos": [
+        "senderismo-petroglifos-mezcala__img-0016.jpg",
+        "senderismo-petroglifos-mezcala__img-3434.jpg",
+        "senderismo-petroglifos-mezcala__img-3405.jpg",
+        "senderismo-petroglifos-mezcala__img-9996.jpg"
+      ]
+    },
+    {
+      "titulo": "Aventura en Bici Bosque La Primavera",
+      "slug": "aventura-en-bici-la-primavera",
+      "titulo_en": "",
+      "descripcion_breve": "Pedalea entre pinos y encinos por el Bosque La Primavera, área natural protegida a las afueras de Guadalajara (Zapopan). Un recorrido en bicicleta de montaña sobre terracería, con ascensos y descensos, ideal para quienes disfrutan del ciclismo al aire libre. Actividad guiada de medio día, con bicicleta y equipo incluidos.",
+      "descripcion_breve_en": "",
+      "destino": "Jalisco",
+      "categoria": "Aventura",
+      "experiencias": [],
+      "dificultad": "moderada",
+      "idiomas": [
+        "es",
+        "en"
+      ],
+      "duracion_texto": "Actividad de 5 horas (dos horarios: 8:00–13:00 h o 14:00–19:00 h)",
+      "duracion_horas": 5,
+      "punto_salida": "Guadalajara (pick-up en hotel/Airbnb: Centro, Zapopan, Tlaquepaque, Expo, Andares)",
+      "fecha_viaje": "Opera todo el año excepto 25 y 31 de diciembre. Dos horarios de salida.",
+      "precio_desde": null,
+      "precio_nota": "Tarifa por vehículo según ocupación (Sedán, Suburban). Solicita tu cotización.",
+      "precios_vehiculo": [],
+      "incluye": [
+        "Transportación en servicio privado acorde a itinerario",
+        "chofer certificado",
+        "guía local",
+        "seguro de viajero a bordo de transporte",
+        "bicicleta",
+        "casco",
+        "hidratación",
+        "barrita energética",
+        "seguro por actividad de ecoturismo",
+        "IVA"
+      ],
+      "no_incluye": [
+        "Alimentos",
+        "deducible",
+        "gastos personales y propinas"
+      ],
+      "itinerario": [
+        {
+          "dia": 1,
+          "titulo": "Itinerario del día",
+          "descripcion": "Dos horarios disponibles. Mañana — 08:00 Pick up en el punto acordado · 09:00 recogida de equipo e inicio del recorrido · 12:00 regreso al punto de encuentro y entrega de equipo · 13:00 dejada en el hotel y fin de servicio. Tarde — mismo esquema de 14:00 a 19:00 hrs."
+        }
+      ],
+      "politica_cancelacion": "Actividad recomendada para mayores de 12 años con condición física media a alta. No sugerimos este viaje a mujeres embarazadas, personas con lesiones en rodillas, espalda o cirugías recientes. Para reservar requerimos nombre completo de participantes de viaje, número celular, y un contacto de emergencia que no asista al viaje, la información la puedes enviar a través de nuestro número de WhatsApp: (+52)3310480670 o correo electrónico: reserva@explormexicotours.com. Cabe destacar que desde el momento que realizas la reservación de tu viaje, nosotros actuamos únicamente como intermediarios entre tú y los servicios contratados, de igual forma aceptas sus condiciones de no show, cancelación, así como otros términos y condiciones adicionales que puedan aplicar por parte del proveedor final. Queda establecido que Explora México Tours, sus representantes y el cliente no incurrirán en responsabilidad alguna por la cancelación o suspensión de la prestación de uno o varios servicios señalados en este itinerario, siendo estos por caso fortuito o fuerza mayor tales como: pandemia, guerra, rebelión, sabotaje, motín, huracán, terremoto, circunstancias meteorológicas, actos de autoridad gubernamental, disturbios por crimen organizado, manifestaciones sociales o cualquier otro hecho ajeno a la voluntad de la empresa y el cliente. Los costos generados por las circunstancias antes mencionadas como alimentación, noches adicionales, atención médica, atención psicológica, traslados a su lugar de origen deberán ser cubiertos por el cliente final. Explora México Tours permitirán cancelaciones con penalización del 30% del valor del viaje. Cancelaciones entre 45 y 30 días antes del viaje habrá una penalización del 80% del valor del viaje. Cancelaciones generadas entre 29 y 0 días a la fecha del viaje, causará el 100% de penalidad del valor del viaje. Cancelaciones generadas por parte del cliente el día del viaje o si no se presente, aplica como NO SHOW y genera el 100% de PENALIDAD, no habrá reembolso, ni se abona a otro viaje. El cliente es responsable de sus acciones, por lo tanto, en caso de accidente, lesiones o gastos médicos deslinda a Explora México Tours y sus representantes de cualquier situación ajena al servicio prestado salvo el seguro de viajero que aplique durante los trayectos de viaje.",
+      "peek_url": "#",
+      "destacado": 0,
+      "orden_destacado": 0,
+      "salida_garantizada": 0,
+      "pickup_hotel": 1,
+      "fotos": [
+        "aventura-en-bici-la-primavera__img-1845.jpg",
+        "aventura-en-bici-la-primavera__img-9424.jpg",
+        "aventura-en-bici-la-primavera__img-9431.jpg",
+        "aventura-en-bici-la-primavera__img-9870.jpg"
+      ]
     }
   ]
 }
