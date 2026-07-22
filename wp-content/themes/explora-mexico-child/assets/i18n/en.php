@@ -18,7 +18,7 @@ return array(
     'ver_perfil'           => 'View profile',
     'llamar'               => 'Call',
     'enviar_email'         => 'Send email',
-    'descargar_vcard'      => 'Download vCard',
+    'descargar_vcard'      => 'Add to contacts',
     'otros_asesores'       => 'Other team advisors',
     'cotizar_grupo'        => 'Get a group quote',
     'solicitar_cotizacion' => 'Request a quote',

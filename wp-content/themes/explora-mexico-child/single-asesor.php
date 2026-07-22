@@ -61,7 +61,7 @@ while ( have_posts() ) :
                         <?php if ( $wa ) : ?><a class="emt-btn emt-btn--whatsapp" href="https://wa.me/<?php echo esc_attr( $wa ); ?>" target="_blank" rel="noopener noreferrer">WhatsApp</a><?php endif; ?>
                         <?php if ( $tel ) : ?><a class="emt-btn emt-btn--outline" href="tel:<?php echo esc_attr( preg_replace( '/[^\d+]/', '', $tel ) ); ?>"><?php echo esc_html( emt_t( 'llamar' ) ); ?></a><?php endif; ?>
                         <?php if ( $email ) : ?><a class="emt-btn emt-btn--outline" href="mailto:<?php echo esc_attr( $email ); ?>"><?php echo esc_html( emt_t( 'enviar_email' ) ); ?></a><?php endif; ?>
-                        <?php if ( $vcard ) : ?><a class="emt-btn emt-btn--outline" href="<?php echo esc_url( $vcard ); ?>"><?php echo esc_html( emt_t( 'descargar_vcard' ) ); ?></a><?php endif; ?>
+                        <?php if ( $vcard ) : ?><a class="emt-btn emt-btn--outline emt-vcard-only-mobile" href="<?php echo esc_url( $vcard ); ?>"><?php echo esc_html( emt_t( 'descargar_vcard' ) ); ?></a><?php endif; ?>
                     </div>
                 </div>
             </header>

@@ -18,7 +18,7 @@ return array(
     'ver_perfil'           => 'Ver perfil',
     'llamar'               => 'Llamar',
     'enviar_email'         => 'Enviar email',
-    'descargar_vcard'      => 'Descargar vCard',
+    'descargar_vcard'      => 'Agregar a contactos',
     'otros_asesores'       => 'Otros asesores del equipo',
     'cotizar_grupo'        => 'Cotizar grupo',
     'solicitar_cotizacion' => 'Solicitar cotización',
