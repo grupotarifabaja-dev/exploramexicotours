@@ -95,6 +95,19 @@ while ( have_posts() ) :
 
         <div class="emt-container">
 
+            <?php if ( ! empty( $gallery_imgs ) ) : ?>
+                <div class="emt-tour-gallery-strip" data-gallery>
+                    <ul class="emt-tour-gallery-strip__grid">
+                        <?php foreach ( $gallery_imgs as $gi => $g ) : ?>
+                            <li><button type="button" class="emt-tour-gallery-strip__thumb" data-gallery-open="<?php echo (int) $gi; ?>" aria-label="<?php echo esc_attr( emt_t( 'ver_galeria' ) . ' ' . ( $gi + 1 ) ); ?>">
+                                <img src="<?php echo esc_url( $g['thumb'] ); ?>" alt="<?php echo esc_attr( $g['alt'] ); ?>" loading="lazy" decoding="async" />
+                            </button></li>
+                        <?php endforeach; ?>
+                    </ul>
+                    <script type="application/json" data-gallery-data><?php echo wp_json_encode( $lb_data ); ?></script>
+                </div>
+            <?php endif; ?>
+
             <div class="emt-tour-body">
                 <!-- Columna principal -->
                 <div class="emt-tour-main">
@@ -206,20 +219,6 @@ while ( have_posts() ) :
 
                 <!-- Sidebar de reserva -->
                 <aside class="emt-tour-aside">
-                    <?php if ( ! empty( $gallery_imgs ) ) : ?>
-                        <div class="emt-tour-side-gallery" data-gallery>
-                            <ul class="emt-tour-side-gallery__grid">
-                                <?php foreach ( $gallery_imgs as $gi => $g ) : ?>
-                                    <li>
-                                        <button type="button" class="emt-tour-side-gallery__thumb" data-gallery-open="<?php echo (int) $gi; ?>" aria-label="<?php echo esc_attr( emt_t( 'ver_galeria' ) . ' ' . ( $gi + 1 ) ); ?>">
-                                            <img src="<?php echo esc_url( $g['thumb'] ); ?>" alt="<?php echo esc_attr( $g['alt'] ); ?>" loading="lazy" decoding="async" />
-                                        </button>
-                                    </li>
-                                <?php endforeach; ?>
-                            </ul>
-                            <script type="application/json" data-gallery-data><?php echo wp_json_encode( $lb_data ); ?></script>
-                        </div>
-                    <?php endif; ?>
                     <div class="emt-reserve-card">
                         <?php if ( ! empty( $precio ) ) : ?>
                             <p class="emt-reserve-card__price"><span><?php echo esc_html( emt_t( 'desde' ) ); ?></span><strong><?php echo esc_html( emt_format_price( $precio ) ); ?></strong></p>
