@@ -1,48 +1,40 @@
 /* ============================================================
    ASESOR ARCHIVE / directorio (doc maestro §8.4)
-   Rediseño 2026: el hero es un .emt-heading del sistema (dentro
-   de .emt-section) y los filtros son chips (.emt-chip). Aquí solo
-   vive el layout específico del directorio.
+   Rediseño 2026: el hero es un .emt-heading del sistema (dentro de
+   .emt-section). 2026-07-22: se retiran los filtros (equipo pequeño) y
+   el directorio se presenta como FICHA DESTACADA horizontal centrada.
    ============================================================ */
 .emt-asesor-archive .emt-breadcrumbs { margin-bottom: var(--emt-spacing-lg); }
 
-/* Barra de filtros: superficie tenue, chips por grupo */
-.emt-asesor-filters {
-  display: grid;
+/* ---- Ficha destacada (2026-07-22) --------------------------------
+   Solo aplica en el directorio de asesores: usa .emt-asesores-grid en
+   modo --featured para no afectar el grid de "otros asesores" del perfil.
+   La card cambia a layout horizontal (media | datos) y se centra. */
+.emt-asesores-grid--featured {
+  grid-template-columns: minmax(0, 720px);
+  justify-content: center;
   gap: var(--emt-spacing-lg);
-  background: var(--emt-surface-tint);
-  border: 1px solid var(--emt-color-border);
-  border-radius: var(--emt-radius-card);
-  padding: var(--emt-spacing-lg);
-  margin-bottom: var(--emt-spacing-2xl);
 }
-.emt-asesor-filters .emt-filters__group { border: 0; padding: 0; margin: 0; }
-.emt-asesor-filters .emt-filters__legend {
-  font-family: var(--emt-font-display);
-  font-weight: var(--emt-fw-semibold);
-  font-size: var(--emt-eyebrow-fs);
-  letter-spacing: var(--emt-eyebrow-tracking);
-  text-transform: uppercase;
-  color: var(--emt-acento-tinta);
-  padding: 0;
-  margin-bottom: var(--emt-spacing-sm);
+.emt-asesores-grid--featured .emt-asesor-card {
+  display: grid;
+  grid-template-columns: 210px 1fr;
+  align-items: stretch;
 }
-.emt-asesor-filters .emt-filters__chips {
+.emt-asesores-grid--featured .emt-asesor-card__media {
+  height: 100%;
+  min-height: 240px;
+}
+.emt-asesores-grid--featured .emt-asesor-card__body {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
   gap: var(--emt-spacing-sm);
+  padding: var(--emt-spacing-lg) var(--emt-spacing-xl);
 }
-.emt-asesor-filters .emt-filters__actions {
-  display: flex;
-  align-items: center;
-  gap: var(--emt-spacing-md);
-}
-.emt-asesor-filters .emt-filters__actions:empty { display: none; }
-.emt-asesor-filters .emt-filters__clear {
-  font-size: var(--emt-fs-sm);
-  font-weight: var(--emt-fw-medium);
-  color: var(--emt-azul-brillante);
-}
+.emt-asesores-grid--featured .emt-asesor-card__name { font-size: var(--emt-fs-lg); }
+.emt-asesores-grid--featured .emt-asesor-card__actions { max-width: 360px; }
 
-/* .emt-asesores-grid vive en asesor-card.css (site-wide), para que sea
-   consistente en el directorio y en "otros asesores" del perfil. */
+@media (max-width: 560px) {
+  .emt-asesores-grid--featured .emt-asesor-card { grid-template-columns: 1fr; }
+  .emt-asesores-grid--featured .emt-asesor-card__media { min-height: 220px; }
+}
