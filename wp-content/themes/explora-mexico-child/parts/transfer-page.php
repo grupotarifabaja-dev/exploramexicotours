@@ -20,6 +20,7 @@ $L_es = array(
     'servicios_t'  => 'Servicios',
     'flotilla_t'   => 'Nuestra flotilla',
     'flotilla_sub' => 'Unidades para cada tamaño de grupo y tipo de servicio.',
+    'flotilla_nota' => 'Imágenes de referencia; las unidades pueden variar según disponibilidad.',
     'pax'          => 'pasajeros',
     'clientes_t'   => 'Confían en nosotros',
     'cert_t'       => 'Certificaciones y reconocimientos',
@@ -59,6 +60,7 @@ $L_en = array(
     'servicios_t'  => 'Services',
     'flotilla_t'   => 'Our fleet',
     'flotilla_sub' => 'Vehicles for every group size and type of service.',
+    'flotilla_nota' => 'Reference images; actual vehicles may vary depending on availability.',
     'pax'          => 'passengers',
     'clientes_t'   => 'They trust us',
     'cert_t'       => 'Certifications & recognitions',
@@ -103,8 +105,8 @@ $flotilla = array(
     array( 'n' => 'Suburban línea 2019', 'cap' => 6, 'icon' => '🚙', 'img' => array( 'suburban-2019-1.jpg', 'suburban-2019-2.jpg' ), 'feats_es' => 'A/C, vidrios y seguros eléctricos, DVD, vestiduras en piel, cajuela para maletas.', 'feats_en' => 'A/C, power windows & locks, DVD, leather upholstery, luggage trunk.' ),
     array( 'n' => 'Suburban línea nueva 2023', 'cap' => 6, 'icon' => '🚙', 'img' => array( 'suburban-nueva-1.jpg', 'suburban-nueva-2.jpg' ), 'feats_es' => 'A/C, vidrios y seguros eléctricos, DVD, vestiduras en piel, cajuela.', 'feats_en' => 'A/C, power windows & locks, DVD, leather upholstery, trunk.' ),
     array( 'n' => 'Camry 2023', 'cap' => 4, 'icon' => '🚗', 'img' => array( 'camry-1.jpg', 'camry-2.jpg' ), 'feats_es' => 'A/C, vidrios/seguros eléctricos, vestiduras en tela, cajuela, Bluetooth.', 'feats_en' => 'A/C, power windows/locks, fabric upholstery, trunk, Bluetooth.' ),
-    array( 'n' => 'Versa 2025', 'cap' => 3, 'icon' => '🚗', 'feats_es' => 'A/C, vidrios/seguros eléctricos, vestiduras en tela, cajuela, CarPlay, Bluetooth.', 'feats_en' => 'A/C, power windows/locks, fabric upholstery, trunk, CarPlay, Bluetooth.' ),
-    array( 'n' => 'Mini SUV Suzuki o Mitsubishi 2020', 'cap' => '6 (4 c/equipaje)', 'icon' => '🚙', 'feats_es' => 'A/C, vestiduras en tela, parrilla exterior, cajuela para bolsa de mano, CarPlay, Bluetooth.', 'feats_en' => 'A/C, fabric upholstery, exterior rack, carry-on trunk, CarPlay, Bluetooth.' ),
+    array( 'n' => 'Versa 2025', 'cap' => 3, 'icon' => '🚗', 'img' => array( 'versa-1.jpg' ), 'feats_es' => 'A/C, vidrios/seguros eléctricos, vestiduras en tela, cajuela, CarPlay, Bluetooth.', 'feats_en' => 'A/C, power windows/locks, fabric upholstery, trunk, CarPlay, Bluetooth.' ),
+    array( 'n' => 'Mini SUV Suzuki o Mitsubishi 2020', 'cap' => '6 (4 c/equipaje)', 'icon' => '🚙', 'img' => array( 'mini-suv-1.jpg' ), 'feats_es' => 'A/C, vestiduras en tela, parrilla exterior, cajuela para bolsa de mano, CarPlay, Bluetooth.', 'feats_en' => 'A/C, fabric upholstery, exterior rack, carry-on trunk, CarPlay, Bluetooth.' ),
 );
 
 $clientes = array( 'HCL Technologies', 'Wizeline', 'Wipro', 'TATA Consultancy Services', 'IGT', 'Rosewood Hotels', 'Aeries Tech', 'Tequileño', 'Nimbus', 'Sealed Air Corp', 'Diversey', 'Secretaría de Turismo de Jalisco', 'Casa Maestri', 'Arcos', 'Slalom', 'Greymatters', 'El Cristiano Tequila' );
@@ -184,6 +186,7 @@ get_header();
                     </article>
                 <?php endforeach; ?>
             </div>
+            <p class="emt-transfer-flotilla-nota">* <?php echo esc_html( $L['flotilla_nota'] ); ?></p>
         </div>
     </section>
 

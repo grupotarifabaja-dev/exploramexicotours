@@ -175,3 +175,6 @@ html.emt-modal-open { overflow: hidden; }
   .emt-modal__head { padding: var(--emt-spacing-md) var(--emt-spacing-lg); }
   .emt-modal .emt-transfer-form { padding: var(--emt-spacing-lg); }
 }
+
+/* Nota de imágenes de referencia (al pie de la flotilla) */
+.emt-transfer-flotilla-nota { margin: var(--emt-spacing-lg) 0 0; font-size: var(--emt-fs-sm); color: var(--emt-color-text-muted); font-style: italic; text-align: center; }
