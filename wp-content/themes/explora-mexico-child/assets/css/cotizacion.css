@@ -1,0 +1,32 @@
+/* ============================================================
+   COTIZACIÓN DE GRUPOS (/cotizacion/)
+   ============================================================ */
+.emt-cotiza-body { padding-block: var(--emt-spacing-2xl); }
+.emt-cotiza-grid { display: grid; grid-template-columns: 1fr; gap: var(--emt-spacing-2xl); }
+@media (min-width: 900px) { .emt-cotiza-grid { grid-template-columns: 320px 1fr; align-items: start; } }
+
+/* Aside de beneficios */
+.emt-cotiza-aside { background: var(--emt-surface-tint); border: 1px solid var(--emt-color-border); border-radius: var(--emt-radius-lg); padding: var(--emt-spacing-xl); }
+.emt-cotiza-aside__title { font-family: var(--emt-font-display); font-size: var(--emt-fs-lg); font-weight: var(--emt-fw-bold); color: var(--emt-azul-profundo); margin: 0 0 var(--emt-spacing-md); }
+.emt-cotiza-benefits { list-style: none; margin: 0 0 var(--emt-spacing-lg); padding: 0; display: grid; gap: var(--emt-spacing-sm); }
+.emt-cotiza-benefits li { padding-left: 1.7em; position: relative; color: var(--emt-color-text); line-height: var(--emt-lh-relaxed); }
+.emt-cotiza-benefits li::before { content: "✔"; position: absolute; left: 0; color: var(--emt-verde); font-weight: var(--emt-fw-bold); }
+.emt-cotiza-wa { font-size: var(--emt-fs-sm); color: var(--emt-color-text-muted); margin: 0; }
+.emt-cotiza-wa .emt-btn--whatsapp { margin-top: var(--emt-spacing-sm); }
+
+/* Formulario */
+.emt-cotiza-form-title { font-family: var(--emt-font-display); font-size: var(--emt-fs-xl); font-weight: var(--emt-fw-bold); color: var(--emt-azul-profundo); margin: 0 0 var(--emt-spacing-lg); }
+.emt-cotiza-form { background: var(--emt-blanco); border: 1px solid var(--emt-color-border); border-radius: var(--emt-radius-lg); padding: var(--emt-spacing-xl); }
+.emt-cotiza-form__grid { display: grid; grid-template-columns: 1fr; gap: var(--emt-spacing-md); }
+@media (min-width: 640px) { .emt-cotiza-form__grid { grid-template-columns: 1fr 1fr; } .emt-cotiza-form__grid .emt-field--full { grid-column: 1 / -1; } }
+.emt-cotiza-form .emt-field > label, .emt-cotiza-form fieldset > legend { display: block; font-weight: var(--emt-fw-semibold); font-size: var(--emt-fs-sm); color: var(--emt-azul-profundo); margin-bottom: 4px; }
+.emt-cotiza-form input, .emt-cotiza-form textarea { width: 100%; padding: 0.55rem 0.8rem; border: 1px solid var(--emt-color-border); border-radius: var(--emt-radius-md); font-size: var(--emt-fs-base); font-family: var(--emt-font-body); background: #fff; }
+.emt-cotiza-form fieldset { border: 0; padding: 0; margin: 0; }
+.emt-cotiza-radios { display: flex; flex-wrap: wrap; gap: var(--emt-spacing-md); }
+.emt-cotiza-radio { display: inline-flex; align-items: center; gap: 6px; font-size: var(--emt-fs-sm); cursor: pointer; }
+.emt-cotiza-radio input { width: auto; }
+.emt-cotiza-form .emt-field--error input, .emt-cotiza-form .emt-field--error textarea { border-color: var(--emt-color-danger); }
+.emt-cotiza-form__bar { display: flex; gap: var(--emt-spacing-md); align-items: center; justify-content: flex-end; margin-top: var(--emt-spacing-lg); }
+.emt-cotiza-form__msg { margin-right: auto; font-size: var(--emt-fs-sm); }
+.emt-cotiza-form__msg.is-ok { color: #4e7a16; font-weight: var(--emt-fw-semibold); }
+.emt-cotiza-form__msg.is-err { color: var(--emt-color-danger); }
