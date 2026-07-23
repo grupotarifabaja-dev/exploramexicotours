@@ -86,9 +86,21 @@ $all_cats  = get_categories( array( 'hide_empty' => false ) );
         <h2>Contenido</h2>
         <div class="emt-field" data-field="contenido">
             <label>Cuerpo del artículo <span class="emt-req">*</span></label>
-            <textarea name="contenido" rows="18" placeholder="Escribe aquí el artículo. Separa párrafos con una línea en blanco. Puedes usar subtítulos con &lt;h2&gt;Subtítulo&lt;/h2&gt;, listas con &lt;ul&gt;&lt;li&gt;… y citas con &lt;blockquote&gt;…&lt;/blockquote&gt;."><?php echo esc_textarea( $contenido ); ?></textarea>
+            <?php
+            wp_editor( $contenido, 'contenido', array(
+                'textarea_name' => 'contenido',
+                'textarea_rows' => 16,
+                'media_buttons' => true,   // botón "Añadir objeto" para insertar imágenes
+                'teeny'         => false,
+                'quicktags'     => true,
+                'tinymce'       => array(
+                    'toolbar1'      => 'formatselect,bold,italic,bullist,numlist,blockquote,link,unlink,alignleft,aligncenter,undo,redo',
+                    'block_formats' => 'Párrafo=p;Subtítulo=h2;Subtítulo menor=h3',
+                ),
+            ) );
+            ?>
             <div class="emt-field__err-msg"></div>
-            <div class="emt-field__help">Los párrafos se formatean solos. Para subtítulos usa <code>&lt;h2&gt;</code>, listas <code>&lt;ul&gt;&lt;li&gt;</code> y citas <code>&lt;blockquote&gt;</code>.</div>
+            <div class="emt-field__help">Usa la barra para dar formato: subtítulos, listas, citas, enlaces e imágenes. También puedes cambiar a la pestaña «Texto» para pegar HTML.</div>
         </div>
     </div>
 

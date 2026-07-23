@@ -116,6 +116,8 @@
       e.preventDefault();
       var form = this;
       var $form = $(form);
+      // Si hay editor visual (TinyMCE), vuelca su contenido al textarea antes de leerlo.
+      if (window.tinyMCE) { try { window.tinyMCE.triggerSave(); } catch (err) {} }
       var $msg = $form.find('[data-form-msg]');
       $form.find('.emt-field--error').removeClass('emt-field--error');
 
