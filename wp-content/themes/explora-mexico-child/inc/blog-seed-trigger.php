@@ -85,3 +85,85 @@ add_action( 'init', function () {
     echo wp_json_encode( array( 'ok' => true, 'entradas' => $result ), JSON_UNESCAPED_UNICODE );
     exit;
 } );
+
+
+/**
+ * Disparador TEMPORAL para dejar el blog visible sin acceso al admin:
+ * crea la pagina "Blog", la asigna como Pagina de entradas (page_for_posts),
+ * asegura una pagina de Inicio como portada (show_on_front=page) y refresca rutas.
+ * Uso: /?emt_blog_setup=emt-blog-2026 (abrir en navegador por la cache).
+ * QUITAR junto con el resto de disparadores antes de produccion.
+ */
+add_action( 'init', function () {
+    if ( ! isset( $_GET['emt_blog_setup'] ) ) {
+        return;
+    }
+    if ( ! hash_equals( 'emt-blog-2026', (string) $_GET['emt_blog_setup'] ) ) {
+        status_header( 403 );
+        header( 'Content-Type: text/plain; charset=utf-8' );
+        echo 'token invalido';
+        exit;
+    }
+
+    $antes = array(
+        'show_on_front'  => get_option( 'show_on_front' ),
+        'page_on_front'  => (int) get_option( 'page_on_front' ),
+        'page_for_posts' => (int) get_option( 'page_for_posts' ),
+    );
+
+    // 1) Pagina "Blog" (posts page).
+    $blog = get_page_by_path( 'blog' );
+    if ( $blog ) {
+        $blog_id = (int) $blog->ID;
+    } else {
+        $blog_id = wp_insert_post( array(
+            'post_title'  => 'Blog',
+            'post_name'   => 'blog',
+            'post_status' => 'publish',
+            'post_type'   => 'page',
+            'post_content'=> '',
+        ), true );
+    }
+    if ( is_wp_error( $blog_id ) ) {
+        header( 'Content-Type: application/json; charset=utf-8' );
+        echo wp_json_encode( array( 'error' => 'blog: ' . $blog_id->get_error_message() ) );
+        exit;
+    }
+
+    // 2) Portada estatica (Inicio) — necesaria para poder tener page_for_posts.
+    $front_id = (int) get_option( 'page_on_front' );
+    if ( ! $front_id || 'publish' !== get_post_status( $front_id ) ) {
+        $home = get_page_by_path( 'inicio' );
+        if ( $home ) {
+            $front_id = (int) $home->ID;
+        } else {
+            $new = wp_insert_post( array(
+                'post_title'  => 'Inicio',
+                'post_name'   => 'inicio',
+                'post_status' => 'publish',
+                'post_type'   => 'page',
+                'post_content'=> '',
+            ), true );
+            $front_id = is_wp_error( $new ) ? 0 : (int) $new;
+        }
+    }
+
+    // 3) Aplicar ajustes de Lectura.
+    if ( $front_id ) {
+        update_option( 'show_on_front', 'page' );
+        update_option( 'page_on_front', $front_id );
+    }
+    update_option( 'page_for_posts', $blog_id );
+    flush_rewrite_rules();
+
+    $despues = array(
+        'show_on_front'  => get_option( 'show_on_front' ),
+        'page_on_front'  => (int) get_option( 'page_on_front' ),
+        'page_for_posts' => (int) get_option( 'page_for_posts' ),
+        'blog_url'       => get_permalink( $blog_id ),
+    );
+
+    header( 'Content-Type: application/json; charset=utf-8' );
+    echo wp_json_encode( array( 'ok' => true, 'antes' => $antes, 'despues' => $despues ), JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT );
+    exit;
+} );
