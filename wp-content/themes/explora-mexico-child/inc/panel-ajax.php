@@ -374,3 +374,83 @@ function emt_panel_save_destinos() {
 
     wp_send_json_success( array( 'msg' => 'Destinos actualizados.' ) );
 }
+
+
+/* ============================================================
+   BLOG — guardar / eliminar entradas desde el panel del cliente
+   Acceso: misma capability que da entrada al panel (edit_tours).
+   ============================================================ */
+add_action( 'wp_ajax_emt_panel_save_post', 'emt_panel_save_post' );
+function emt_panel_save_post() {
+    emt_panel_guard(); // edit_tours
+
+    $post_id = isset( $_POST['post_id'] ) ? (int) $_POST['post_id'] : 0;
+    $titulo  = sanitize_text_field( wp_unslash( $_POST['titulo'] ?? '' ) );
+    if ( $titulo === '' ) {
+        wp_send_json_error( array( 'msg' => 'El título es obligatorio.', 'field' => 'titulo' ), 400 );
+    }
+
+    $status    = ( ( $_POST['status'] ?? '' ) === 'publish' ) ? 'publish' : 'draft';
+    $contenido = wp_kses_post( wp_unslash( $_POST['contenido'] ?? '' ) );
+
+    if ( $status === 'publish' && trim( wp_strip_all_tags( $contenido ) ) === '' ) {
+        wp_send_json_error( array( 'msg' => 'Para publicar, escribe el contenido del artículo.', 'field' => 'contenido' ), 400 );
+    }
+
+    $data = array(
+        'post_type'    => 'post',
+        'post_title'   => $titulo,
+        'post_content' => $contenido,
+        'post_excerpt' => sanitize_textarea_field( wp_unslash( $_POST['extracto'] ?? '' ) ),
+        'post_status'  => $status,
+    );
+
+    if ( $post_id ) {
+        if ( get_post_type( $post_id ) !== 'post' ) {
+            wp_send_json_error( array( 'msg' => 'Artículo no válido.' ), 403 );
+        }
+        $data['ID'] = $post_id;
+        wp_update_post( $data );
+    } else {
+        $data['post_author'] = get_current_user_id();
+        $post_id = wp_insert_post( $data, true );
+        if ( is_wp_error( $post_id ) ) {
+            wp_send_json_error( array( 'msg' => 'No se pudo guardar.' ), 500 );
+        }
+    }
+
+    // Imagen destacada.
+    $img = (int) ( $_POST['imagen'] ?? 0 );
+    if ( $img ) {
+        set_post_thumbnail( $post_id, $img );
+    } else {
+        delete_post_thumbnail( $post_id );
+    }
+
+    // Categoría (una, por nombre) + etiquetas (CSV). Se crean si no existen.
+    $cat = sanitize_text_field( wp_unslash( $_POST['categoria'] ?? '' ) );
+    if ( $cat !== '' ) {
+        wp_set_object_terms( $post_id, array( $cat ), 'category', false );
+    }
+    $tags_raw = sanitize_text_field( wp_unslash( $_POST['etiquetas'] ?? '' ) );
+    $tags     = array_values( array_filter( array_map( 'trim', explode( ',', $tags_raw ) ) ) );
+    wp_set_object_terms( $post_id, $tags, 'post_tag', false );
+
+    wp_send_json_success( array(
+        'id'      => $post_id,
+        'status'  => get_post_status( $post_id ),
+        'msg'     => ( $status === 'publish' ) ? 'Artículo publicado.' : 'Borrador guardado.',
+        'editUrl' => emt_panel_url( 'blog/editar/' . $post_id . '/' ),
+        'listUrl' => emt_panel_url( 'blog/' ),
+    ) );
+}
+
+add_action( 'wp_ajax_emt_panel_delete_post', function () {
+    emt_panel_guard(); // edit_tours
+    $id = (int) ( $_POST['id'] ?? 0 );
+    if ( ! $id || get_post_type( $id ) !== 'post' ) {
+        wp_send_json_error( array( 'msg' => 'Artículo no válido.' ), 403 );
+    }
+    wp_trash_post( $id );
+    wp_send_json_success( array( 'msg' => 'Artículo enviado a la papelera.' ) );
+} );
