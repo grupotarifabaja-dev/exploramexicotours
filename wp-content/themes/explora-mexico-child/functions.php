@@ -35,6 +35,7 @@ require_once $emt_inc . 'panel.php';
 require_once $emt_inc . 'panel-ajax.php';
 require_once $emt_inc . 'transfer.php';
 require_once $emt_inc . 'cotizacion.php';
+require_once $emt_inc . 'contacto.php';
 require_once $emt_inc . 'nosotros.php';
 require_once $emt_inc . 'seed-trigger.php';
 require_once $emt_inc . 'blog-seed-trigger.php';

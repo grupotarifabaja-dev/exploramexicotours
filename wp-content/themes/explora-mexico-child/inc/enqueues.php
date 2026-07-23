@@ -145,6 +145,14 @@ function emt_enqueue_template_assets() {
         wp_enqueue_script( 'emt-home-carousel', "$uri/assets/js/home-carousel.js", array(), emt_asset_ver( "$dir/assets/js/home-carousel.js" ), true );
     }
 
+    if ( get_query_var( 'emt_contacto' ) ) {
+        if ( file_exists( "$dir/assets/css/contacto.css" ) ) {
+            wp_enqueue_style( 'emt-contacto', "$uri/assets/css/contacto.css", array( wp_style_is( 'emt-components', 'enqueued' ) ? 'emt-components' : 'emt-tokens' ), emt_asset_ver( "$dir/assets/css/contacto.css" ) );
+        }
+        if ( file_exists( "$dir/assets/js/contacto-form.js" ) ) {
+            wp_enqueue_script( 'emt-contacto-form', "$uri/assets/js/contacto-form.js", array(), emt_asset_ver( "$dir/assets/js/contacto-form.js" ), true );
+        }
+    }
     if ( get_query_var( 'emt_cotizacion' ) ) {
         if ( file_exists( "$dir/assets/css/cotizacion.css" ) ) {
             wp_enqueue_style( 'emt-cotizacion', "$uri/assets/css/cotizacion.css", array( wp_style_is( 'emt-components', 'enqueued' ) ? 'emt-components' : 'emt-tokens' ), emt_asset_ver( "$dir/assets/css/cotizacion.css" ) );
