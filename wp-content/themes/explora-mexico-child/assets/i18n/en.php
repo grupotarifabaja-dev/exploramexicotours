@@ -154,4 +154,12 @@ return array(
     'filtros_activos'      => 'Active filters:',
     'limpiar_todo'         => 'Clear all',
     'quitar'               => 'Remove',
+    // Blog (rediseno 2026)
+    'blog_sub'             => 'Guides, destinations and traditions to inspire your next trip.',
+    'sigue_leyendo'        => 'Keep reading',
+    'min_lectura'          => 'min read',
+    'por_autor'            => 'By',
+    'sin_entradas_titulo'  => 'No articles yet',
+    'sin_entradas_texto'   => 'We will publish travel stories and guides soon. Check back soon.',
+
 );

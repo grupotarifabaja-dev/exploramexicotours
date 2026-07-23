@@ -267,3 +267,108 @@ function emt_breadcrumbs() {
     );
     echo '<script type="application/ld+json">' . wp_json_encode( $schema ) . '</script>';
 }
+
+
+/* ============================================================
+   BLOG (listado + tarjetas) — rediseno 2026
+   ============================================================ */
+
+/** Minutos estimados de lectura (~200 palabras/min). */
+function emt_read_minutes( $post_id ) {
+    $words = str_word_count( wp_strip_all_tags( (string) get_post_field( 'post_content', $post_id ) ) );
+    return max( 1, (int) ceil( $words / 200 ) );
+}
+
+/** Meta de entrada: fecha + N min de lectura (HTML). */
+function emt_post_meta_html( $post_id ) {
+    return sprintf(
+        '<span class="emt-post-meta">%s <span class="emt-post-meta__dot"></span> %d %s</span>',
+        esc_html( get_the_date( '', $post_id ) ),
+        emt_read_minutes( $post_id ),
+        esc_html( emt_t( 'min_lectura' ) )
+    );
+}
+
+/** Nav de categorias del blog (chips). $current_id resalta la categoria activa. */
+function emt_blog_cats_nav( $current_id = 0 ) {
+    $cats = get_categories( array( 'hide_empty' => true ) );
+    if ( empty( $cats ) || is_wp_error( $cats ) ) {
+        return '';
+    }
+    $blog_url = get_option( 'page_for_posts' ) ? get_permalink( get_option( 'page_for_posts' ) ) : home_url( '/blog/' );
+    $out = '<nav class="emt-post-cats" aria-label="' . esc_attr( emt_t( 'categorias' ) ) . '">';
+    $out .= sprintf( '<a class="emt-post-cat%s" href="%s">%s</a>', $current_id ? '' : ' is-on', esc_url( $blog_url ), esc_html( emt_t( 'todas' ) ) );
+    foreach ( $cats as $c ) {
+        $sel = ( (int) $current_id === (int) $c->term_id ) ? ' is-on' : '';
+        $out .= sprintf( '<a class="emt-post-cat%s" href="%s">%s</a>', $sel, esc_url( get_category_link( $c->term_id ) ), esc_html( $c->name ) );
+    }
+    $out .= '</nav>';
+    return $out;
+}
+
+/** Tarjeta de entrada del blog. $featured = tarjeta destacada grande. */
+function emt_render_blog_card( $post_id, $featured = false ) {
+    $url     = get_permalink( $post_id );
+    $img     = emt_get_image_or_placeholder( $post_id, $featured ? 'large' : 'medium_large' );
+    $cats    = get_the_category( $post_id );
+    $cat     = ( $cats && ! is_wp_error( $cats ) ) ? $cats[0] : null;
+    $excerpt = wp_trim_words( get_the_excerpt( $post_id ), $featured ? 30 : 20, '…' );
+
+    $badge = function ( $extra ) use ( $cat ) {
+        if ( ! $cat ) { return ''; }
+        return sprintf( '<a class="emt-post-badge%s" href="%s">%s</a>', $extra, esc_url( get_category_link( $cat->term_id ) ), esc_html( $cat->name ) );
+    };
+
+    if ( $featured ) {
+        printf(
+            '<article class="emt-post-featured">'
+            . '<a class="emt-post-featured__media" href="%1$s" tabindex="-1" aria-hidden="true"><img src="%2$s" alt="" loading="lazy" /></a>'
+            . '<div class="emt-post-featured__body">%3$s'
+            . '<h2 class="emt-post-featured__title"><a href="%1$s">%4$s</a></h2>'
+            . '<p class="emt-post-featured__excerpt">%5$s</p>%6$s'
+            . '<a class="emt-post-readmore" href="%1$s">%7$s &rarr;</a></div></article>',
+            esc_url( $url ), esc_url( $img ), $badge( '' ),
+            esc_html( get_the_title( $post_id ) ), esc_html( $excerpt ),
+            emt_post_meta_html( $post_id ), esc_html( emt_t( 'leer_mas' ) )
+        );
+        return;
+    }
+
+    printf(
+        '<article class="emt-post-card">'
+        . '<a class="emt-post-card__media" href="%1$s" tabindex="-1" aria-hidden="true"><img src="%2$s" alt="" loading="lazy" />%3$s</a>'
+        . '<div class="emt-post-card__body">'
+        . '<h3 class="emt-post-card__title"><a href="%1$s">%4$s</a></h3>'
+        . '<p class="emt-post-card__excerpt">%5$s</p>%6$s</div></article>',
+        esc_url( $url ), esc_url( $img ), $badge( ' emt-post-badge--overlay' ),
+        esc_html( get_the_title( $post_id ) ), esc_html( $excerpt ),
+        emt_post_meta_html( $post_id )
+    );
+}
+
+/** Bucle del listado: destacado (1a entrada de la pag. 1) + grid + paginacion. */
+function emt_render_blog_loop( $show_featured = true ) {
+    if ( have_posts() ) {
+        $idx = 0; $grid_open = false;
+        while ( have_posts() ) {
+            the_post();
+            if ( $show_featured && 0 === $idx && ! is_paged() ) {
+                emt_render_blog_card( get_the_ID(), true );
+            } else {
+                if ( ! $grid_open ) { echo '<div class="emt-post-grid">'; $grid_open = true; }
+                emt_render_blog_card( get_the_ID(), false );
+            }
+            $idx++;
+        }
+        if ( $grid_open ) { echo '</div>'; }
+        echo '<div class="emt-post-pager">';
+        the_posts_pagination( array( 'mid_size' => 1, 'prev_text' => '&larr;', 'next_text' => '&rarr;' ) );
+        echo '</div>';
+    } else {
+        printf(
+            '<div class="emt-empty"><h2 class="emt-empty__title">%s</h2><p class="emt-empty__text">%s</p></div>',
+            esc_html( emt_t( 'sin_entradas_titulo' ) ),
+            esc_html( emt_t( 'sin_entradas_texto' ) )
+        );
+    }
+}

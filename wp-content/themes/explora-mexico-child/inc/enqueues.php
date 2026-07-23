@@ -103,6 +103,9 @@ function emt_enqueue_template_assets() {
     if ( is_singular( 'asesor' ) ) {
         $map[] = 'asesor-single';
     }
+    if ( is_home() || is_singular( 'post' ) || is_category() || is_tag() || is_date() || is_author() || is_search() ) {
+        $map[] = 'blog';
+    }
 
     $tpl_deps = array( wp_style_is( 'emt-components', 'enqueued' ) ? 'emt-components' : 'emt-tokens' );
     foreach ( $map as $m ) {
