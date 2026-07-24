@@ -169,11 +169,7 @@ get_header();
     <section class="emt-section">
         <div class="emt-container">
             <h2 class="emt-nosotros__h2"><?php echo esc_html( $L['sellos_t'] ); ?></h2>
-            <ul class="emt-nosotros-sellos">
-                <?php foreach ( $L['sellos'] as $c ) : ?>
-                    <li><?php echo esc_html( $c ); ?></li>
-                <?php endforeach; ?>
-            </ul>
+            <?php include get_stylesheet_directory() . '/parts/certificaciones-carrusel.php'; ?>
         </div>
     </section>
 

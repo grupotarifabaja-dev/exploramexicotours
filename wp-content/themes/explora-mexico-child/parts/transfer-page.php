@@ -206,11 +206,7 @@ get_header();
     <section class="emt-transfer-section">
         <div class="emt-container">
             <h2><?php echo esc_html( $L['cert_t'] ); ?></h2>
-            <ul class="emt-transfer-certs">
-                <?php foreach ( $certs as $c ) : ?>
-                    <li><?php echo esc_html( $c ); ?></li>
-                <?php endforeach; ?>
-            </ul>
+            <?php include get_stylesheet_directory() . '/parts/certificaciones-carrusel.php'; ?>
         </div>
     </section>
 
