@@ -103,7 +103,7 @@ function emt_enqueue_template_assets() {
     if ( is_singular( 'asesor' ) ) {
         $map[] = 'asesor-single';
     }
-    if ( is_home() || is_singular( 'post' ) || is_category() || is_tag() || is_date() || is_author() || is_search() ) {
+    if ( get_query_var( 'emt_blog_list' ) || is_singular( 'post' ) || is_category() || is_tag() || is_date() || is_author() || is_search() ) {
         $map[] = 'blog';
     }
 

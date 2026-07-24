@@ -167,3 +167,53 @@ add_action( 'init', function () {
     echo wp_json_encode( array( 'ok' => true, 'antes' => $antes, 'despues' => $despues ), JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT );
     exit;
 } );
+
+
+/**
+ * Disparador TEMPORAL: revierte la config de Lectura (deja la home = front-page.php
+ * para / y /en/) porque ahora /blog/ se sirve por ruta propia (inc/blog-page.php).
+ * Manda show_on_front a 'posts', limpia page_for_posts/page_on_front y envia a la
+ * papelera las paginas "Blog" e "Inicio" creadas por el setup. Uso:
+ * /?emt_blog_reset=emt-blog-2026 (abrir en navegador). QUITAR antes de produccion.
+ */
+add_action( 'init', function () {
+    if ( ! isset( $_GET['emt_blog_reset'] ) ) {
+        return;
+    }
+    if ( ! hash_equals( 'emt-blog-2026', (string) $_GET['emt_blog_reset'] ) ) {
+        status_header( 403 );
+        header( 'Content-Type: text/plain; charset=utf-8' );
+        echo 'token invalido';
+        exit;
+    }
+
+    $antes = array(
+        'show_on_front'  => get_option( 'show_on_front' ),
+        'page_on_front'  => (int) get_option( 'page_on_front' ),
+        'page_for_posts' => (int) get_option( 'page_for_posts' ),
+    );
+
+    update_option( 'show_on_front', 'posts' );
+    update_option( 'page_for_posts', 0 );
+    update_option( 'page_on_front', 0 );
+
+    $papelera = array();
+    foreach ( array( 'blog', 'inicio' ) as $slug ) {
+        $p = get_page_by_path( $slug );
+        if ( $p && 'page' === $p->post_type ) {
+            wp_trash_post( $p->ID );
+            $papelera[] = $slug . ' (#' . $p->ID . ')';
+        }
+    }
+
+    flush_rewrite_rules();
+
+    header( 'Content-Type: application/json; charset=utf-8' );
+    echo wp_json_encode( array(
+        'ok'                 => true,
+        'antes'              => $antes,
+        'despues'            => array( 'show_on_front' => get_option( 'show_on_front' ), 'page_for_posts' => (int) get_option( 'page_for_posts' ), 'page_on_front' => (int) get_option( 'page_on_front' ) ),
+        'paginas_a_papelera' => $papelera,
+    ), JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT );
+    exit;
+} );
