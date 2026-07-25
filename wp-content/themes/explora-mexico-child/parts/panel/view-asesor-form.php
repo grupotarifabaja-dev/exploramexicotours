@@ -5,6 +5,7 @@
  * teléfono, whatsapp, email, linkedin, instagram, idiomas y especialidades
  * (taxonomías por nombre), activo, orden.
  * Guardado vía AJAX (emt_panel_save_asesor) con nonce + capability + sanitización.
+ * Pestañas Español / English para separar los campos por idioma.
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
 
@@ -48,6 +49,12 @@ $espec_csv   = $tax_csv( 'asesor_especialidad' );
 
 <form id="emt-asesor-form" data-emt-form data-ajax-action="emt_panel_save_asesor" data-required-draft="titulo" data-required-publish="titulo,puesto,bio_corta,telefono,whatsapp,email" data-post-id="<?php echo (int) $post_id; ?>" novalidate>
 
+    <div class="emt-lang-tabs" data-lang-tabs role="tablist" aria-label="Idioma de los campos">
+        <button type="button" class="emt-lang-tab is-active" data-lang-tab="es" role="tab" aria-selected="true">Español</button>
+        <button type="button" class="emt-lang-tab" data-lang-tab="en" role="tab" aria-selected="false">English</button>
+        <span class="emt-lang-tabs__hint">Cambia entre los campos en <strong>español</strong> e <strong>inglés</strong>. Los campos de inglés son opcionales: si los dejas vacíos, la web en inglés usa el texto en español.</span>
+    </div>
+
     <div class="emt-panel-form__section">
         <h2>Datos básicos</h2>
         <div class="emt-grid-2">
@@ -56,11 +63,11 @@ $espec_csv   = $tax_csv( 'asesor_especialidad' );
                 <input type="text" name="titulo" value="<?php echo esc_attr( $nombre ); ?>" required />
                 <div class="emt-field__err-msg"></div>
             </div>
-            <div class="emt-field"><label>Puesto <span class="emt-req">*</span></label><input type="text" name="puesto" value="<?php echo esc_attr( $g( 'puesto' ) ); ?>" placeholder="Ventas Corporativas" required /><div class="emt-field__err-msg"></div></div>
+            <div class="emt-field emt-i18n-es"><label>Puesto <span class="emt-req">*</span></label><input type="text" name="puesto" value="<?php echo esc_attr( $g( 'puesto' ) ); ?>" placeholder="Ventas Corporativas" required /><div class="emt-field__err-msg"></div></div>
         </div>
-        <div class="emt-field"><label>Puesto (EN)</label><input type="text" name="puesto_en" value="<?php echo esc_attr( $g( 'puesto_en' ) ); ?>" /></div>
-        <div class="emt-field"><label>Bio corta <span class="emt-req">*</span></label><textarea name="bio_corta" placeholder="3-4 líneas presentando al asesor." required><?php echo esc_textarea( $g( 'bio_corta' ) ); ?></textarea><div class="emt-field__err-msg"></div></div>
-        <div class="emt-field"><label>Bio corta (EN)</label><textarea name="bio_corta_en"><?php echo esc_textarea( $g( 'bio_corta_en' ) ); ?></textarea></div>
+        <div class="emt-field emt-i18n-en"><label>Puesto (EN)</label><input type="text" name="puesto_en" value="<?php echo esc_attr( $g( 'puesto_en' ) ); ?>" placeholder="Corporate Sales" /></div>
+        <div class="emt-field emt-i18n-es"><label>Bio corta <span class="emt-req">*</span></label><textarea name="bio_corta" placeholder="3-4 líneas presentando al asesor." required><?php echo esc_textarea( $g( 'bio_corta' ) ); ?></textarea><div class="emt-field__err-msg"></div></div>
+        <div class="emt-field emt-i18n-en"><label>Bio corta (EN)</label><textarea name="bio_corta_en" placeholder="Short bio (EN). Vacío = se usa el español."><?php echo esc_textarea( $g( 'bio_corta_en' ) ); ?></textarea></div>
     </div>
 
     <div class="emt-panel-form__section">

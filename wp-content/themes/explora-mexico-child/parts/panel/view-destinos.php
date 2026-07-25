@@ -1,16 +1,54 @@
 <?php
 /**
- * Panel — sección Destinos.
- * El cliente elige qué destinos aparecen en la sección "Destinos imperdibles"
- * del inicio ("Destacado en home") y configura la portada de cada destino
- * (campo de término imagen_destino). Guardado vía AJAX (emt_panel_save_destinos)
- * con nonce + capability + sanitización.
+ * Panel — sección Clasificación (Destinos, Categorías y Experiencias).
  *
- * Los destinos (términos de tour_destino) se crean/nombran desde Tours; aquí
- * solo se marcan y se les pone portada.
+ * Parte A — el cliente crea, renombra y elimina los términos de las tres
+ * taxonomías de tours (add/rename/delete vía AJAX: emt_panel_term_add /
+ * emt_panel_term_rename / emt_panel_term_delete).
+ *
+ * Parte B — para los Destinos, además, elige cuáles aparecen en la sección
+ * "Destinos imperdibles" del inicio y les pone portada (emt_panel_save_destinos).
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
 
+/** Fila editable de un término (nombre + contador + eliminar). */
+if ( ! function_exists( 'emt_render_term_row' ) ) {
+    function emt_render_term_row( $t ) {
+        $count = (int) $t->count;
+        ?>
+        <div class="emt-term-row" data-term-id="<?php echo (int) $t->term_id; ?>">
+            <input type="text" class="emt-term-row__name" value="<?php echo esc_attr( $t->name ); ?>" data-term-name aria-label="Nombre" />
+            <span class="emt-term-row__count"><?php echo $count; ?> tour<?php echo ( $count === 1 ) ? '' : 's'; ?></span>
+            <span class="emt-term-row__msg" data-term-msg></span>
+            <button type="button" class="emt-panel__btn emt-panel__btn--sm emt-panel__btn--danger" data-term-delete>Eliminar</button>
+        </div>
+        <?php
+    }
+}
+
+/** Gestor completo de una taxonomía (crear + lista editable). */
+if ( ! function_exists( 'emt_render_term_manager' ) ) {
+    function emt_render_term_manager( $tax, $titulo, $ayuda, $ph ) {
+        $terms = get_terms( array( 'taxonomy' => $tax, 'hide_empty' => false, 'orderby' => 'name', 'order' => 'ASC' ) );
+        if ( is_wp_error( $terms ) ) { $terms = array(); }
+        ?>
+        <div class="emt-panel-form__section emt-tax-manager" data-tax="<?php echo esc_attr( $tax ); ?>">
+            <h2><?php echo esc_html( $titulo ); ?></h2>
+            <p class="emt-field__help" style="margin-bottom:var(--emt-spacing-md);"><?php echo esc_html( $ayuda ); ?></p>
+            <div class="emt-tax-add">
+                <input type="text" class="emt-tax-add__input" placeholder="<?php echo esc_attr( $ph ); ?>" data-term-new aria-label="Nombre nuevo" />
+                <button type="button" class="emt-panel__btn emt-panel__btn--primary" data-term-add>Agregar</button>
+            </div>
+            <div class="emt-tax-list" data-tax-list>
+                <p class="emt-panel__muted" data-tax-empty<?php echo empty( $terms ) ? '' : ' style="display:none;"'; ?>>Aún no hay. Agrega el primero arriba.</p>
+                <?php foreach ( $terms as $t ) { emt_render_term_row( $t ); } ?>
+            </div>
+        </div>
+        <?php
+    }
+}
+
+// Destinos para la Parte B (destacado + portada).
 $destinos = get_terms( array(
     'taxonomy'   => 'tour_destino',
     'hide_empty' => false,
@@ -22,22 +60,38 @@ if ( is_wp_error( $destinos ) ) { $destinos = array(); }
 ?>
 <div class="emt-panel__head">
     <div>
-        <h1>Destinos</h1>
-        <p class="emt-panel__head-sub">Elige qué destinos se muestran en el inicio y ponles su portada. El nombre de cada destino se gestiona desde los tours.</p>
+        <h1>Clasificación</h1>
+        <p class="emt-panel__head-sub">Crea y organiza los <strong>destinos</strong>, <strong>categorías</strong> y <strong>experiencias</strong> con los que etiquetas tus tours. Los cambios se guardan al momento.</p>
     </div>
 </div>
 
-<?php if ( empty( $destinos ) ) : ?>
-    <div class="emt-empty">
-        <p>Aún no hay destinos. Se crean al asignar un destino a un tour.</p>
-        <a class="emt-panel__btn emt-panel__btn--primary" href="<?php echo esc_url( emt_panel_url( 'tours/nuevo/' ) ); ?>">Crear un tour</a>
-    </div>
-<?php else : ?>
+<?php
+emt_render_term_manager(
+    'tour_destino',
+    'Destinos',
+    'El lugar del tour (Guadalajara, Chiapas, Barrancas del Cobre…). Un tour tiene un destino.',
+    'Nombre del destino'
+);
+emt_render_term_manager(
+    'tour_categoria',
+    'Categorías',
+    'El tipo de tour (Cultural, Gastronómico, Aventura, Ecoturismo…). Un tour tiene una categoría.',
+    'Nombre de la categoría'
+);
+emt_render_term_manager(
+    'tour_experiencia',
+    'Experiencias',
+    'El tema u ocasión, transversal a las categorías (Pueblos Mágicos, Ruta del Tequila, Día de Muertos…). Un tour puede tener varias.',
+    'Nombre de la experiencia'
+);
+?>
+
+<?php if ( ! empty( $destinos ) ) : ?>
 <form id="emt-destinos-form" data-emt-form data-ajax-action="emt_panel_save_destinos" data-required-draft="" data-required-publish="">
 
     <div class="emt-panel-form__section">
-        <h2>Destinos imperdibles del inicio</h2>
-        <p class="emt-field__help" style="margin-bottom:var(--emt-spacing-md);">Marca "Destacado en home" en los destinos que quieras mostrar (hasta 5). Si no marcas ninguno, el inicio mostrará automáticamente los destinos con más tours. Tamaño de portada sugerido: <strong>1200&times;1600 px</strong> (vertical 3:4).</p>
+        <h2>Portadas y destacados del inicio</h2>
+        <p class="emt-field__help" style="margin-bottom:var(--emt-spacing-md);">Marca "Destacado en home" en los destinos que quieras mostrar en la sección "Destinos imperdibles" (hasta 5). Si no marcas ninguno, el inicio mostrará automáticamente los destinos con más tours. Tamaño de portada sugerido: <strong>1200&times;1600 px</strong> (vertical 3:4).</p>
 
         <div class="emt-destinos-admin">
             <?php foreach ( $destinos as $d ) :
@@ -73,11 +127,12 @@ if ( is_wp_error( $destinos ) ) { $destinos = array(); }
                 </div>
             <?php endforeach; ?>
         </div>
+        <div class="emt-field__help" style="margin-top:var(--emt-spacing-sm);">Si renombras un destino arriba, aquí se actualiza al recargar la página.</div>
     </div>
 
     <div class="emt-panel-form__bar">
         <span class="emt-panel-form__msg" data-form-msg></span>
-        <button type="submit" class="emt-panel__btn emt-panel__btn--primary" data-save="save">Guardar cambios</button>
+        <button type="submit" class="emt-panel__btn emt-panel__btn--primary" data-save="save">Guardar portadas y destacados</button>
     </div>
 </form>
 <?php endif; ?>

@@ -454,3 +454,79 @@ add_action( 'wp_ajax_emt_panel_delete_post', function () {
     wp_trash_post( $id );
     wp_send_json_success( array( 'msg' => 'Artículo enviado a la papelera.' ) );
 } );
+
+/* ============================================================
+   CLASIFICACIÓN — crear / renombrar / eliminar términos de las
+   taxonomías de tours (Destinos, Categorías, Experiencias) desde el panel.
+   Acceso: misma capability que da entrada al panel (edit_tours).
+   ============================================================ */
+
+/** Taxonomías que el cliente puede gestionar desde el panel. */
+function emt_panel_client_taxonomies() {
+    return array( 'tour_destino', 'tour_categoria', 'tour_experiencia' );
+}
+
+/** Valida y devuelve la taxonomía del POST, o corta con error. */
+function emt_panel_term_tax() {
+    $tax = sanitize_key( $_POST['taxonomy'] ?? '' );
+    if ( ! in_array( $tax, emt_panel_client_taxonomies(), true ) ) {
+        wp_send_json_error( array( 'msg' => 'Clasificación no válida.' ), 400 );
+    }
+    return $tax;
+}
+
+add_action( 'wp_ajax_emt_panel_term_add', function () {
+    emt_panel_guard( 'edit_tours' );
+    $tax  = emt_panel_term_tax();
+    $name = sanitize_text_field( wp_unslash( $_POST['name'] ?? '' ) );
+    if ( $name === '' ) {
+        wp_send_json_error( array( 'msg' => 'Escribe un nombre.' ), 400 );
+    }
+    $res = wp_insert_term( $name, $tax );
+    if ( is_wp_error( $res ) ) {
+        $msg = ( $res->get_error_code() === 'term_exists' ) ? 'Ya existe uno con ese nombre.' : 'No se pudo crear.';
+        wp_send_json_error( array( 'msg' => $msg ), 400 );
+    }
+    $term = get_term( (int) $res['term_id'], $tax );
+    wp_send_json_success( array(
+        'term_id' => (int) $res['term_id'],
+        'name'    => ( $term && ! is_wp_error( $term ) ) ? $term->name : $name,
+        'count'   => 0,
+        'msg'     => 'Creado.',
+    ) );
+} );
+
+add_action( 'wp_ajax_emt_panel_term_rename', function () {
+    emt_panel_guard( 'edit_tours' );
+    $tax  = emt_panel_term_tax();
+    $tid  = (int) ( $_POST['term_id'] ?? 0 );
+    $name = sanitize_text_field( wp_unslash( $_POST['name'] ?? '' ) );
+    if ( $name === '' ) {
+        wp_send_json_error( array( 'msg' => 'El nombre no puede quedar vacío.' ), 400 );
+    }
+    $term = $tid ? get_term( $tid, $tax ) : null;
+    if ( ! $term || is_wp_error( $term ) ) {
+        wp_send_json_error( array( 'msg' => 'Elemento no encontrado.' ), 404 );
+    }
+    $res = wp_update_term( $tid, $tax, array( 'name' => $name ) );
+    if ( is_wp_error( $res ) ) {
+        $msg = ( $res->get_error_code() === 'duplicate_term_slug' || $res->get_error_code() === 'term_exists' ) ? 'Ya existe uno con ese nombre.' : 'No se pudo renombrar.';
+        wp_send_json_error( array( 'msg' => $msg ), 400 );
+    }
+    wp_send_json_success( array( 'msg' => 'Guardado' ) );
+} );
+
+add_action( 'wp_ajax_emt_panel_term_delete', function () {
+    emt_panel_guard( 'edit_tours' );
+    $tax = emt_panel_term_tax();
+    $tid = (int) ( $_POST['term_id'] ?? 0 );
+    $term = $tid ? get_term( $tid, $tax ) : null;
+    if ( ! $term || is_wp_error( $term ) ) {
+        wp_send_json_error( array( 'msg' => 'Elemento no encontrado.' ), 404 );
+    }
+    $res = wp_delete_term( $tid, $tax );
+    if ( is_wp_error( $res ) || ! $res ) {
+        wp_send_json_error( array( 'msg' => 'No se pudo eliminar.' ), 400 );
+    }
+    wp_send_json_success( array( 'msg' => 'Eliminado.' ) );
+} );

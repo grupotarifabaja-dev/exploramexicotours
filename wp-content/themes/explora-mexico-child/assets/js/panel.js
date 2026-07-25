@@ -131,6 +131,8 @@
       });
       if ($firstErr) {
         $msg.attr('class', 'emt-panel-form__msg emt-panel-form__msg--err').text('Revisa los campos marcados (tus datos se conservan).');
+        var _errLang = $firstErr.closest('.emt-i18n-en').length ? 'en' : 'es';
+        emtSetFormLang($form, _errLang);
         $firstErr.trigger('focus');
         if ($firstErr[0] && $firstErr[0].scrollIntoView) { $firstErr[0].scrollIntoView({ behavior: 'smooth', block: 'center' }); }
         return;
@@ -185,6 +187,93 @@
           else { window.alert((res && res.data && res.data.msg) || 'No se pudo eliminar.'); }
         })
         .fail(function () { window.alert('Error de conexión.'); });
+    });
+
+    /* ---------- Pestañas de idioma (Español / English) ---------- */
+    function emtSetFormLang($form, lang) {
+      $form.toggleClass('emt-form--lang-en', lang === 'en');
+      $form.find('[data-lang-tab]').each(function () {
+        var active = $(this).data('lang-tab') === lang;
+        $(this).toggleClass('is-active', active).attr('aria-selected', active ? 'true' : 'false');
+      });
+    }
+    $(document).on('click', '[data-lang-tab]', function () {
+      emtSetFormLang($(this).closest('form'), $(this).data('lang-tab'));
+    });
+
+    /* ---------- Clasificación: crear / renombrar / eliminar términos ---------- */
+    function emtTermRowHtml(id, name, count) {
+      var tours = count + ' tour' + (count === 1 ? '' : 's');
+      return '<div class="emt-term-row" data-term-id="' + id + '">' +
+        '<input type="text" class="emt-term-row__name" value="' + $('<i>').text(name).html() + '" data-term-name aria-label="Nombre" />' +
+        '<span class="emt-term-row__count">' + tours + '</span>' +
+        '<span class="emt-term-row__msg" data-term-msg></span>' +
+        '<button type="button" class="emt-panel__btn emt-panel__btn--sm emt-panel__btn--danger" data-term-delete>Eliminar</button>' +
+        '</div>';
+    }
+    // Agregar
+    $(document).on('click', '[data-term-add]', function () {
+      var $mgr = $(this).closest('[data-tax]');
+      var tax = $mgr.data('tax');
+      var $input = $mgr.find('[data-term-new]');
+      var name = ($input.val() || '').trim();
+      if (!name) { $input.trigger('focus'); return; }
+      var $btn = $(this).prop('disabled', true);
+      $.post(EMTPanel.ajax, { action: 'emt_panel_term_add', nonce: EMTPanel.nonce, taxonomy: tax, name: name })
+        .done(function (res) {
+          if (res && res.success && res.data) {
+            $mgr.find('[data-tax-empty]').hide();
+            $mgr.find('[data-tax-list]').append(emtTermRowHtml(res.data.term_id, res.data.name, res.data.count || 0));
+            $input.val('').trigger('focus');
+          } else {
+            window.alert((res && res.data && res.data.msg) || 'No se pudo crear.');
+          }
+        })
+        .fail(function () { window.alert('Error de conexión.'); })
+        .always(function () { $btn.prop('disabled', false); });
+    });
+    // Renombrar al perder el foco (si cambió)
+    $(document).on('change', '[data-term-name]', function () {
+      var $row = $(this).closest('.emt-term-row');
+      var $mgr = $row.closest('[data-tax]');
+      var tax = $mgr.data('tax');
+      var id = $row.data('term-id');
+      var name = ($(this).val() || '').trim();
+      var $msg = $row.find('[data-term-msg]').removeClass('is-err').text('Guardando…');
+      $.post(EMTPanel.ajax, { action: 'emt_panel_term_rename', nonce: EMTPanel.nonce, taxonomy: tax, term_id: id, name: name })
+        .done(function (res) {
+          if (res && res.success) {
+            $msg.removeClass('is-err').text('Guardado ✓');
+            setTimeout(function () { $msg.text(''); }, 1800);
+          } else {
+            $msg.addClass('is-err').text((res && res.data && res.data.msg) || 'Error');
+          }
+        })
+        .fail(function () { $msg.addClass('is-err').text('Sin conexión'); });
+    });
+    // Eliminar
+    $(document).on('click', '[data-term-delete]', function () {
+      var $row = $(this).closest('.emt-term-row');
+      var $mgr = $row.closest('[data-tax]');
+      var tax = $mgr.data('tax');
+      var id = $row.data('term-id');
+      var name = $row.find('[data-term-name]').val() || 'este elemento';
+      if (!window.confirm('¿Eliminar "' + name + '"? Los tours dejarán de estar clasificados con él (no se borran los tours).')) { return; }
+      $row.addClass('is-removing');
+      $.post(EMTPanel.ajax, { action: 'emt_panel_term_delete', nonce: EMTPanel.nonce, taxonomy: tax, term_id: id })
+        .done(function (res) {
+          if (res && res.success) {
+            $row.slideUp(180, function () {
+              var $list = $mgr.find('[data-tax-list]');
+              $row.remove();
+              if (!$list.find('.emt-term-row').length) { $list.find('[data-tax-empty]').show(); }
+            });
+          } else {
+            $row.removeClass('is-removing');
+            window.alert((res && res.data && res.data.msg) || 'No se pudo eliminar.');
+          }
+        })
+        .fail(function () { $row.removeClass('is-removing'); window.alert('Error de conexión.'); });
     });
   });
 })(jQuery);

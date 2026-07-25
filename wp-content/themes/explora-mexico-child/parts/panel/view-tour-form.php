@@ -2,6 +2,9 @@
 /**
  * Panel — formulario de alta/edición de tour (P3). Todos los campos ACF.
  * Guardado vía AJAX (emt_panel_save_tour) con nonce + capability + sanitización.
+ *
+ * Los campos en inglés se agrupan bajo la pestaña "English"; los de español bajo
+ * "Español". Los campos estructurales (precios, fechas, imágenes…) se ven en ambas.
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
 
@@ -36,13 +39,26 @@ $inc_en   = (array) $g( 'incluye_en', array() );
 $noinc_en = (array) $g( 'no_incluye_en', array() );
 $itin_en  = (array) $g( 'itinerario_en', array() );
 
-$sel_destino = $editing ? ( ( $tt = get_the_terms( $post_id, 'tour_destino' ) ) && ! is_wp_error( $tt ) ? $tt[0]->term_id : 0 ) : 0;
-$sel_cat     = $editing ? ( ( $tc = get_the_terms( $post_id, 'tour_categoria' ) ) && ! is_wp_error( $tc ) ? $tc[0]->term_id : 0 ) : 0;
-$sel_exp     = $editing ? wp_list_pluck( (array) get_the_terms( $post_id, 'tour_experiencia' ) ?: array(), 'term_id' ) : array();
+// Términos seleccionados. get_the_terms() devuelve false (sin términos) o WP_Error;
+// hay que blindar antes de wp_list_pluck para no disparar el aviso de PHP.
+$sel_destino = 0;
+$sel_cat     = 0;
+$sel_exp     = array();
+if ( $editing ) {
+    $tt = get_the_terms( $post_id, 'tour_destino' );
+    if ( $tt && ! is_wp_error( $tt ) ) { $sel_destino = (int) $tt[0]->term_id; }
+    $tc = get_the_terms( $post_id, 'tour_categoria' );
+    if ( $tc && ! is_wp_error( $tc ) ) { $sel_cat = (int) $tc[0]->term_id; }
+    $te = get_the_terms( $post_id, 'tour_experiencia' );
+    if ( $te && ! is_wp_error( $te ) ) { $sel_exp = wp_list_pluck( $te, 'term_id' ); }
+}
 
 $tx_dest = get_terms( array( 'taxonomy' => 'tour_destino', 'hide_empty' => false ) );
 $tx_cat  = get_terms( array( 'taxonomy' => 'tour_categoria', 'hide_empty' => false ) );
 $tx_exp  = get_terms( array( 'taxonomy' => 'tour_experiencia', 'hide_empty' => false ) );
+if ( is_wp_error( $tx_dest ) ) { $tx_dest = array(); }
+if ( is_wp_error( $tx_cat ) )  { $tx_cat  = array(); }
+if ( is_wp_error( $tx_exp ) )  { $tx_exp  = array(); }
 $dif     = array( 'facil' => 'Fácil', 'moderada' => 'Moderada', 'alta' => 'Alta' );
 $idi_opts= array( 'es' => 'Español', 'en' => 'Inglés', 'fr' => 'Francés', 'otros' => 'Otros' );
 $inc_ico = array( 'bus' => 'Bus', 'comida' => 'Comida', 'guia' => 'Guía', 'entrada' => 'Entrada', 'equipo' => 'Equipo', 'hospedaje' => 'Hospedaje', 'foto' => 'Foto', 'otro' => 'Otro' );
@@ -57,17 +73,23 @@ $itin_ico= array( 'salida' => 'Salida', 'parada' => 'Parada', 'comida' => 'Comid
 
 <form id="emt-tour-form" data-emt-form data-ajax-action="emt_panel_save_tour" data-required-draft="titulo" data-required-publish="titulo,duracion_texto" data-post-id="<?php echo (int) $post_id; ?>" novalidate>
 
+    <div class="emt-lang-tabs" data-lang-tabs role="tablist" aria-label="Idioma de los campos">
+        <button type="button" class="emt-lang-tab is-active" data-lang-tab="es" role="tab" aria-selected="true">Español</button>
+        <button type="button" class="emt-lang-tab" data-lang-tab="en" role="tab" aria-selected="false">English</button>
+        <span class="emt-lang-tabs__hint">Cambia entre los campos en <strong>español</strong> e <strong>inglés</strong>. Los campos de inglés son opcionales: si los dejas vacíos, la web en inglés usa el texto en español.</span>
+    </div>
+
     <div class="emt-panel-form__section">
         <h2>Datos básicos</h2>
-        <div class="emt-field" data-field="titulo">
+        <div class="emt-field emt-i18n-es" data-field="titulo">
             <label>Título <span class="emt-req">*</span></label>
             <input type="text" name="titulo" value="<?php echo esc_attr( $titulo ); ?>" required />
             <div class="emt-field__err-msg"></div>
         </div>
-        <div class="emt-field"><label>Título (EN)</label><input type="text" name="titulo_en" value="<?php echo esc_attr( $g( 'titulo_en' ) ); ?>" /></div>
-        <div class="emt-field"><label>Descripción</label><textarea name="descripcion"><?php echo esc_textarea( $descrip ); ?></textarea></div>
-        <div class="emt-field"><label>Descripción (EN)</label><textarea name="descripcion_en"><?php echo esc_textarea( $g( 'descripcion_en' ) ); ?></textarea></div>
-        <div class="emt-field"><label>Extracto (EN)</label><textarea name="excerpt_en" placeholder="Short summary for cards (EN)."><?php echo esc_textarea( $g( 'excerpt_en' ) ); ?></textarea></div>
+        <div class="emt-field emt-i18n-en"><label>Título (EN)</label><input type="text" name="titulo_en" value="<?php echo esc_attr( $g( 'titulo_en' ) ); ?>" /></div>
+        <div class="emt-field emt-i18n-es"><label>Descripción</label><textarea name="descripcion"><?php echo esc_textarea( $descrip ); ?></textarea></div>
+        <div class="emt-field emt-i18n-en"><label>Descripción (EN)</label><textarea name="descripcion_en"><?php echo esc_textarea( $g( 'descripcion_en' ) ); ?></textarea></div>
+        <div class="emt-field emt-i18n-en"><label>Extracto (EN)</label><textarea name="excerpt_en" placeholder="Short summary for cards (EN)."><?php echo esc_textarea( $g( 'excerpt_en' ) ); ?></textarea></div>
         <div class="emt-grid-3">
             <div class="emt-field"><label>Destino</label>
                 <select name="destino"><option value="">—</option>
@@ -86,6 +108,7 @@ $itin_ico= array( 'salida' => 'Salida', 'parada' => 'Parada', 'comida' => 'Comid
                     <label><input type="checkbox" name="experiencias[]" value="<?php echo (int) $t->term_id; ?>" <?php checked( in_array( $t->term_id, $sel_exp, true ) ); ?> /> <?php echo esc_html( $t->name ); ?></label>
                 <?php endforeach; ?>
             </div>
+            <div class="emt-field__help">¿Faltan destinos, categorías o experiencias? Se gestionan en <a href="<?php echo esc_url( emt_panel_url( 'destinos/' ) ); ?>">Clasificación</a>.</div>
         </div>
     </div>
 
@@ -103,8 +126,8 @@ $itin_ico= array( 'salida' => 'Salida', 'parada' => 'Parada', 'comida' => 'Comid
         </div>
         <div class="emt-grid-2" style="margin-top:16px;">
             <div class="emt-field"><label>Precio desde (MXN)</label><input type="number" name="precio_desde" value="<?php echo esc_attr( $g( 'precio_desde' ) ); ?>" min="0" /><div class="emt-field__help">Déjalo vacío: se autocalcula como el menor de los 4.</div></div>
-            <div class="emt-field"><label>Fecha del viaje</label><input type="text" name="fecha_viaje" value="<?php echo esc_attr( $g( 'fecha_viaje' ) ); ?>" placeholder="30 octubre – 1 noviembre 2026" /></div>
-            <div class="emt-field"><label>Fecha del viaje (EN)</label><input type="text" name="fecha_viaje_en" value="<?php echo esc_attr( $g( 'fecha_viaje_en' ) ); ?>" placeholder="Day of the Dead season (2026, TBC)" /><div class="emt-field__help">Vacío = se usa el español.</div></div>
+            <div class="emt-field emt-i18n-es"><label>Fecha del viaje</label><input type="text" name="fecha_viaje" value="<?php echo esc_attr( $g( 'fecha_viaje' ) ); ?>" placeholder="30 octubre – 1 noviembre 2026" /></div>
+            <div class="emt-field emt-i18n-en"><label>Fecha del viaje (EN)</label><input type="text" name="fecha_viaje_en" value="<?php echo esc_attr( $g( 'fecha_viaje_en' ) ); ?>" placeholder="Day of the Dead season (2026, TBC)" /><div class="emt-field__help">Vacío = se usa el español.</div></div>
         </div>
         <div class="emt-field"><label>Nota de precios</label><textarea name="precio_nota" placeholder="Máximo 4 por habitación incluyendo menores."><?php echo esc_textarea( $g( 'precio_nota' ) ); ?></textarea></div>
     </div>
@@ -133,8 +156,8 @@ $itin_ico= array( 'salida' => 'Salida', 'parada' => 'Parada', 'comida' => 'Comid
     <div class="emt-panel-form__section">
         <h2>Logística</h2>
         <div class="emt-grid-3">
-            <div class="emt-field"><label>Duración (texto) <span class="emt-req">*</span></label><input type="text" name="duracion_texto" value="<?php echo esc_attr( $g( 'duracion_texto' ) ); ?>" placeholder="3 días / 2 noches" required /><div class="emt-field__err-msg"></div></div>
-            <div class="emt-field"><label>Duración texto (EN)</label><input type="text" name="duracion_texto_en" value="<?php echo esc_attr( $g( 'duracion_texto_en' ) ); ?>" placeholder="3 days / 2 nights" /><div class="emt-field__help">Vacío = se usa el español.</div></div>
+            <div class="emt-field emt-i18n-es"><label>Duración (texto) <span class="emt-req">*</span></label><input type="text" name="duracion_texto" value="<?php echo esc_attr( $g( 'duracion_texto' ) ); ?>" placeholder="3 días / 2 noches" required /><div class="emt-field__err-msg"></div></div>
+            <div class="emt-field emt-i18n-en"><label>Duración texto (EN)</label><input type="text" name="duracion_texto_en" value="<?php echo esc_attr( $g( 'duracion_texto_en' ) ); ?>" placeholder="3 days / 2 nights" /><div class="emt-field__help">Vacío = se usa el español.</div></div>
             <div class="emt-field"><label>Duración (horas)</label><input type="number" name="duracion_horas" value="<?php echo esc_attr( $g( 'duracion_horas' ) ); ?>" min="0" /></div>
         </div>
         <div class="emt-grid-2">
@@ -170,10 +193,10 @@ $itin_ico= array( 'salida' => 'Salida', 'parada' => 'Parada', 'comida' => 'Comid
                         <div class="emt-field"><label>Hora</label><input type="text" name="itinerario[<?php echo $ri; ?>][hora]" value="<?php echo esc_attr( $row['hora'] ?? '' ); ?>" /></div>
                         <div class="emt-field"><label>Icono</label><select name="itinerario[<?php echo $ri; ?>][icono]"><?php foreach ( $itin_ico as $k => $v ) : ?><option value="<?php echo $k; ?>" <?php selected( $row['icono'] ?? '', $k ); ?>><?php echo esc_html( $v ); ?></option><?php endforeach; ?></select></div>
                     </div>
-                    <div class="emt-field"><label>Título</label><input type="text" name="itinerario[<?php echo $ri; ?>][titulo]" value="<?php echo esc_attr( $row['titulo'] ?? '' ); ?>" /></div>
-                    <div class="emt-field"><label>Descripción</label><textarea name="itinerario[<?php echo $ri; ?>][descripcion]"><?php echo esc_textarea( $row['descripcion'] ?? '' ); ?></textarea></div>
-                    <div class="emt-field"><label>Título (EN)</label><input type="text" name="itinerario[<?php echo $ri; ?>][titulo_en]" value="<?php echo esc_attr( $itin_en[$ri]['titulo_en'] ?? '' ); ?>" placeholder="(EN)" /></div>
-                    <div class="emt-field"><label>Descripción (EN)</label><textarea name="itinerario[<?php echo $ri; ?>][descripcion_en]" placeholder="(EN)"><?php echo esc_textarea( $itin_en[$ri]['descripcion_en'] ?? '' ); ?></textarea></div>
+                    <div class="emt-field emt-i18n-es"><label>Título</label><input type="text" name="itinerario[<?php echo $ri; ?>][titulo]" value="<?php echo esc_attr( $row['titulo'] ?? '' ); ?>" /></div>
+                    <div class="emt-field emt-i18n-es"><label>Descripción</label><textarea name="itinerario[<?php echo $ri; ?>][descripcion]"><?php echo esc_textarea( $row['descripcion'] ?? '' ); ?></textarea></div>
+                    <div class="emt-field emt-i18n-en"><label>Título (EN)</label><input type="text" name="itinerario[<?php echo $ri; ?>][titulo_en]" value="<?php echo esc_attr( $itin_en[$ri]['titulo_en'] ?? '' ); ?>" placeholder="(EN)" /></div>
+                    <div class="emt-field emt-i18n-en"><label>Descripción (EN)</label><textarea name="itinerario[<?php echo $ri; ?>][descripcion_en]" placeholder="(EN)"><?php echo esc_textarea( $itin_en[$ri]['descripcion_en'] ?? '' ); ?></textarea></div>
                 </div>
             <?php $ri++; endforeach; ?>
         </div>
@@ -188,8 +211,8 @@ $itin_ico= array( 'salida' => 'Salida', 'parada' => 'Parada', 'comida' => 'Comid
                 <div id="emt-inc" data-repeater="incluye">
                     <?php $ci = 0; foreach ( $inc as $row ) : ?>
                         <div class="emt-repeater__item" data-row><div class="emt-repeater__item-head"><span></span><button type="button" class="emt-repeater__remove" data-remove>Quitar</button></div>
-                            <input type="text" name="incluye[<?php echo $ci; ?>][texto]" value="<?php echo esc_attr( $row['texto'] ?? '' ); ?>" placeholder="Transporte redondo" />
-                            <input type="text" name="incluye[<?php echo $ci; ?>][texto_en]" value="<?php echo esc_attr( $inc_en[$ci]['texto'] ?? '' ); ?>" placeholder="(EN) translation" />
+                            <input class="emt-i18n-es" type="text" name="incluye[<?php echo $ci; ?>][texto]" value="<?php echo esc_attr( $row['texto'] ?? '' ); ?>" placeholder="Transporte redondo" />
+                            <input class="emt-i18n-en" type="text" name="incluye[<?php echo $ci; ?>][texto_en]" value="<?php echo esc_attr( $inc_en[$ci]['texto'] ?? '' ); ?>" placeholder="(EN) translation" />
                             <input type="hidden" name="incluye[<?php echo $ci; ?>][icono]" value="otro" />
                         </div>
                     <?php $ci++; endforeach; ?>
@@ -201,8 +224,8 @@ $itin_ico= array( 'salida' => 'Salida', 'parada' => 'Parada', 'comida' => 'Comid
                 <div id="emt-noinc" data-repeater="no_incluye">
                     <?php $ni = 0; foreach ( $noinc as $row ) : ?>
                         <div class="emt-repeater__item" data-row><div class="emt-repeater__item-head"><span></span><button type="button" class="emt-repeater__remove" data-remove>Quitar</button></div>
-                            <input type="text" name="no_incluye[<?php echo $ni; ?>][texto]" value="<?php echo esc_attr( $row['texto'] ?? '' ); ?>" placeholder="Propinas" />
-                            <input type="text" name="no_incluye[<?php echo $ni; ?>][texto_en]" value="<?php echo esc_attr( $noinc_en[$ni]['texto'] ?? '' ); ?>" placeholder="(EN) translation" />
+                            <input class="emt-i18n-es" type="text" name="no_incluye[<?php echo $ni; ?>][texto]" value="<?php echo esc_attr( $row['texto'] ?? '' ); ?>" placeholder="Propinas" />
+                            <input class="emt-i18n-en" type="text" name="no_incluye[<?php echo $ni; ?>][texto_en]" value="<?php echo esc_attr( $noinc_en[$ni]['texto'] ?? '' ); ?>" placeholder="(EN) translation" />
                             <input type="hidden" name="no_incluye[<?php echo $ni; ?>][icono]" value="otro" />
                         </div>
                     <?php $ni++; endforeach; ?>
@@ -251,8 +274,8 @@ $itin_ico= array( 'salida' => 'Salida', 'parada' => 'Parada', 'comida' => 'Comid
 
     <div class="emt-panel-form__section">
         <h2>Políticas, mapa, reserva y SEO</h2>
-        <div class="emt-field"><label>Política de cancelación</label><textarea name="politica_cancelacion"><?php echo esc_textarea( $g( 'politica_cancelacion' ) ); ?></textarea></div>
-        <div class="emt-field"><label>Política de cancelación (EN)</label><textarea name="politica_cancelacion_en"><?php echo esc_textarea( $g( 'politica_cancelacion_en' ) ); ?></textarea></div>
+        <div class="emt-field emt-i18n-es"><label>Política de cancelación</label><textarea name="politica_cancelacion"><?php echo esc_textarea( $g( 'politica_cancelacion' ) ); ?></textarea></div>
+        <div class="emt-field emt-i18n-en"><label>Política de cancelación (EN)</label><textarea name="politica_cancelacion_en"><?php echo esc_textarea( $g( 'politica_cancelacion_en' ) ); ?></textarea></div>
         <div class="emt-grid-2">
             <div class="emt-field"><label>Mapa (embed URL)</label><input type="url" name="mapa_embed" value="<?php echo esc_attr( $g( 'mapa_embed' ) ); ?>" /></div>
             <div class="emt-field"><label>URL de reserva (Peek)</label><input type="url" name="peek_url" value="<?php echo esc_attr( $g( 'peek_url' ) ); ?>" placeholder="#" /></div>
@@ -281,10 +304,10 @@ $itin_ico= array( 'salida' => 'Salida', 'parada' => 'Parada', 'comida' => 'Comid
             <div class="emt-field"><label>Hora</label><input type="text" data-name="itinerario|__i__|hora" /></div>
             <div class="emt-field"><label>Icono</label><select data-name="itinerario|__i__|icono"><?php foreach ( $itin_ico as $k => $v ) : ?><option value="<?php echo $k; ?>"><?php echo esc_html( $v ); ?></option><?php endforeach; ?></select></div>
         </div>
-        <div class="emt-field"><label>Título</label><input type="text" data-name="itinerario|__i__|titulo" /></div>
-        <div class="emt-field"><label>Descripción</label><textarea data-name="itinerario|__i__|descripcion"></textarea></div>
-        <div class="emt-field"><label>Título (EN)</label><input type="text" data-name="itinerario|__i__|titulo_en" placeholder="(EN)" /></div>
-        <div class="emt-field"><label>Descripción (EN)</label><textarea data-name="itinerario|__i__|descripcion_en" placeholder="(EN)"></textarea></div>
+        <div class="emt-field emt-i18n-es"><label>Título</label><input type="text" data-name="itinerario|__i__|titulo" /></div>
+        <div class="emt-field emt-i18n-es"><label>Descripción</label><textarea data-name="itinerario|__i__|descripcion"></textarea></div>
+        <div class="emt-field emt-i18n-en"><label>Título (EN)</label><input type="text" data-name="itinerario|__i__|titulo_en" placeholder="(EN)" /></div>
+        <div class="emt-field emt-i18n-en"><label>Descripción (EN)</label><textarea data-name="itinerario|__i__|descripcion_en" placeholder="(EN)"></textarea></div>
     </div>
 </template>
 <template id="emt-tpl-precios_vehiculo">
@@ -299,15 +322,15 @@ $itin_ico= array( 'salida' => 'Salida', 'parada' => 'Parada', 'comida' => 'Comid
 </template>
 <template id="emt-tpl-incluye">
     <div class="emt-repeater__item" data-row><div class="emt-repeater__item-head"><span></span><button type="button" class="emt-repeater__remove" data-remove>Quitar</button></div>
-        <input type="text" data-name="incluye|__i__|texto" placeholder="Ítem incluido" />
-        <input type="text" data-name="incluye|__i__|texto_en" placeholder="(EN) translation" />
+        <input class="emt-i18n-es" type="text" data-name="incluye|__i__|texto" placeholder="Ítem incluido" />
+        <input class="emt-i18n-en" type="text" data-name="incluye|__i__|texto_en" placeholder="(EN) translation" />
         <input type="hidden" data-name="incluye|__i__|icono" value="otro" />
     </div>
 </template>
 <template id="emt-tpl-no_incluye">
     <div class="emt-repeater__item" data-row><div class="emt-repeater__item-head"><span></span><button type="button" class="emt-repeater__remove" data-remove>Quitar</button></div>
-        <input type="text" data-name="no_incluye|__i__|texto" placeholder="Ítem no incluido" />
-        <input type="text" data-name="no_incluye|__i__|texto_en" placeholder="(EN) translation" />
+        <input class="emt-i18n-es" type="text" data-name="no_incluye|__i__|texto" placeholder="Ítem no incluido" />
+        <input class="emt-i18n-en" type="text" data-name="no_incluye|__i__|texto_en" placeholder="(EN) translation" />
         <input type="hidden" data-name="no_incluye|__i__|icono" value="otro" />
     </div>
 </template>

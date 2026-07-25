@@ -184,3 +184,32 @@
 @media (max-width: 719px) {
   .emt-destino-row__toggle { margin-left: 0; }
 }
+
+/* ---------- Pestañas de idioma (ES / EN) en formularios ---------- */
+.emt-lang-tabs { display: flex; flex-wrap: wrap; align-items: center; gap: var(--emt-spacing-sm); background: var(--emt-blanco); border: 1px solid var(--emt-color-border); border-radius: var(--emt-radius-lg); padding: var(--emt-spacing-sm); margin-bottom: var(--emt-spacing-lg); position: sticky; top: 64px; z-index: 20; }
+.emt-lang-tab { font-family: var(--emt-font-display); font-weight: var(--emt-fw-semibold); font-size: var(--emt-fs-sm); padding: 0.5rem 1.15rem; border: 1px solid var(--emt-color-border); border-radius: var(--emt-radius-md); background: var(--emt-gris-claro); color: var(--emt-azul-profundo); cursor: pointer; transition: background var(--emt-transition-fast); }
+.emt-lang-tab:not(.is-active):hover { background: #fff; }
+.emt-lang-tab.is-active { background: var(--emt-azul-brillante); border-color: var(--emt-azul-brillante); color: #fff; }
+.emt-lang-tabs__hint { font-size: var(--emt-fs-xs); color: var(--emt-color-text-muted); flex: 1 1 260px; min-width: 200px; }
+
+/* Visibilidad por idioma. Por defecto (ES) se ocultan los campos en inglés. */
+.emt-i18n-en { display: none; }
+.emt-form--lang-en .emt-i18n-es { display: none; }
+.emt-form--lang-en .emt-i18n-en { display: revert; }
+
+/* ---------- Gestor de clasificación (términos) ---------- */
+.emt-tax-add { display: flex; gap: var(--emt-spacing-sm); margin-bottom: var(--emt-spacing-md); flex-wrap: wrap; }
+.emt-tax-add__input { flex: 1; min-width: 200px; padding: 0.55rem 0.8rem; border: 1px solid var(--emt-color-border); border-radius: var(--emt-radius-md); font-size: var(--emt-fs-base); font-family: var(--emt-font-body); }
+.emt-tax-list { display: flex; flex-direction: column; gap: var(--emt-spacing-sm); }
+.emt-term-row { display: flex; align-items: center; gap: var(--emt-spacing-md); padding: 0.5rem 0.75rem; border: 1px solid var(--emt-color-border); border-radius: var(--emt-radius-md); background: var(--emt-blanco); }
+.emt-term-row__name { flex: 1; min-width: 0; padding: 0.45rem 0.6rem; border: 1px solid transparent; border-radius: var(--emt-radius-sm); font-size: var(--emt-fs-base); font-family: var(--emt-font-body); background: var(--emt-gris-claro); color: var(--emt-azul-profundo); }
+.emt-term-row__name:hover { border-color: var(--emt-color-border); }
+.emt-term-row__name:focus { border-color: var(--emt-azul-brillante); background: #fff; outline: none; }
+.emt-term-row__count { font-size: var(--emt-fs-xs); color: var(--emt-color-text-muted); white-space: nowrap; }
+.emt-term-row__msg { font-size: var(--emt-fs-xs); color: #4e7a16; white-space: nowrap; min-width: 0; }
+.emt-term-row__msg.is-err { color: var(--emt-color-danger); }
+.emt-term-row.is-removing { opacity: 0.4; }
+@media (max-width: 600px) {
+  .emt-term-row { flex-wrap: wrap; }
+  .emt-term-row__name { flex: 1 1 100%; }
+}

@@ -10,7 +10,7 @@ $nav  = array(
     'dashboard'     => array( 'Inicio', 'dashicons-dashboard', null ),
     'tours'         => array( 'Tours', 'dashicons-palmtree', (int) $tc->publish + (int) $tc->draft ),
     'asesores'      => array( 'Asesores', 'dashicons-businessperson', (int) $ac->publish + (int) $ac->draft ),
-    'destinos'      => array( 'Destinos', 'dashicons-location-alt', $dc ),
+    'destinos'      => array( 'Clasificación', 'dashicons-category', $dc ),
     'blog'          => array( 'Blog', 'dashicons-admin-post', (int) $bc->publish + (int) $bc->draft ),
     'configuracion' => array( 'Configuración', 'dashicons-admin-settings', null ),
 );
