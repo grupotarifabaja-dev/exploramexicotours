@@ -16,10 +16,19 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 $emt_term = get_queried_object();
 $emt_tax  = isset( $emt_term->taxonomy ) ? $emt_term->taxonomy : '';
 
-// Foto solo en destinos (campo editable imagen_destino, respaldo a foto de tour).
-$emt_hero_img = ( $emt_tax === 'tour_destino' && function_exists( 'emt_destino_image_url' ) )
-    ? emt_destino_image_url( $emt_term, 'large' )
-    : '';
+// Foto de cabecera por término.
+//  - Destino: portada editable con respaldo a la foto de un tour del destino.
+//  - Categoría / Experiencia: solo la portada explícita del término (sin respaldo
+//    automático, para no poner fotos sorpresa donde el cliente no eligió una).
+$emt_hero_img = '';
+if ( $emt_tax === 'tour_destino' && function_exists( 'emt_destino_image_url' ) ) {
+    $emt_hero_img = emt_destino_image_url( $emt_term, 'large' );
+} elseif ( function_exists( 'get_field' ) ) {
+    $emt_portada = get_field( 'imagen_destino', $emt_term );
+    if ( is_array( $emt_portada ) ) {
+        $emt_hero_img = $emt_portada['sizes']['large'] ?? ( $emt_portada['url'] ?? '' );
+    }
+}
 
 // Eyebrow por taxonomía.
 $emt_eyebrow_keys = array(

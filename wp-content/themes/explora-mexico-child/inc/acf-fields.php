@@ -251,13 +251,29 @@ function emt_acf_register_field_groups() {
         'description' => 'Configuración global EMT (doc maestro §6.4). Registrado por código.',
     ) );
 
-    // Imagen por destino (term meta de tour_destino). Editable en wp-admin
-    // (Tours → Destinos → editar término). Usada en las cards de destinos del home.
+    // Portada del término (imagen editable) — Destinos, Categorías y Experiencias.
+    // Se usa en el mega-menú, la cabecera de la página del término y las cards del
+    // home (cascada en emt_destino_image_url: portada → foto de un tour → degradado).
     acf_add_local_field_group( array(
-        'key'    => 'group_emt_destino',
+        'key'    => 'group_emt_term_portada',
+        'title'  => 'Portada del término',
+        'fields' => array(
+            array( 'key' => 'field_emt_destino_imagen', 'label' => 'Portada (imagen)', 'name' => 'imagen_destino', 'type' => 'image', 'return_format' => 'array', 'instructions' => 'Foto representativa del término (destino, categoría o experiencia) para el mega-menú y su página. Si se deja vacía, se usa la foto de un tour.' ),
+        ),
+        'location' => array(
+            array( array( 'param' => 'taxonomy', 'operator' => '==', 'value' => 'tour_destino' ) ),
+            array( array( 'param' => 'taxonomy', 'operator' => '==', 'value' => 'tour_categoria' ) ),
+            array( array( 'param' => 'taxonomy', 'operator' => '==', 'value' => 'tour_experiencia' ) ),
+        ),
+        'active'      => true,
+        'description' => 'Portada por término (3 taxonomías). Registrado por código.',
+    ) );
+
+    // Destacado en home — SOLO Destinos (sección "Destinos imperdibles").
+    acf_add_local_field_group( array(
+        'key'    => 'group_emt_destino_destacado',
         'title'  => 'Destino',
         'fields' => array(
-            array( 'key' => 'field_emt_destino_imagen', 'label' => 'Imagen del destino', 'name' => 'imagen_destino', 'type' => 'image', 'return_format' => 'array', 'instructions' => 'Foto representativa del destino para las cards del home. Si se deja vacía, se usa la foto destacada de un tour del destino.' ),
             array( 'key' => 'field_emt_destino_destacado', 'label' => 'Destacado en home', 'name' => 'destacado', 'type' => 'true_false', 'default_value' => 0, 'ui' => 1, 'instructions' => 'Muestra este destino en la sección "Destinos imperdibles" del inicio. Si ninguno está marcado, el inicio usa los destinos con más tours.' ),
         ),
         'location' => array(

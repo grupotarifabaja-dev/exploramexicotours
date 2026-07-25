@@ -530,3 +530,33 @@ add_action( 'wp_ajax_emt_panel_term_delete', function () {
     }
     wp_send_json_success( array( 'msg' => 'Eliminado.' ) );
 } );
+
+/* ============================================================
+   CLASIFICACIÓN — portada por término (3 taxonomías) + destacado (solo destino).
+   Guardado inmediato desde cada fila del gestor de clasificación.
+   ============================================================ */
+add_action( 'wp_ajax_emt_panel_term_portada', function () {
+    emt_panel_guard( 'edit_tours' );
+    $tax = emt_panel_term_tax();
+    $tid = (int) ( $_POST['term_id'] ?? 0 );
+    $img = (int) ( $_POST['image_id'] ?? 0 );
+    $term = $tid ? get_term( $tid, $tax ) : null;
+    if ( ! $term || is_wp_error( $term ) ) {
+        wp_send_json_error( array( 'msg' => 'Elemento no encontrado.' ), 404 );
+    }
+    update_field( 'imagen_destino', $img ?: '', $term );
+    $thumb = $img ? wp_get_attachment_image_url( $img, 'medium' ) : '';
+    wp_send_json_success( array( 'msg' => $img ? 'Portada guardada' : 'Portada quitada', 'thumb' => $thumb ?: '' ) );
+} );
+
+add_action( 'wp_ajax_emt_panel_term_destacado', function () {
+    emt_panel_guard( 'edit_tours' );
+    $tid = (int) ( $_POST['term_id'] ?? 0 );
+    $on  = empty( $_POST['on'] ) ? 0 : 1;
+    $term = $tid ? get_term( $tid, 'tour_destino' ) : null;
+    if ( ! $term || is_wp_error( $term ) ) {
+        wp_send_json_error( array( 'msg' => 'Destino no encontrado.' ), 404 );
+    }
+    update_field( 'destacado', $on, $term );
+    wp_send_json_success( array( 'msg' => $on ? 'Destacado activado' : 'Destacado quitado' ) );
+} );

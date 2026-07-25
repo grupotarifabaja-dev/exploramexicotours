@@ -202,11 +202,20 @@
     });
 
     /* ---------- Clasificación: crear / renombrar / eliminar términos ---------- */
-    function emtTermRowHtml(id, name, count) {
+    function emtTermRowHtml(id, name, count, withDest) {
       var tours = count + ' tour' + (count === 1 ? '' : 's');
+      var dest = withDest ?
+        '<label class="emt-term-row__dest"><input type="checkbox" data-term-destacado value="1" /> <span>Destacado en home</span></label>' : '';
       return '<div class="emt-term-row" data-term-id="' + id + '">' +
         '<input type="text" class="emt-term-row__name" value="' + $('<i>').text(name).html() + '" data-term-name aria-label="Nombre" />' +
         '<span class="emt-term-row__count">' + tours + '</span>' +
+        '<div class="emt-term-row__portada emt-image emt-image--xs" data-term-image>' +
+          '<div class="emt-image__preview" data-image-preview></div>' +
+          '<input type="hidden" value="0" data-image-input />' +
+          '<button type="button" class="emt-panel__btn emt-panel__btn--sm" data-term-portada-add>Portada</button>' +
+          '<button type="button" class="emt-panel__btn emt-panel__btn--sm emt-panel__btn--danger" data-term-portada-remove style="display:none;">Quitar</button>' +
+        '</div>' +
+        dest +
         '<span class="emt-term-row__msg" data-term-msg></span>' +
         '<button type="button" class="emt-panel__btn emt-panel__btn--sm emt-panel__btn--danger" data-term-delete>Eliminar</button>' +
         '</div>';
@@ -223,7 +232,8 @@
         .done(function (res) {
           if (res && res.success && res.data) {
             $mgr.find('[data-tax-empty]').hide();
-            $mgr.find('[data-tax-list]').append(emtTermRowHtml(res.data.term_id, res.data.name, res.data.count || 0));
+            var withDest = String($mgr.data('has-destacado')) === '1';
+            $mgr.find('[data-tax-list]').append(emtTermRowHtml(res.data.term_id, res.data.name, res.data.count || 0, withDest));
             $input.val('').trigger('focus');
           } else {
             window.alert((res && res.data && res.data.msg) || 'No se pudo crear.');
@@ -274,6 +284,62 @@
           }
         })
         .fail(function () { $row.removeClass('is-removing'); window.alert('Error de conexión.'); });
+    });
+
+    /* ---------- Portada por término (guarda al elegir la imagen) ---------- */
+    $(document).on('click', '[data-term-portada-add]', function (e) {
+      e.preventDefault();
+      if (typeof wp === 'undefined' || !wp.media) { return; }
+      var $wrap = $(this).closest('[data-term-image]');
+      var $row = $(this).closest('.emt-term-row');
+      var tax = $row.closest('[data-tax]').data('tax');
+      var id = $row.data('term-id');
+      var frame = wp.media({ title: 'Selecciona la portada', multiple: false, library: { type: 'image' } });
+      frame.on('select', function () {
+        var a = frame.state().get('selection').first().toJSON();
+        var thumb = (a.sizes && a.sizes.thumbnail) ? a.sizes.thumbnail.url : a.url;
+        $wrap.find('[data-image-preview]').html('<img src="' + thumb + '" alt="" />');
+        $wrap.find('[data-image-input]').val(a.id);
+        $wrap.find('[data-term-portada-remove]').show();
+        var $msg = $row.find('[data-term-msg]').removeClass('is-err').text('Guardando…');
+        $.post(EMTPanel.ajax, { action: 'emt_panel_term_portada', nonce: EMTPanel.nonce, taxonomy: tax, term_id: id, image_id: a.id })
+          .done(function (res) {
+            if (res && res.success) { $msg.text('Portada guardada ✓'); setTimeout(function(){ $msg.text(''); }, 1600); }
+            else { $msg.addClass('is-err').text((res && res.data && res.data.msg) || 'Error'); }
+          })
+          .fail(function () { $msg.addClass('is-err').text('Sin conexión'); });
+      });
+      frame.open();
+    });
+    $(document).on('click', '[data-term-portada-remove]', function () {
+      var $wrap = $(this).closest('[data-term-image]');
+      var $row = $(this).closest('.emt-term-row');
+      var tax = $row.closest('[data-tax]').data('tax');
+      var id = $row.data('term-id');
+      $wrap.find('[data-image-preview]').empty();
+      $wrap.find('[data-image-input]').val('0');
+      $(this).hide();
+      var $msg = $row.find('[data-term-msg]').removeClass('is-err').text('Guardando…');
+      $.post(EMTPanel.ajax, { action: 'emt_panel_term_portada', nonce: EMTPanel.nonce, taxonomy: tax, term_id: id, image_id: 0 })
+        .done(function (res) {
+          if (res && res.success) { $msg.text('Portada quitada ✓'); setTimeout(function(){ $msg.text(''); }, 1600); }
+          else { $msg.addClass('is-err').text((res && res.data && res.data.msg) || 'Error'); }
+        })
+        .fail(function () { $msg.addClass('is-err').text('Sin conexión'); });
+    });
+
+    /* ---------- Destacado en home (solo destinos, guarda al momento) ---------- */
+    $(document).on('change', '[data-term-destacado]', function () {
+      var $row = $(this).closest('.emt-term-row');
+      var id = $row.data('term-id');
+      var on = $(this).is(':checked') ? 1 : 0;
+      var $msg = $row.find('[data-term-msg]').removeClass('is-err').text('Guardando…');
+      $.post(EMTPanel.ajax, { action: 'emt_panel_term_destacado', nonce: EMTPanel.nonce, term_id: id, on: on })
+        .done(function (res) {
+          if (res && res.success) { $msg.text('Guardado ✓'); setTimeout(function(){ $msg.text(''); }, 1600); }
+          else { $msg.addClass('is-err').text((res && res.data && res.data.msg) || 'Error'); }
+        })
+        .fail(function () { $msg.addClass('is-err').text('Sin conexión'); });
     });
   });
 })(jQuery);
