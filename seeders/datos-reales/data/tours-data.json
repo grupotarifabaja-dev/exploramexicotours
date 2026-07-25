@@ -7,9 +7,7 @@
       "destino": "San Luis Potosí",
       "categoria": "Cultural",
       "experiencias": [
-        "Día de Muertos",
-        "Aventura y naturaleza",
-        "Cultura"
+        "Día de Muertos"
       ],
       "descripcion_breve": "Déjate sorprender por los escenarios acuáticos de la Huasteca Potosina y la festividad del Xantolo (día de muertos) que se celebra con ofrendas, altares, música, baile y gastronomía creando una atmósfera de respeto, alegría y memoria.",
       "descripcion_breve_en": "Be amazed by the water landscapes of the Huasteca Potosina and the Xantolo festival (Day of the Dead) celebrated with offerings, altars, music, dance and gastronomy, creating an atmosphere of respect, joy and memory.",
@@ -80,7 +78,7 @@
       "categoria": "Cultural",
       "experiencias": [
         "Día de Muertos",
-        "Cultura"
+        "Pueblos Mágicos"
       ],
       "descripcion_breve": "Dentro del conjunto de manifestaciones culturales de Michoacán destacan las relacionadas con el Día de Muertos, particularmente en las comunidades indígenas Purépecha, un ritual con profunda significación más allá de su vistosidad.",
       "descripcion_breve_en": "Among Michoacán's cultural expressions, those related to the Day of the Dead stand out, particularly in the indigenous Purépecha communities — a ritual with deep meaning beyond its visual beauty.",
@@ -144,8 +142,7 @@
       "destino": "Ciudad de México",
       "categoria": "Cultural",
       "experiencias": [
-        "Día de Muertos",
-        "Cultura"
+        "Día de Muertos"
       ],
       "descripcion_breve": "El barrio mágico de Mixquic da la bienvenida a los fieles difuntos con las tradicionales ofrendas llenas de comida, bebidas y objetos personales de las personas fallecidas \"La alumbrada\". Todas las casas se impregnan del olor que desprende la flor de cempasúchil, las frutas, el sahumerio con incienso y las veladoras. Apreciarás esta tradición milenaria 100 % mexicana, donde el culto y costumbres hacia la muerte se conjuntan y hacen de ésta una experiencia única en el mundo.",
       "descripcion_breve_en": "",
@@ -195,10 +192,9 @@
       "titulo_en": "Copper Canyon",
       "slug": "barrancas-del-cobre",
       "destino": "Chihuahua",
-      "categoria": "Cultural",
+      "categoria": "Ecoturismo",
       "experiencias": [
-        "Aventura y naturaleza",
-        "Cultura"
+        "Naturaleza y paisajes"
       ],
       "descripcion_breve": "Barrancas del Cobre es un impresionante sistema de cañones ubicado en Chihuahua, reconocido por su belleza natural, su biodiversidad y riqueza cultural. Con paisajes espectaculares, miradores únicos y un ferrocarril que atraviesa la sierra y la montaña, es uno de los destinos imperdibles de México.",
       "descripcion_breve_en": "",
@@ -282,11 +278,7 @@
       "slug": "oaxaca-ciudad",
       "destino": "Oaxaca",
       "categoria": "Cultural",
-      "experiencias": [
-        "Cultura",
-        "Gastronómico",
-        "Aventura y naturaleza"
-      ],
+      "experiencias": [],
       "descripcion_breve": "Un destino lleno de cultura, gastronomía y arte que posiciona a Oaxaca como uno de los favoritos en México. La riqueza de la cocina oaxaqueña enamora a cualquiera, sus edificios conservan la arquitectura colonial, coloridos murales y el arte del barro negro y los alebrijes.",
       "descripcion_breve_en": "",
       "precio_desde": null,
@@ -359,7 +351,7 @@
       "destino": "Oaxaca",
       "categoria": "Aventura",
       "experiencias": [
-        "Aventura y naturaleza"
+        "Naturaleza y paisajes"
       ],
       "descripcion_breve": "Las playas de Oaxaca son un destino de la costa del Pacífico que se caracteriza por sus atractivos naturales, aguas cálidas y ambiente relajado. Aquí podrás disfrutar de espectaculares atardeceres, gastronomía local y aguas cristalinas.",
       "descripcion_breve_en": "",
@@ -412,8 +404,7 @@
       "destino": "Chiapas",
       "categoria": "Aventura",
       "experiencias": [
-        "Aventura y naturaleza",
-        "Cultura"
+        "Naturaleza y paisajes"
       ],
       "descripcion_breve": "Chiapas es el estado con más contrastes culturales y naturales, engloba ecosistemas tan diversos que lo convierten en uno de los favoritos para visitar en nuestro país. Un lugar fascinante lleno de naturaleza, tradiciones y colores.",
       "descripcion_breve_en": "",
@@ -488,7 +479,7 @@
       "destino": "Querétaro – Guanajuato – Michoacán",
       "categoria": "Cultural",
       "experiencias": [
-        "Cultura"
+        "Pueblos Mágicos"
       ],
       "descripcion_breve": "Explora el corazón colonial de México. Recorre los encantadores callejones de Guanajuato, admira la elegancia histórica de Querétaro y descubre la riqueza cultural de Michoacán. Tres estados del centro de México que comparten historia, arquitectura virreinal y cultura.",
       "descripcion_breve_en": "",
@@ -572,10 +563,10 @@
       "titulo_en": "Tequila Tour “Tradition with Distinction”",
       "slug": "tour-tequila-tradicion-con-distincion",
       "destino": "Jalisco",
-      "categoria": "Cultural",
+      "categoria": "Gastronómico",
       "experiencias": [
-        "Cultura",
-        "Gastronómico"
+        "Ruta del Tequila",
+        "Pueblos Mágicos"
       ],
       "descripcion_breve": "Disfruta de un recorrido diseñado para quienes buscan experiencias memorables, transportación de lujo, gastronomía selecta, atención personalizada y acceso a la auténtica cultura tequilera. Descubre el arte del tequila artesanal mediante una experiencia inmersiva en nuestra destilería familiar y aprende los secretos detrás de nuestro tequila premium y conecta con el origen. Te recibimos con cantarito en mano, conoce el cuidado y cultivo de la planta de agave, visita la destilería donde conocerás de mano de los expertos el proceso de destilación y concluye con una cata guiada de 3 de nuestras expresiones: tequila blanco, tequila reposado y tequila añejo.",
       "precio_desde": null,
@@ -664,10 +655,10 @@
       "titulo_en": "Tequila Tour on the José Cuervo Express Train (Sunset)",
       "slug": "tour-tequila-jose-cuervo-express",
       "destino": "Jalisco",
-      "categoria": "Cultural",
+      "categoria": "Gastronómico",
       "experiencias": [
-        "Cultura",
-        "Gastronómico"
+        "Ruta del Tequila",
+        "Pueblos Mágicos"
       ],
       "descripcion_breve": "Explora Tequila en una experiencia inolvidable en el ¡José Cuervo Express! El único tren de pasajeros estilo antiguo de todo México, el mejor modo de vivir el pueblo de Tequila y los impresionantes paisajes de los campos de agave, patrimonio natural de la humanidad. Conocerás el Pueblo Mágico de Tequila con un día repleto de actividades: juegos, música, espectáculo, y aprenderás todo sobre la producción del tequila.",
       "precio_desde": null,
@@ -782,10 +773,10 @@
       "titulo_en": "Tequila Tour & “La Rojeña” José Cuervo Distillery",
       "slug": "tour-tequila-la-rojena",
       "destino": "Jalisco",
-      "categoria": "Cultural",
+      "categoria": "Gastronómico",
       "experiencias": [
-        "Cultura",
-        "Gastronómico"
+        "Ruta del Tequila",
+        "Pueblos Mágicos"
       ],
       "descripcion_breve": "Explora la región de Jalisco, cuna de la bebida nacional, reconocida en México y el mundo, la cual lleva su mismo nombre: ¡Tequila! Podrás recorrer su plaza, caminar por sus calles y tomar fotografías de sus bellos paisajes. Visitarás una destilería y conocerás sus impresionantes instalaciones que brindan experiencias únicas. También aprenderás a detalle sobre el proceso de elaboración de esta bebida para finalmente degustar los tequilas que ahí se elaboran.",
       "precio_desde": null,
@@ -898,10 +889,10 @@
       "titulo_en": "Jornalero Tequila Tour",
       "slug": "tour-tequila-jornalero",
       "destino": "Jalisco",
-      "categoria": "Cultural",
+      "categoria": "Gastronómico",
       "experiencias": [
-        "Cultura",
-        "Gastronómico"
+        "Ruta del Tequila",
+        "Pueblos Mágicos"
       ],
       "descripcion_breve": "Explora el lugar que da vida al Tequila, y conoce las manos involucradas detrás de cada trago de tu copa. Caminemos justo donde inicia la cadena productiva de este espirituoso: en los campos de agave. Échales un vistazo a las labores del campo y vive una experiencia gastronómica al estilo de los jornaleros. Conocerás el proceso de producción, desde la plantación hasta la destilación, para lograr entender cada una de las expresiones de este espirituoso. ¡Te adentrarás en la cultura tequilera!",
       "precio_desde": null,
@@ -1023,10 +1014,10 @@
       "titulo_en": "Tequila Within Reach Tour",
       "slug": "tour-tequila-a-tu-alcance",
       "destino": "Jalisco",
-      "categoria": "Cultural",
+      "categoria": "Gastronómico",
       "experiencias": [
-        "Cultura",
-        "Gastronómico"
+        "Ruta del Tequila",
+        "Pueblos Mágicos"
       ],
       "descripcion_breve": "Explora la magia de Tequila en una experiencia accesible y llena de tradición. Recorre los paisajes agaveros, conoce el proceso de elaboración, disfruta de una degustación y explora el encantador pueblo de Tequila a tu propio ritmo. Un tour diseñado para quienes desean vivir la cultura tequilera, divertirse y crear recuerdos inolvidables.",
       "precio_desde": 986,
@@ -1142,11 +1133,11 @@
       "titulo_en": "Tequilero to the Bone Tour",
       "slug": "tour-tequilero-hasta-los-huesos",
       "destino": "Jalisco",
-      "categoria": "Cultural",
+      "categoria": "Gastronómico",
       "experiencias": [
-        "Cultura",
+        "Ruta del Tequila",
         "Día de Muertos",
-        "Gastronómico"
+        "Pueblos Mágicos"
       ],
       "descripcion_breve": "Explora la magia del Día de Muertos en Tequila y el festival “Tequilero hasta los huesos”, donde disfrutarás de un espectacular desfile de catrinas, altares, ofrendas tradicionales, música en vivo, gastronomía típica y todo el encanto de la cultura mexicana. Tour compartido con disponibilidad de máximo 18 espacios.",
       "precio_desde": null,
@@ -1257,7 +1248,10 @@
       "descripcion_breve": "Explora el Lago de Chapala, el lago más grande de México. Está situado entre los estados de Jalisco y Michoacán, es magnífico por su agradable clima y sus hermosos paisajes. En su bella ribera se encuentran Chapala y Ajijic, dos encantadores pueblos con mucha tranquilidad que ofrecer. Chapala cuenta con un precioso malecón, perfecto para capturar el azul del cielo y del lago. Sin dejar atrás a Ajijic, pueblo mágico que encanta por su sencillez y sus coloridas calles.",
       "destino": "Jalisco",
       "categoria": "Cultural",
-      "experiencias": [],
+      "experiencias": [
+        "Pueblos Mágicos",
+        "Naturaleza y paisajes"
+      ],
       "dificultad": "facil",
       "idiomas": [
         "es",
@@ -1310,7 +1304,10 @@
       "descripcion_breve": "Explora Mazamitla “Lugar de Venados”, también conocido como la Suiza Mexicana por sus paisajes montañosos y su bosque de encanto. En este Pueblo Mágico podrás caminar por las calles del pueblo entre sus encantadoras viviendas y visitar la plaza principal. Además, emprende la aventura por la Sierra del Tigre y visita productores locales. Vive una experiencia única en la Sierra del Tigre de hermosos paisajes, y aprecia toda la majestuosidad del bosque y lo encantador del pueblo. Por la tarde tendrás oportunidad de caminar por sus calles o pasear en un vehículo todo terreno y conocer sus mejores vistas y alrededores.",
       "destino": "Jalisco",
       "categoria": "Ecoturismo",
-      "experiencias": [],
+      "experiencias": [
+        "Pueblos Mágicos",
+        "Naturaleza y paisajes"
+      ],
       "dificultad": "facil",
       "idiomas": [
         "es",
@@ -1367,7 +1364,9 @@
       "descripcion_breve": "El cañón de Comala en el municipio de Chiquilistlán Jalisco es un impresionante paraíso natural rodeado de montañas cascadas y pozas naturales de agua cristalina. Se reconoce por tener formaciones rocosas y ser uno de los destinos para realizar cañonismo, esta actividad se conforma de un barranco con muchos saltos al agua entre 2 a 14 metros opcionales, 3 toboganes naturales entre 3 y 12 metros y un gran rappel de 17 metros sobre cascada, una aventura acuática con pozas azul turquesa ideal para principiantes y amantes de la aventura.",
       "destino": "Jalisco",
       "categoria": "Aventura",
-      "experiencias": [],
+      "experiencias": [
+        "Naturaleza y paisajes"
+      ],
       "dificultad": "alta",
       "idiomas": [
         "es",
@@ -1424,7 +1423,9 @@
       "descripcion_breve": "Explora la magia del día de Muertos en Guadalajara con sus múltiples actividades culturales y descubre Calaverandia, el parque temático que da vida a una de las tradiciones más emblemáticas de México. Disfruta de altares, ofrendas, un cementerio que actualmente es un museo, un tianguis mexicano dedicado exclusivamente a la venta de artesanías y de todo lo relacionado al armado de altares de muertos, un ambiente lleno de color y tradición.",
       "destino": "Jalisco",
       "categoria": "Cultural",
-      "experiencias": [],
+      "experiencias": [
+        "Día de Muertos"
+      ],
       "dificultad": "facil",
       "idiomas": [
         "es"
@@ -1533,8 +1534,10 @@
       "slug": "vinedos-de-chapala",
       "descripcion_breve": "La ruta del vino de Chapala es una experiencia turística que combina paisajes, gastronomía regional y viñedos, durante el recorrido tendremos la oportunidad de visitar uno de los viñedos con espectaculares vistas al lago, tomar fotografías y degustar sus vinos en un ambiente relajado al finalizar tendremos tiempo de comida libre en Ajijic.",
       "destino": "Jalisco",
-      "categoria": "Gastronomía",
-      "experiencias": [],
+      "categoria": "Gastronómico",
+      "experiencias": [
+        "Naturaleza y paisajes"
+      ],
       "dificultad": "facil",
       "idiomas": [
         "es",
@@ -1590,7 +1593,10 @@
       "descripcion_breve": "La isla de Mezcala también conocida como Isla del Presidio, se localiza en frente al poblado de Mezcala de la Asunción, este lugar fue utilizado como punto estratégico del ejercito a manera de fuerte defensivo contra el gobierno español. Posteriormente El Presidio funcionó de 1826 a 1855 para los pueblos cercanos al Lago de Chapala de Jalisco y de Michoacán, donde la mayor parte de los criminales llegaban al Presidio de Mezcala acusados por crímenes de violación, al finalizar el recorrido continuamos nuestra visita con una parada para comida en Ajijic pueblo mágico que encanta por su sencillez, su malecón y coloridas calles.",
       "destino": "Jalisco",
       "categoria": "Cultural",
-      "experiencias": [],
+      "experiencias": [
+        "Pueblos Mágicos",
+        "Naturaleza y paisajes"
+      ],
       "dificultad": "facil",
       "idiomas": [
         "es",
@@ -1645,7 +1651,9 @@
       "descripcion_breve_en": "",
       "destino": "Jalisco",
       "categoria": "Ecoturismo",
-      "experiencias": [],
+      "experiencias": [
+        "Naturaleza y paisajes"
+      ],
       "dificultad": "moderada",
       "idiomas": [
         "es",
@@ -1701,7 +1709,9 @@
       "descripcion_breve_en": "",
       "destino": "Jalisco",
       "categoria": "Aventura",
-      "experiencias": [],
+      "experiencias": [
+        "Naturaleza y paisajes"
+      ],
       "dificultad": "moderada",
       "idiomas": [
         "es",
