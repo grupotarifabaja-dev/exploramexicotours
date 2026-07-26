@@ -38,7 +38,8 @@
    "Waterfall cliff-jumping activity at Micos",
    "Las Ánimas Festival in Tamasopo (evening event)",
    "Insurance for nature activities"
-  ]
+  ],
+  "precio_nota_en": "Child 6-12. Adult from $6,019 (TPL) / $6,389 (DBL)."
  },
  "dia-de-muertos-michoacan": {
   "titulo_en": "Day of the Dead in Michoacán",
@@ -76,7 +77,8 @@
    "Admission to museums and archaeological sites",
    "Gratuities",
    "Travel medical insurance"
-  ]
+  ],
+  "precio_nota_en": "Child 6-12. Adult from $4,179 (QUAD) / $4,859 (DBL)."
  },
  "dia-de-muertos-en-mixquic": {
   "titulo_en": "Day of the Dead in Mixquic",
@@ -105,7 +107,8 @@
    "Admission to the former convent of San Andrés Apóstol",
    "Gratuities",
    "Travel medical insurance"
-  ]
+  ],
+  "precio_nota_en": "Per-person rate. Subject to availability. Capacity: minimum 2 / maximum 4 (10 spots)."
  },
  "barrancas-del-cobre": {
   "titulo_en": "Copper Canyon",
@@ -158,7 +161,8 @@
    "Activities at the adventure park",
    "Additional tours",
    "Insurance for nature activities"
-  ]
+  ],
+  "precio_nota_en": "Per-person rate (from); availability must be confirmed. Occupancies: DBL/TPL/QUAD adult and Child 6-12."
  },
  "oaxaca-ciudad": {
   "titulo_en": "Oaxaca City",
@@ -203,7 +207,8 @@
    "Personal expenses",
    "Tips",
    "Insurance for nature activities"
-  ]
+  ],
+  "precio_nota_en": "Per-person rate (from); availability must be confirmed. Occupancies: DBL/TPL/QUAD adult and Child 3-12."
  },
  "oaxaca-y-sus-playas": {
   "titulo_en": "Oaxaca and its Beaches",
@@ -232,7 +237,8 @@
    "Personal expenses",
    "Tips",
    "Insurance for nature activities"
-  ]
+  ],
+  "precio_nota_en": "Per-person rate (from); availability must be confirmed. Occupancies: DBL/TPL/QUAD adult and Child 3-12."
  },
  "explora-chiapas": {
   "titulo_en": "Explore Chiapas",
@@ -278,7 +284,8 @@
    "Personal expenses",
    "Tips",
    "Insurance for nature activities"
-  ]
+  ],
+  "precio_nota_en": "Per-person rate (from); availability must be confirmed. Occupancies: DBL/TPL/QUAD adult and Child 3-12."
  },
  "ciudades-coloniales": {
   "titulo_en": "Colonial Cities",
@@ -332,7 +339,8 @@
    "Personal expenses",
    "Tips",
    "Travel medical expense insurance"
-  ]
+  ],
+  "precio_nota_en": "Per-person rate. Maximum 4 people per room, including children. Infants must have an assigned seat."
  },
  "tour-tequila-tradicion-con-distincion": {
   "titulo_en": "Tequila Tour “Tradition with Distinction”",
@@ -363,7 +371,8 @@
   "no_incluye_en": [
    "Personal expenses",
    "Gratuities"
-  ]
+  ],
+  "precio_nota_en": "Price per person based on group size and vehicle. Book minimum 15 days in advance, maximum 3 months. Special requests (marriage proposals, anniversaries, events): contact us. If this distillery isn't of interest to you, book with the distillery of your choice."
  },
  "tour-tequila-jose-cuervo-express": {
   "titulo_en": "Tequila Tour on the José Cuervo Express Train (Sunset)",
@@ -400,7 +409,8 @@
    "Drinks",
    "Personal expenses",
    "Gratuities"
-  ]
+  ],
+  "precio_nota_en": "EXPRESS-class train car. Price per person based on group size. Book 15 days to 3 months in advance. If you're bringing children or minors, contact us for a tailored proposal."
  },
  "tour-tequila-la-rojena": {
   "titulo_en": "Tequila Tour & “La Rojeña” José Cuervo Distillery",
@@ -432,7 +442,8 @@
    "Museum admission",
    "Personal expenses",
    "Gratuities"
-  ]
+  ],
+  "precio_nota_en": "Price per person based on group size. Book minimum 72 hours in advance, maximum 3 months. If you're bringing children or minors, contact us for a tailored proposal."
  },
  "tour-tequila-jornalero": {
   "titulo_en": "Jornalero Tequila Tour",
@@ -469,7 +480,8 @@
    "Museum admission",
    "Personal expenses",
    "Gratuities"
-  ]
+  ],
+  "precio_nota_en": "Price per person based on group size. Book minimum 72 hours in advance, maximum 3 months. Activity not available for guests under 17."
  },
  "tour-tequila-a-tu-alcance": {
   "titulo_en": "Tequila Within Reach Tour",
@@ -502,7 +514,8 @@
    "Museum admission",
    "Personal expenses",
    "Tips"
-  ]
+  ],
+  "precio_nota_en": "Price per person in MXN based on group size and vehicle. Book minimum 72 hours in advance, maximum 3 months. If you're bringing minors, contact us for a tailored option."
  },
  "tour-tequilero-hasta-los-huesos": {
   "titulo_en": "Tequilero to the Bone Tour",
@@ -532,7 +545,8 @@
    "Museum admission",
    "Personal expenses",
    "Tips"
-  ]
+  ],
+  "precio_nota_en": "Shared tour, price per person (2026 edition TBC). Maximum 18 spots. Book minimum 72 hours in advance, maximum 3 months. If you're bringing minors, contact us for a tailored option."
  },
  "guadalajara-y-tlaquepaque": {
   "titulo_en": "Guadalajara and Tlaquepaque",
@@ -560,7 +574,8 @@
   "no_incluye_en": [
    "Meals",
    "personal expenses and tips"
-  ]
+  ],
+  "precio_nota_en": "Rate per vehicle based on occupancy (Sedan, Suburban, Toyota/Urban, Sprinter). Request your quote."
  },
  "chapala-y-ajijic": {
   "titulo_en": "Chapala and Ajijic",
@@ -585,7 +600,8 @@
   "no_incluye_en": [
    "Meals",
    "personal expenses and tips"
-  ]
+  ],
+  "precio_nota_en": "Rate per vehicle based on occupancy (Sedan, Suburban, Toyota/Urban, Sprinter). Request your quote."
  },
  "mazamitla": {
   "titulo_en": "Mazamitla",
@@ -614,7 +630,8 @@
    "Meals",
    "personal expenses",
    "RZR or ATV and gratuities"
-  ]
+  ],
+  "precio_nota_en": "Rate per vehicle based on occupancy (Sedan, Suburban, Toyota/Urban, Sprinter). Request your quote."
  },
  "canonismo-en-jalisco": {
   "titulo_en": "Canyoning in Jalisco",
@@ -643,7 +660,8 @@
    "Breakfast",
    "personal expenses",
    "deductible in case of accident and gratuities"
-  ]
+  ],
+  "precio_nota_en": "Shared service. Request your quote."
  },
  "dia-de-muertos-y-calaverandia": {
   "titulo_en": "Day of the Dead and Calaverandia",
@@ -670,7 +688,8 @@
   "no_incluye_en": [
    "Meals",
    "personal expenses and gratuities"
-  ]
+  ],
+  "precio_nota_en": "Rate per vehicle based on occupancy (Sedan, Suburban, Toyota/Urban, Sprinter). Request your quote."
  },
  "guadalajara-y-modelado-en-barro": {
   "titulo_en": "Guadalajara and Clay Modeling",
@@ -698,7 +717,8 @@
   "no_incluye_en": [
    "Meals",
    "personal expenses and gratuities"
-  ]
+  ],
+  "precio_nota_en": "Rate per vehicle based on occupancy (Sedan, Suburban, Toyota/Urban, Sprinter). Request your quote."
  },
  "vinedos-de-chapala": {
   "titulo_en": "Chapala Vineyards",
@@ -726,7 +746,8 @@
   "no_incluye_en": [
    "Meals",
    "personal expenses and tips"
-  ]
+  ],
+  "precio_nota_en": "Rate per vehicle based on occupancy (Sedan, Suburban, Toyota/Urban, Sprinter). Request your quote."
  },
  "isla-de-mezcala-y-ajijic": {
   "titulo_en": "Isla de Mezcala and Ajijic",
@@ -752,7 +773,8 @@
   "no_incluye_en": [
    "Meals",
    "personal expenses and tips"
-  ]
+  ],
+  "precio_nota_en": "Rate per vehicle based on occupancy (Sedan, Suburban, Toyota/Urban, Sprinter). Request your quote."
  },
  "senderismo-petroglifos-mezcala": {
   "titulo_en": "Hiking and Petroglyphs at Isla de Mezcala",
@@ -781,7 +803,8 @@
    "Meals",
    "deductible",
    "personal expenses and tips"
-  ]
+  ],
+  "precio_nota_en": "Rate per vehicle based on occupancy (Sedan, Suburban, Toyota/Urban). Request your quote."
  },
  "aventura-en-bici-la-primavera": {
   "titulo_en": "Bike Adventure in La Primavera Forest",
@@ -812,6 +835,7 @@
    "Meals",
    "deductible",
    "personal expenses and tips"
-  ]
+  ],
+  "precio_nota_en": "Rate per vehicle based on occupancy (Sedan, Suburban). Request your quote."
  }
 }

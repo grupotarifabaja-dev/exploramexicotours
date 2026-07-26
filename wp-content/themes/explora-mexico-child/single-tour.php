@@ -36,7 +36,7 @@ while ( have_posts() ) :
     $fecha     = emt_get_field( 'fecha_viaje', $id );
     $precios   = function_exists( 'emt_tour_precios' ) ? emt_tour_precios( $id ) : array();
     $precios_veh = function_exists( 'emt_tour_precios_vehiculo' ) ? emt_tour_precios_vehiculo( $id ) : array();
-    $precio_nota = get_field( 'precio_nota', $id );
+    $precio_nota = emt_get_field( 'precio_nota', $id );
 
     $destinos  = get_the_terms( $id, 'tour_destino' );
     $destino   = ( $destinos && ! is_wp_error( $destinos ) ) ? $destinos[0]->name : '';

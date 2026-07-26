@@ -42,6 +42,7 @@ add_action( 'init', function () {
         update_field( 'duracion_texto_en', (string) ( $tr['duracion_texto_en'] ?? '' ), $pid );
         update_field( 'fecha_viaje_en', (string) ( $tr['fecha_viaje_en'] ?? '' ), $pid );
         update_field( 'politica_cancelacion_en', (string) ( $tr['politica_cancelacion_en'] ?? '' ), $pid );
+        update_field( 'precio_nota_en', (string) ( $tr['precio_nota_en'] ?? '' ), $pid );
 
         // Incluye (EN): espeja el icono de la fila ES + texto en inglés por índice.
         $inc    = (array) get_field( 'incluye', $pid );

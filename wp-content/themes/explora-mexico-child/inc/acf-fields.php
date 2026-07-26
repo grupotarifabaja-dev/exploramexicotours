@@ -59,6 +59,7 @@ function emt_acf_register_field_groups() {
             array( 'key' => 'field_emt_tour_precio_menor', 'label' => 'Precio Menor 6-12', 'name' => 'precio_menor', 'type' => 'number', 'required' => 0, 'wrapper' => array( 'width' => '60' ) ),
             array( 'key' => 'field_emt_tour_disp_menor', 'label' => 'Disponibilidad Menor', 'name' => 'disp_menor', 'type' => 'number', 'required' => 0, 'instructions' => 'Asientos', 'wrapper' => array( 'width' => '40' ) ),
             array( 'key' => 'field_emt_tour_precio_nota', 'label' => 'Nota de precios', 'name' => 'precio_nota', 'type' => 'textarea', 'rows' => 2, 'required' => 0, 'instructions' => 'Observaciones (p. ej. "máximo 4 por habitación incluyendo menores").' ),
+            array( 'key' => 'field_emt_tour_precio_nota_en', 'label' => 'Nota de precios (EN)', 'name' => 'precio_nota_en', 'type' => 'textarea', 'rows' => 2, 'required' => 0, 'instructions' => 'Traducción al inglés de la nota de precios. Vacío = se usa el español.' ),
 
             // Modelo alternativo: precios por capacidad de grupo/vehículo (p. ej. tours de Tequila).
             // Coexiste con el de ocupación: un tour usa uno u otro (o ninguno -> "Consultar precio").
