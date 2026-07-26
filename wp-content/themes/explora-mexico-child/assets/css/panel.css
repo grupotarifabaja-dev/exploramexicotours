@@ -226,3 +226,44 @@
   .emt-term-row__portada.emt-image { flex: 1 1 100%; }
   .emt-term-row__dest { flex: 1 1 100%; }
 }
+
+/* ============================================================
+   PULIDO VISUAL DEL PANEL (hovers, colores, tablas, galería)
+   ============================================================ */
+/* Botones: hover con fondo suave (antes solo se elevaban, se veían "planos") */
+.emt-panel__btn:hover { background: var(--emt-gris-claro); }
+.emt-panel__btn--primary:hover { background: var(--emt-color-cta-hover); border-color: var(--emt-color-cta-hover); }
+.emt-panel__btn--ghost:hover { background: rgba(255,255,255,0.14); }
+.emt-panel__btn--danger:hover { background: rgba(230,57,70,0.08); }
+
+/* Botón "Ver en vivo" (turquesa de marca) */
+.emt-panel__btn--live { background: var(--emt-turquesa); border-color: var(--emt-turquesa); color: #fff; }
+.emt-panel__btn--live:hover { background: #0f9c99; border-color: #0f9c99; color: #fff; }
+
+/* Tabla de listado: más aire, hover con tinte de marca, separadores suaves */
+.emt-panel__table-wrap { box-shadow: var(--emt-shadow-sm); }
+.emt-panel__table th, .emt-panel__table td { padding: 14px 16px; border-bottom: 1px solid rgba(0,51,102,0.06); }
+.emt-panel__table tbody tr { transition: background var(--emt-transition-fast); }
+.emt-panel__table tbody tr:hover { background: rgba(0,87,184,0.045); }
+.emt-panel__table tbody tr:last-child td { border-bottom: 0; }
+.emt-panel__thumb { border-radius: var(--emt-radius-md); box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+
+/* Foco visible con anillo de marca en búsquedas e inputs */
+.emt-panel__search input:focus,
+.emt-field input:focus, .emt-field textarea:focus, .emt-field select:focus,
+.emt-tax-add__input:focus, .emt-term-row__name:focus {
+  border-color: var(--emt-azul-brillante); outline: none; box-shadow: 0 0 0 3px rgba(0,87,184,0.12);
+}
+
+/* Galería: arrastrar para reordenar + marca de "Destacada" en la primera */
+.emt-gallery__item { cursor: grab; }
+.emt-gallery__item:active { cursor: grabbing; }
+.emt-gallery__item.is-dragging { opacity: 0.4; outline: 2px dashed var(--emt-azul-brillante); outline-offset: -2px; }
+.emt-gallery__items { min-height: 90px; }
+.emt-gallery__item:first-child::after {
+  content: 'Destacada'; position: absolute; left: 0; right: 0; bottom: 0;
+  background: var(--emt-rosa); color: #fff; font-size: 10px; font-weight: 700;
+  text-align: center; padding: 2px 0; letter-spacing: .02em; pointer-events: none;
+}
+
+/* Encabezado de páginas: foto opcional sobre héroes propios (Nosotros/Transporte) */

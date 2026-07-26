@@ -109,6 +109,31 @@ $hp_url = is_array( $hp ) ? ( $hp['sizes']['medium'] ?? $hp['url'] ?? '' ) : '';
         </div>
     </div>
 
+    <div class="emt-panel-form__section">
+        <h2>Fotos de encabezado de páginas</h2>
+        <p class="emt-field__help" style="margin-bottom:var(--emt-spacing-md);">Imagen opcional para la cabecera de cada página. Si la dejas vacía, se usa el encabezado con degradado. Tamaño sugerido: <strong>1920&times;640 px</strong> (horizontal).</p>
+        <div class="emt-grid-2">
+            <?php
+            $emt_hdr_pages = array( 'nosotros' => 'Nosotros', 'contacto' => 'Contacto', 'cotizacion' => 'Cotización', 'transporte' => 'Transporte', 'blog' => 'Blog' );
+            foreach ( $emt_hdr_pages as $emt_hk => $emt_hlbl ) :
+                $emt_hid  = (int) get_option( 'emt_hdr_' . $emt_hk, 0 );
+                $emt_hurl = $emt_hid ? wp_get_attachment_image_url( $emt_hid, 'medium' ) : '';
+                ?>
+                <div class="emt-field">
+                    <label><?php echo esc_html( $emt_hlbl ); ?></label>
+                    <div class="emt-image" data-image>
+                        <div class="emt-image__preview" data-image-preview><?php if ( $emt_hurl ) : ?><img src="<?php echo esc_url( $emt_hurl ); ?>" alt="" /><?php endif; ?></div>
+                        <input type="hidden" name="hdr_<?php echo esc_attr( $emt_hk ); ?>" value="<?php echo $emt_hid; ?>" data-image-input />
+                        <div class="emt-image__actions">
+                            <button type="button" class="emt-panel__btn emt-panel__btn--sm" data-image-add>Subir / elegir</button>
+                            <button type="button" class="emt-panel__btn emt-panel__btn--sm emt-panel__btn--danger" data-image-remove<?php echo $emt_hid ? '' : ' style="display:none;"'; ?>>Quitar</button>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+
     <div class="emt-panel-form__bar">
         <span class="emt-panel-form__msg" data-form-msg></span>
         <button type="submit" class="emt-panel__btn emt-panel__btn--primary" data-save="save">Guardar cambios</button>

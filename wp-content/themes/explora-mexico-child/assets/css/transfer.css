@@ -178,3 +178,9 @@ html.emt-modal-open { overflow: hidden; }
 
 /* Nota de imágenes de referencia (al pie de la flotilla) */
 .emt-transfer-flotilla-nota { margin: var(--emt-spacing-lg) 0 0; font-size: var(--emt-fs-sm); color: var(--emt-color-text-muted); font-style: italic; text-align: center; }
+
+/* Foto de encabezado opcional (elegida en el panel) */
+.emt-transfer-hero.has-hero-photo { position: relative; isolation: isolate; }
+.emt-transfer-hero .emt-hero-photo { position: absolute; inset: 0; z-index: -2; overflow: hidden; }
+.emt-transfer-hero .emt-hero-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.emt-transfer-hero.has-hero-photo::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(0,20,40,.55), rgba(0,20,40,.80)); }

@@ -19,7 +19,9 @@ $q = new WP_Query( array(
 
 get_header();
 ?>
-<section class="emt-archive-hero emt-archive-hero--plain">
+<?php $emt_hdr = function_exists( 'emt_page_header_image_url' ) ? emt_page_header_image_url( 'blog', 'large' ) : ''; ?>
+<section class="emt-archive-hero <?php echo $emt_hdr ? 'emt-archive-hero--photo' : 'emt-archive-hero--plain'; ?>">
+    <?php if ( $emt_hdr ) : ?><div class="emt-archive-hero__media" aria-hidden="true"><img src="<?php echo esc_url( $emt_hdr ); ?>" alt="" /></div><?php endif; ?>
     <div class="emt-container emt-archive-hero__inner">
         <nav class="emt-breadcrumbs" aria-label="Breadcrumb">
             <ol class="emt-breadcrumbs__list">

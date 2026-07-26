@@ -69,6 +69,7 @@ $itin_ico= array( 'salida' => 'Salida', 'parada' => 'Parada', 'comida' => 'Comid
         <h1><?php echo $editing ? 'Editar tour' : 'Nuevo tour'; ?></h1>
         <p class="emt-panel__head-sub"><a href="<?php echo esc_url( emt_panel_url( 'tours/' ) ); ?>">&larr; Volver a la lista</a></p>
     </div>
+    <?php if ( $editing ) : ?><a class="emt-panel__btn emt-panel__btn--live" href="<?php echo esc_url( get_permalink( $post_id ) ); ?>" target="_blank" rel="noopener">Ver en vivo &#8599;</a><?php endif; ?>
 </div>
 
 <form id="emt-tour-form" data-emt-form data-ajax-action="emt_panel_save_tour" data-required-draft="titulo" data-required-publish="titulo,duracion_texto" data-post-id="<?php echo (int) $post_id; ?>" novalidate>
@@ -260,7 +261,7 @@ $itin_ico= array( 'salida' => 'Salida', 'parada' => 'Parada', 'comida' => 'Comid
         <div class="emt-gallery" data-gallery>
             <div class="emt-gallery__items" data-gallery-items>
                 <?php foreach ( $galeria as $att_id ) : $img = wp_get_attachment_image_url( $att_id, 'thumbnail' ); if ( ! $img ) { continue; } ?>
-                    <div class="emt-gallery__item" data-att="<?php echo (int) $att_id; ?>">
+                    <div class="emt-gallery__item" data-att="<?php echo (int) $att_id; ?>" draggable="true">
                         <img src="<?php echo esc_url( $img ); ?>" alt="" />
                         <button type="button" data-remove-img>&times;</button>
                         <input type="hidden" name="galeria[]" value="<?php echo (int) $att_id; ?>" />
@@ -268,7 +269,7 @@ $itin_ico= array( 'salida' => 'Salida', 'parada' => 'Parada', 'comida' => 'Comid
                 <?php endforeach; ?>
             </div>
             <button type="button" class="emt-panel__btn" data-gallery-add>Subir / elegir fotos</button>
-            <div class="emt-field__help">La primera foto será la imagen destacada.</div>
+            <div class="emt-field__help">Arrastra las fotos para ordenarlas. <strong>La primera es la destacada.</strong></div>
         </div>
     </div>
 

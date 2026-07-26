@@ -372,3 +372,18 @@ function emt_render_blog_loop( $show_featured = true ) {
         );
     }
 }
+
+/**
+ * URL de la foto de encabezado configurada para una página (o '' si no hay).
+ * Se elige desde el panel (Configuración → Fotos de encabezado de páginas).
+ *
+ * @param string $key  nosotros|contacto|cotizacion|transporte|blog
+ * @param string $size Tamaño de imagen.
+ * @return string
+ */
+function emt_page_header_image_url( $key, $size = 'large' ) {
+    $id = (int) get_option( 'emt_hdr_' . sanitize_key( $key ), 0 );
+    if ( ! $id ) { return ''; }
+    $url = wp_get_attachment_image_url( $id, $size );
+    return $url ?: '';
+}

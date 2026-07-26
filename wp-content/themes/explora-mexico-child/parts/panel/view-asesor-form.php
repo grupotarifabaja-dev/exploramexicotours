@@ -45,6 +45,7 @@ $espec_csv   = $tax_csv( 'asesor_especialidad' );
         <h1><?php echo $editing ? 'Editar asesor' : 'Nuevo asesor'; ?></h1>
         <p class="emt-panel__head-sub"><a href="<?php echo esc_url( emt_panel_url( 'asesores/' ) ); ?>">&larr; Volver a la lista</a></p>
     </div>
+    <?php if ( $editing ) : ?><a class="emt-panel__btn emt-panel__btn--live" href="<?php echo esc_url( get_permalink( $post_id ) ); ?>" target="_blank" rel="noopener">Ver en vivo &#8599;</a><?php endif; ?>
 </div>
 
 <form id="emt-asesor-form" data-emt-form data-ajax-action="emt_panel_save_asesor" data-required-draft="titulo" data-required-publish="titulo,puesto,bio_corta,telefono,whatsapp,email" data-post-id="<?php echo (int) $post_id; ?>" novalidate>

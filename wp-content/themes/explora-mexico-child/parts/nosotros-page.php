@@ -113,7 +113,9 @@ get_header();
 ?>
 <main class="emt-nosotros">
 
-    <section class="emt-nosotros-hero">
+    <?php $emt_hdr = function_exists( 'emt_page_header_image_url' ) ? emt_page_header_image_url( 'nosotros', 'large' ) : ''; ?>
+    <section class="emt-nosotros-hero<?php echo $emt_hdr ? ' has-hero-photo' : ''; ?>">
+        <?php if ( $emt_hdr ) : ?><div class="emt-hero-photo" aria-hidden="true"><img src="<?php echo esc_url( $emt_hdr ); ?>" alt="" /></div><?php endif; ?>
         <div class="emt-container">
             <?php if ( function_exists( 'emt_breadcrumbs' ) ) { emt_breadcrumbs(); } ?>
             <div class="emt-heading emt-heading--left emt-nosotros-hero__heading">

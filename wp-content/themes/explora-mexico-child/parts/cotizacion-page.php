@@ -53,7 +53,9 @@ get_header();
 ?>
 <main class="emt-cotiza">
 
-    <section class="emt-archive-hero emt-archive-hero--plain">
+    <?php $emt_hdr = function_exists( 'emt_page_header_image_url' ) ? emt_page_header_image_url( 'cotizacion', 'large' ) : ''; ?>
+    <section class="emt-archive-hero <?php echo $emt_hdr ? 'emt-archive-hero--photo' : 'emt-archive-hero--plain'; ?>">
+        <?php if ( $emt_hdr ) : ?><div class="emt-archive-hero__media" aria-hidden="true"><img src="<?php echo esc_url( $emt_hdr ); ?>" alt="" /></div><?php endif; ?>
         <div class="emt-container emt-archive-hero__inner">
             <?php if ( function_exists( 'emt_breadcrumbs' ) ) { emt_breadcrumbs(); } ?>
             <div class="emt-heading emt-heading--left emt-archive-hero__heading">

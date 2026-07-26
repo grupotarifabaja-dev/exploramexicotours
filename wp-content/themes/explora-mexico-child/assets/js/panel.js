@@ -81,7 +81,7 @@
           var a = att.toJSON();
           var thumb = (a.sizes && a.sizes.thumbnail) ? a.sizes.thumbnail.url : a.url;
           items.append(
-            '<div class="emt-gallery__item" data-att="' + a.id + '">' +
+            '<div class="emt-gallery__item" data-att="' + a.id + '" draggable="true">' +
             '<img src="' + thumb + '" alt="" />' +
             '<button type="button" data-remove-img>&times;</button>' +
             '<input type="hidden" name="galeria[]" value="' + a.id + '" />' +
@@ -341,5 +341,26 @@
         })
         .fail(function () { $msg.addClass('is-err').text('Sin conexión'); });
     });
+
+    /* ---------- Galería: arrastrar para reordenar (la primera = destacada) ---------- */
+    var emtDragEl = null;
+    $(document).on('dragstart', '.emt-gallery__item', function (e) {
+      emtDragEl = this;
+      $(this).addClass('is-dragging');
+      try { e.originalEvent.dataTransfer.effectAllowed = 'move'; e.originalEvent.dataTransfer.setData('text/plain', ''); } catch (err) {}
+    });
+    $(document).on('dragend', '.emt-gallery__item', function () {
+      $(this).removeClass('is-dragging');
+      emtDragEl = null;
+    });
+    $(document).on('dragover', '.emt-gallery__item', function (e) {
+      e.preventDefault();
+      if (!emtDragEl || emtDragEl === this || this.parentNode !== emtDragEl.parentNode) { return; }
+      var r = this.getBoundingClientRect();
+      var before = e.originalEvent.clientY < r.top + r.height / 2 ||
+        (Math.abs(e.originalEvent.clientY - (r.top + r.height / 2)) < 6 && e.originalEvent.clientX < r.left + r.width / 2);
+      this.parentNode.insertBefore(emtDragEl, before ? this : this.nextSibling);
+    });
+    $(document).on('dragover', '[data-gallery-items]', function (e) { e.preventDefault(); });
   });
 })(jQuery);

@@ -90,3 +90,14 @@
 .emt-nosotros-cta__btns { display: flex; gap: var(--emt-spacing-md); justify-content: center; flex-wrap: wrap; }
 .emt-btn--white { background: var(--emt-blanco); color: var(--emt-magenta); }
 .emt-btn--white:hover { background: var(--emt-blanco); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18); }
+
+/* Foto de encabezado opcional (elegida en el panel) */
+.emt-nosotros-hero.has-hero-photo { position: relative; isolation: isolate; }
+.emt-nosotros-hero .emt-hero-photo { position: absolute; inset: 0; z-index: -2; overflow: hidden; }
+.emt-nosotros-hero .emt-hero-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.emt-nosotros-hero.has-hero-photo::after { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(0,51,102,.55), rgba(0,51,102,.78)); }
+.emt-nosotros-hero.has-hero-photo .emt-title,
+.emt-nosotros-hero.has-hero-photo .emt-eyebrow,
+.emt-nosotros-hero.has-hero-photo .emt-nosotros-hero__intro,
+.emt-nosotros-hero.has-hero-photo .emt-breadcrumbs,
+.emt-nosotros-hero.has-hero-photo .emt-breadcrumbs a { color: #fff; }

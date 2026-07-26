@@ -127,7 +127,9 @@ get_header();
 <main class="emt-transfer">
 
     <!-- Hero -->
-    <section class="emt-transfer-hero">
+    <?php $emt_hdr = function_exists( 'emt_page_header_image_url' ) ? emt_page_header_image_url( 'transporte', 'large' ) : ''; ?>
+    <section class="emt-transfer-hero<?php echo $emt_hdr ? ' has-hero-photo' : ''; ?>">
+        <?php if ( $emt_hdr ) : ?><div class="emt-hero-photo" aria-hidden="true"><img src="<?php echo esc_url( $emt_hdr ); ?>" alt="" /></div><?php endif; ?>
         <div class="emt-container emt-transfer-hero__inner">
             <p class="emt-transfer-hero__eyebrow"><?php echo esc_html( $L['hero_eyebrow'] ); ?></p>
             <h1 class="emt-transfer-hero__title">
