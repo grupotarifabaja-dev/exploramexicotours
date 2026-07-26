@@ -267,3 +267,22 @@
 }
 
 /* Encabezado de páginas: foto opcional sobre héroes propios (Nosotros/Transporte) */
+
+/* ---------- Toast de confirmación (guardado / publicado) ---------- */
+.emt-toast {
+  position: fixed; top: 78px; right: 20px; z-index: 1000;
+  display: flex; align-items: center; gap: 10px;
+  background: var(--emt-azul-profundo); color: #fff;
+  font-family: var(--emt-font-display); font-weight: var(--emt-fw-semibold); font-size: var(--emt-fs-sm);
+  padding: 0.8rem 1.15rem; border-radius: var(--emt-radius-md); box-shadow: var(--emt-shadow-xl);
+  opacity: 0; transform: translateY(-10px) scale(.98); transition: opacity .28s ease, transform .28s ease;
+  max-width: min(90vw, 380px);
+}
+.emt-toast.is-in { opacity: 1; transform: translateY(0) scale(1); }
+.emt-toast__ic {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 22px; height: 22px; border-radius: 50%; background: rgba(255,255,255,0.18); flex-shrink: 0; font-size: 13px;
+}
+.emt-toast--pub { background: #2f8f3e; }            /* verde publicado */
+.emt-toast--pub .emt-toast__ic { background: rgba(255,255,255,0.22); }
+@media (max-width: 600px) { .emt-toast { left: 12px; right: 12px; max-width: none; } }

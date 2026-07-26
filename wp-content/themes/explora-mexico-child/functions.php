@@ -43,3 +43,4 @@ require_once $emt_inc . 'blog-seed-trigger.php';
 require_once $emt_inc . 'gestor-trigger.php';
 require_once $emt_inc . 'reasignar-taxonomias.php';
 require_once $emt_inc . 'aplicar-traducciones.php';
+require_once $emt_inc . 'blog-i18n.php';

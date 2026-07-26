@@ -441,6 +441,11 @@ function emt_panel_save_post() {
     $tags     = array_values( array_filter( array_map( 'trim', explode( ',', $tags_raw ) ) ) );
     wp_set_object_terms( $post_id, $tags, 'post_tag', false );
 
+    // Traducciones al inglés (post meta). La web en /en/ las usa con respaldo al español.
+    update_post_meta( $post_id, 'titulo_en', sanitize_text_field( wp_unslash( $_POST['titulo_en'] ?? '' ) ) );
+    update_post_meta( $post_id, 'excerpt_en', sanitize_textarea_field( wp_unslash( $_POST['extracto_en'] ?? '' ) ) );
+    update_post_meta( $post_id, 'contenido_en', wp_kses_post( wp_unslash( $_POST['contenido_en'] ?? '' ) ) );
+
     wp_send_json_success( array(
         'id'      => $post_id,
         'status'  => get_post_status( $post_id ),

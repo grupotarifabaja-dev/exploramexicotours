@@ -151,10 +151,14 @@
         .done(function (res) {
           if (res && res.success) {
             var okMsg = (res.data && res.data.msg) ? res.data.msg : 'Guardado.';
-            if (res.data && res.data.editUrl) {
-              $msg.attr('class', 'emt-panel-form__msg emt-panel-form__msg--ok').text(okMsg + ' Redirigiendo…');
-              window.location.href = res.data.editUrl;
+            var isPub = !!(res.data && res.data.status === 'publish');
+            var editUrl = res.data && res.data.editUrl;
+            var here = location.href.split('?')[0].replace(/\/+$/, '');
+            if (editUrl && editUrl.replace(/\/+$/, '') !== here) {
+              var sep = editUrl.indexOf('?') > -1 ? '&' : '?';
+              window.location.href = editUrl + sep + 'emt_ok=' + encodeURIComponent(okMsg) + '&emt_ok_pub=' + (isPub ? '1' : '0');
             } else {
+              emtToast(okMsg, isPub);
               $msg.attr('class', 'emt-panel-form__msg emt-panel-form__msg--ok').text(okMsg);
             }
           } else {
@@ -198,7 +202,13 @@
       });
     }
     $(document).on('click', '[data-lang-tab]', function () {
-      emtSetFormLang($(this).closest('form'), $(this).data('lang-tab'));
+      var lang = $(this).data('lang-tab');
+      emtSetFormLang($(this).closest('form'), lang);
+      if (lang === 'en' && window.tinymce) {
+        setTimeout(function () {
+          (window.tinymce.editors || []).forEach(function (ed) { try { ed.execCommand('mceRepaint'); } catch (e) {} });
+        }, 30);
+      }
     });
 
     /* ---------- Clasificación: crear / renombrar / eliminar términos ---------- */
@@ -362,5 +372,26 @@
       this.parentNode.insertBefore(emtDragEl, before ? this : this.nextSibling);
     });
     $(document).on('dragover', '[data-gallery-items]', function (e) { e.preventDefault(); });
+
+    /* ---------- Toast de confirmación (guardado / publicado) ---------- */
+    function emtToast(msg, isPub) {
+      var $t = $('<div class="emt-toast" role="status" aria-live="polite"></div>');
+      if (isPub) { $t.addClass('emt-toast--pub'); }
+      $t.append($('<span class="emt-toast__ic" aria-hidden="true"></span>').text('\u2713'));
+      $t.append($('<span></span>').text(msg));
+      $('body').append($t);
+      requestAnimationFrame(function () { $t.addClass('is-in'); });
+      setTimeout(function () { $t.removeClass('is-in'); setTimeout(function () { $t.remove(); }, 320); }, 3500);
+    }
+    // Muestra el toast tras redirigir a la ficha recién creada.
+    (function () {
+      var params = new URLSearchParams(location.search);
+      if (params.get('emt_ok')) {
+        emtToast(params.get('emt_ok'), params.get('emt_ok_pub') === '1');
+        params.delete('emt_ok'); params.delete('emt_ok_pub');
+        var qs = params.toString();
+        try { history.replaceState(null, '', location.pathname + (qs ? '?' + qs : '')); } catch (e) {}
+      }
+    })();
   });
 })(jQuery);
