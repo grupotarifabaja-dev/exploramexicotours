@@ -345,7 +345,7 @@ function emt_panel_save_config() {
     update_field( 'hero_seasonal_cta_url', esc_url_raw( wp_unslash( $_POST['hero_seasonal_cta_url'] ?? '' ) ), 'option' );
 
     // Fotos de encabezado por página (IDs de adjunto, 0 = ninguna).
-    foreach ( array( 'nosotros', 'contacto', 'cotizacion', 'transporte', 'blog' ) as $emt_hk ) {
+    foreach ( array( 'nosotros', 'asesores', 'contacto', 'cotizacion', 'transporte', 'blog' ) as $emt_hk ) {
         update_option( 'emt_hdr_' . $emt_hk, (int) ( $_POST[ 'hdr_' . $emt_hk ] ?? 0 ) );
     }
 

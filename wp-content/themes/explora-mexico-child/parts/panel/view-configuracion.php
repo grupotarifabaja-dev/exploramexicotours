@@ -114,7 +114,7 @@ $hp_url = is_array( $hp ) ? ( $hp['sizes']['medium'] ?? $hp['url'] ?? '' ) : '';
         <p class="emt-field__help" style="margin-bottom:var(--emt-spacing-md);">Imagen opcional para la cabecera de cada página. Si la dejas vacía, se usa el encabezado con degradado. Tamaño sugerido: <strong>1920&times;640 px</strong> (horizontal).</p>
         <div class="emt-grid-2">
             <?php
-            $emt_hdr_pages = array( 'nosotros' => 'Nosotros', 'contacto' => 'Contacto', 'cotizacion' => 'Cotización', 'transporte' => 'Transporte', 'blog' => 'Blog' );
+            $emt_hdr_pages = array( 'nosotros' => 'Nosotros', 'asesores' => 'Asesores', 'contacto' => 'Contacto', 'cotizacion' => 'Cotización', 'transporte' => 'Transporte', 'blog' => 'Blog' );
             foreach ( $emt_hdr_pages as $emt_hk => $emt_hlbl ) :
                 $emt_hid  = (int) get_option( 'emt_hdr_' . $emt_hk, 0 );
                 $emt_hurl = $emt_hid ? wp_get_attachment_image_url( $emt_hid, 'medium' ) : '';
