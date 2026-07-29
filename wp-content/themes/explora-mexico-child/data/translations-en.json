@@ -837,5 +837,69 @@
    "personal expenses and tips"
   ],
   "precio_nota_en": "Rate per vehicle based on occupancy (Sedan, Suburban). Request your quote."
+ },
+ "san-sebastian-y-mascota": {
+  "titulo_en": "San Sebastián del Oeste & Mascota",
+  "descripcion_en": "San Sebastián del Oeste, a Magical Town nestled in the Sierra Madre Occidental, is known for its colonial architecture, cobblestone streets and mining past: the ideal destination to enjoy tranquility, nature and mountain landscapes. Mascota is no less charming: set among mountains, it blends history, nature and gastronomy. Together, both destinations make the perfect weekend escape.",
+  "excerpt_en": "Two Magical Towns in the Sierra Madre: colonial San Sebastián del Oeste and Mascota with its raicilla distillery. 2 days / 1 night from Guadalajara.",
+  "duracion_texto_en": "2 days / 1 night (starts 8:00 a.m. · ends 8:00 p.m.)",
+  "fecha_viaje_en": "Operates every day except December 25 and 31",
+  "precio_nota_en": "Rate per vehicle based on occupancy (Sedan, Suburban, Toyota/Urban, Sprinter). Book minimum 72 hours in advance, maximum 3 months. Request your quote.",
+  "politica_cancelacion_en": "Activity recommended for the whole family. We do not suggest this trip for pregnant women or people with knee or back injuries or recent surgeries. To book we require the full name of all travelers, a cell phone number, and an emergency contact not joining the trip; you can send this information via WhatsApp: (+52)3310480670 or email: reserva@exploramexicotours.com. Please note that from the moment you book, we act solely as intermediaries between you and the contracted services, and you accept their no-show and cancellation conditions as well as any additional terms from the final provider. Explora México Tours, its representatives and the client shall bear no liability for cancellation or suspension of services due to force majeure. Cancellations carry a 30% penalty of the trip's value. Cancellations 45 to 30 days before the trip: 80% penalty. Cancellations 29 to 0 days before the trip: 100% penalty. Same-day cancellations or failure to show up count as a NO-SHOW with a 100% penalty, with no refund or credit toward another trip.",
+  "itinerario_en": [
+   {
+    "titulo_en": "Guadalajara – Mascota – San Sebastián del Oeste",
+    "descripcion_en": "8:00 a.m. passenger pick-up at the agreed point. 11:00 optional stop in Mascota for breakfast. 12:30 departure for San Sebastián. 1:30 p.m. arrival in San Sebastián and free time for lunch. 4:00 p.m. visit to Cerro de la Bufa and the town of Real Alto. 7:00 p.m. return; free evening to rest."
+   },
+   {
+    "titulo_en": "San Sebastián – Mascota – Guadalajara",
+    "descripcion_en": "8:00 a.m. free morning for breakfast and a stroll around town. 11:00 check-out and departure for Mascota. 12:30 arrival in Mascota and visit to a raicilla distillery for a tasting. 1:30 p.m. time for lunch. 4:00 p.m. return to Guadalajara. 8:00 p.m. arrival and hotel drop-off; end of services."
+   }
+  ],
+  "incluye_en": [
+   "Private transportation according to the itinerary",
+   "Certified driver",
+   "Cerro de la Bufa tour",
+   "Visit to a raicilla distillery in Mascota",
+   "1 night's lodging in a traditional Mexican manor house",
+   "VAT"
+  ],
+  "no_incluye_en": [
+   "Food",
+   "Personal expenses",
+   "RZR or ATV rental",
+   "Gratuities"
+  ]
+ },
+ "recuerdo-de-mexico-sesion-fotografica": {
+  "titulo_en": "Memory of Mexico · Photo Session",
+  "descripcion_en": "Dress up and live a unique experience wearing an authentic traditional Mexican outfit, with a photo session in the city's most iconic settings. An activity designed to create unforgettable memories, celebrate Mexico's cultural richness and take home a special image of your trip. Two session types: traditional outfit (year-round) or marigold fields for Day of the Dead (October 20 to November 5).",
+  "excerpt_en": "Wear an authentic traditional Mexican outfit and get a professional photo session in Guadalajara or Tlaquepaque. Includes styling, makeup and digital photos.",
+  "duracion_texto_en": "Half-day activity (1:30–8:00 p.m.)",
+  "fecha_viaje_en": "Traditional outfit: year-round (except December 25 and January 1) · Marigold fields: October 20 to November 5",
+  "precio_nota_en": "Price per person based on session type and group size. Book minimum 15 days in advance, maximum 3 months. Before booking we contact you directly to confirm size and outfit type. Duration may vary depending on the location suggested by the photographer. Request your quote.",
+  "politica_cancelacion_en": "Activity recommended for the whole family. We do not suggest this trip for pregnant women or people with knee or back injuries or recent surgeries. To book we require the full name of all travelers, a cell phone number, and an emergency contact not joining the trip; you can send this information via WhatsApp: (+52)3310480670 or email: reserva@exploramexicotours.com. Please note that from the moment you book, we act solely as intermediaries between you and the contracted services, and you accept their no-show and cancellation conditions as well as any additional terms from the final provider. Explora México Tours, its representatives and the client shall bear no liability for cancellation or suspension of services due to force majeure. Cancellations carry a 30% penalty of the trip's value. Cancellations 45 to 30 days before the trip: 80% penalty. Cancellations 29 to 0 days before the trip: 100% penalty. Same-day cancellations or failure to show up count as a NO-SHOW with a 100% penalty, with no refund or credit toward another trip.",
+  "itinerario_en": [
+   {
+    "titulo_en": "Photo session in traditional attire",
+    "descripcion_en": "1:30 p.m. passenger pick-up at the agreed point. 2:30 arrival at the showroom for outfit selection, makeup and hairstyling. 4:00 transfer to the photo session location. 6:30 return to the showroom to hand back the outfit. 7:00 return to your lodging. 8:00 p.m. hotel drop-off; end of services."
+   }
+  ],
+  "incluye_en": [
+   "Private transportation according to the itinerary",
+   "Certified driver",
+   "Traditional Mexican outfit",
+   "Traditional Mexican headpiece",
+   "Makeup and hairstyling",
+   "Photo session",
+   "Digital photo package",
+   "Box lunch",
+   "VAT"
+  ],
+  "no_incluye_en": [
+   "Food",
+   "Personal expenses",
+   "Gratuities"
+  ]
  }
 }
