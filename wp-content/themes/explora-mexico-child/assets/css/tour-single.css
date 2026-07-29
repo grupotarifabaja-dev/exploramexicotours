@@ -145,3 +145,8 @@
   .emt-tour-body { display: flex; flex-direction: column; }
   .emt-tour-aside { order: -1; }
 }
+
+/* Responsive: las tablas de precios se desplazan horizontalmente si no caben
+   (pantallas angostas), en vez de desbordar la página. */
+.emt-tour-precios { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.emt-precios-tabla { min-width: 320px; }

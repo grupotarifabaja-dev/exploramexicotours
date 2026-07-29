@@ -157,3 +157,9 @@
 /* Relacionados */
 .emt-post-related { margin-top: var(--emt-spacing-2xl); }
 .emt-post-related .emt-heading { margin-bottom: var(--emt-spacing-lg); }
+
+/* Responsive: blindaje del contenido capturado por el cliente en artículos
+   (imágenes y tablas pegadas en el editor no deben desbordar en móvil). */
+.emt-post-article img { max-width: 100%; height: auto; }
+.emt-post-article table { display: block; width: 100%; overflow-x: auto; border-collapse: collapse; }
+.emt-post-article iframe { max-width: 100%; }
