@@ -12,7 +12,6 @@
   background: var(--emt-surface-dark);
 }
 .emt-archive-hero--plain { background: radial-gradient(ellipse 70% 120% at 85% 0%, rgba(23,190,187,0.16), transparent 55%), radial-gradient(ellipse 55% 100% at 8% 100%, rgba(233,30,99,0.12), transparent 55%), var(--emt-surface-dark); }
-.emt-archive-hero--plain::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 4px; background: var(--emt-serape); z-index: 1; }
 .emt-archive-hero--photo { background: var(--emt-azul-profundo); }
 
 /* Foto de fondo + overlay estandar para legibilidad del texto blanco */

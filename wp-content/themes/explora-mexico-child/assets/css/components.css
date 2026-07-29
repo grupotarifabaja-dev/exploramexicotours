@@ -340,3 +340,41 @@
 }
 .emt-bento__more .emt-btn::after, .emt-home-blog__all .emt-btn::after { content: " \2192"; transition: transform var(--emt-transition-fast); display: inline-block; margin-left: 0.35rem; }
 .emt-bento__more .emt-btn:hover::after, .emt-home-blog__all .emt-btn:hover::after { transform: translateX(3px); }
+
+
+/* ============================================================
+   Línea serape animada — firma de todos los encabezados del sitio.
+   Deriva suavemente de lado a lado (ida y vuelta, muy lenta).
+   ============================================================ */
+@keyframes emt-serape-drift {
+  from { background-position: 0% 50%; }
+  to   { background-position: 100% 50%; }
+}
+.emt-hero,
+.emt-archive-hero,
+.emt-tour-hero,
+.emt-post-hero,
+.emt-nosotros-hero,
+.emt-transfer-hero { position: relative; }
+.emt-hero::before,
+.emt-archive-hero::before,
+.emt-tour-hero::before,
+.emt-post-hero::before,
+.emt-nosotros-hero::before,
+.emt-transfer-hero::before {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 4px;
+  z-index: 3;
+  pointer-events: none;
+  background: linear-gradient(90deg,
+    var(--emt-magenta), var(--emt-coral), var(--emt-ambar), var(--emt-turquesa),
+    var(--emt-ambar), var(--emt-coral), var(--emt-magenta));
+  background-size: 300% 100%;
+  animation: emt-serape-drift 14s ease-in-out infinite alternate;
+}
+@media (prefers-reduced-motion: reduce) {
+  .emt-hero::before, .emt-archive-hero::before, .emt-tour-hero::before,
+  .emt-post-hero::before, .emt-nosotros-hero::before, .emt-transfer-hero::before { animation: none; }
+}
