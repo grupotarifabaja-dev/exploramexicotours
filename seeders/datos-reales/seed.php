@@ -147,9 +147,15 @@ function emt_seed_datos_reales( $opts = array() ) {
         }
 
         // Campos de texto / número.
-        update_field( 'titulo_en', $t['titulo_en'] ?? '', $post_id );
-        update_field( 'descripcion_en', $t['descripcion_breve_en'] ?? '', $post_id );
-        update_field( 'excerpt_en', $t['descripcion_breve_en'] ?? '', $post_id );
+        // OJO: los campos _en NUNCA se blanquean — si el JSON no trae traducción,
+        // se conserva la existente (capturada vía panel o disparador de traducciones).
+        if ( trim( (string) ( $t['titulo_en'] ?? '' ) ) !== '' ) {
+            update_field( 'titulo_en', $t['titulo_en'], $post_id );
+        }
+        if ( trim( (string) ( $t['descripcion_breve_en'] ?? '' ) ) !== '' ) {
+            update_field( 'descripcion_en', $t['descripcion_breve_en'], $post_id );
+            update_field( 'excerpt_en', $t['descripcion_breve_en'], $post_id );
+        }
         // precio_desde puede ser null (tours "sin precio" -> se muestra "Consultar precio").
         $precio_in = $t['precio_desde'] ?? null;
         update_field( 'precio_desde', ( $precio_in === null || $precio_in === '' ) ? '' : (float) $precio_in, $post_id );
