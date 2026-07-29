@@ -117,6 +117,8 @@ return array(
     'trust_destinos'       => 'Destinos',
     'trust_viajeros'       => 'Viajeros felices',
     'cta_grupos_title'     => '¿Viajas en grupo? Cotiza a la medida',
+    'cta_grupos_sub'       => 'Bodas, empresas, escuelas o amigos: armamos el viaje completo por ti — transporte, hospedaje y experiencias.',
+    'ver_politica'         => 'Leer la política completa',
 
     // Franja de confianza (home)
     'aval_titulo'          => 'Señales de confianza',

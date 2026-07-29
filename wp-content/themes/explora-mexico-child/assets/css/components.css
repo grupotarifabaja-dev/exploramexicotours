@@ -331,3 +331,11 @@
 .emt-cert-item:hover img { transform: scale(1.18); }
 @keyframes emt-cert-scroll { from { transform: translateX(0); } to { transform: translateX(calc(-50% - (var(--emt-spacing-lg) / 2))); } }
 @media (prefers-reduced-motion: reduce) { .emt-cert-marquee__track { animation: none; flex-wrap: wrap; justify-content: center; width: auto; } .emt-cert-marquee { -webkit-mask-image: none; mask-image: none; } }
+
+
+/* "Ver todos" al cierre de secciones: pill visible con flecha */
+.emt-bento__more .emt-btn, .emt-home-blog__all .emt-btn {
+  border-radius: var(--emt-radius-pill); padding: 0.75rem 1.9rem; font-size: var(--emt-fs-base);
+}
+.emt-bento__more .emt-btn::after, .emt-home-blog__all .emt-btn::after { content: " \2192"; transition: transform var(--emt-transition-fast); display: inline-block; margin-left: 0.35rem; }
+.emt-bento__more .emt-btn:hover::after, .emt-home-blog__all .emt-btn:hover::after { transform: translateX(3px); }

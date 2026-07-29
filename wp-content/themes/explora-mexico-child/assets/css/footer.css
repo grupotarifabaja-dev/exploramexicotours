@@ -64,10 +64,10 @@
   padding-block: var(--emt-spacing-lg);
 }
 .emt-footer__cred {
-  height: 42px;
+  height: 52px;
   width: auto;
   filter: brightness(0) invert(1);
-  opacity: 0.7;
+  opacity: 0.85;
   transition: opacity var(--emt-transition-fast);
 }
 .emt-footer__cred:hover { opacity: 1; }
@@ -96,3 +96,13 @@
 @media (min-width: 720px) {
   .emt-footer__bottom { flex-direction: row; justify-content: space-between; text-align: left; }
 }
+
+/* Redes como iconos circulares */
+.emt-footer__social--icons li a {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 40px; height: 40px; border-radius: 50%;
+  background: rgba(255,255,255,0.10); color: var(--emt-blanco);
+  transition: background var(--emt-transition-fast), transform var(--emt-transition-fast);
+}
+.emt-footer__social--icons li a svg { width: 20px; height: 20px; }
+.emt-footer__social--icons li a:hover { background: var(--emt-turquesa); transform: translateY(-2px); }

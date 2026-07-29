@@ -175,7 +175,7 @@ while ( have_posts() ) :
                         <section class="emt-tour-incluye">
                             <h2><?php echo esc_html( emt_t( 'incluye' ) ); ?></h2>
                             <ul class="emt-list emt-list--ok">
-                                <?php foreach ( $incluye as $it ) : ?><li><?php echo esc_html( $it['texto'] ?? '' ); ?></li><?php endforeach; ?>
+                                <?php foreach ( $incluye as $it ) : $t = trim( (string) ( $it['texto'] ?? '' ) ); ?><li><?php echo esc_html( function_exists( 'mb_strtoupper' ) ? mb_strtoupper( mb_substr( $t, 0, 1 ) ) . mb_substr( $t, 1 ) : ucfirst( $t ) ); ?></li><?php endforeach; ?>
                             </ul>
                         </section>
                     <?php endif; ?>
@@ -184,7 +184,7 @@ while ( have_posts() ) :
                         <section class="emt-tour-noincluye">
                             <h2><?php echo esc_html( emt_t( 'no_incluye' ) ); ?></h2>
                             <ul class="emt-list emt-list--no">
-                                <?php foreach ( $no_incl as $it ) : ?><li><?php echo esc_html( $it['texto'] ?? '' ); ?></li><?php endforeach; ?>
+                                <?php foreach ( $no_incl as $it ) : $t = trim( (string) ( $it['texto'] ?? '' ) ); ?><li><?php echo esc_html( function_exists( 'mb_strtoupper' ) ? mb_strtoupper( mb_substr( $t, 0, 1 ) ) . mb_substr( $t, 1 ) : ucfirst( $t ) ); ?></li><?php endforeach; ?>
                             </ul>
                         </section>
                     <?php endif; ?>
@@ -199,7 +199,10 @@ while ( have_posts() ) :
                     <?php if ( $politica ) : ?>
                         <section class="emt-tour-politica">
                             <h2><?php echo esc_html( emt_t( 'politica_cancelacion' ) ); ?></h2>
-                            <div><?php echo wp_kses_post( $politica ); ?></div>
+                            <details class="emt-tour-politica__details">
+                                <summary><?php echo esc_html( emt_t( 'ver_politica' ) ); ?></summary>
+                                <div class="emt-tour-politica__body"><?php echo wp_kses_post( $politica ); ?></div>
+                            </details>
                         </section>
                     <?php endif; ?>
                 </div>

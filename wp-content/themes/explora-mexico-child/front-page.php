@@ -46,9 +46,18 @@ $hero_has_media  = ( $hero_video_url || $hero_poster_url );
 <!-- 1b. Franja de confianza (señales reales, sobria) -->
 <section class="emt-avales" aria-label="<?php echo esc_attr( emt_t( 'aval_titulo' ) ); ?>">
     <div class="emt-container emt-avales__inner">
-        <p class="emt-avales__item"><?php echo esc_html( emt_t( 'aval_anios' ) ); ?></p>
-        <p class="emt-avales__item"><?php echo esc_html( emt_t( 'aval_moderniza' ) ); ?></p>
-        <p class="emt-avales__item"><span class="emt-avales__label"><?php echo esc_html( emt_t( 'aval_confian' ) ); ?></span> TATA · Wipro · Rosewood Hotels · IGT · Wizeline</p>
+        <p class="emt-avales__item emt-avales__item--years">
+            <svg class="emt-avales__ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <?php echo esc_html( emt_t( 'aval_anios' ) ); ?>
+        </p>
+        <p class="emt-avales__item emt-avales__item--cert">
+            <svg class="emt-avales__ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+            <?php echo esc_html( emt_t( 'aval_moderniza' ) ); ?>
+        </p>
+        <p class="emt-avales__item emt-avales__brands">
+            <span class="emt-avales__label"><?php echo esc_html( emt_t( 'aval_confian' ) ); ?></span>
+            <span class="emt-avales__brand">TATA</span><span class="emt-avales__brand">Wipro</span><span class="emt-avales__brand">Rosewood Hotels</span><span class="emt-avales__brand">IGT</span><span class="emt-avales__brand">Wizeline</span>
+        </p>
     </div>
 </section>
 
@@ -233,18 +242,35 @@ if ( $emt_blog_q->have_posts() ) :
 <!-- 5. Trayectoria (trust line) -->
 <section class="emt-trust">
     <div class="emt-container emt-trust__grid">
-        <div class="emt-trust__item"><span class="emt-trust__num">15</span><span class="emt-trust__label"><?php echo esc_html( emt_t( 'trust_anios' ) ); ?></span></div>
-        <div class="emt-trust__item"><span class="emt-trust__num">70</span><span class="emt-trust__label"><?php echo esc_html( emt_t( 'trust_tours' ) ); ?></span></div>
-        <div class="emt-trust__item"><span class="emt-trust__num">15</span><span class="emt-trust__label"><?php echo esc_html( emt_t( 'trust_destinos' ) ); ?></span></div>
-        <div class="emt-trust__item"><span class="emt-trust__num">50k</span><span class="emt-trust__label"><?php echo esc_html( emt_t( 'trust_viajeros' ) ); ?></span></div>
+        <div class="emt-trust__item">
+            <span class="emt-trust__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
+            <span class="emt-trust__num" data-emt-count="15">15</span><span class="emt-trust__label"><?php echo esc_html( emt_t( 'trust_anios' ) ); ?></span>
+        </div>
+        <div class="emt-trust__item">
+            <span class="emt-trust__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 8 3 16 6 23 3 23 18 16 21 8 18 1 21"/><line x1="8" y1="3" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="21"/></svg></span>
+            <span class="emt-trust__num" data-emt-count="70">70</span><span class="emt-trust__label"><?php echo esc_html( emt_t( 'trust_tours' ) ); ?></span>
+        </div>
+        <div class="emt-trust__item">
+            <span class="emt-trust__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+            <span class="emt-trust__num" data-emt-count="15">15</span><span class="emt-trust__label"><?php echo esc_html( emt_t( 'trust_destinos' ) ); ?></span>
+        </div>
+        <div class="emt-trust__item">
+            <span class="emt-trust__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+            <span class="emt-trust__num" data-emt-count="50" data-emt-suffix="k">50k</span><span class="emt-trust__label"><?php echo esc_html( emt_t( 'trust_viajeros' ) ); ?></span>
+        </div>
     </div>
 </section>
 
 <!-- 6. CTA cotización grupos -->
+<?php $emt_cta_wa = preg_replace( '/\D/', '', (string) ( function_exists( 'emt_opt' ) ? emt_opt( 'wa_number', '523310480670' ) : '523310480670' ) ); ?>
 <section class="emt-cta-banner">
     <div class="emt-container emt-cta-banner__inner">
         <h2 class="emt-cta-banner__title"><?php echo esc_html( emt_t( 'cta_grupos_title' ) ); ?></h2>
-        <a class="emt-btn emt-btn--cta" href="<?php echo esc_url( home_url( $emt_prefix . '/cotizacion/' ) ); ?>"><?php echo esc_html( emt_t( 'cotizar_grupo' ) ); ?></a>
+        <p class="emt-cta-banner__sub"><?php echo esc_html( emt_t( 'cta_grupos_sub' ) ); ?></p>
+        <div class="emt-cta-banner__actions">
+            <a class="emt-btn emt-btn--cta emt-cta-banner__main" href="<?php echo esc_url( home_url( $emt_prefix . '/cotizacion/' ) ); ?>"><?php echo esc_html( emt_t( 'cotizar_grupo' ) ); ?></a>
+            <a class="emt-btn emt-cta-banner__wa" href="https://wa.me/<?php echo esc_attr( $emt_cta_wa ); ?>" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        </div>
     </div>
 </section>
 

@@ -117,6 +117,8 @@ return array(
     'trust_destinos'       => 'Destinations',
     'trust_viajeros'       => 'Happy travelers',
     'cta_grupos_title'     => 'Traveling as a group? Get a custom quote',
+    'cta_grupos_sub'       => 'Weddings, companies, schools or friends: we put the whole trip together for you — transport, lodging and experiences.',
+    'ver_politica'         => 'Read the full policy',
 
     // Trust strip (home)
     'aval_titulo'          => 'Trust signals',

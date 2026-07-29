@@ -33,3 +33,31 @@
     update();
   });
 })();
+
+/* Conteo animado de la banda de cifras (una vez, al entrar en viewport). */
+(function () {
+  'use strict';
+  var nums = document.querySelectorAll('[data-emt-count]');
+  if (!nums.length || !('IntersectionObserver' in window)) { return; }
+  var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (en) {
+      if (!en.isIntersecting) { return; }
+      io.unobserve(en.target);
+      var el = en.target;
+      var target = parseInt(el.getAttribute('data-emt-count'), 10) || 0;
+      var suffix = el.getAttribute('data-emt-suffix') || '';
+      if (reduced) { el.textContent = target + suffix; return; }
+      var start = null, dur = 1200;
+      function step(ts) {
+        if (!start) { start = ts; }
+        var p = Math.min((ts - start) / dur, 1);
+        var eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(target * eased) + suffix;
+        if (p < 1) { requestAnimationFrame(step); }
+      }
+      requestAnimationFrame(step);
+    });
+  }, { threshold: 0.4 });
+  nums.forEach(function (el) { io.observe(el); });
+})();

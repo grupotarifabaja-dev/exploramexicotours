@@ -127,19 +127,43 @@ get_header();
     </section>
 
     <section class="emt-section">
-        <div class="emt-container emt-nosotros-block">
-            <h2 class="emt-nosotros__h2"><?php echo esc_html( $L['nosotros_t'] ); ?></h2>
-            <p class="emt-nosotros__lead"><?php echo esc_html( $L['nosotros_p'] ); ?></p>
+        <div class="emt-container emt-nosotros-block emt-nosotros-intro">
+            <div class="emt-nosotros-intro__text">
+                <h2 class="emt-nosotros__h2"><?php echo esc_html( $L['nosotros_t'] ); ?></h2>
+                <p class="emt-nosotros__lead"><?php echo esc_html( $L['nosotros_p'] ); ?></p>
+            </div>
+            <?php
+            // Collage con fotos reales de tours (siempre poblado; sin campos extra).
+            $emt_collage = get_posts( array(
+                'post_type'      => 'tour',
+                'posts_per_page' => 3,
+                'post_status'    => 'publish',
+                'meta_key'       => '_thumbnail_id',
+                'orderby'        => 'rand',
+                'fields'         => 'ids',
+                'no_found_rows'  => true,
+            ) );
+            if ( $emt_collage ) : ?>
+                <div class="emt-nosotros-intro__collage" aria-hidden="true">
+                    <?php foreach ( $emt_collage as $emt_ci => $emt_cid ) :
+                        $emt_curl = get_the_post_thumbnail_url( $emt_cid, 'medium_large' );
+                        if ( ! $emt_curl ) { continue; } ?>
+                        <span class="emt-nosotros-intro__ph emt-nosotros-intro__ph--<?php echo (int) $emt_ci; ?>"><img src="<?php echo esc_url( $emt_curl ); ?>" alt="" loading="lazy" /></span>
+                    <?php endforeach; ?>
+                </div>
+            <?php endif; ?>
         </div>
     </section>
 
     <section class="emt-section emt-section--tint">
         <div class="emt-container emt-mv-grid">
-            <article class="emt-mv-card">
+            <article class="emt-mv-card emt-mv-card--mision">
+                <span class="emt-mv-card__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
                 <h3 class="emt-mv-card__title"><?php echo esc_html( $L['mision_t'] ); ?></h3>
                 <p><?php echo esc_html( $L['mision_p'] ); ?></p>
             </article>
-            <article class="emt-mv-card">
+            <article class="emt-mv-card emt-mv-card--vision">
+                <span class="emt-mv-card__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></span>
                 <h3 class="emt-mv-card__title"><?php echo esc_html( $L['vision_t'] ); ?></h3>
                 <p><?php echo esc_html( $L['vision_p'] ); ?></p>
             </article>
