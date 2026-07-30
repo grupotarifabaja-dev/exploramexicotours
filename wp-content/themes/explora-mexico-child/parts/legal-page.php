@@ -2,7 +2,7 @@
 /**
  * Páginas legales (/aviso-de-privacidad/ y /terminos-y-condiciones/, + /en/).
  * Renderizadas por inc/legales.php. Plantillas conforme a LFPDPPP; los campos
- * [RAZÓN SOCIAL COMPLETA], [DOMICILIO FISCAL COMPLETO] y [FECHA DE PUBLICACIÓN]
+ * OSWALDO RENATO VELASCO CAMPOS, Durazno No. 1396, Col. Del Fresno 1a. Sección, C.P. 44900 y 30 de julio de 2026
  * deben completarse con los datos del cliente antes del lanzamiento.
  */
 
@@ -21,9 +21,9 @@ $titulo  = $titulos[ $doc ][ $lang === 'en' ? 'en' : 'es' ];
 $contenido = array(
     'privacidad' => array(
         'es' => <<<'HTML'
-<p><strong>Última actualización: [FECHA DE PUBLICACIÓN]</strong></p>
+<p><strong>Última actualización: 30 de julio de 2026</strong></p>
 <h2>1. Responsable del tratamiento de sus datos personales</h2>
-<p><strong>[RAZÓN SOCIAL COMPLETA]</strong> (en adelante "Explora México Tours"), con domicilio en <strong>[DOMICILIO FISCAL COMPLETO]</strong>, Guadalajara, Jalisco, México, es responsable del tratamiento de sus datos personales conforme a la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP), su Reglamento y los Lineamientos del Aviso de Privacidad.</p>
+<p><strong>OSWALDO RENATO VELASCO CAMPOS</strong> (en adelante "Explora México Tours"), con domicilio en <strong>Durazno No. 1396, Col. Del Fresno 1a. Sección, C.P. 44900</strong>, Guadalajara, Jalisco, México, es responsable del tratamiento de sus datos personales conforme a la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP), su Reglamento y los Lineamientos del Aviso de Privacidad.</p>
 <p>Puede contactarnos para cualquier tema relacionado con este aviso en:</p>
 <ul>
 <li>Correo electrónico: <strong>reserva@exploramexicotours.com</strong></li>
@@ -61,9 +61,9 @@ $contenido = array(
 <p>Este aviso puede modificarse para reflejar cambios legales o de nuestros servicios. Cualquier cambio se publicará en esta misma página con su fecha de actualización. Le recomendamos revisarla periódicamente.</p>
 HTML,
         'en' => <<<'HTML'
-<p><strong>Last updated: [PUBLICATION DATE]</strong></p>
+<p><strong>Last updated: July 30, 2026</strong></p>
 <h2>1. Data controller</h2>
-<p><strong>[FULL LEGAL NAME]</strong> ("Explora México Tours"), with registered address at <strong>[FULL ADDRESS]</strong>, Guadalajara, Jalisco, Mexico, is responsible for the processing of your personal data in accordance with Mexico's Federal Law on the Protection of Personal Data Held by Private Parties (LFPDPPP).</p>
+<p><strong>OSWALDO RENATO VELASCO CAMPOS</strong> ("Explora México Tours"), with registered address at <strong>Durazno No. 1396, Col. Del Fresno 1a. Sección, C.P. 44900</strong>, Guadalajara, Jalisco, Mexico, is responsible for the processing of your personal data in accordance with Mexico's Federal Law on the Protection of Personal Data Held by Private Parties (LFPDPPP).</p>
 <p>Contact us regarding this notice at: <strong>reserva@exploramexicotours.com</strong> · WhatsApp <strong>+52 33 1048 0670</strong> · <strong>https://exploramexicotours.com</strong></p>
 <h2>2. Personal data we collect</h2>
 <p>When you use our quote, contact or transportation forms, our WhatsApp assistant, or communicate with our travel advisors, we may collect: your <strong>name, email and phone/WhatsApp number</strong>; <strong>trip details</strong> (destination or tour of interest, tentative dates, number of adult and minor travelers, pick-up point, and any comments you share); and <strong>browsing data</strong> — a first-party cookie valid for 30 days that identifies the travel advisor who shared a link with you, plus aggregated, non-identifying site-usage statistics (pages visited and clicks on contact buttons).</p>
@@ -85,9 +85,9 @@ HTML,
     ),
     'terminos' => array(
         'es' => <<<'HTML'
-<p><strong>Última actualización: [FECHA DE PUBLICACIÓN]</strong></p>
+<p><strong>Última actualización: 30 de julio de 2026</strong></p>
 <h2>1. Aceptación</h2>
-<p>El uso del sitio <strong>https://exploramexicotours.com</strong> (el "Sitio") y la contratación de los servicios de <strong>[RAZÓN SOCIAL COMPLETA]</strong> ("Explora México Tours", "nosotros") implican la aceptación de estos Términos y Condiciones. Si no está de acuerdo con ellos, le pedimos no utilizar el Sitio ni contratar nuestros servicios.</p>
+<p>El uso del sitio <strong>https://exploramexicotours.com</strong> (el "Sitio") y la contratación de los servicios de <strong>OSWALDO RENATO VELASCO CAMPOS</strong> ("Explora México Tours", "nosotros") implican la aceptación de estos Términos y Condiciones. Si no está de acuerdo con ellos, le pedimos no utilizar el Sitio ni contratar nuestros servicios.</p>
 <h2>2. Nuestros servicios</h2>
 <p>Explora México Tours ofrece tours, experiencias turísticas y servicios de transporte turístico y ejecutivo en México, operados directamente o en conjunto con proveedores turísticos seleccionados. La información del Sitio (itinerarios, horarios, fotografías, inclusiones) es descriptiva; los detalles definitivos de cada servicio se confirman al momento de la reservación.</p>
 <h2>3. Cotizaciones, precios y pagos</h2>
@@ -119,9 +119,9 @@ HTML,
 <p>Podemos actualizar estos Términos en cualquier momento; la versión vigente será la publicada en esta página con su fecha de actualización.</p>
 HTML,
         'en' => <<<'HTML'
-<p><strong>Last updated: [PUBLICATION DATE]</strong></p>
+<p><strong>Last updated: July 30, 2026</strong></p>
 <h2>1. Acceptance</h2>
-<p>Using <strong>https://exploramexicotours.com</strong> (the "Site") and booking services from <strong>[FULL LEGAL NAME]</strong> ("Explora México Tours", "we") implies acceptance of these Terms &amp; Conditions.</p>
+<p>Using <strong>https://exploramexicotours.com</strong> (the "Site") and booking services from <strong>OSWALDO RENATO VELASCO CAMPOS</strong> ("Explora México Tours", "we") implies acceptance of these Terms &amp; Conditions.</p>
 <h2>2. Our services</h2>
 <p>Explora México Tours offers tours, travel experiences and tourist/executive transportation in Mexico, operated directly or with selected partners. Site content (itineraries, schedules, photos, inclusions) is descriptive; final details are confirmed at booking.</p>
 <h2>3. Quotes, prices and payment</h2>
