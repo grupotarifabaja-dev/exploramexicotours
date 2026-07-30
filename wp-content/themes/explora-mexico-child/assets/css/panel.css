@@ -456,3 +456,9 @@
 .emt-switch input:checked + .emt-switch__track::after { transform: translateX(18px); }
 .emt-switch input:focus-visible + .emt-switch__track { box-shadow: 0 0 0 3px rgba(0,87,184,0.2); }
 .emt-switch input:disabled + .emt-switch__track { opacity: 0.5; }
+
+/* ---------- Panel: Evaluaciones ---------- */
+.emt-eval-stars-mini { color: #F5A623; letter-spacing: 1px; white-space: nowrap; }
+.emt-eval-stars-mini.is-buena { color: #1fae55; }
+.emt-eval-stars-mini.is-mala { color: var(--emt-color-danger); }
+.emt-eval-coment { max-width: 320px; font-size: var(--emt-fs-xs); color: var(--emt-color-text-muted); }

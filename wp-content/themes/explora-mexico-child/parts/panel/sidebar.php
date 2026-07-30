@@ -12,6 +12,7 @@ $nav  = array(
     'asesores'      => array( 'Asesores', 'dashicons-businessperson', (int) $ac->publish + (int) $ac->draft ),
     'destinos'      => array( 'Clasificación', 'dashicons-category', $dc ),
     'blog'          => array( 'Blog', 'dashicons-admin-post', (int) $bc->publish + (int) $bc->draft ),
+    'evaluaciones'  => array( 'Evaluaciones', 'dashicons-star-filled', (int) ( wp_count_posts( 'evaluacion' )->publish ?? 0 ) ),
     'configuracion' => array( 'Configuración', 'dashicons-admin-settings', null ),
 );
 ?>

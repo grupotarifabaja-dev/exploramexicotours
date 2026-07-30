@@ -149,6 +149,18 @@ function emt_enqueue_template_assets() {
         wp_enqueue_script( 'emt-hero-video', "$uri/assets/js/hero-video.js", array(), emt_asset_ver( "$dir/assets/js/hero-video.js" ), true );
     }
 
+    if ( get_query_var( 'emt_evaluacion' ) ) {
+        if ( file_exists( "$dir/assets/css/legal.css" ) ) {
+            wp_enqueue_style( 'emt-legal', "$uri/assets/css/legal.css", array( wp_style_is( 'emt-components', 'enqueued' ) ? 'emt-components' : 'emt-tokens' ), emt_asset_ver( "$dir/assets/css/legal.css" ) );
+        }
+        if ( file_exists( "$dir/assets/css/evaluacion.css" ) ) {
+            wp_enqueue_style( 'emt-evaluacion', "$uri/assets/css/evaluacion.css", array( wp_style_is( 'emt-components', 'enqueued' ) ? 'emt-components' : 'emt-tokens' ), emt_asset_ver( "$dir/assets/css/evaluacion.css" ) );
+        }
+        if ( file_exists( "$dir/assets/js/evaluacion.js" ) ) {
+            wp_enqueue_script( 'emt-evaluacion', "$uri/assets/js/evaluacion.js", array(), emt_asset_ver( "$dir/assets/js/evaluacion.js" ), true );
+            wp_localize_script( 'emt-evaluacion', 'EMTEval', array( 'ajax' => admin_url( 'admin-ajax.php' ) ) );
+        }
+    }
     if ( get_query_var( 'emt_legal' ) && file_exists( "$dir/assets/css/legal.css" ) ) {
         wp_enqueue_style( 'emt-legal', "$uri/assets/css/legal.css", array( wp_style_is( 'emt-components', 'enqueued' ) ? 'emt-components' : 'emt-tokens' ), emt_asset_ver( "$dir/assets/css/legal.css" ) );
     }
