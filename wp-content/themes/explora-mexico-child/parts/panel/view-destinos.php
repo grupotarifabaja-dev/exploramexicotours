@@ -19,16 +19,19 @@ if ( ! function_exists( 'emt_render_term_row' ) ) {
         $dest   = $with_destacado ? ! empty( get_field( 'destacado', $t ) ) : false;
         ?>
         <div class="emt-term-row" data-term-id="<?php echo (int) $t->term_id; ?>">
-            <input type="text" class="emt-term-row__name" value="<?php echo esc_attr( $t->name ); ?>" data-term-name aria-label="Nombre" />
-            <span class="emt-term-row__count"><?php echo $count; ?> tour<?php echo ( $count === 1 ) ? '' : 's'; ?></span>
-
             <div class="emt-term-row__portada emt-image emt-image--xs" data-term-image>
-                <div class="emt-image__preview" data-image-preview>
-                    <?php if ( $thumb ) : ?><img src="<?php echo esc_url( $thumb ); ?>" alt="" /><?php endif; ?>
-                </div>
+                <div class="emt-image__preview" data-image-preview data-term-portada-add title="Cambiar portada" role="button" tabindex="0"><?php if ( $thumb ) : ?><img src="<?php echo esc_url( $thumb ); ?>" alt="" /><?php endif; ?></div>
                 <input type="hidden" value="<?php echo $img_id; ?>" data-image-input />
-                <button type="button" class="emt-panel__btn emt-panel__btn--sm" data-term-portada-add>Portada</button>
-                <button type="button" class="emt-panel__btn emt-panel__btn--sm emt-panel__btn--danger" data-term-portada-remove<?php echo $img_id ? '' : ' style="display:none;"'; ?>>Quitar</button>
+                <div class="emt-term-row__portada-acts">
+                    <button type="button" class="emt-term-row__mini" data-term-portada-add>Cambiar</button>
+                    <button type="button" class="emt-term-row__mini emt-term-row__mini--danger" data-term-portada-remove<?php echo $img_id ? '' : ' style="display:none;"'; ?>>Quitar</button>
+                </div>
+            </div>
+
+            <div class="emt-term-row__main">
+                <input type="text" class="emt-term-row__name" value="<?php echo esc_attr( $t->name ); ?>" data-term-name aria-label="Nombre" title="Haz clic para renombrar" />
+                <span class="emt-term-row__count"><?php echo $count; ?> tour<?php echo ( $count === 1 ) ? '' : 's'; ?></span>
+                <span class="emt-term-row__msg" data-term-msg></span>
             </div>
 
             <?php if ( $with_destacado ) : ?>
@@ -38,7 +41,6 @@ if ( ! function_exists( 'emt_render_term_row' ) ) {
                 </label>
             <?php endif; ?>
 
-            <span class="emt-term-row__msg" data-term-msg></span>
             <button type="button" class="emt-panel__btn emt-panel__btn--sm emt-panel__btn--danger" data-term-delete>Eliminar</button>
         </div>
         <?php

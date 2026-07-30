@@ -217,16 +217,20 @@
       var dest = withDest ?
         '<label class="emt-term-row__dest"><input type="checkbox" data-term-destacado value="1" /> <span>Destacado en home</span></label>' : '';
       return '<div class="emt-term-row" data-term-id="' + id + '">' +
-        '<input type="text" class="emt-term-row__name" value="' + $('<i>').text(name).html() + '" data-term-name aria-label="Nombre" />' +
-        '<span class="emt-term-row__count">' + tours + '</span>' +
         '<div class="emt-term-row__portada emt-image emt-image--xs" data-term-image>' +
-          '<div class="emt-image__preview" data-image-preview></div>' +
+          '<div class="emt-image__preview" data-image-preview data-term-portada-add title="Cambiar portada" role="button" tabindex="0"></div>' +
           '<input type="hidden" value="0" data-image-input />' +
-          '<button type="button" class="emt-panel__btn emt-panel__btn--sm" data-term-portada-add>Portada</button>' +
-          '<button type="button" class="emt-panel__btn emt-panel__btn--sm emt-panel__btn--danger" data-term-portada-remove style="display:none;">Quitar</button>' +
+          '<div class="emt-term-row__portada-acts">' +
+            '<button type="button" class="emt-term-row__mini" data-term-portada-add>Cambiar</button>' +
+            '<button type="button" class="emt-term-row__mini emt-term-row__mini--danger" data-term-portada-remove style="display:none;">Quitar</button>' +
+          '</div>' +
+        '</div>' +
+        '<div class="emt-term-row__main">' +
+          '<input type="text" class="emt-term-row__name" value="' + $('<i>').text(name).html() + '" data-term-name aria-label="Nombre" title="Haz clic para renombrar" />' +
+          '<span class="emt-term-row__count">' + tours + '</span>' +
+          '<span class="emt-term-row__msg" data-term-msg></span>' +
         '</div>' +
         dest +
-        '<span class="emt-term-row__msg" data-term-msg></span>' +
         '<button type="button" class="emt-panel__btn emt-panel__btn--sm emt-panel__btn--danger" data-term-delete>Eliminar</button>' +
         '</div>';
     }
