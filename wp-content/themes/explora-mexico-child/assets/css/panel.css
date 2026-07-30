@@ -387,3 +387,36 @@
 
 /* Grid de precios por ocupación: contenido en tarjeta suave */
 .emt-precios-grid { background: var(--emt-gris-claro); border: 1px solid var(--emt-color-border); border-radius: var(--emt-radius-md); padding: var(--emt-spacing-md); }
+
+/* ---------- Marca del topbar: logo blanco + texto blanco (gana al azul de links) ---------- */
+.emt-panel a.emt-panel__brand, .emt-panel a.emt-panel__brand:hover { color: #fff; }
+.emt-panel__brand img { height: 34px; }
+
+/* ---------- Inicio: actividad de visitantes ---------- */
+.emt-stats-hero h2 { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.emt-stats-hero__badge { font-size: var(--emt-fs-xs); font-weight: var(--emt-fw-semibold); color: var(--emt-color-text-muted); background: var(--emt-gris-claro); border-radius: var(--emt-radius-pill); padding: 3px 10px; text-transform: none; letter-spacing: 0; }
+.emt-stats-hero__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: var(--emt-spacing-md); margin-bottom: var(--emt-spacing-lg); }
+.emt-stat-big { border-radius: var(--emt-radius-md); padding: 16px 18px; color: #fff; position: relative; overflow: hidden; }
+.emt-stat-big--rosa { background: linear-gradient(135deg, var(--emt-rosa), #e0454c); }
+.emt-stat-big--verde { background: linear-gradient(135deg, #1fae55, #25d366); }
+.emt-stat-big--azul { background: linear-gradient(135deg, var(--emt-azul-profundo), var(--emt-azul-brillante)); }
+.emt-stat-big--turquesa { background: linear-gradient(135deg, #0f8f8a, var(--emt-turquesa)); }
+.emt-stat-big__num { display: block; font-family: var(--emt-font-display); font-size: var(--emt-fs-2xl); font-weight: var(--emt-fw-black); line-height: 1.05; }
+.emt-stat-big__label { display: block; font-weight: var(--emt-fw-semibold); font-size: var(--emt-fs-sm); margin-top: 2px; }
+.emt-stat-big__sub { display: block; font-size: var(--emt-fs-xs); opacity: 0.85; margin-top: 2px; }
+
+/* Gráfica de barras (14 días) en CSS puro */
+.emt-stats-chart { display: flex; align-items: flex-end; gap: 6px; height: 120px; padding: 8px 4px 0; border-bottom: 1px solid var(--emt-color-border); margin-bottom: var(--emt-spacing-md); }
+.emt-stats-chart__col { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; gap: 4px; }
+.emt-stats-chart__bar { display: block; width: 100%; max-width: 34px; border-radius: 4px 4px 0 0; background: linear-gradient(180deg, var(--emt-azul-brillante), var(--emt-azul-profundo)); transition: height 0.4s ease; min-height: 3px; }
+.emt-stats-chart__col:hover .emt-stats-chart__bar { background: linear-gradient(180deg, var(--emt-rosa), #a01f24); }
+.emt-stats-chart__day { font-size: 10px; color: var(--emt-color-text-muted); }
+
+/* Tours más vistos */
+.emt-stats-top h3 { font-family: var(--emt-font-display); font-size: var(--emt-fs-base); color: var(--emt-azul-profundo); margin: 0 0 8px; }
+.emt-stats-top ol { margin: 0; padding-left: 1.3em; }
+.emt-stats-top li { padding: 4px 0; font-size: var(--emt-fs-sm); }
+.emt-stats-top li a { text-decoration: none; color: var(--emt-azul-profundo); font-weight: var(--emt-fw-semibold); }
+.emt-stats-top li a:hover { color: var(--emt-azul-brillante); }
+.emt-stats-top li span { color: var(--emt-color-text-muted); font-size: var(--emt-fs-xs); }
+.emt-stats-hero__note { margin: var(--emt-spacing-md) 0 0; font-size: var(--emt-fs-xs); color: var(--emt-color-text-muted); }

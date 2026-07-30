@@ -74,6 +74,12 @@ function emt_enqueue_site_assets() {
             wp_enqueue_script( "emt-$j", "$uri/assets/js/$j.js", array(), emt_asset_ver( $file ), true );
         }
     }
+
+    // Beacon de estadísticas propias (clicks a WhatsApp / cotizador / llamadas).
+    if ( file_exists( "$dir/assets/js/emt-stats.js" ) ) {
+        wp_enqueue_script( 'emt-stats', "$uri/assets/js/emt-stats.js", array(), emt_asset_ver( "$dir/assets/js/emt-stats.js" ), true );
+        wp_localize_script( 'emt-stats', 'EMTStats', array( 'url' => admin_url( 'admin-ajax.php' ) ) );
+    }
 }
 add_action( 'wp_enqueue_scripts', 'emt_enqueue_site_assets', 20 );
 
