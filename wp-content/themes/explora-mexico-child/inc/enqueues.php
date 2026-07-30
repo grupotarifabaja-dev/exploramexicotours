@@ -149,6 +149,9 @@ function emt_enqueue_template_assets() {
         wp_enqueue_script( 'emt-hero-video', "$uri/assets/js/hero-video.js", array(), emt_asset_ver( "$dir/assets/js/hero-video.js" ), true );
     }
 
+    if ( get_query_var( 'emt_legal' ) && file_exists( "$dir/assets/css/legal.css" ) ) {
+        wp_enqueue_style( 'emt-legal', "$uri/assets/css/legal.css", array( wp_style_is( 'emt-components', 'enqueued' ) ? 'emt-components' : 'emt-tokens' ), emt_asset_ver( "$dir/assets/css/legal.css" ) );
+    }
     if ( get_query_var( 'emt_nosotros' ) && file_exists( "$dir/assets/css/nosotros.css" ) ) {
         wp_enqueue_style( 'emt-nosotros', "$uri/assets/css/nosotros.css", array( wp_style_is( 'emt-components', 'enqueued' ) ? 'emt-components' : 'emt-tokens' ), emt_asset_ver( "$dir/assets/css/nosotros.css" ) );
     }
