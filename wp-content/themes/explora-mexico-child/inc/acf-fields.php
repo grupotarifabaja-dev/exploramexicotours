@@ -120,6 +120,7 @@ function emt_acf_register_field_groups() {
             array( 'key' => 'field_emt_tour_pickup_hotel', 'label' => 'Pickup en hotel', 'name' => 'pickup_hotel', 'type' => 'true_false', 'default_value' => 0, 'ui' => 1, 'instructions' => 'Indicador destacado' ),
             array( 'key' => 'field_emt_tour_salida_garantizada', 'label' => 'Salida garantizada', 'name' => 'salida_garantizada', 'type' => 'true_false', 'default_value' => 0, 'ui' => 1, 'instructions' => 'Indicador destacado' ),
             array( 'key' => 'field_emt_tour_destacado', 'label' => 'Destacado', 'name' => 'destacado', 'type' => 'true_false', 'default_value' => 0, 'ui' => 1, 'instructions' => 'Para home' ),
+            array( 'key' => 'field_emt_tour_sin_menores', 'label' => 'No acepta menores', 'name' => 'sin_menores', 'type' => 'true_false', 'default_value' => 0, 'ui' => 1, 'instructions' => 'Actívalo si el tour NO admite menores (oculta el selector de menores en el cotizador).' ),
             array( 'key' => 'field_emt_tour_orden_destacado', 'label' => 'Orden destacado', 'name' => 'orden_destacado', 'type' => 'number', 'required' => 0, 'default_value' => 99, 'instructions' => 'Menor = primero' ),
 
             // --- Tab: Relacionados ---

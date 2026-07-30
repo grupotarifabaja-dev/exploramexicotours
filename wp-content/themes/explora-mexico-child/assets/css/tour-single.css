@@ -150,3 +150,17 @@
    (pantallas angostas), en vez de desbordar la página. */
 .emt-tour-precios { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 .emt-precios-tabla { min-width: 320px; }
+
+/* ---------- Cotizador de la tarjeta de reserva ---------- */
+.emt-cotizador { display: flex; flex-direction: column; gap: var(--emt-spacing-sm); }
+.emt-cotizador__toggle { width: 100%; }
+.emt-cotizador__form { display: flex; flex-direction: column; gap: var(--emt-spacing-sm); background: var(--emt-gris-claro); border: 1px solid var(--emt-color-border); border-radius: var(--emt-radius-md); padding: var(--emt-spacing-md); }
+.emt-cotizador__row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--emt-spacing-sm); }
+.emt-cotizador__field label { display: block; font-size: var(--emt-fs-xs); font-weight: var(--emt-fw-semibold); color: var(--emt-azul-profundo); margin-bottom: 3px; }
+.emt-cotizador__field input { width: 100%; padding: 0.5rem 0.65rem; border: 1px solid var(--emt-color-border); border-radius: var(--emt-radius-sm); font-size: var(--emt-fs-sm); font-family: var(--emt-font-body); background: #fff; }
+.emt-cotizador__field input:focus { border-color: var(--emt-azul-brillante); outline: none; box-shadow: 0 0 0 3px rgba(0,87,184,0.12); }
+.emt-cotizador__total { margin: 0; font-family: var(--emt-font-display); font-weight: var(--emt-fw-bold); color: var(--emt-azul-profundo); font-size: var(--emt-fs-base); }
+.emt-cotizador__nota { margin: 0; font-size: var(--emt-fs-xs); color: var(--emt-color-text-muted); }
+.emt-cotizador__enviar { width: 100%; }
+.emt-tour-aside .emt-btn--whatsapp { background: #25D366; color: var(--emt-blanco); }
+.emt-tour-aside .emt-btn--whatsapp:hover { background: #1da851; transform: translateY(-2px); }

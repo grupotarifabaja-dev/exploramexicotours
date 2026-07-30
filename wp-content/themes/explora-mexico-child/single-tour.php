@@ -233,19 +233,93 @@ while ( have_posts() ) :
                             <p class="emt-reserve-card__price emt-reserve-card__price--consultar"><strong><?php echo esc_html( emt_t( 'consultar_precio' ) ); ?></strong></p>
                         <?php endif; ?>
                         <?php
-                        // CTA primario: reservar por WhatsApp con mensaje prellenado (bilingüe).
+                        // ---- Cotizador: datos del modelo de precios del tour (JSON para JS). ----
                         $wa_num = function_exists( 'get_field' ) ? preg_replace( '/\D/', '', (string) get_field( 'wa_number', 'option' ) ) : '';
                         if ( $wa_num === '' ) { $wa_num = '523310480670'; }
-                        $wa_msg = ( $lang === 'en' )
-                            ? "Hi, I'm interested in the {$titulo} tour"
-                            : "Hola, me interesa el tour {$titulo}";
-                        $wa_url = 'https://wa.me/' . $wa_num . '?text=' . rawurlencode( $wa_msg );
+
+                        // Ocupación (por habitación, precio p/p) + tarifa de menor.
+                        $cz_ocup = array();
+                        foreach ( array( 'dbl' => 2, 'tpl' => 3, 'cuadpl' => 4 ) as $ck => $cn ) {
+                            $cv = function_exists( 'get_field' ) ? get_field( 'precio_' . $ck, $id ) : '';
+                            if ( $cv !== '' && $cv !== null && (float) $cv > 0 ) { $cz_ocup[ (string) $cn ] = (float) $cv; }
+                        }
+                        $cz_menor = function_exists( 'get_field' ) ? get_field( 'precio_menor', $id ) : '';
+                        $cz_menor = ( $cz_menor !== '' && $cz_menor !== null && (float) $cz_menor > 0 ) ? (float) $cz_menor : null;
+
+                        // Vehículo: tramos con rango de pax parseado ("2 pax", "11-15 pax").
+                        $cz_veh = array();
+                        foreach ( $precios_veh as $cz_row ) {
+                            if ( $cz_row['precio'] === null ) { continue; }
+                            if ( preg_match( '/(\d+)\s*-\s*(\d+)/', $cz_row['capacidad'], $mm ) ) {
+                                $cz_veh[] = array( 'min' => (int) $mm[1], 'max' => (int) $mm[2], 'pp' => (float) $cz_row['precio'] );
+                            } elseif ( preg_match( '/(\d+)/', $cz_row['capacidad'], $mm ) ) {
+                                $cz_veh[] = array( 'min' => (int) $mm[1], 'max' => (int) $mm[1], 'pp' => (float) $cz_row['precio'] );
+                            }
+                        }
+
+                        // Atribución: cookie ?ref={slug} -> nombre del asesor (si existe y está publicado).
+                        $cz_asesor = '';
+                        if ( ! empty( $_COOKIE['emt_ref_asesor'] ) ) {
+                            $cz_ref_post = get_page_by_path( sanitize_title( wp_unslash( $_COOKIE['emt_ref_asesor'] ) ), OBJECT, 'asesor' );
+                            if ( $cz_ref_post && $cz_ref_post->post_status === 'publish' ) { $cz_asesor = get_the_title( $cz_ref_post ); }
+                        }
+
+                        $cz_sin_menores = function_exists( 'get_field' ) ? (bool) get_field( 'sin_menores', $id ) : false;
+                        $cz_has_price   = ! empty( $cz_veh ) || ! empty( $cz_ocup ) || ! empty( $precio );
+                        $cz_data = array(
+                            'titulo'    => $titulo,
+                            'wa'        => $wa_num,
+                            'lang'      => $lang,
+                            'desde'     => ! empty( $precio ) ? (float) $precio : null,
+                            'ocup'      => (object) $cz_ocup,
+                            'menor'     => $cz_menor,
+                            'veh'       => $cz_veh,
+                            'sinMenores'=> $cz_sin_menores,
+                            'asesor'    => $cz_asesor,
+                            't'         => array(
+                                'total'          => emt_t( 'total_lbl' ),
+                                'estimado_desde' => emt_t( 'total_estimado_desde' ),
+                                'pp'             => emt_t( 'por_persona_abrev' ),
+                                'grupo'          => emt_t( 'grupo_cotizamos' ),
+                                'menores_cot'    => emt_t( 'menores_por_cotizar' ),
+                                'wa_disp'        => emt_t( 'wa_disp_intro' ),
+                                'wa_info'        => emt_t( 'wa_info_intro' ),
+                                'fecha'          => emt_t( 'fecha_tentativa' ),
+                                'adultos'        => emt_t( 'adultos_lbl' ),
+                                'menores'        => emt_t( 'menores_6_12' ),
+                                'atendido'       => emt_t( 'atendido_por' ),
+                            ),
+                        );
                         ?>
-                        <a href="<?php echo esc_url( $wa_url ); ?>" class="emt-btn emt-btn--cta emt-reserve-card__wa" data-tour-id="<?php echo esc_attr( $id ); ?>" target="_blank" rel="noopener"><?php echo esc_html( emt_t( 'reservar_whatsapp' ) ); ?></a>
+                        <div class="emt-cotizador" data-cotizador>
+                            <script type="application/json" data-cotizador-data><?php echo wp_json_encode( $cz_data ); ?></script>
+                            <button type="button" class="emt-btn emt-btn--cta emt-cotizador__toggle" data-cz-toggle aria-expanded="false"><?php echo esc_html( $cz_has_price ? emt_t( 'cotizar' ) : emt_t( 'consultar_disponibilidad' ) ); ?></button>
+                            <div class="emt-cotizador__form" data-cz-form hidden>
+                                <div class="emt-cotizador__field">
+                                    <label for="emt-cz-fecha"><?php echo esc_html( emt_t( 'fecha_tentativa' ) ); ?></label>
+                                    <input type="date" id="emt-cz-fecha" data-cz-fecha min="<?php echo esc_attr( gmdate( 'Y-m-d', time() + DAY_IN_SECONDS ) ); ?>" />
+                                </div>
+                                <div class="emt-cotizador__row">
+                                    <div class="emt-cotizador__field">
+                                        <label for="emt-cz-adultos"><?php echo esc_html( emt_t( 'adultos_lbl' ) ); ?></label>
+                                        <input type="number" id="emt-cz-adultos" data-cz-adultos min="1" max="30" step="1" value="2" inputmode="numeric" />
+                                    </div>
+                                    <?php if ( ! $cz_sin_menores ) : ?>
+                                    <div class="emt-cotizador__field">
+                                        <label for="emt-cz-menores"><?php echo esc_html( emt_t( 'menores_6_12' ) ); ?></label>
+                                        <input type="number" id="emt-cz-menores" data-cz-menores min="0" max="20" step="1" value="0" inputmode="numeric" />
+                                    </div>
+                                    <?php endif; ?>
+                                </div>
+                                <p class="emt-cotizador__total" data-cz-total hidden></p>
+                                <p class="emt-cotizador__nota" data-cz-nota hidden></p>
+                                <button type="button" class="emt-btn emt-btn--whatsapp emt-cotizador__enviar" data-cz-enviar><?php echo esc_html( emt_t( 'solicitar_disponibilidad' ) ); ?></button>
+                            </div>
+                        </div>
                         <?php if ( $peek && $peek !== '#' ) : ?>
                             <a href="<?php echo esc_url( $peek ); ?>" class="emt-btn emt-btn--secondary emt-btn--peek" data-tour-id="<?php echo esc_attr( $id ); ?>" data-tour-title="<?php echo esc_attr( $titulo ); ?>" target="_blank" rel="noopener"><?php echo esc_html( emt_t( 'reservar_ahora' ) ); ?></a>
                         <?php endif; ?>
-                        <a href="<?php echo esc_url( $cotiza_url ); ?>" class="emt-btn emt-btn--secondary"><?php echo esc_html( emt_t( 'solicitar_cotizacion' ) ); ?></a>
+                        <button type="button" class="emt-btn emt-btn--secondary" data-cz-info><?php echo esc_html( emt_t( 'solicitar_mas_info' ) ); ?></button>
                     </div>
                 </aside>
             </div>

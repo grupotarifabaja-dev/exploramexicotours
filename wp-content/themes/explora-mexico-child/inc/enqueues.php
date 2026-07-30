@@ -131,6 +131,7 @@ function emt_enqueue_template_assets() {
 
     if ( is_singular( 'tour' ) && file_exists( "$dir/assets/js/tour-gallery.js" ) ) {
         wp_enqueue_script( 'emt-tour-gallery', "$uri/assets/js/tour-gallery.js", array(), emt_asset_ver( "$dir/assets/js/tour-gallery.js" ), true );
+        wp_enqueue_script( 'emt-tour-cotizar', "$uri/assets/js/tour-cotizar.js", array(), emt_asset_ver( "$dir/assets/js/tour-cotizar.js" ), true );
     }
 
     if ( is_front_page() && file_exists( "$dir/assets/js/hero-video.js" ) ) {

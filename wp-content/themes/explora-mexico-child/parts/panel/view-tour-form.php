@@ -175,6 +175,7 @@ $itin_ico= array( 'salida' => 'Salida', 'parada' => 'Parada', 'comida' => 'Comid
                 <label><input type="checkbox" name="salida_garantizada" value="1" <?php checked( $g( 'salida_garantizada' ) ); ?> /> Salida garantizada</label>
                 <label><input type="checkbox" name="pickup_hotel" value="1" <?php checked( $g( 'pickup_hotel' ) ); ?> /> Pickup en hotel</label>
                 <label><input type="checkbox" name="destacado" value="1" <?php checked( $g( 'destacado' ) ); ?> /> Destacado (home)</label>
+                <label><input type="checkbox" name="acepta_menores" value="1" <?php checked( ! $g( 'sin_menores' ) ); ?> /> Acepta menores</label>
             </div>
         </div>
         <div class="emt-field"><label>Orden en imperdibles del home — menor = primero (el menor va en grande)</label><input type="number" name="orden_destacado" value="<?php echo esc_attr( $g( 'orden_destacado', 99 ) ); ?>" min="0" step="1" /></div>
