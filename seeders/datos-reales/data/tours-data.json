@@ -2062,8 +2062,38 @@
       "itinerario": [
         {
           "dia": 1,
-          "titulo": "Sesión fotográfica con atuendo tradicional",
-          "descripcion": "13:30 hrs pick up de pasajeros en punto acordado. 14:30 arribo al showroom para selección de atuendo, maquillaje y peinado. 16:00 traslado al punto de la sesión fotográfica. 18:30 traslado de regreso al showroom para entrega de atuendo. 19:00 regreso a pasajeros a su alojamiento. 20:00 dejada de pasajeros en su hotel; fin de servicios."
+          "hora": "13:30",
+          "titulo": "Pick up de pasajeros",
+          "descripcion": "Recogida en el punto acordado para iniciar la experiencia.",
+          "icono": "salida"
+        },
+        {
+          "dia": 1,
+          "hora": "14:30",
+          "titulo": "Showroom: atuendo, maquillaje y peinado",
+          "descripcion": "Arribo al showroom para la selección del atuendo tradicional, maquillaje y peinado.",
+          "icono": "actividad"
+        },
+        {
+          "dia": 1,
+          "hora": "16:00",
+          "titulo": "Traslado al set de la sesión",
+          "descripcion": "Salida hacia el escenario elegido para la sesión fotográfica.",
+          "icono": "parada"
+        },
+        {
+          "dia": 1,
+          "hora": "18:30",
+          "titulo": "Regreso al showroom",
+          "descripcion": "Entrega del atuendo tradicional.",
+          "icono": "parada"
+        },
+        {
+          "dia": 1,
+          "hora": "19:00",
+          "titulo": "Regreso al hotel",
+          "descripcion": "Traslado de regreso; dejada de pasajeros en su alojamiento alrededor de las 20:00 y fin de servicios.",
+          "icono": "regreso"
         }
       ],
       "politica_cancelacion": "Actividad recomendada para toda la familia. No sugerimos este viaje a mujeres embarazadas, personas con lesiones en rodillas, espalda o cirugías recientes. Para reservar requerimos nombre completo de participantes de viaje, número celular, y un contacto de emergencia que no asista al viaje; la información la puedes enviar a través de nuestro número de WhatsApp: (+52)3310480670 o correo electrónico: reserva@exploramexicotours.com. Cabe destacar que desde el momento que realizas la reservación de tu viaje, nosotros actuamos únicamente como intermediarios entre tú y los servicios contratados, de igual forma aceptas sus condiciones de no show, cancelación, así como otros términos y condiciones adicionales que puedan aplicar por parte del proveedor final. Queda establecido que Explora México Tours, sus representantes y el cliente no incurrirán en responsabilidad alguna por la cancelación o suspensión de la prestación de uno o varios servicios señalados en este itinerario, siendo estos por caso fortuito o fuerza mayor. Explora México Tours permitirá cancelaciones con penalización del 30% del valor del viaje. Cancelaciones entre 45 y 30 días antes del viaje: penalización del 80%. Cancelaciones entre 29 y 0 días a la fecha del viaje: 100% de penalidad. Cancelaciones el día del viaje o no presentarse aplica como NO SHOW y genera el 100% de penalidad, sin reembolso ni abono a otro viaje.",

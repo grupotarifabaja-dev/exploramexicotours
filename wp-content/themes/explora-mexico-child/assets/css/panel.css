@@ -332,3 +332,58 @@
 /* Categoría principal: selector compacto bajo las categorías */
 .emt-field--sub label { font-size: var(--emt-fs-xs); color: var(--emt-color-text-muted); }
 .emt-field--sub select { max-width: 320px; }
+
+/* ---------- Fix: los enlaces-botón no heredan el azul de los links del panel ---------- */
+.emt-panel a.emt-panel__btn { color: var(--emt-azul-profundo); }
+.emt-panel a.emt-panel__btn--primary, .emt-panel a.emt-panel__btn--primary:hover { color: #fff; }
+.emt-panel a.emt-panel__btn--live, .emt-panel a.emt-panel__btn--live:hover { color: #fff; }
+.emt-panel a.emt-panel__btn--ghost, .emt-panel a.emt-panel__btn--ghost:hover { color: #fff; }
+.emt-panel a.emt-panel__btn--danger { color: var(--emt-color-danger); }
+
+/* ---------- Inicio: métricas con acento y sublínea ---------- */
+.emt-panel__metric { border-top: 3px solid var(--emt-turquesa); }
+.emt-panel__metrics .emt-panel__metric:nth-child(4n+1) { border-top-color: var(--emt-rosa); }
+.emt-panel__metrics .emt-panel__metric:nth-child(4n+2) { border-top-color: var(--emt-turquesa); }
+.emt-panel__metrics .emt-panel__metric:nth-child(4n+3) { border-top-color: var(--emt-azul-brillante); }
+.emt-panel__metrics .emt-panel__metric:nth-child(4n+4) { border-top-color: var(--emt-azul-profundo); }
+.emt-panel__metric-label { display: block; margin-top: 4px; font-weight: var(--emt-fw-semibold); color: var(--emt-azul-profundo); }
+.emt-panel__metric-sub { display: block; margin-top: 2px; font-size: var(--emt-fs-xs); color: var(--emt-color-text-muted); }
+
+/* ---------- Inicio: listas de actividad ---------- */
+.emt-dash-cols { display: grid; grid-template-columns: 1fr 1fr; gap: var(--emt-spacing-lg); }
+@media (max-width: 860px) { .emt-dash-cols { grid-template-columns: 1fr; } }
+.emt-dash-list { list-style: none; margin: 0; padding: 0; }
+.emt-dash-list li { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 9px 0; border-bottom: 1px dashed var(--emt-color-border); font-size: var(--emt-fs-sm); }
+.emt-dash-list li:last-child { border-bottom: 0; }
+.emt-dash-list__main { display: inline-flex; align-items: center; gap: 8px; min-width: 0; }
+.emt-dash-list__main a { text-decoration: none; color: var(--emt-azul-profundo); font-weight: var(--emt-fw-semibold); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.emt-dash-list__main a:hover { color: var(--emt-azul-brillante); }
+.emt-dash-when { color: var(--emt-color-text-muted); font-size: var(--emt-fs-xs); white-space: nowrap; }
+.emt-dash-tag { flex: 0 0 auto; font-size: 10px; font-weight: var(--emt-fw-bold); text-transform: uppercase; letter-spacing: 0.05em; padding: 2px 8px; border-radius: var(--emt-radius-pill); }
+.emt-dash-tag--tour { background: rgba(0,87,184,0.12); color: var(--emt-azul-brillante); }
+.emt-dash-tag--asesor { background: rgba(17,178,170,0.14); color: #0c7f7a; }
+.emt-dash-tag--post { background: rgba(193,39,45,0.1); color: var(--emt-rosa); }
+
+/* ---------- Tablas del panel: menos "excel", más tarjeta ---------- */
+.emt-panel__table thead th { background: transparent; border-bottom: 2px solid var(--emt-azul-profundo); color: var(--emt-azul-profundo); }
+.emt-panel__table tbody tr:nth-child(even) { background: rgba(0,51,102,0.02); }
+.emt-panel__table tbody tr:hover { background: rgba(0,87,184,0.05); }
+.emt-panel__table td:first-child strong { color: var(--emt-azul-profundo); }
+.emt-panel__table-wrap { padding: 4px 10px 10px; }
+
+/* Filas de términos (Clasificación) con el mismo lenguaje */
+.emt-term-row { transition: box-shadow var(--emt-transition-fast), border-color var(--emt-transition-fast); }
+.emt-term-row:hover { border-color: var(--emt-azul-brillante); box-shadow: var(--emt-shadow-sm); }
+
+/* ---------- Selector de modelo de precios ---------- */
+.emt-tipo-precio { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--emt-spacing-sm); }
+@media (max-width: 760px) { .emt-tipo-precio { grid-template-columns: 1fr; } }
+.emt-tipo-precio__opt { display: flex; gap: 10px; align-items: flex-start; border: 1.5px solid var(--emt-color-border); border-radius: var(--emt-radius-md); padding: 12px 14px; cursor: pointer; background: var(--emt-blanco); transition: border-color var(--emt-transition-fast), background var(--emt-transition-fast); }
+.emt-tipo-precio__opt input { margin-top: 3px; accent-color: var(--emt-rosa); }
+.emt-tipo-precio__opt strong { display: block; color: var(--emt-azul-profundo); font-size: var(--emt-fs-sm); }
+.emt-tipo-precio__opt small { display: block; color: var(--emt-color-text-muted); font-size: var(--emt-fs-xs); line-height: 1.4; margin-top: 2px; }
+.emt-tipo-precio__opt:hover { border-color: var(--emt-azul-brillante); }
+.emt-tipo-precio__opt.is-active { border-color: var(--emt-azul-profundo); background: rgba(0,51,102,0.03); box-shadow: 0 0 0 1px var(--emt-azul-profundo) inset; }
+
+/* Grid de precios por ocupación: contenido en tarjeta suave */
+.emt-precios-grid { background: var(--emt-gris-claro); border: 1px solid var(--emt-color-border); border-radius: var(--emt-radius-md); padding: var(--emt-spacing-md); }

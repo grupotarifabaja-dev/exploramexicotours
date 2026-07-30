@@ -46,6 +46,7 @@ function emt_acf_register_field_groups() {
 
             // --- Tab: Precio y duración ---
             array( 'key' => 'field_emt_tour_tab_precio', 'label' => 'Precio y duración', 'name' => '', 'type' => 'tab', 'placement' => 'top' ),
+            array( 'key' => 'field_emt_tour_tipo_precio', 'label' => 'Modelo de precios', 'name' => 'tipo_precio', 'type' => 'select', 'choices' => array( 'ocupacion' => 'Por ocupación', 'vehiculo' => 'Por vehículo', 'consultar' => 'Sin precios (Consultar)' ), 'allow_null' => 1, 'return_format' => 'value', 'instructions' => 'Qué modelo de precios usa este tour. Vacío = auto según los datos capturados.' ),
             array( 'key' => 'field_emt_tour_precio_desde', 'label' => 'Precio desde (MXN)', 'name' => 'precio_desde', 'type' => 'number', 'required' => 0, 'instructions' => 'Se autocalcula como el menor de los 4 precios por ocupación si lo dejas vacío. Captura un valor solo para forzar un override manual.' ),
             array( 'key' => 'field_emt_tour_precio_desde_usd', 'label' => 'Precio desde (USD)', 'name' => 'precio_desde_usd', 'type' => 'number', 'required' => 0, 'instructions' => 'Para extranjeros' ),
 

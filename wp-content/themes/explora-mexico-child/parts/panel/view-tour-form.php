@@ -63,6 +63,15 @@ $tx_exp  = get_terms( array( 'taxonomy' => 'tour_experiencia', 'hide_empty' => f
 if ( is_wp_error( $tx_dest ) ) { $tx_dest = array(); }
 if ( is_wp_error( $tx_cat ) )  { $tx_cat  = array(); }
 if ( is_wp_error( $tx_exp ) )  { $tx_exp  = array(); }
+// Modelo de precios del tour: campo guardado o auto-detección por datos existentes.
+$tipo_precio = (string) $g( 'tipo_precio', '' );
+if ( ! in_array( $tipo_precio, array( 'ocupacion', 'vehiculo', 'consultar' ), true ) ) {
+    $pv_rows = array_filter( (array) $g( 'precios_vehiculo', array() ) );
+    if ( $pv_rows ) { $tipo_precio = 'vehiculo'; }
+    elseif ( $g( 'precio_dbl' ) || $g( 'precio_tpl' ) || $g( 'precio_cuadpl' ) ) { $tipo_precio = 'ocupacion'; }
+    else { $tipo_precio = 'consultar'; }
+}
+
 $dif     = array( 'facil' => 'Fácil', 'moderada' => 'Moderada', 'alta' => 'Alta' );
 $idi_opts= array( 'es' => 'Español', 'en' => 'Inglés', 'fr' => 'Francés', 'otros' => 'Otros' );
 $inc_ico = array( 'bus' => 'Bus', 'comida' => 'Comida', 'guia' => 'Guía', 'entrada' => 'Entrada', 'equipo' => 'Equipo', 'hospedaje' => 'Hospedaje', 'foto' => 'Foto', 'otro' => 'Otro' );
@@ -130,6 +139,16 @@ $itin_ico= array( 'salida' => 'Salida', 'parada' => 'Parada', 'comida' => 'Comid
     </div>
 
     <div class="emt-panel-form__section">
+        <h2>Modelo de precios</h2>
+        <div class="emt-tipo-precio" data-tipo-precio>
+            <label class="emt-tipo-precio__opt"><input type="radio" name="tipo_precio" value="ocupacion" <?php checked( $tipo_precio, 'ocupacion' ); ?> /><span><strong>Por ocupación</strong><small>Precio por persona según habitación (doble, triple…). Típico de viajes con hospedaje.</small></span></label>
+            <label class="emt-tipo-precio__opt"><input type="radio" name="tipo_precio" value="vehiculo" <?php checked( $tipo_precio, 'vehiculo' ); ?> /><span><strong>Por vehículo</strong><small>Precio por persona según el tamaño del grupo/vehículo. Típico de tours de un día.</small></span></label>
+            <label class="emt-tipo-precio__opt"><input type="radio" name="tipo_precio" value="consultar" <?php checked( $tipo_precio, 'consultar' ); ?> /><span><strong>Sin precios</strong><small>El tour se muestra como "Consultar precio" y el cotizador solo pide disponibilidad.</small></span></label>
+        </div>
+        <div class="emt-field__help">Elige cómo se cotiza este tour: solo se captura y se muestra un modelo a la vez.</div>
+    </div>
+
+    <div class="emt-panel-form__section" data-precio-seccion="ocupacion">
         <h2>Precios por ocupación</h2>
         <div class="emt-precios-grid">
             <span class="emt-precios-grid__h">Ocupación</span><span class="emt-precios-grid__h">Precio (MXN)</span><span class="emt-precios-grid__h">Disponibilidad</span>
@@ -141,15 +160,19 @@ $itin_ico= array( 'salida' => 'Salida', 'parada' => 'Parada', 'comida' => 'Comid
                 <input type="number" name="disp_<?php echo $k; ?>" value="<?php echo esc_attr( $g( 'disp_' . $k ) ); ?>" min="0" step="1" placeholder="asientos" />
             <?php endforeach; ?>
         </div>
-        <div class="emt-grid-2" style="margin-top:16px;">
-            <div class="emt-field"><label>Precio desde (MXN)</label><input type="number" name="precio_desde" value="<?php echo esc_attr( $g( 'precio_desde' ) ); ?>" min="0" /><div class="emt-field__help">Déjalo vacío: se autocalcula como el menor de los 4.</div></div>
+    </div>
+
+    <div class="emt-panel-form__section" data-precio-comun>
+        <h2>Precio base y notas</h2>
+        <div class="emt-grid-2">
+            <div class="emt-field"><label>Precio desde (MXN)</label><input type="number" name="precio_desde" value="<?php echo esc_attr( $g( 'precio_desde' ) ); ?>" min="0" /><div class="emt-field__help">Déjalo vacío: se autocalcula con el menor precio capturado.</div></div>
             <div class="emt-field emt-i18n-es"><label>Fecha del viaje</label><input type="text" name="fecha_viaje" value="<?php echo esc_attr( $g( 'fecha_viaje' ) ); ?>" placeholder="30 octubre – 1 noviembre 2026" /></div>
             <div class="emt-field emt-i18n-en"><label>Fecha del viaje (EN)</label><input type="text" name="fecha_viaje_en" value="<?php echo esc_attr( $g( 'fecha_viaje_en' ) ); ?>" placeholder="Day of the Dead season (2026, TBC)" /><div class="emt-field__help">Vacío = se usa el español.</div></div>
         </div>
-        <div class="emt-field"><label>Nota de precios</label><textarea name="precio_nota" placeholder="Máximo 4 por habitación incluyendo menores."><?php echo esc_textarea( $g( 'precio_nota' ) ); ?></textarea></div>
+        <div class="emt-field emt-i18n-es"><label>Nota de precios</label><textarea name="precio_nota" placeholder="Máximo 4 por habitación incluyendo menores."><?php echo esc_textarea( $g( 'precio_nota' ) ); ?></textarea></div>
     </div>
 
-    <div class="emt-panel-form__section">
+    <div class="emt-panel-form__section" data-precio-seccion="vehiculo">
         <h2>Precios por vehículo</h2>
         <div class="emt-field__help" style="margin-bottom:12px;">Modelo alternativo (p. ej. tours de Tequila): precio POR PERSONA según capacidad del grupo y vehículo. Usa este O el de ocupación, no ambos. Deja el precio vacío para mostrar "Consultar".</div>
         <div id="emt-pv" data-repeater="precios_vehiculo">
@@ -295,7 +318,7 @@ $itin_ico= array( 'salida' => 'Salida', 'parada' => 'Parada', 'comida' => 'Comid
         <div class="emt-field emt-i18n-es"><label>Política de cancelación</label><textarea name="politica_cancelacion"><?php echo esc_textarea( $g( 'politica_cancelacion' ) ); ?></textarea></div>
         <div class="emt-field emt-i18n-en"><label>Política de cancelación (EN)</label><textarea name="politica_cancelacion_en"><?php echo esc_textarea( $g( 'politica_cancelacion_en' ) ); ?></textarea></div>
         <div class="emt-grid-2">
-            <div class="emt-field"><label>Mapa (embed URL)</label><input type="url" name="mapa_embed" value="<?php echo esc_attr( $g( 'mapa_embed' ) ); ?>" /></div>
+            <div class="emt-field"><label>Mapa del punto de salida</label><input type="text" name="mapa_embed" value="<?php echo esc_attr( $g( 'mapa_embed' ) ); ?>" placeholder="Pega aquí el código o la liga de Google Maps" /><div class="emt-field__help">En Google Maps busca el lugar &rarr; <strong>Compartir &rarr; Insertar un mapa &rarr; Copiar HTML</strong> y pégalo aquí tal cual (también acepta solo la liga). Se muestra al final de la ficha del tour.</div></div>
             <div class="emt-field"><label>URL de reserva (Peek)</label><input type="url" name="peek_url" value="<?php echo esc_attr( $g( 'peek_url' ) ); ?>" placeholder="#" /></div>
         </div>
         <div class="emt-grid-2">

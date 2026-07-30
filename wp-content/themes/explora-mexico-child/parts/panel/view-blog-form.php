@@ -119,6 +119,9 @@ $all_cats  = get_categories( array( 'hide_empty' => false ) );
                 ),
             ) );
             ?>
+            <div class="emt-field__help">Para separar párrafos presiona <strong>Enter</strong> (deja el espacio entre líneas, como se ve en el blog). Si quieres bajar de línea <em>sin</em> dejar espacio, usa <strong>Shift + Enter</strong>.</div>
+            <?php
+            ?>
             <div class="emt-field__err-msg"></div>
             <div class="emt-field__help">Usa la barra para dar formato: subtítulos, listas, citas, enlaces e imágenes. También puedes cambiar a la pestaña «Texto» para pegar HTML.</div>
         </div>

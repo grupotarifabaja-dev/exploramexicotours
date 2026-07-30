@@ -67,7 +67,17 @@ function emt_panel_save_tour() {
     update_field( 'politica_cancelacion_en', wp_kses_post( wp_unslash( $_POST['politica_cancelacion_en'] ?? '' ) ), $post_id );
     update_field( 'excerpt_en', sanitize_textarea_field( wp_unslash( $_POST['excerpt_en'] ?? '' ) ), $post_id );
     update_field( 'peek_url', esc_url_raw( wp_unslash( $_POST['peek_url'] ?? '' ) ), $post_id );
-    update_field( 'mapa_embed', esc_url_raw( wp_unslash( $_POST['mapa_embed'] ?? '' ) ), $post_id );
+    // Mapa: acepta el <iframe> completo de Google Maps o solo la URL (extrae el src).
+    $mapa_raw = trim( (string) wp_unslash( $_POST['mapa_embed'] ?? '' ) );
+    if ( $mapa_raw && stripos( $mapa_raw, '<iframe' ) !== false && preg_match( '/src=["\']([^"\']+)["\']/', $mapa_raw, $mm ) ) {
+        $mapa_raw = $mm[1];
+    }
+    update_field( 'mapa_embed', esc_url_raw( $mapa_raw ), $post_id );
+
+    // Modelo de precios (ocupacion | vehiculo | consultar).
+    $tipo_p = sanitize_key( $_POST['tipo_precio'] ?? '' );
+    if ( ! in_array( $tipo_p, array( 'ocupacion', 'vehiculo', 'consultar' ), true ) ) { $tipo_p = ''; }
+    update_field( 'tipo_precio', $tipo_p, $post_id );
 
     // Números (vacío => '' para que el autocalc funcione en precio_desde).
     $nums = array( 'precio_desde', 'duracion_horas', 'precio_dbl', 'disp_dbl', 'precio_tpl', 'disp_tpl', 'precio_cuadpl', 'disp_cuadpl', 'precio_menor', 'disp_menor' );

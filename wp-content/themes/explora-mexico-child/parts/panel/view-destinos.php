@@ -78,14 +78,14 @@ if ( ! function_exists( 'emt_render_term_manager' ) ) {
 emt_render_term_manager(
     'tour_destino',
     'Destinos',
-    'El lugar del tour (Guadalajara, Chiapas, Barrancas del Cobre…). Un tour tiene un destino. Marca "Destacado en home" para mostrarlo en "Destinos imperdibles" del inicio (hasta 5).',
+    'El lugar del tour (Jalisco, Chiapas, Oaxaca…). Un tour puede tener varios destinos si el recorrido cruza estados. Marca "Destacado en home" para mostrarlo en "Destinos imperdibles" del inicio (hasta 5).',
     'Nombre del destino',
     true // destinos: incluye "Destacado en home"
 );
 emt_render_term_manager(
     'tour_categoria',
     'Categorías',
-    'El tipo de tour (Cultural, Gastronómico, Aventura, Ecoturismo…). Un tour tiene una categoría.',
+    'El tipo de tour (Cultural, Gastronómico, Aventura, Ecoturismo, Sol y playa…). Un tour puede tener hasta 2; la "Categoría principal" se elige en la ficha del tour.',
     'Nombre de la categoría'
 );
 emt_render_term_manager(

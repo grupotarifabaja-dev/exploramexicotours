@@ -36,6 +36,12 @@ while ( have_posts() ) :
     $fecha     = emt_get_field( 'fecha_viaje', $id );
     $precios   = function_exists( 'emt_tour_precios' ) ? emt_tour_precios( $id ) : array();
     $precios_veh = function_exists( 'emt_tour_precios_vehiculo' ) ? emt_tour_precios_vehiculo( $id ) : array();
+
+    // Modelo de precios elegido en el panel: muestra solo el que corresponde.
+    $tipo_precio = (string) get_field( 'tipo_precio', $id );
+    if ( $tipo_precio === 'ocupacion' )  { $precios_veh = array(); }
+    if ( $tipo_precio === 'vehiculo' )   { $precios = array(); }
+    if ( $tipo_precio === 'consultar' )  { $precios = array(); $precios_veh = array(); }
     $precio_nota = emt_get_field( 'precio_nota', $id );
 
     $destino   = function_exists( 'emt_tour_destino_texto' ) ? emt_tour_destino_texto( $id ) : '';
@@ -264,6 +270,10 @@ while ( have_posts() ) :
                         }
 
                         $cz_sin_menores = function_exists( 'get_field' ) ? (bool) get_field( 'sin_menores', $id ) : false;
+                        // Respeta el modelo de precios del panel.
+                        if ( $tipo_precio === 'ocupacion' )  { $cz_veh = array(); }
+                        if ( $tipo_precio === 'vehiculo' )   { $cz_ocup = array(); }
+                        if ( $tipo_precio === 'consultar' )  { $cz_veh = array(); $cz_ocup = array(); $precio = ''; }
                         $cz_has_price   = ! empty( $cz_veh ) || ! empty( $cz_ocup ) || ! empty( $precio );
                         $cz_data = array(
                             'titulo'    => $titulo,

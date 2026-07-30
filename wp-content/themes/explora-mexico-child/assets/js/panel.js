@@ -418,3 +418,20 @@
     }
   });
 })(jQuery);
+
+/* ---------- Modelo de precios del tour: muestra solo la sección elegida ---------- */
+(function ($) {
+  function emtAplicaTipoPrecio() {
+    var $radios = $('[data-tipo-precio] input[name="tipo_precio"]');
+    if (!$radios.length) { return; }
+    var v = $radios.filter(':checked').val() || 'consultar';
+    $('[data-precio-seccion]').each(function () {
+      var show = $(this).data('precio-seccion') === v;
+      $(this).toggle(show);
+    });
+    $('[data-tipo-precio] .emt-tipo-precio__opt').removeClass('is-active')
+      .filter(function () { return $(this).find('input').val() === v; }).addClass('is-active');
+  }
+  $(document).on('change', '[data-tipo-precio] input[name="tipo_precio"]', emtAplicaTipoPrecio);
+  $(emtAplicaTipoPrecio);
+})(jQuery);
