@@ -122,6 +122,41 @@ $tipos_servicio = ( $lang === 'en' )
 // Base de los assets de flotilla (fotos reales + logo Explora Transfer).
 $emt_flotilla_base = trailingslashit( get_stylesheet_directory_uri() ) . 'assets/images/flotilla/';
 
+// Flotilla configurable desde el panel (Configuración > Flotilla de transporte).
+// Si el equipo capturó unidades, se usan esas; si no, la lista de fábrica de arriba.
+$emt_flo_cfg = get_option( 'emt_flotilla' );
+if ( is_array( $emt_flo_cfg ) && $emt_flo_cfg ) {
+    $flotilla = array();
+    foreach ( $emt_flo_cfg as $fr ) {
+        if ( ! is_array( $fr ) || empty( $fr['nombre'] ) ) { continue; }
+        $urls = array();
+        foreach ( array( 'foto', 'foto2' ) as $fk ) {
+            $aid = (int) ( $fr[ $fk ] ?? 0 );
+            if ( $aid ) {
+                $u = wp_get_attachment_image_url( $aid, 'large' );
+                if ( $u ) { $urls[] = $u; }
+            }
+        }
+        $flotilla[] = array(
+            'n'        => $fr['nombre'],
+            'cap'      => $fr['capacidad'] ?? '',
+            'icon'     => '🚐',
+            'img_urls' => $urls,
+            'feats_es' => $fr['feats'] ?? '',
+            'feats_en' => ( $fr['feats_en'] ?? '' ) !== '' ? $fr['feats_en'] : ( $fr['feats'] ?? '' ),
+        );
+    }
+} else {
+    // Normaliza la lista de fábrica al mismo formato (URLs completas).
+    foreach ( $flotilla as &$emt_fv ) {
+        $emt_fv['img_urls'] = array();
+        foreach ( (array) ( $emt_fv['img'] ?? array() ) as $emt_ff ) {
+            $emt_fv['img_urls'][] = $emt_flotilla_base . $emt_ff;
+        }
+    }
+    unset( $emt_fv );
+}
+
 get_header();
 ?>
 <main class="emt-transfer">
@@ -166,13 +201,13 @@ get_header();
             <h2><?php echo esc_html( $L['flotilla_t'] ); ?></h2>
             <p class="emt-transfer-section__sub"><?php echo esc_html( $L['flotilla_sub'] ); ?></p>
             <div class="emt-transfer-flotilla">
-                <?php foreach ( $flotilla as $v ) : $has_img = ! empty( $v['img'] ); ?>
+                <?php foreach ( $flotilla as $v ) : $has_img = ! empty( $v['img_urls'] ); ?>
                     <article class="emt-flotilla-card<?php echo $has_img ? ' emt-flotilla-card--foto' : ''; ?>">
                         <?php if ( $has_img ) : ?>
                             <figure class="emt-flotilla-card__media">
-                                <img class="emt-flotilla-card__img" src="<?php echo esc_url( $emt_flotilla_base . $v['img'][0] ); ?>" alt="<?php echo esc_attr( $v['n'] ); ?>" loading="lazy" decoding="async" />
-                                <?php if ( ! empty( $v['img'][1] ) ) : ?>
-                                    <img class="emt-flotilla-card__img emt-flotilla-card__img--alt" src="<?php echo esc_url( $emt_flotilla_base . $v['img'][1] ); ?>" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+                                <img class="emt-flotilla-card__img" src="<?php echo esc_url( $v['img_urls'][0] ); ?>" alt="<?php echo esc_attr( $v['n'] ); ?>" loading="lazy" decoding="async" />
+                                <?php if ( ! empty( $v['img_urls'][1] ) ) : ?>
+                                    <img class="emt-flotilla-card__img emt-flotilla-card__img--alt" src="<?php echo esc_url( $v['img_urls'][1] ); ?>" alt="" aria-hidden="true" loading="lazy" decoding="async" />
                                 <?php endif; ?>
                             </figure>
                         <?php endif; ?>

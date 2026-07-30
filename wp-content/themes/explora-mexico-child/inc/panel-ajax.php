@@ -391,6 +391,24 @@ function emt_panel_save_config() {
         update_option( 'emt_hdr_' . $emt_hk, (int) ( $_POST[ 'hdr_' . $emt_hk ] ?? 0 ) );
     }
 
+    // Flotilla de transporte (repetidor: nombre, capacidad, características ES/EN, 2 fotos).
+    $flo_in  = (array) ( $_POST['flotilla'] ?? array() );
+    $flo_out = array();
+    foreach ( $flo_in as $fr ) {
+        if ( ! is_array( $fr ) ) { continue; }
+        $nombre = sanitize_text_field( wp_unslash( $fr['nombre'] ?? '' ) );
+        if ( $nombre === '' ) { continue; }
+        $flo_out[] = array(
+            'nombre'    => $nombre,
+            'capacidad' => sanitize_text_field( wp_unslash( $fr['capacidad'] ?? '' ) ),
+            'feats'     => sanitize_textarea_field( wp_unslash( $fr['feats'] ?? '' ) ),
+            'feats_en'  => sanitize_textarea_field( wp_unslash( $fr['feats_en'] ?? '' ) ),
+            'foto'      => (int) ( $fr['foto'] ?? 0 ),
+            'foto2'     => (int) ( $fr['foto2'] ?? 0 ),
+        );
+    }
+    update_option( 'emt_flotilla', $flo_out, false );
+
     wp_send_json_success( array( 'msg' => 'Configuración guardada.' ) );
 }
 
