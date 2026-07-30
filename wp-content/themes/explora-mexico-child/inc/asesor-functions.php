@@ -79,5 +79,8 @@ add_action( 'init', function () {
     $ref = sanitize_title( wp_unslash( $_GET['ref'] ) );
     if ( $ref ) {
         setcookie( 'emt_ref_asesor', $ref, time() + 30 * DAY_IN_SECONDS, defined( 'COOKIEPATH' ) ? COOKIEPATH : '/', defined( 'COOKIE_DOMAIN' ) ? COOKIE_DOMAIN : '' );
+        // Disponible ya en esta misma petición (la primera visita con ?ref
+        // también debe llevar la atribución en el cotizador/WhatsApp).
+        $_COOKIE['emt_ref_asesor'] = $ref;
     }
 } );
