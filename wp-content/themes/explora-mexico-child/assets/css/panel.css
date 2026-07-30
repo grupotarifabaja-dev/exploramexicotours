@@ -445,3 +445,14 @@
   .emt-term-row__dest, .emt-term-row [data-term-delete] { justify-self: start; grid-column: 2; }
   .emt-term-row__name { flex: 1 1 auto; }
 }
+
+/* ---------- Lista de tours: numeración y switch de activo ---------- */
+.emt-panel__num-col { width: 44px; text-align: center !important; color: var(--emt-color-text-muted); font-size: var(--emt-fs-xs); font-weight: var(--emt-fw-semibold); }
+.emt-switch { position: relative; display: inline-flex; align-items: center; vertical-align: middle; margin-right: 8px; cursor: pointer; }
+.emt-switch input { position: absolute; opacity: 0; width: 0; height: 0; }
+.emt-switch__track { width: 40px; height: 22px; border-radius: var(--emt-radius-pill); background: var(--emt-gris-medio); transition: background var(--emt-transition-fast); position: relative; display: inline-block; }
+.emt-switch__track::after { content: ""; position: absolute; top: 3px; left: 3px; width: 16px; height: 16px; border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,0.25); transition: transform var(--emt-transition-fast); }
+.emt-switch input:checked + .emt-switch__track { background: #1fae55; }
+.emt-switch input:checked + .emt-switch__track::after { transform: translateX(18px); }
+.emt-switch input:focus-visible + .emt-switch__track { box-shadow: 0 0 0 3px rgba(0,87,184,0.2); }
+.emt-switch input:disabled + .emt-switch__track { opacity: 0.5; }

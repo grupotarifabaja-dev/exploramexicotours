@@ -439,3 +439,32 @@
   $(document).on('change', '[data-tipo-precio] input[name="tipo_precio"]', emtAplicaTipoPrecio);
   $(emtAplicaTipoPrecio);
 })(jQuery);
+
+/* ---------- Tours: activar / desactivar desde la lista ---------- */
+(function ($) {
+  $(document).on('change', '[data-tour-estado]', function () {
+    var $chk = $(this);
+    var id = $chk.data('id');
+    var activo = $chk.is(':checked') ? 1 : 0;
+    $chk.prop('disabled', true);
+    $.post(EMTPanel.ajax, { action: 'emt_panel_tour_estado', nonce: EMTPanel.nonce, id: id, activo: activo })
+      .done(function (res) {
+        if (res && res.success) {
+          var pub = res.data.status === 'publish';
+          var $lbl = $chk.closest('td').find('[data-estado-lbl]');
+          $lbl.text(pub ? 'Publicado' : 'Borrador')
+              .toggleClass('emt-panel__status--publish', pub)
+              .toggleClass('emt-panel__status--draft', !pub);
+          if (typeof emtToast === 'function') { emtToast(res.data.msg, pub); }
+        } else {
+          $chk.prop('checked', !activo);
+          window.alert((res && res.data && res.data.msg) || 'No se pudo cambiar el estado.');
+        }
+      })
+      .fail(function () {
+        $chk.prop('checked', !activo);
+        window.alert('Error de conexión.');
+      })
+      .always(function () { $chk.prop('disabled', false); });
+  });
+})(jQuery);

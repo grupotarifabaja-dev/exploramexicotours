@@ -234,6 +234,27 @@ add_action( 'wp_ajax_emt_panel_delete_tour', function () {
     wp_send_json_success( array( 'msg' => 'Tour enviado a la papelera.' ) );
 } );
 
+/** Activar / desactivar un tour desde la lista (publish <-> draft). */
+add_action( 'wp_ajax_emt_panel_tour_estado', function () {
+    emt_panel_guard( 'edit_tours' );
+    $id     = (int) ( $_POST['id'] ?? 0 );
+    $activo = ! empty( $_POST['activo'] );
+    if ( ! $id || get_post_type( $id ) !== 'tour' || ! current_user_can( 'edit_post', $id ) ) {
+        wp_send_json_error( array( 'msg' => 'No puedes modificar este tour.' ), 403 );
+    }
+    if ( $activo && ! current_user_can( 'publish_tours' ) ) {
+        wp_send_json_error( array( 'msg' => 'No tienes permiso para publicar.' ), 403 );
+    }
+    $r = wp_update_post( array( 'ID' => $id, 'post_status' => $activo ? 'publish' : 'draft' ), true );
+    if ( is_wp_error( $r ) ) {
+        wp_send_json_error( array( 'msg' => 'No se pudo cambiar el estado.' ), 500 );
+    }
+    wp_send_json_success( array(
+        'status' => get_post_status( $id ),
+        'msg'    => $activo ? 'Tour activado (visible en el sitio).' : 'Tour desactivado (oculto del sitio).',
+    ) );
+} );
+
 /* ============================================================
    Guardar asesor (alta o edición)  — P4
    ============================================================ */
