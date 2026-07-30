@@ -213,3 +213,45 @@
   .emt-hero__search { flex-wrap: nowrap; padding-left: 14px; }
   .emt-hero__search input { font-size: var(--emt-fs-sm); }
 }
+
+/* Dropdown propio de sugerencias del buscador */
+.emt-hero__search { position: relative; }
+.emt-hero__sug {
+  position: absolute; top: calc(100% + 8px); left: 0; right: 0; z-index: 30;
+  background: #fff; border-radius: var(--emt-radius-md); box-shadow: var(--emt-shadow-xl);
+  overflow: hidden; max-height: 320px; overflow-y: auto; text-align: left;
+}
+.emt-hero__sug-item {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  width: 100%; padding: 10px 16px; border: 0; background: none; cursor: pointer;
+  font-family: var(--emt-font-body); font-size: var(--emt-fs-sm); color: var(--emt-gris-oscuro);
+  text-align: left;
+}
+.emt-hero__sug-item:hover, .emt-hero__sug-item.is-active { background: rgba(0, 87, 184, 0.07); }
+.emt-hero__sug-item + .emt-hero__sug-item { border-top: 1px solid rgba(0, 51, 102, 0.06); }
+.emt-hero__sug-txt { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.emt-hero__sug-tag {
+  flex: none; font-size: 10px; font-weight: var(--emt-fw-bold); text-transform: uppercase;
+  letter-spacing: 0.05em; color: var(--emt-azul-brillante); background: rgba(0, 87, 184, 0.09);
+  border-radius: var(--emt-radius-pill); padding: 2px 9px;
+}
+
+/* ---------- Testimonios de viajeros (curados desde el panel) ---------- */
+.emt-testimonios { padding: var(--emt-spacing-2xl) 0; background: var(--emt-gris-claro); }
+.emt-testimonios__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--emt-spacing-lg); margin-top: var(--emt-spacing-xl); }
+.emt-testimonio {
+  margin: 0; background: var(--emt-blanco); border-radius: var(--emt-radius-lg);
+  padding: var(--emt-spacing-lg); box-shadow: var(--emt-shadow-sm); position: relative;
+  display: flex; flex-direction: column; gap: 10px; border-top: 3px solid var(--emt-turquesa);
+}
+.emt-testimonios__grid .emt-testimonio:nth-child(3n+1) { border-top-color: var(--emt-rosa); }
+.emt-testimonios__grid .emt-testimonio:nth-child(3n+2) { border-top-color: #FFC20E; }
+.emt-testimonio__stars { color: #F5A623; font-size: var(--emt-fs-base); letter-spacing: 2px; }
+.emt-testimonio__texto { margin: 0; font-size: var(--emt-fs-sm); line-height: 1.7; color: var(--emt-gris-oscuro); }
+.emt-testimonio__pie { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: auto; }
+.emt-testimonio__pie strong { color: var(--emt-azul-profundo); font-size: var(--emt-fs-sm); }
+.emt-testimonio__fuente {
+  font-size: 10px; font-weight: var(--emt-fw-bold); text-transform: uppercase; letter-spacing: 0.05em;
+  color: var(--emt-azul-brillante); background: rgba(0, 87, 184, 0.09);
+  border-radius: var(--emt-radius-pill); padding: 2px 9px;
+}

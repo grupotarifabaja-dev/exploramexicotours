@@ -186,6 +186,32 @@ $hp_url = is_array( $hp ) ? ( $hp['sizes']['medium'] ?? $hp['url'] ?? '' ) : '';
         <button type="button" class="emt-panel__btn" data-repeater-add="flotilla">+ Agregar vehículo</button>
     </div>
 
+    <div class="emt-panel-form__section">
+        <h2>Testimonios de viajeros</h2>
+        <p class="emt-field__help" style="margin-bottom:var(--emt-spacing-md);">Recomendaciones que se muestran en el inicio. Copia aquí las mejores reseñas de <strong>Facebook</strong> o <strong>Google</strong> (nombre, texto y estrellas). Si la lista está vacía, la sección no aparece en el sitio.</p>
+        <div id="emt-testimonios" data-repeater="testimonios">
+            <?php
+            $emt_tst = get_option( 'emt_testimonios' );
+            if ( ! is_array( $emt_tst ) ) { $emt_tst = array(); }
+            $emt_ti = 0;
+            $emt_tst_fuentes = array( 'facebook' => 'Facebook', 'google' => 'Google', 'tripadvisor' => 'TripAdvisor', 'otro' => 'Otro' );
+            foreach ( $emt_tst as $emt_tv ) :
+                if ( ! is_array( $emt_tv ) ) { continue; }
+                ?>
+                <div class="emt-repeater__item" data-row>
+                    <div class="emt-repeater__item-head"><strong>Testimonio</strong><button type="button" class="emt-repeater__remove" data-remove>Quitar</button></div>
+                    <div class="emt-grid-3">
+                        <div class="emt-field"><label>Nombre del viajero</label><input type="text" name="testimonios[<?php echo $emt_ti; ?>][nombre]" value="<?php echo esc_attr( $emt_tv['nombre'] ?? '' ); ?>" placeholder="María G." /></div>
+                        <div class="emt-field"><label>Calificación</label><select name="testimonios[<?php echo $emt_ti; ?>][estrellas]"><?php for ( $emt_es = 5; $emt_es >= 3; $emt_es-- ) : ?><option value="<?php echo $emt_es; ?>" <?php selected( (int) ( $emt_tv['estrellas'] ?? 5 ), $emt_es ); ?>><?php echo $emt_es; ?> estrellas</option><?php endfor; ?></select></div>
+                        <div class="emt-field"><label>Fuente</label><select name="testimonios[<?php echo $emt_ti; ?>][fuente]"><?php foreach ( $emt_tst_fuentes as $emt_fk => $emt_fl ) : ?><option value="<?php echo $emt_fk; ?>" <?php selected( $emt_tv['fuente'] ?? 'facebook', $emt_fk ); ?>><?php echo $emt_fl; ?></option><?php endforeach; ?></select></div>
+                    </div>
+                    <div class="emt-field"><label>Texto de la recomendación</label><textarea name="testimonios[<?php echo $emt_ti; ?>][texto]" placeholder="Excelente servicio, el tour a Tequila superó nuestras expectativas…"><?php echo esc_textarea( $emt_tv['texto'] ?? '' ); ?></textarea></div>
+                </div>
+            <?php $emt_ti++; endforeach; ?>
+        </div>
+        <button type="button" class="emt-panel__btn" data-repeater-add="testimonios">+ Agregar testimonio</button>
+    </div>
+
     <div class="emt-panel-form__bar">
         <span class="emt-panel-form__msg" data-form-msg></span>
         <button type="submit" class="emt-panel__btn emt-panel__btn--primary" data-save="save">Guardar cambios</button>
@@ -225,3 +251,14 @@ $hp_url = is_array( $hp ) ? ( $hp['sizes']['medium'] ?? $hp['url'] ?? '' ) : '';
     </div>
 </template>
 
+<template id="emt-tpl-testimonios">
+    <div class="emt-repeater__item" data-row>
+        <div class="emt-repeater__item-head"><strong>Testimonio</strong><button type="button" class="emt-repeater__remove" data-remove>Quitar</button></div>
+        <div class="emt-grid-3">
+            <div class="emt-field"><label>Nombre del viajero</label><input type="text" data-name="testimonios|__i__|nombre" placeholder="María G." /></div>
+            <div class="emt-field"><label>Calificación</label><select data-name="testimonios|__i__|estrellas"><option value="5">5 estrellas</option><option value="4">4 estrellas</option><option value="3">3 estrellas</option></select></div>
+            <div class="emt-field"><label>Fuente</label><select data-name="testimonios|__i__|fuente"><option value="facebook">Facebook</option><option value="google">Google</option><option value="tripadvisor">TripAdvisor</option><option value="otro">Otro</option></select></div>
+        </div>
+        <div class="emt-field"><label>Texto de la recomendación</label><textarea data-name="testimonios|__i__|texto" placeholder="Excelente servicio, el tour a Tequila superó nuestras expectativas…"></textarea></div>
+    </div>
+</template>

@@ -204,5 +204,8 @@ return array(
     'wa_g_msg_email'  => 'Mi correo',
     'hero_buscar_ph'  => '¿A dónde quieres ir? Tour, destino o experiencia…',
     'buscar'          => 'Buscar',
+    'tst_eyebrow'     => 'Testimonios',
+    'tst_titulo'      => 'Lo que dicen nuestros viajeros',
+    'tst_anonimo'     => 'Viajero verificado',
 
 );

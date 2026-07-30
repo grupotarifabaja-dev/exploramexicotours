@@ -158,6 +158,9 @@ function emt_enqueue_template_assets() {
 
     if ( is_front_page() && file_exists( "$dir/assets/js/home-carousel.js" ) ) {
         wp_enqueue_script( 'emt-home-carousel', "$uri/assets/js/home-carousel.js", array(), emt_asset_ver( "$dir/assets/js/home-carousel.js" ), true );
+        if ( file_exists( "$dir/assets/js/hero-search.js" ) ) {
+            wp_enqueue_script( 'emt-hero-search', "$uri/assets/js/hero-search.js", array(), emt_asset_ver( "$dir/assets/js/hero-search.js" ), true );
+        }
     }
 
     if ( get_query_var( 'emt_contacto' ) ) {

@@ -409,6 +409,22 @@ function emt_panel_save_config() {
     }
     update_option( 'emt_flotilla', $flo_out, false );
 
+    // Testimonios de viajeros (repetidor: nombre, estrellas, fuente, texto).
+    $tst_in  = (array) ( $_POST['testimonios'] ?? array() );
+    $tst_out = array();
+    foreach ( $tst_in as $tr ) {
+        if ( ! is_array( $tr ) ) { continue; }
+        $texto = sanitize_textarea_field( wp_unslash( $tr['texto'] ?? '' ) );
+        if ( $texto === '' ) { continue; }
+        $tst_out[] = array(
+            'nombre'    => sanitize_text_field( wp_unslash( $tr['nombre'] ?? '' ) ),
+            'estrellas' => min( 5, max( 1, (int) ( $tr['estrellas'] ?? 5 ) ) ),
+            'fuente'    => in_array( $tr['fuente'] ?? '', array( 'facebook', 'google', 'tripadvisor', 'otro' ), true ) ? $tr['fuente'] : 'otro',
+            'texto'     => $texto,
+        );
+    }
+    update_option( 'emt_testimonios', $tst_out, false );
+
     wp_send_json_success( array( 'msg' => 'Configuración guardada.' ) );
 }
 

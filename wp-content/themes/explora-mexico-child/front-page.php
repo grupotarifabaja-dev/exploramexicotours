@@ -36,27 +36,33 @@ $hero_has_media  = ( $hero_video_url || $hero_poster_url );
         <p class="emt-hero__eyebrow"><?php echo esc_html( emt_t( 'hero_eyebrow' ) ); ?></p>
         <h1 class="emt-hero__title"><?php echo esc_html( emt_t( 'hero_title' ) ); ?></h1>
         <p class="emt-hero__sub"><?php echo esc_html( emt_t( 'hero_sub' ) ); ?></p>
-        <form class="emt-hero__search" action="<?php echo esc_url( home_url( $emt_prefix . '/tours/' ) ); ?>" method="get" role="search">
+        <form class="emt-hero__search" action="<?php echo esc_url( home_url( $emt_prefix . '/tours/' ) ); ?>" method="get" role="search" data-hero-search>
             <svg class="emt-hero__search-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-            <input type="search" name="q" list="emt-hero-sug" placeholder="<?php echo esc_attr( emt_t( 'hero_buscar_ph' ) ); ?>" aria-label="<?php echo esc_attr( emt_t( 'hero_buscar_ph' ) ); ?>" autocomplete="off" />
+            <input type="search" name="q" placeholder="<?php echo esc_attr( emt_t( 'hero_buscar_ph' ) ); ?>" aria-label="<?php echo esc_attr( emt_t( 'hero_buscar_ph' ) ); ?>" autocomplete="off" data-hero-search-input />
             <button type="submit" class="emt-btn emt-btn--cta"><?php echo esc_html( emt_t( 'buscar' ) ); ?></button>
-            <datalist id="emt-hero-sug">
-                <?php
-                // Sugerencias: destinos, experiencias y categorías con tours + títulos de tours.
-                foreach ( array( 'tour_destino', 'tour_experiencia', 'tour_categoria' ) as $emt_sug_tax ) {
+            <div class="emt-hero__sug" data-hero-search-sug hidden></div>
+            <script type="application/json" data-hero-search-data><?php
+                // Sugerencias: términos con tours + títulos de tours (con su tipo para el dropdown).
+                $emt_sug = array();
+                $emt_sug_tipos = array(
+                    'tour_destino'     => emt_t( 'eyebrow_destino' ),
+                    'tour_experiencia' => emt_t( 'eyebrow_experiencia' ),
+                    'tour_categoria'   => emt_t( 'eyebrow_categoria' ),
+                );
+                foreach ( $emt_sug_tipos as $emt_sug_tax => $emt_sug_lbl ) {
                     $emt_sug_terms = get_terms( array( 'taxonomy' => $emt_sug_tax, 'hide_empty' => true ) );
                     if ( ! is_wp_error( $emt_sug_terms ) ) {
                         foreach ( $emt_sug_terms as $emt_sug_t ) {
-                            printf( '<option value="%s"></option>', esc_attr( $emt_sug_t->name ) );
+                            $emt_sug[] = array( 'v' => $emt_sug_t->name, 't' => $emt_sug_lbl );
                         }
                     }
                 }
                 $emt_sug_tours = get_posts( array( 'post_type' => 'tour', 'post_status' => 'publish', 'posts_per_page' => -1, 'orderby' => 'title', 'order' => 'ASC' ) );
                 foreach ( $emt_sug_tours as $emt_sug_p ) {
-                    printf( '<option value="%s"></option>', esc_attr( get_the_title( $emt_sug_p ) ) );
+                    $emt_sug[] = array( 'v' => get_the_title( $emt_sug_p ), 't' => 'Tour' );
                 }
-                ?>
-            </datalist>
+                echo wp_json_encode( $emt_sug );
+            ?></script>
         </form>
         <div class="emt-hero__cta">
             <a class="emt-btn emt-btn--cta" href="<?php echo esc_url( home_url( $emt_prefix . '/tours/' ) ); ?>"><?php echo esc_html( emt_t( 'ver_todos' ) ); ?></a>
@@ -284,6 +290,36 @@ if ( $emt_blog_q->have_posts() ) :
 
 <!-- 6. CTA cotización grupos -->
 <?php $emt_cta_wa = preg_replace( '/\D/', '', (string) ( function_exists( 'emt_opt' ) ? emt_opt( 'wa_number', '523310480670' ) : '523310480670' ) ); ?>
+<?php
+// 6b. Testimonios de viajeros (curados desde el panel; oculto si no hay).
+$emt_tsts = get_option( 'emt_testimonios' );
+$emt_tsts = is_array( $emt_tsts ) ? array_values( array_filter( $emt_tsts, function ( $t ) { return is_array( $t ) && ! empty( $t['texto'] ); } ) ) : array();
+$emt_tst_fuentes_lbl = array( 'facebook' => 'Facebook', 'google' => 'Google', 'tripadvisor' => 'TripAdvisor', 'otro' => '' );
+if ( $emt_tsts ) : ?>
+<section class="emt-testimonios">
+    <div class="emt-container">
+        <div class="emt-heading">
+            <span class="emt-eyebrow"><?php echo esc_html( emt_t( 'tst_eyebrow' ) ); ?></span>
+            <h2><?php echo esc_html( emt_t( 'tst_titulo' ) ); ?></h2>
+        </div>
+        <div class="emt-testimonios__grid">
+            <?php foreach ( array_slice( $emt_tsts, 0, 6 ) as $emt_tv ) : ?>
+                <blockquote class="emt-testimonio">
+                    <span class="emt-testimonio__stars" aria-label="<?php echo esc_attr( (int) $emt_tv['estrellas'] . '/5' ); ?>"><?php echo esc_html( str_repeat( '★', (int) $emt_tv['estrellas'] ) . str_repeat( '☆', 5 - (int) $emt_tv['estrellas'] ) ); ?></span>
+                    <p class="emt-testimonio__texto"><?php echo esc_html( $emt_tv['texto'] ); ?></p>
+                    <footer class="emt-testimonio__pie">
+                        <strong><?php echo esc_html( $emt_tv['nombre'] ?: emt_t( 'tst_anonimo' ) ); ?></strong>
+                        <?php $emt_tf = $emt_tst_fuentes_lbl[ $emt_tv['fuente'] ?? 'otro' ] ?? ''; if ( $emt_tf ) : ?>
+                            <span class="emt-testimonio__fuente"><?php echo esc_html( $emt_tf ); ?></span>
+                        <?php endif; ?>
+                    </footer>
+                </blockquote>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>
+<?php endif; ?>
+
 <section class="emt-cta-banner">
     <div class="emt-container emt-cta-banner__inner">
         <h2 class="emt-cta-banner__title"><?php echo esc_html( emt_t( 'cta_grupos_title' ) ); ?></h2>
