@@ -139,6 +139,7 @@ $hp_url = is_array( $hp ) ? ( $hp['sizes']['medium'] ?? $hp['url'] ?? '' ) : '';
         <p class="emt-field__help" style="margin-bottom:var(--emt-spacing-md);">Las unidades que se muestran en la página de <strong>Transporte</strong>. Puedes agregar, quitar o editar vehículos; la segunda foto (opcional) aparece al pasar el mouse sobre la tarjeta. Si dejas la lista vacía, se muestra la flotilla original de fábrica.</p>
         <div id="emt-flotilla" data-repeater="flotilla">
             <?php
+            if ( function_exists( 'emt_flotilla_migrar' ) ) { emt_flotilla_migrar(); }
             $emt_flo = get_option( 'emt_flotilla' );
             if ( ! is_array( $emt_flo ) ) { $emt_flo = array(); }
             $emt_fi = 0;

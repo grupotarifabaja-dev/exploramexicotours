@@ -35,6 +35,7 @@ require_once $emt_inc . 'roles.php';
 require_once $emt_inc . 'panel.php';
 require_once $emt_inc . 'panel-ajax.php';
 require_once $emt_inc . 'transfer.php';
+require_once $emt_inc . 'flotilla.php';
 require_once $emt_inc . 'cotizacion.php';
 require_once $emt_inc . 'contacto.php';
 require_once $emt_inc . 'blog-page.php';
