@@ -395,3 +395,26 @@
     })();
   });
 })(jQuery);
+
+/* ---------- Enlace para compartir del asesor (botón Copiar) ---------- */
+(function ($) {
+  $(document).on('click', '[data-sharelink-copy]', function () {
+    var $btn = $(this);
+    var input = $btn.closest('.emt-sharelink__row').find('[data-sharelink-input]')[0];
+    if (!input) { return; }
+    var done = function () {
+      var orig = $btn.data('orig-label') || $btn.text();
+      $btn.data('orig-label', orig);
+      $btn.text('¡Copiado!').addClass('is-copied');
+      setTimeout(function () { $btn.text(orig).removeClass('is-copied'); }, 2000);
+    };
+    var fallback = function () {
+      try { input.focus(); input.select(); document.execCommand('copy'); done(); } catch (e) {}
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(input.value).then(done, fallback);
+    } else {
+      fallback();
+    }
+  });
+})(jQuery);

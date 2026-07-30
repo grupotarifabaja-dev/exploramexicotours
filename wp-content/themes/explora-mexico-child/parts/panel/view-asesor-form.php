@@ -48,6 +48,31 @@ $espec_csv   = $tax_csv( 'asesor_especialidad' );
     <?php if ( $editing ) : ?><a class="emt-panel__btn emt-panel__btn--live" href="<?php echo esc_url( get_permalink( $post_id ) ); ?>" target="_blank" rel="noopener">Ver en vivo &#8599;</a><?php endif; ?>
 </div>
 
+<?php
+// Caja "Tu enlace para compartir": link con ?ref={slug} para atribución de ventas (cookie 30 días).
+if ( $editing ) :
+    $ase_slug = get_post_field( 'post_name', $post_id );
+    $ase_pub  = ( get_post_status( $post_id ) === 'publish' );
+    if ( $ase_pub && $ase_slug ) :
+        $ref_link = home_url( '/?ref=' . $ase_slug );
+?>
+<div class="emt-sharelink">
+    <div class="emt-sharelink__txt">
+        <strong>Tu enlace para compartir</strong>
+        <span>Comparte este enlace en redes o por WhatsApp: las visitas que entren con él quedan atribuidas a este asesor durante 30 días (formulario de cotización y mensajes de WhatsApp del sitio).</span>
+    </div>
+    <div class="emt-sharelink__row">
+        <input type="text" readonly value="<?php echo esc_attr( $ref_link ); ?>" data-sharelink-input onclick="this.select();" aria-label="Enlace de referido del asesor" />
+        <button type="button" class="emt-panel__btn" data-sharelink-copy>Copiar</button>
+    </div>
+</div>
+<?php elseif ( ! $ase_pub ) : ?>
+<div class="emt-sharelink emt-sharelink--pending">
+    <strong>Tu enlace para compartir</strong>
+    <span>Se generará automáticamente cuando el asesor esté publicado.</span>
+</div>
+<?php endif; endif; ?>
+
 <form id="emt-asesor-form" data-emt-form data-ajax-action="emt_panel_save_asesor" data-required-draft="titulo" data-required-publish="titulo,puesto,bio_corta,telefono,whatsapp,email" data-post-id="<?php echo (int) $post_id; ?>" novalidate>
 
     <div class="emt-lang-tabs" data-lang-tabs role="tablist" aria-label="Idioma de los campos">

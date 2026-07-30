@@ -286,3 +286,24 @@
 .emt-toast--pub { background: #2f8f3e; }            /* verde publicado */
 .emt-toast--pub .emt-toast__ic { background: rgba(255,255,255,0.22); }
 @media (max-width: 600px) { .emt-toast { left: 12px; right: 12px; max-width: none; } }
+
+/* ---------- Enlace para compartir (ficha de asesor) ---------- */
+.emt-sharelink {
+  background: var(--emt-blanco); border: 1px solid var(--emt-color-border);
+  border-left: 4px solid var(--emt-turquesa); border-radius: var(--emt-radius-md);
+  padding: 14px 16px; margin: 0 0 18px;
+}
+.emt-sharelink__txt { display: flex; flex-direction: column; gap: 2px; margin-bottom: 10px; }
+.emt-sharelink strong { font-family: var(--emt-font-display); color: var(--emt-azul-profundo); font-size: var(--emt-fs-sm); }
+.emt-sharelink span { color: var(--emt-color-text-muted); font-size: var(--emt-fs-xs); line-height: 1.5; }
+.emt-sharelink__row { display: flex; gap: 8px; align-items: center; }
+.emt-sharelink__row input {
+  flex: 1; min-width: 0; padding: 0.5rem 0.7rem; border: 1px solid var(--emt-color-border);
+  border-radius: var(--emt-radius-md); font-size: var(--emt-fs-sm); color: var(--emt-azul-profundo);
+  background: var(--emt-gris-claro); font-family: monospace; cursor: pointer;
+}
+.emt-sharelink__row .emt-panel__btn.is-copied { background: var(--emt-turquesa); border-color: var(--emt-turquesa); color: #fff; }
+.emt-sharelink--pending { display: flex; flex-direction: column; gap: 2px; border-left-color: var(--emt-color-border); }
+@media (max-width: 520px) {
+  .emt-sharelink__row { flex-direction: column; align-items: stretch; }
+}
