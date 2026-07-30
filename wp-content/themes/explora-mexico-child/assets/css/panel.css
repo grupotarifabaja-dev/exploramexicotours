@@ -310,3 +310,25 @@
 
 /* Sub-campo dentro de un campo (p. ej. Categoría principal bajo Categorías) */
 .emt-field--sub { margin-top: 10px; }
+
+/* ---------- Chips seleccionables (Destinos / Categorías / Experiencias) ---------- */
+.emt-checks--chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.emt-checks--chips label {
+  position: relative; display: inline-flex; align-items: center; gap: 6px;
+  padding: 0.42rem 0.95rem; border: 1.5px solid var(--emt-color-border);
+  border-radius: var(--emt-radius-pill); background: var(--emt-blanco);
+  font-size: var(--emt-fs-sm); color: var(--emt-gris-oscuro); cursor: pointer;
+  user-select: none; transition: background var(--emt-transition-fast), border-color var(--emt-transition-fast), color var(--emt-transition-fast);
+}
+.emt-checks--chips label:hover { border-color: var(--emt-azul-brillante); color: var(--emt-azul-profundo); }
+.emt-checks--chips label:focus-within { box-shadow: 0 0 0 3px rgba(0, 87, 184, 0.15); }
+.emt-checks--chips input[type="checkbox"] { position: absolute; opacity: 0; pointer-events: none; width: 0; height: 0; margin: 0; }
+.emt-checks--chips label:has(input:checked) {
+  background: var(--emt-azul-profundo); border-color: var(--emt-azul-profundo);
+  color: #fff; font-weight: var(--emt-fw-semibold);
+}
+.emt-checks--chips label:has(input:checked)::before { content: "\2713"; font-size: 0.85em; line-height: 1; }
+
+/* Categoría principal: selector compacto bajo las categorías */
+.emt-field--sub label { font-size: var(--emt-fs-xs); color: var(--emt-color-text-muted); }
+.emt-field--sub select { max-width: 320px; }

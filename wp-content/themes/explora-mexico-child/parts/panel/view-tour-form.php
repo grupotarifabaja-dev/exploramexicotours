@@ -97,7 +97,7 @@ $itin_ico= array( 'salida' => 'Salida', 'parada' => 'Parada', 'comida' => 'Comid
         <div class="emt-field emt-i18n-en"><label>Extracto (EN)</label><textarea name="excerpt_en" placeholder="Short summary for cards (EN)."><?php echo esc_textarea( $g( 'excerpt_en' ) ); ?></textarea></div>
         <div class="emt-grid-2">
             <div class="emt-field"><label>Destinos</label>
-                <div class="emt-checks">
+                <div class="emt-checks emt-checks--chips">
                     <?php foreach ( $tx_dest as $t ) : ?>
                         <label><input type="checkbox" name="destinos[]" value="<?php echo (int) $t->term_id; ?>" <?php checked( in_array( (int) $t->term_id, $sel_dest, true ) ); ?> /> <?php echo esc_html( $t->name ); ?></label>
                     <?php endforeach; ?>
@@ -105,7 +105,7 @@ $itin_ico= array( 'salida' => 'Salida', 'parada' => 'Parada', 'comida' => 'Comid
                 <div class="emt-field__help">Puedes marcar varios si el tour recorre más de un destino.</div>
             </div>
             <div class="emt-field"><label>Categorías</label>
-                <div class="emt-checks">
+                <div class="emt-checks emt-checks--chips">
                     <?php foreach ( $tx_cat as $t ) : ?>
                         <label><input type="checkbox" name="categorias[]" value="<?php echo (int) $t->term_id; ?>" <?php checked( in_array( (int) $t->term_id, $sel_cat, true ) ); ?> /> <?php echo esc_html( $t->name ); ?></label>
                     <?php endforeach; ?>
@@ -120,7 +120,7 @@ $itin_ico= array( 'salida' => 'Salida', 'parada' => 'Parada', 'comida' => 'Comid
             </div>
         </div>
         <div class="emt-field"><label>Experiencias</label>
-            <div class="emt-checks">
+            <div class="emt-checks emt-checks--chips">
                 <?php foreach ( $tx_exp as $t ) : ?>
                     <label><input type="checkbox" name="experiencias[]" value="<?php echo (int) $t->term_id; ?>" <?php checked( in_array( $t->term_id, $sel_exp, true ) ); ?> /> <?php echo esc_html( $t->name ); ?></label>
                 <?php endforeach; ?>
