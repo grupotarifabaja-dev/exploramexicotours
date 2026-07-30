@@ -36,3 +36,75 @@
 @media (prefers-reduced-motion: reduce) {
   .emt-wa-float__pulse { animation: none; }
 }
+
+/* ============================================================
+   WHATSAPP FLUJO GUIADO (§9.3) — emt-wa-guide
+   Widget de preguntas paso a paso anclado sobre el botón flotante.
+   ============================================================ */
+.emt-wa-guide {
+  position: fixed;
+  right: var(--emt-spacing-lg);
+  bottom: calc(var(--emt-spacing-lg) + 70px);
+  z-index: var(--emt-z-float);
+  width: min(92vw, 340px);
+  background: var(--emt-blanco);
+  border-radius: var(--emt-radius-lg);
+  box-shadow: var(--emt-shadow-xl);
+  overflow: hidden;
+  animation: emt-wa-guide-in 0.22s ease-out;
+}
+@keyframes emt-wa-guide-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) { .emt-wa-guide { animation: none; } }
+
+.emt-wa-guide__head {
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 10px;
+  background: linear-gradient(135deg, #1fae55, #25D366);
+  color: #fff; padding: 14px 16px;
+}
+.emt-wa-guide__head-txt { display: flex; flex-direction: column; gap: 2px; }
+.emt-wa-guide__head-txt strong { font-family: var(--emt-font-display); font-size: var(--emt-fs-base); }
+.emt-wa-guide__head-txt span { font-size: var(--emt-fs-xs); opacity: 0.9; }
+.emt-wa-guide__close {
+  background: rgba(255,255,255,0.18); border: 0; color: #fff; width: 28px; height: 28px;
+  border-radius: 50%; font-size: 18px; line-height: 1; cursor: pointer; flex: none;
+}
+.emt-wa-guide__close:hover { background: rgba(255,255,255,0.32); }
+
+.emt-wa-guide__body { padding: 14px 16px 16px; }
+.emt-wa-guide__q { margin: 0 0 10px; font-size: var(--emt-fs-sm); font-weight: var(--emt-fw-semibold); color: var(--emt-azul-profundo); }
+.emt-wa-guide__opts { display: flex; flex-direction: column; gap: 8px; }
+.emt-wa-guide__opts--wrap { flex-direction: row; flex-wrap: wrap; }
+.emt-wa-guide__opt {
+  border: 1.5px solid var(--emt-color-border); background: var(--emt-blanco);
+  border-radius: var(--emt-radius-pill); padding: 0.5rem 0.95rem; text-align: left;
+  font-size: var(--emt-fs-sm); font-family: var(--emt-font-body); color: var(--emt-gris-oscuro);
+  cursor: pointer; transition: border-color var(--emt-transition-fast), background var(--emt-transition-fast), color var(--emt-transition-fast);
+}
+.emt-wa-guide__opt:hover { border-color: #25D366; color: #128C4B; background: rgba(37,211,102,0.06); }
+.emt-wa-guide__opts--wrap .emt-wa-guide__opt { flex: 0 0 auto; text-align: center; padding: 0.4rem 0.8rem; font-size: var(--emt-fs-xs); }
+.emt-wa-guide__opt--go { background: var(--emt-azul-profundo); border-color: var(--emt-azul-profundo); color: #fff; text-align: center; }
+.emt-wa-guide__opt--go:hover { background: var(--emt-azul-brillante); border-color: var(--emt-azul-brillante); color: #fff; }
+.emt-wa-guide__row { display: flex; gap: 8px; }
+.emt-wa-guide__input {
+  flex: 1; min-width: 0; padding: 0.5rem 0.7rem; border: 1px solid var(--emt-color-border);
+  border-radius: var(--emt-radius-md); font-size: var(--emt-fs-sm); font-family: var(--emt-font-body);
+}
+.emt-wa-guide__input:focus { border-color: #25D366; outline: none; box-shadow: 0 0 0 3px rgba(37,211,102,0.15); }
+.emt-wa-guide__link {
+  background: none; border: 0; padding: 0; margin-top: 10px; font-size: var(--emt-fs-xs);
+  color: var(--emt-color-text-muted); cursor: pointer; display: inline-block;
+}
+.emt-wa-guide__link:hover { color: var(--emt-azul-brillante); text-decoration: underline; }
+.emt-wa-guide__msg {
+  background: #e7f9ee; border: 1px solid rgba(37,211,102,0.35); border-radius: var(--emt-radius-md) var(--emt-radius-md) var(--emt-radius-md) 4px;
+  padding: 10px 12px; font-size: var(--emt-fs-xs); color: var(--emt-gris-oscuro); line-height: 1.55; margin-bottom: 12px;
+}
+.emt-wa-guide__send {
+  display: block; text-align: center; background: #25D366; color: #fff !important;
+  border-radius: var(--emt-radius-pill); padding: 0.65rem 1rem; font-weight: var(--emt-fw-semibold);
+  font-size: var(--emt-fs-sm); text-decoration: none; transition: background var(--emt-transition-fast);
+}
+.emt-wa-guide__send:hover { background: #1fae55; }

@@ -75,6 +75,11 @@ function emt_enqueue_site_assets() {
         }
     }
 
+    // WhatsApp con flujo guiado (§9.3).
+    if ( file_exists( "$dir/assets/js/wa-guide.js" ) ) {
+        wp_enqueue_script( 'emt-wa-guide', "$uri/assets/js/wa-guide.js", array(), emt_asset_ver( "$dir/assets/js/wa-guide.js" ), true );
+    }
+
     // Beacon de estadísticas propias (clicks a WhatsApp / cotizador / llamadas).
     if ( file_exists( "$dir/assets/js/emt-stats.js" ) ) {
         wp_enqueue_script( 'emt-stats', "$uri/assets/js/emt-stats.js", array(), emt_asset_ver( "$dir/assets/js/emt-stats.js" ), true );
