@@ -36,6 +36,28 @@ $hero_has_media  = ( $hero_video_url || $hero_poster_url );
         <p class="emt-hero__eyebrow"><?php echo esc_html( emt_t( 'hero_eyebrow' ) ); ?></p>
         <h1 class="emt-hero__title"><?php echo esc_html( emt_t( 'hero_title' ) ); ?></h1>
         <p class="emt-hero__sub"><?php echo esc_html( emt_t( 'hero_sub' ) ); ?></p>
+        <form class="emt-hero__search" action="<?php echo esc_url( home_url( $emt_prefix . '/tours/' ) ); ?>" method="get" role="search">
+            <svg class="emt-hero__search-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+            <input type="search" name="q" list="emt-hero-sug" placeholder="<?php echo esc_attr( emt_t( 'hero_buscar_ph' ) ); ?>" aria-label="<?php echo esc_attr( emt_t( 'hero_buscar_ph' ) ); ?>" autocomplete="off" />
+            <button type="submit" class="emt-btn emt-btn--cta"><?php echo esc_html( emt_t( 'buscar' ) ); ?></button>
+            <datalist id="emt-hero-sug">
+                <?php
+                // Sugerencias: destinos, experiencias y categorías con tours + títulos de tours.
+                foreach ( array( 'tour_destino', 'tour_experiencia', 'tour_categoria' ) as $emt_sug_tax ) {
+                    $emt_sug_terms = get_terms( array( 'taxonomy' => $emt_sug_tax, 'hide_empty' => true ) );
+                    if ( ! is_wp_error( $emt_sug_terms ) ) {
+                        foreach ( $emt_sug_terms as $emt_sug_t ) {
+                            printf( '<option value="%s"></option>', esc_attr( $emt_sug_t->name ) );
+                        }
+                    }
+                }
+                $emt_sug_tours = get_posts( array( 'post_type' => 'tour', 'post_status' => 'publish', 'posts_per_page' => -1, 'orderby' => 'title', 'order' => 'ASC' ) );
+                foreach ( $emt_sug_tours as $emt_sug_p ) {
+                    printf( '<option value="%s"></option>', esc_attr( get_the_title( $emt_sug_p ) ) );
+                }
+                ?>
+            </datalist>
+        </form>
         <div class="emt-hero__cta">
             <a class="emt-btn emt-btn--cta" href="<?php echo esc_url( home_url( $emt_prefix . '/tours/' ) ); ?>"><?php echo esc_html( emt_t( 'ver_todos' ) ); ?></a>
             <a class="emt-btn emt-btn--secondary" href="<?php echo esc_url( home_url( $emt_prefix . '/cotizacion/' ) ); ?>"><?php echo esc_html( emt_t( 'cotizar_grupo' ) ); ?></a>

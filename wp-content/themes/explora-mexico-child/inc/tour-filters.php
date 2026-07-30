@@ -67,7 +67,7 @@ function emt_tour_parse_filters( $src ) {
     $precio_min = isset( $src['precio_min'] ) && $src['precio_min'] !== '' ? absint( $src['precio_min'] ) : null;
     $precio_max = isset( $src['precio_max'] ) && $src['precio_max'] !== '' ? absint( $src['precio_max'] ) : null;
 
-    return array(
+    $filters = array(
         'destino'     => array_values( array_filter( array_map( 'absint', (array) ( $src['destino'] ?? array() ) ) ) ),
         'categoria'   => array_values( array_filter( array_map( 'absint', (array) ( $src['categoria'] ?? array() ) ) ) ),
         'experiencia' => array_values( array_filter( array_map( 'absint', (array) ( $src['experiencia'] ?? array() ) ) ) ),
@@ -77,6 +77,23 @@ function emt_tour_parse_filters( $src ) {
         'precio_max'  => $precio_max,
         'q'           => isset( $src['q'] ) ? sanitize_text_field( wp_unslash( $src['q'] ) ) : '',
     );
+
+    // Búsqueda inteligente (buscador del hero): si el texto coincide con el
+    // nombre de un destino, categoría o experiencia, se filtra por esa
+    // etiqueta (todos sus tours) en vez de buscar por texto.
+    if ( $filters['q'] !== '' ) {
+        foreach ( array( 'tour_destino' => 'destino', 'tour_categoria' => 'categoria', 'tour_experiencia' => 'experiencia' ) as $emt_qt => $emt_qk ) {
+            $emt_qterm = get_term_by( 'name', $filters['q'], $emt_qt );
+            if ( $emt_qterm && ! is_wp_error( $emt_qterm ) ) {
+                $filters[ $emt_qk ][] = (int) $emt_qterm->term_id;
+                $filters[ $emt_qk ]   = array_values( array_unique( $filters[ $emt_qk ] ) );
+                $filters['q']         = '';
+                break;
+            }
+        }
+    }
+
+    return $filters;
 }
 
 /** ¿El filtro de precio está realmente acotando (distinto del rango completo)? */

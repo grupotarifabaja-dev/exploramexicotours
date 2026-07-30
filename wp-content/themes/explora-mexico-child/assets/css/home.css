@@ -193,3 +193,23 @@
   .emt-bento--mosaic .emt-bento__tile--lg .emt-bento__title { font-size: var(--emt-fs-xl); }
 }
 
+
+/* ---------- Buscador del hero (por tour, destino o experiencia) ---------- */
+.emt-hero__search {
+  display: flex; align-items: center; gap: 8px;
+  width: min(92vw, 600px); margin: var(--emt-spacing-lg) auto var(--emt-spacing-md);
+  background: rgba(255, 255, 255, 0.96); border-radius: var(--emt-radius-pill);
+  padding: 6px 6px 6px 18px; box-shadow: var(--emt-shadow-lg);
+}
+.emt-hero__search-ic { flex: none; width: 20px; height: 20px; color: var(--emt-azul-profundo); opacity: 0.6; }
+.emt-hero__search input {
+  flex: 1; min-width: 0; border: 0; background: transparent; outline: none;
+  font-family: var(--emt-font-body); font-size: var(--emt-fs-base); color: var(--emt-gris-oscuro);
+  padding: 0.55rem 0;
+}
+.emt-hero__search input::placeholder { color: var(--emt-color-text-muted); }
+.emt-hero__search .emt-btn { flex: none; border-radius: var(--emt-radius-pill); }
+@media (max-width: 520px) {
+  .emt-hero__search { flex-wrap: nowrap; padding-left: 14px; }
+  .emt-hero__search input { font-size: var(--emt-fs-sm); }
+}

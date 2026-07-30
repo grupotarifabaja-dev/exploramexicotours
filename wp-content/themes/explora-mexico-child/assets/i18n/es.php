@@ -202,5 +202,7 @@ return array(
     'wa_g_msg_pax'    => 'personas',
     'wa_g_msg_info'   => 'Hola, quiero información general de sus tours.',
     'wa_g_msg_email'  => 'Mi correo',
+    'hero_buscar_ph'  => '¿A dónde quieres ir? Tour, destino o experiencia…',
+    'buscar'          => 'Buscar',
 
 );
