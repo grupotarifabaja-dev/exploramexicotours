@@ -1,6 +1,6 @@
 <?php
 /**
- * Disparador TEMPORAL: reasigna Destino, Categoria y Experiencia de los 24 tours
+ * Disparador TEMPORAL: reasigna Destinos, Categorias (1a = principal) y Experiencias de los 26 tours
  * segun el modelo diferenciado (Categoria = tipo de tour; Experiencia = tema/ocasion).
  * Independiente del seeder horneado (que puede estar desactualizado en la imagen).
  *
@@ -30,30 +30,32 @@ add_action( 'init', function () {
     };
 
     $map = array(
-    'xantolo-dia-de-muertos-huasteca' => array( 'destino' => 'San Luis Potosí', 'categoria' => 'Cultural', 'experiencias' => array('Día de Muertos') ),
-    'dia-de-muertos-michoacan' => array( 'destino' => 'Michoacán', 'categoria' => 'Cultural', 'experiencias' => array('Día de Muertos', 'Pueblos Mágicos') ),
-    'dia-de-muertos-en-mixquic' => array( 'destino' => 'Ciudad de México', 'categoria' => 'Cultural', 'experiencias' => array('Día de Muertos') ),
-    'barrancas-del-cobre' => array( 'destino' => 'Chihuahua', 'categoria' => 'Ecoturismo', 'experiencias' => array('Naturaleza y paisajes') ),
-    'oaxaca-ciudad' => array( 'destino' => 'Oaxaca', 'categoria' => 'Cultural', 'experiencias' => array() ),
-    'oaxaca-y-sus-playas' => array( 'destino' => 'Oaxaca', 'categoria' => 'Aventura', 'experiencias' => array('Naturaleza y paisajes') ),
-    'explora-chiapas' => array( 'destino' => 'Chiapas', 'categoria' => 'Aventura', 'experiencias' => array('Naturaleza y paisajes') ),
-    'ciudades-coloniales' => array( 'destino' => 'Querétaro – Guanajuato – Michoacán', 'categoria' => 'Cultural', 'experiencias' => array('Pueblos Mágicos') ),
-    'tour-tequila-tradicion-con-distincion' => array( 'destino' => 'Jalisco', 'categoria' => 'Gastronómico', 'experiencias' => array('Ruta del Tequila', 'Pueblos Mágicos') ),
-    'tour-tequila-jose-cuervo-express' => array( 'destino' => 'Jalisco', 'categoria' => 'Gastronómico', 'experiencias' => array('Ruta del Tequila', 'Pueblos Mágicos') ),
-    'tour-tequila-la-rojena' => array( 'destino' => 'Jalisco', 'categoria' => 'Gastronómico', 'experiencias' => array('Ruta del Tequila', 'Pueblos Mágicos') ),
-    'tour-tequila-jornalero' => array( 'destino' => 'Jalisco', 'categoria' => 'Gastronómico', 'experiencias' => array('Ruta del Tequila', 'Pueblos Mágicos') ),
-    'tour-tequila-a-tu-alcance' => array( 'destino' => 'Jalisco', 'categoria' => 'Gastronómico', 'experiencias' => array('Ruta del Tequila', 'Pueblos Mágicos') ),
-    'tour-tequilero-hasta-los-huesos' => array( 'destino' => 'Jalisco', 'categoria' => 'Gastronómico', 'experiencias' => array('Ruta del Tequila', 'Día de Muertos', 'Pueblos Mágicos') ),
-    'guadalajara-y-tlaquepaque' => array( 'destino' => 'Jalisco', 'categoria' => 'Cultural', 'experiencias' => array() ),
-    'chapala-y-ajijic' => array( 'destino' => 'Jalisco', 'categoria' => 'Cultural', 'experiencias' => array('Pueblos Mágicos', 'Naturaleza y paisajes') ),
-    'mazamitla' => array( 'destino' => 'Jalisco', 'categoria' => 'Ecoturismo', 'experiencias' => array('Pueblos Mágicos', 'Naturaleza y paisajes') ),
-    'canonismo-en-jalisco' => array( 'destino' => 'Jalisco', 'categoria' => 'Aventura', 'experiencias' => array('Naturaleza y paisajes') ),
-    'dia-de-muertos-y-calaverandia' => array( 'destino' => 'Jalisco', 'categoria' => 'Cultural', 'experiencias' => array('Día de Muertos') ),
-    'guadalajara-y-modelado-en-barro' => array( 'destino' => 'Jalisco', 'categoria' => 'Cultural', 'experiencias' => array() ),
-    'vinedos-de-chapala' => array( 'destino' => 'Jalisco', 'categoria' => 'Gastronómico', 'experiencias' => array('Naturaleza y paisajes') ),
-    'isla-de-mezcala-y-ajijic' => array( 'destino' => 'Jalisco', 'categoria' => 'Cultural', 'experiencias' => array('Pueblos Mágicos', 'Naturaleza y paisajes') ),
-    'senderismo-petroglifos-mezcala' => array( 'destino' => 'Jalisco', 'categoria' => 'Ecoturismo', 'experiencias' => array('Naturaleza y paisajes') ),
-    'aventura-en-bici-la-primavera' => array( 'destino' => 'Jalisco', 'categoria' => 'Aventura', 'experiencias' => array('Naturaleza y paisajes') ),
+    'xantolo-dia-de-muertos-huasteca' => array( 'destinos' => array('San Luis Potosí'), 'categorias' => array('Cultural'), 'experiencias' => array('Día de Muertos', 'Naturaleza y paisajes') ),
+    'dia-de-muertos-michoacan' => array( 'destinos' => array('Michoacán'), 'categorias' => array('Cultural'), 'experiencias' => array('Día de Muertos', 'Pueblos Mágicos') ),
+    'dia-de-muertos-en-mixquic' => array( 'destinos' => array('Ciudad de México'), 'categorias' => array('Cultural'), 'experiencias' => array('Día de Muertos') ),
+    'barrancas-del-cobre' => array( 'destinos' => array('Chihuahua'), 'categorias' => array('Ecoturismo', 'Cultural'), 'experiencias' => array('Naturaleza y paisajes') ),
+    'oaxaca-ciudad' => array( 'destinos' => array('Oaxaca'), 'categorias' => array('Cultural', 'Gastronómico'), 'experiencias' => array('Arte y artesanías') ),
+    'oaxaca-y-sus-playas' => array( 'destinos' => array('Oaxaca'), 'categorias' => array('Sol y playa'), 'experiencias' => array('Naturaleza y paisajes') ),
+    'explora-chiapas' => array( 'destinos' => array('Chiapas'), 'categorias' => array('Ecoturismo', 'Cultural'), 'experiencias' => array('Naturaleza y paisajes', 'Pueblos Mágicos') ),
+    'ciudades-coloniales' => array( 'destinos' => array('Querétaro', 'Guanajuato', 'Michoacán'), 'categorias' => array('Cultural'), 'experiencias' => array('Pueblos Mágicos') ),
+    'tour-tequila-tradicion-con-distincion' => array( 'destinos' => array('Jalisco'), 'categorias' => array('Gastronómico'), 'experiencias' => array('Ruta del Tequila', 'Pueblos Mágicos') ),
+    'tour-tequila-jose-cuervo-express' => array( 'destinos' => array('Jalisco'), 'categorias' => array('Gastronómico'), 'experiencias' => array('Ruta del Tequila', 'Pueblos Mágicos', 'En familia') ),
+    'tour-tequila-la-rojena' => array( 'destinos' => array('Jalisco'), 'categorias' => array('Gastronómico'), 'experiencias' => array('Ruta del Tequila', 'Pueblos Mágicos') ),
+    'tour-tequila-jornalero' => array( 'destinos' => array('Jalisco'), 'categorias' => array('Gastronómico'), 'experiencias' => array('Ruta del Tequila', 'Pueblos Mágicos') ),
+    'tour-tequila-a-tu-alcance' => array( 'destinos' => array('Jalisco'), 'categorias' => array('Gastronómico'), 'experiencias' => array('Ruta del Tequila', 'Pueblos Mágicos') ),
+    'tour-tequilero-hasta-los-huesos' => array( 'destinos' => array('Jalisco'), 'categorias' => array('Gastronómico'), 'experiencias' => array('Ruta del Tequila', 'Día de Muertos', 'Pueblos Mágicos') ),
+    'guadalajara-y-tlaquepaque' => array( 'destinos' => array('Jalisco'), 'categorias' => array('Cultural'), 'experiencias' => array('Pueblos Mágicos', 'Arte y artesanías') ),
+    'chapala-y-ajijic' => array( 'destinos' => array('Jalisco'), 'categorias' => array('Cultural'), 'experiencias' => array('Pueblos Mágicos', 'Naturaleza y paisajes') ),
+    'mazamitla' => array( 'destinos' => array('Jalisco'), 'categorias' => array('Ecoturismo'), 'experiencias' => array('Pueblos Mágicos', 'Naturaleza y paisajes', 'En familia') ),
+    'canonismo-en-jalisco' => array( 'destinos' => array('Jalisco'), 'categorias' => array('Aventura'), 'experiencias' => array('Naturaleza y paisajes') ),
+    'dia-de-muertos-y-calaverandia' => array( 'destinos' => array('Jalisco'), 'categorias' => array('Cultural'), 'experiencias' => array('Día de Muertos', 'En familia') ),
+    'guadalajara-y-modelado-en-barro' => array( 'destinos' => array('Jalisco'), 'categorias' => array('Cultural'), 'experiencias' => array('Pueblos Mágicos', 'Arte y artesanías') ),
+    'vinedos-de-chapala' => array( 'destinos' => array('Jalisco'), 'categorias' => array('Gastronómico'), 'experiencias' => array('Naturaleza y paisajes', 'En pareja') ),
+    'isla-de-mezcala-y-ajijic' => array( 'destinos' => array('Jalisco'), 'categorias' => array('Cultural'), 'experiencias' => array('Pueblos Mágicos', 'Naturaleza y paisajes') ),
+    'senderismo-petroglifos-mezcala' => array( 'destinos' => array('Jalisco'), 'categorias' => array('Ecoturismo', 'Cultural'), 'experiencias' => array('Naturaleza y paisajes') ),
+    'aventura-en-bici-la-primavera' => array( 'destinos' => array('Jalisco'), 'categorias' => array('Aventura'), 'experiencias' => array('Naturaleza y paisajes') ),
+    'san-sebastian-y-mascota' => array( 'destinos' => array('Jalisco'), 'categorias' => array('Cultural', 'Ecoturismo'), 'experiencias' => array('Pueblos Mágicos', 'Naturaleza y paisajes', 'En pareja') ),
+    'recuerdo-de-mexico-sesion-fotografica' => array( 'destinos' => array('Jalisco'), 'categorias' => array('Cultural'), 'experiencias' => array('Día de Muertos', 'En familia', 'En pareja') ),
     );
 
     $out = array();
@@ -62,22 +64,28 @@ add_action( 'init', function () {
         if ( ! $post ) { $out[] = array( 'slug' => $slug, 'accion' => 'NO ENCONTRADO' ); continue; }
         $pid = (int) $post->ID;
 
-        $d = $tid( $c['destino'], 'tour_destino' );
-        wp_set_object_terms( $pid, $d ? array( $d ) : array(), 'tour_destino' );
+        $dest = array();
+        foreach ( (array) $c['destinos'] as $d ) { $id = $tid( $d, 'tour_destino' ); if ( $id ) { $dest[] = $id; } }
+        wp_set_object_terms( $pid, $dest, 'tour_destino' );
 
-        $ca = $tid( $c['categoria'], 'tour_categoria' );
-        wp_set_object_terms( $pid, $ca ? array( $ca ) : array(), 'tour_categoria' );
+        $cats = array();
+        foreach ( (array) $c['categorias'] as $ca ) { $id = $tid( $ca, 'tour_categoria' ); if ( $id ) { $cats[] = $id; } }
+        wp_set_object_terms( $pid, $cats, 'tour_categoria' );
+        // La primera categoría de la lista es la PRINCIPAL (etiqueta en tarjetas).
+        if ( function_exists( 'update_field' ) ) {
+            update_field( 'categoria_principal', ( count( $cats ) > 1 ) ? $cats[0] : '', $pid );
+        }
 
         $exp = array();
         foreach ( (array) $c['experiencias'] as $e ) { $id = $tid( $e, 'tour_experiencia' ); if ( $id ) { $exp[] = $id; } }
         wp_set_object_terms( $pid, $exp, 'tour_experiencia' );
 
-        $out[] = array( 'slug' => $slug, 'id' => $pid, 'destino' => $c['destino'], 'categoria' => $c['categoria'], 'experiencias' => $c['experiencias'], 'accion' => 'reasignado' );
+        $out[] = array( 'slug' => $slug, 'id' => $pid, 'destinos' => $c['destinos'], 'categorias' => $c['categorias'], 'experiencias' => $c['experiencias'], 'accion' => 'reasignado' );
     }
 
     $limpiados = array();
     if ( ! empty( $_GET['limpiar'] ) ) {
-        foreach ( array( 'tour_categoria', 'tour_experiencia' ) as $tax ) {
+        foreach ( array( 'tour_destino', 'tour_categoria', 'tour_experiencia' ) as $tax ) {
             $terms = get_terms( array( 'taxonomy' => $tax, 'hide_empty' => false ) );
             if ( is_wp_error( $terms ) ) { continue; }
             foreach ( $terms as $term ) {

@@ -38,8 +38,7 @@ while ( have_posts() ) :
     $precios_veh = function_exists( 'emt_tour_precios_vehiculo' ) ? emt_tour_precios_vehiculo( $id ) : array();
     $precio_nota = emt_get_field( 'precio_nota', $id );
 
-    $destinos  = get_the_terms( $id, 'tour_destino' );
-    $destino   = ( $destinos && ! is_wp_error( $destinos ) ) ? $destinos[0]->name : '';
+    $destino   = function_exists( 'emt_tour_destino_texto' ) ? emt_tour_destino_texto( $id ) : '';
 
     $cotiza_url = home_url( ( $lang === 'en' ? '/en' : '' ) . '/cotizacion/' );
     ?>

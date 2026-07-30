@@ -179,11 +179,21 @@ function emt_panel_save_tour() {
     $imagen_header = (int) ( $_POST['imagen_header'] ?? 0 );
     update_field( 'imagen_header', $imagen_header ?: '', $post_id );
 
-    // Taxonomías.
-    $destino = (int) ( $_POST['destino'] ?? 0 );
-    wp_set_object_terms( $post_id, $destino ? array( $destino ) : array(), 'tour_destino' );
-    $cat = (int) ( $_POST['categoria'] ?? 0 );
-    wp_set_object_terms( $post_id, $cat ? array( $cat ) : array(), 'tour_categoria' );
+    // Taxonomías (multi-destino y multi-categoría con principal).
+    $dest = array_filter( array_map( 'intval', (array) ( $_POST['destinos'] ?? array() ) ) );
+    if ( ! $dest && ! empty( $_POST['destino'] ) ) { $dest = array( (int) $_POST['destino'] ); } // compat
+    wp_set_object_terms( $post_id, $dest, 'tour_destino' );
+
+    $cats = array_filter( array_map( 'intval', (array) ( $_POST['categorias'] ?? array() ) ) );
+    if ( ! $cats && ! empty( $_POST['categoria'] ) ) { $cats = array( (int) $_POST['categoria'] ); } // compat
+    wp_set_object_terms( $post_id, $cats, 'tour_categoria' );
+
+    // Categoría principal: debe ser una de las asignadas; si no, la primera.
+    $cat_ppal = (int) ( $_POST['categoria_principal'] ?? 0 );
+    if ( $cat_ppal && ! in_array( $cat_ppal, $cats, true ) ) { $cat_ppal = 0; }
+    if ( ! $cat_ppal && count( $cats ) > 1 ) { $cat_ppal = $cats[0]; }
+    update_field( 'categoria_principal', $cat_ppal ?: '', $post_id );
+
     $exp = array_map( 'intval', (array) ( $_POST['experiencias'] ?? array() ) );
     wp_set_object_terms( $post_id, $exp, 'tour_experiencia' );
 

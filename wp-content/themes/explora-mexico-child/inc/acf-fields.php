@@ -122,6 +122,7 @@ function emt_acf_register_field_groups() {
             array( 'key' => 'field_emt_tour_destacado', 'label' => 'Destacado', 'name' => 'destacado', 'type' => 'true_false', 'default_value' => 0, 'ui' => 1, 'instructions' => 'Para home' ),
             array( 'key' => 'field_emt_tour_sin_menores', 'label' => 'No acepta menores', 'name' => 'sin_menores', 'type' => 'true_false', 'default_value' => 0, 'ui' => 1, 'instructions' => 'Actívalo si el tour NO admite menores (oculta el selector de menores en el cotizador).' ),
             array( 'key' => 'field_emt_tour_orden_destacado', 'label' => 'Orden destacado', 'name' => 'orden_destacado', 'type' => 'number', 'required' => 0, 'default_value' => 99, 'instructions' => 'Menor = primero' ),
+            array( 'key' => 'field_emt_tour_cat_principal', 'label' => 'Categoría principal', 'name' => 'categoria_principal', 'type' => 'taxonomy', 'taxonomy' => 'tour_categoria', 'field_type' => 'select', 'allow_null' => 1, 'add_term' => 0, 'save_terms' => 0, 'load_terms' => 0, 'return_format' => 'id', 'instructions' => 'Si el tour tiene varias categorías, esta es la que se muestra como etiqueta en tarjetas y listados. Vacío = la primera asignada.' ),
 
             // --- Tab: Relacionados ---
             array( 'key' => 'field_emt_tour_tab_relacionados', 'label' => 'Relacionados', 'name' => '', 'type' => 'tab', 'placement' => 'top' ),

@@ -41,16 +41,20 @@ $itin_en  = (array) $g( 'itinerario_en', array() );
 
 // Términos seleccionados. get_the_terms() devuelve false (sin términos) o WP_Error;
 // hay que blindar antes de wp_list_pluck para no disparar el aviso de PHP.
-$sel_destino = 0;
-$sel_cat     = 0;
-$sel_exp     = array();
+$sel_dest = array();
+$sel_cat  = array();
+$sel_exp  = array();
+$sel_cat_ppal = 0;
 if ( $editing ) {
     $tt = get_the_terms( $post_id, 'tour_destino' );
-    if ( $tt && ! is_wp_error( $tt ) ) { $sel_destino = (int) $tt[0]->term_id; }
+    if ( $tt && ! is_wp_error( $tt ) ) { $sel_dest = array_map( 'intval', wp_list_pluck( $tt, 'term_id' ) ); }
     $tc = get_the_terms( $post_id, 'tour_categoria' );
-    if ( $tc && ! is_wp_error( $tc ) ) { $sel_cat = (int) $tc[0]->term_id; }
+    if ( $tc && ! is_wp_error( $tc ) ) { $sel_cat = array_map( 'intval', wp_list_pluck( $tc, 'term_id' ) ); }
     $te = get_the_terms( $post_id, 'tour_experiencia' );
     if ( $te && ! is_wp_error( $te ) ) { $sel_exp = wp_list_pluck( $te, 'term_id' ); }
+    $sel_cat_ppal = (int) $g( 'categoria_principal', 0 );
+    if ( $sel_cat_ppal && ! in_array( $sel_cat_ppal, $sel_cat, true ) ) { $sel_cat_ppal = 0; }
+    if ( ! $sel_cat_ppal && $sel_cat ) { $sel_cat_ppal = $sel_cat[0]; }
 }
 
 $tx_dest = get_terms( array( 'taxonomy' => 'tour_destino', 'hide_empty' => false ) );
@@ -91,16 +95,28 @@ $itin_ico= array( 'salida' => 'Salida', 'parada' => 'Parada', 'comida' => 'Comid
         <div class="emt-field emt-i18n-es"><label>Descripción</label><textarea name="descripcion"><?php echo esc_textarea( $descrip ); ?></textarea></div>
         <div class="emt-field emt-i18n-en"><label>Descripción (EN)</label><textarea name="descripcion_en"><?php echo esc_textarea( $g( 'descripcion_en' ) ); ?></textarea></div>
         <div class="emt-field emt-i18n-en"><label>Extracto (EN)</label><textarea name="excerpt_en" placeholder="Short summary for cards (EN)."><?php echo esc_textarea( $g( 'excerpt_en' ) ); ?></textarea></div>
-        <div class="emt-grid-3">
-            <div class="emt-field"><label>Destino</label>
-                <select name="destino"><option value="">—</option>
-                    <?php foreach ( $tx_dest as $t ) : ?><option value="<?php echo (int) $t->term_id; ?>" <?php selected( $sel_destino, $t->term_id ); ?>><?php echo esc_html( $t->name ); ?></option><?php endforeach; ?>
-                </select>
+        <div class="emt-grid-2">
+            <div class="emt-field"><label>Destinos</label>
+                <div class="emt-checks">
+                    <?php foreach ( $tx_dest as $t ) : ?>
+                        <label><input type="checkbox" name="destinos[]" value="<?php echo (int) $t->term_id; ?>" <?php checked( in_array( (int) $t->term_id, $sel_dest, true ) ); ?> /> <?php echo esc_html( $t->name ); ?></label>
+                    <?php endforeach; ?>
+                </div>
+                <div class="emt-field__help">Puedes marcar varios si el tour recorre más de un destino.</div>
             </div>
-            <div class="emt-field"><label>Categoría</label>
-                <select name="categoria"><option value="">—</option>
-                    <?php foreach ( $tx_cat as $t ) : ?><option value="<?php echo (int) $t->term_id; ?>" <?php selected( $sel_cat, $t->term_id ); ?>><?php echo esc_html( $t->name ); ?></option><?php endforeach; ?>
-                </select>
+            <div class="emt-field"><label>Categorías</label>
+                <div class="emt-checks">
+                    <?php foreach ( $tx_cat as $t ) : ?>
+                        <label><input type="checkbox" name="categorias[]" value="<?php echo (int) $t->term_id; ?>" <?php checked( in_array( (int) $t->term_id, $sel_cat, true ) ); ?> /> <?php echo esc_html( $t->name ); ?></label>
+                    <?php endforeach; ?>
+                </div>
+                <div class="emt-field emt-field--sub"><label>Categoría principal</label>
+                    <select name="categoria_principal">
+                        <option value="">— Automática (la primera) —</option>
+                        <?php foreach ( $tx_cat as $t ) : ?><option value="<?php echo (int) $t->term_id; ?>" <?php selected( $sel_cat_ppal, $t->term_id ); ?>><?php echo esc_html( $t->name ); ?></option><?php endforeach; ?>
+                    </select>
+                    <div class="emt-field__help">Es la etiqueta que se ve en las tarjetas cuando el tour tiene más de una categoría.</div>
+                </div>
             </div>
         </div>
         <div class="emt-field"><label>Experiencias</label>

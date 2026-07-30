@@ -162,10 +162,9 @@ if ( $emt_dest_ids ) : ?>
                     $t_en = get_field( 'titulo_en', $tid );
                     if ( ! empty( $t_en ) ) { $ttitle = $t_en; }
                 }
-                $tcats  = get_the_terms( $tid, 'tour_categoria' );
-                $tcat   = ( $tcats && ! is_wp_error( $tcats ) ) ? $tcats[0]->name : '';
-                $tdests = get_the_terms( $tid, 'tour_destino' );
-                $tdest  = ( $tdests && ! is_wp_error( $tdests ) ) ? $tdests[0]->name : '';
+                $tcat_t = function_exists( 'emt_tour_categoria_principal' ) ? emt_tour_categoria_principal( $tid ) : null;
+                $tcat   = $tcat_t ? $tcat_t->name : '';
+                $tdest  = function_exists( 'emt_tour_destino_texto' ) ? emt_tour_destino_texto( $tid ) : '';
                 $tdur   = function_exists( 'emt_get_field' ) ? emt_get_field( 'duracion_texto', $tid ) : '';
                 $tprice = function_exists( 'get_field' ) ? get_field( 'precio_desde', $tid ) : '';
                 $tsize  = isset( $emt_sizes[ $emt_bento_i ] ) ? ' ' . $emt_sizes[ $emt_bento_i ] : '';

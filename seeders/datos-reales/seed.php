@@ -220,10 +220,17 @@ function emt_seed_datos_reales( $opts = array() ) {
         update_field( 'itinerario', $itin, $post_id );
 
         // Taxonomías.
-        $dest = emt_seed_term_id( $t['destino'] ?? '', 'tour_destino' );
-        wp_set_object_terms( $post_id, $dest ? array( $dest ) : array(), 'tour_destino' );
-        $cat = emt_seed_term_id( $t['categoria'] ?? '', 'tour_categoria' );
-        wp_set_object_terms( $post_id, $cat ? array( $cat ) : array(), 'tour_categoria' );
+        $dest_nombres = ! empty( $t['destinos'] ) ? (array) $t['destinos'] : array_filter( array( $t['destino'] ?? '' ) );
+        $dest = array();
+        foreach ( $dest_nombres as $dn ) { $did = emt_seed_term_id( $dn, 'tour_destino' ); if ( $did ) { $dest[] = $did; } }
+        wp_set_object_terms( $post_id, $dest, 'tour_destino' );
+
+        $cat_nombres = ! empty( $t['categorias'] ) ? (array) $t['categorias'] : array_filter( array( $t['categoria'] ?? '' ) );
+        $cats = array();
+        foreach ( $cat_nombres as $cn ) { $cid = emt_seed_term_id( $cn, 'tour_categoria' ); if ( $cid ) { $cats[] = $cid; } }
+        wp_set_object_terms( $post_id, $cats, 'tour_categoria' );
+        // 1a categoria de la lista = principal (solo si hay mas de una).
+        update_field( 'categoria_principal', ( count( $cats ) > 1 ) ? $cats[0] : '', $post_id );
         $exp = array();
         foreach ( (array) ( $t['experiencias'] ?? array() ) as $e ) {
             $tid = emt_seed_term_id( $e, 'tour_experiencia' );

@@ -42,6 +42,37 @@ function emt_render_tour_card( $tour ) {
 }
 
 /**
+ * Categoría PRINCIPAL de un tour (la etiqueta que se muestra en tarjetas/listas).
+ * Prioridad: campo `categoria_principal` (si sigue asignada al tour) > primera asignada.
+ *
+ * @param int $post_id ID del tour.
+ * @return WP_Term|null
+ */
+function emt_tour_categoria_principal( $post_id ) {
+    $terms = get_the_terms( $post_id, 'tour_categoria' );
+    if ( ! $terms || is_wp_error( $terms ) ) { return null; }
+    $pref = function_exists( 'get_field' ) ? (int) get_field( 'categoria_principal', $post_id ) : 0;
+    if ( $pref ) {
+        foreach ( $terms as $t ) {
+            if ( (int) $t->term_id === $pref ) { return $t; }
+        }
+    }
+    return $terms[0];
+}
+
+/**
+ * Nombre(s) de destino de un tour como texto (multi-destino: "Querétaro · Guanajuato").
+ *
+ * @param int $post_id ID del tour.
+ * @return string '' si no tiene destino.
+ */
+function emt_tour_destino_texto( $post_id ) {
+    $terms = get_the_terms( $post_id, 'tour_destino' );
+    if ( ! $terms || is_wp_error( $terms ) ) { return ''; }
+    return implode( ' · ', wp_list_pluck( $terms, 'name' ) );
+}
+
+/**
  * Renderiza una tarjeta de asesor incluyendo parts/asesor-card.php.
  *
  * @param int|WP_Post $asesor ID o post del asesor.

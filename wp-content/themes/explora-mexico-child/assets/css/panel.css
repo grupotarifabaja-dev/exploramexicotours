@@ -307,3 +307,6 @@
 @media (max-width: 520px) {
   .emt-sharelink__row { flex-direction: column; align-items: stretch; }
 }
+
+/* Sub-campo dentro de un campo (p. ej. Categoría principal bajo Categorías) */
+.emt-field--sub { margin-top: 10px; }
