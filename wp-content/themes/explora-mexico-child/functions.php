@@ -49,5 +49,6 @@ require_once $emt_inc . 'reasignar-taxonomias.php';
 require_once $emt_inc . 'aplicar-traducciones.php';
 require_once $emt_inc . 'fix-itinerarios.php'; // TEMPORAL: quitar tras aplicarlo
 require_once $emt_inc . 'hero-video-trigger.php'; // TEMPORAL: quitar tras aplicarlo
+require_once $emt_inc . 'avales-logos.php'; // TEMPORAL: quitar tras aplicarlo
 require_once $emt_inc . 'blog-i18n.php';
 require_once $emt_inc . 'seo-meta.php';

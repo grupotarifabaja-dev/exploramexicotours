@@ -35,6 +35,47 @@
   .emt-avales__item + .emt-avales__item::before { content: ""; position: absolute; left: calc(-1 * var(--emt-spacing-2xl) / 2); top: 50%; transform: translateY(-50%); width: 1px; height: 1.1em; background: var(--emt-color-border); }
 }
 
+/* Carrusel de logos "Confían en nosotros" (marquee continuo) */
+.emt-avales__inner { padding-block: var(--emt-spacing-lg) var(--emt-spacing-md); }
+.emt-avales__conf { display: flex; align-items: center; gap: var(--emt-spacing-md); padding-bottom: var(--emt-spacing-lg); }
+.emt-avales__conf .emt-avales__label { flex-shrink: 0; margin-right: 0; }
+.emt-avales__marquee {
+  flex: 1; min-width: 0; overflow: hidden;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.emt-avales__track {
+  display: flex; align-items: center; gap: var(--emt-spacing-2xl);
+  width: max-content; padding-inline-end: var(--emt-spacing-2xl);
+  animation: emt-marquee 32s linear infinite; will-change: transform;
+}
+.emt-avales__marquee:hover .emt-avales__track { animation-play-state: paused; }
+.emt-aval-logo {
+  display: block; height: 30px; width: auto; max-width: 160px; object-fit: contain;
+  filter: grayscale(1); opacity: 0.68; mix-blend-mode: multiply;
+  transition: filter var(--emt-transition-fast), opacity var(--emt-transition-fast);
+}
+.emt-aval-logo:hover { filter: grayscale(0); opacity: 1; }
+/* Ajustes por proporción de cada logo (cuadrados necesitan más alto) */
+.emt-aval-logo--tcs { height: 26px; }
+.emt-aval-logo--igt { height: 34px; }
+.emt-aval-logo--wipro { height: 48px; }
+.emt-aval-logo--rosewood { height: 52px; }
+@keyframes emt-marquee { to { transform: translateX(-50%); } }
+@media (max-width: 719px) {
+  .emt-avales__conf { flex-direction: column; align-items: stretch; gap: var(--emt-spacing-sm); text-align: center; }
+  .emt-aval-logo { height: 26px; }
+  .emt-aval-logo--tcs { height: 22px; }
+  .emt-aval-logo--igt { height: 28px; }
+  .emt-aval-logo--wipro { height: 40px; }
+  .emt-aval-logo--rosewood { height: 44px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .emt-avales__track { animation: none; flex-wrap: wrap; width: auto; justify-content: center; }
+  .emt-avales__track .emt-aval-logo[aria-hidden="true"] { display: none; }
+  .emt-avales__marquee { -webkit-mask-image: none; mask-image: none; }
+}
+
 .emt-home-section { padding-block: var(--emt-spacing-3xl); }
 .emt-home-section--alt { background: var(--emt-gris-claro); }
 .emt-section-head { text-align: center; margin-bottom: var(--emt-spacing-2xl); }

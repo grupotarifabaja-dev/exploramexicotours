@@ -82,10 +82,35 @@ $hero_has_media  = ( $hero_video_url || $hero_poster_url );
             <svg class="emt-avales__ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
             <?php echo esc_html( emt_t( 'aval_moderniza' ) ); ?>
         </p>
-        <p class="emt-avales__item emt-avales__brands">
-            <span class="emt-avales__label"><?php echo esc_html( emt_t( 'aval_confian' ) ); ?></span>
-            <span class="emt-avales__brand">TATA</span><span class="emt-avales__brand">Wipro</span><span class="emt-avales__brand">Rosewood Hotels</span><span class="emt-avales__brand">IGT</span><span class="emt-avales__brand">Wizeline</span>
-        </p>
+    </div>
+    <?php
+    // Carrusel "Confían en nosotros": logos importados por el disparador
+    // emt_avales_logos (option slug => attachment_id). Empresas de la lista
+    // del cliente (3.-Transporte.docx). Si aún no hay logos, respaldo en texto.
+    $emt_avales_logos = get_option( 'emt_avales_logos' );
+    $emt_avales_logos = is_array( $emt_avales_logos ) ? array_filter( array_map( 'intval', $emt_avales_logos ) ) : array();
+    ?>
+    <div class="emt-container emt-avales__conf">
+        <span class="emt-avales__label"><?php echo esc_html( emt_t( 'aval_confian' ) ); ?></span>
+        <?php if ( $emt_avales_logos ) : ?>
+            <div class="emt-avales__marquee">
+                <div class="emt-avales__track">
+                    <?php for ( $emt_rep = 0; $emt_rep < 4; $emt_rep++ ) : ?>
+                        <?php foreach ( $emt_avales_logos as $emt_slug => $emt_aid ) :
+                            $emt_src = wp_get_attachment_image_url( $emt_aid, 'medium' );
+                            if ( ! $emt_src ) { $emt_src = wp_get_attachment_url( $emt_aid ); }
+                            if ( ! $emt_src ) { continue; }
+                            $emt_alt = get_post_meta( $emt_aid, '_wp_attachment_image_alt', true ) ?: get_the_title( $emt_aid ); ?>
+                            <img class="emt-aval-logo emt-aval-logo--<?php echo esc_attr( $emt_slug ); ?>" src="<?php echo esc_url( $emt_src ); ?>" alt="<?php echo esc_attr( $emt_alt ); ?>" loading="lazy" decoding="async" <?php echo $emt_rep > 0 ? 'aria-hidden="true"' : ''; ?> />
+                        <?php endforeach; ?>
+                    <?php endfor; ?>
+                </div>
+            </div>
+        <?php else : ?>
+            <p class="emt-avales__item emt-avales__brands">
+                <span class="emt-avales__brand">TATA</span><span class="emt-avales__brand">Wipro</span><span class="emt-avales__brand">Rosewood Hotels</span><span class="emt-avales__brand">IGT</span>
+            </p>
+        <?php endif; ?>
     </div>
 </section>
 
