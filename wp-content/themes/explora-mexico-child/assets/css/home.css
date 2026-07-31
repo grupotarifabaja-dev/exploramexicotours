@@ -42,9 +42,6 @@
 .emt-avales__conf .emt-avales__marquee { width: 100%; flex: none; }
 .emt-avales__marquee {
   flex: 1; min-width: 0; overflow: hidden;
-  /* Fondo igual al de la franja: el mask aísla el blending, así que los logos
-     con fondo blanco (jpg) necesitan multiplicar contra este color. */
-  background: var(--emt-gris-claro);
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
   mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
 }
@@ -54,24 +51,29 @@
   animation: emt-marquee 32s linear infinite; will-change: transform;
 }
 .emt-avales__marquee:hover .emt-avales__track { animation-play-state: paused; }
+/* Cada logo va en su "chip" blanco: uniforma fondos (svg/png/jpg) sin blending. */
 .emt-aval-logo {
-  display: block; height: 30px; width: auto; max-width: 160px; object-fit: contain;
-  filter: grayscale(1); opacity: 0.68; mix-blend-mode: multiply;
+  display: block; box-sizing: content-box; height: 30px; width: auto;
+  max-width: 180px; object-fit: contain;
+  background: var(--emt-blanco); border: 1px solid var(--emt-color-border);
+  border-radius: var(--emt-radius-md); padding: 10px 18px;
+  box-shadow: var(--emt-shadow-sm);
+  filter: grayscale(1); opacity: 0.85;
   transition: filter var(--emt-transition-fast), opacity var(--emt-transition-fast);
 }
 .emt-aval-logo:hover { filter: grayscale(0); opacity: 1; }
 /* Ajustes por proporción de cada logo (cuadrados necesitan más alto) */
-.emt-aval-logo--tcs { height: 38px; }
-.emt-aval-logo--igt { height: 34px; }
-.emt-aval-logo--wipro { height: 46px; }
-.emt-aval-logo--rosewood { height: 56px; }
+.emt-aval-logo--tcs { height: 34px; }
+.emt-aval-logo--igt { height: 30px; }
+.emt-aval-logo--wipro { height: 42px; padding-block: 6px; }
+.emt-aval-logo--rosewood { height: 48px; padding-block: 5px; }
 @keyframes emt-marquee { to { transform: translateX(-50%); } }
 @media (max-width: 719px) {
-  .emt-aval-logo { height: 28px; }
-  .emt-aval-logo--tcs { height: 32px; }
-  .emt-aval-logo--igt { height: 28px; }
-  .emt-aval-logo--wipro { height: 40px; }
-  .emt-aval-logo--rosewood { height: 48px; }
+  .emt-aval-logo { height: 24px; padding: 8px 14px; }
+  .emt-aval-logo--tcs { height: 28px; }
+  .emt-aval-logo--igt { height: 24px; }
+  .emt-aval-logo--wipro { height: 36px; padding-block: 5px; }
+  .emt-aval-logo--rosewood { height: 42px; padding-block: 4px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .emt-avales__track { animation: none; flex-wrap: wrap; width: auto; justify-content: center; }
