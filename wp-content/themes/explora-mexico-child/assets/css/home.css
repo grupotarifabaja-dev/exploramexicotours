@@ -89,9 +89,9 @@
 
 .emt-home-section { padding-block: var(--emt-spacing-3xl); }
 .emt-home-section--alt { background: var(--emt-gris-claro); }
-.emt-section-head { text-align: center; margin-bottom: var(--emt-spacing-2xl); }
-.emt-section-head__eyebrow { text-transform: uppercase; letter-spacing: 0.08em; font-size: var(--emt-fs-sm); color: var(--emt-turquesa); }
-.emt-section-head__title { font-family: var(--emt-font-display); font-size: var(--emt-fs-2xl); font-weight: var(--emt-fw-bold); color: var(--emt-azul-profundo); margin: var(--emt-spacing-xs) 0 0; }
+/* Los encabezados de sección usan el componente global .emt-heading
+   (components.css: eyebrow + título + línea serape) para que todas las
+   secciones del home tengan el mismo tamaño y color. */
 
 .emt-tours-grid,
 .emt-blog-grid {

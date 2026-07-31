@@ -128,9 +128,9 @@ if ( empty( $destinos ) ) {
 if ( $destinos && ! is_wp_error( $destinos ) ) : ?>
 <section class="emt-home-section">
     <div class="emt-container">
-        <header class="emt-section-head">
-            <span class="emt-section-head__eyebrow"><?php echo esc_html( emt_t( 'a_donde_ir' ) ); ?></span>
-            <h2 class="emt-section-head__title"><?php echo esc_html( emt_t( 'destinos_destacados' ) ); ?></h2>
+        <header class="emt-heading">
+            <span class="emt-eyebrow"><?php echo esc_html( emt_t( 'a_donde_ir' ) ); ?></span>
+            <h2 class="emt-title"><?php echo esc_html( emt_t( 'destinos_destacados' ) ); ?></h2>
         </header>
         <div class="emt-carousel" data-carousel>
             <button type="button" class="emt-carousel__nav emt-carousel__nav--prev" data-carousel-prev aria-label="<?php echo esc_attr( emt_t( 'anterior' ) ); ?>">&#8249;</button>
@@ -260,9 +260,9 @@ if ( $emt_blog_q->have_posts() ) :
     ?>
 <section class="emt-home-section emt-home-blog">
     <div class="emt-container">
-        <header class="emt-section-head">
-            <span class="emt-section-head__eyebrow"><?php echo esc_html( emt_t( 'blog_eyebrow' ) ); ?></span>
-            <h2 class="emt-section-head__title"><?php echo esc_html( emt_t( 'blog_titulo' ) ); ?></h2>
+        <header class="emt-heading">
+            <span class="emt-eyebrow"><?php echo esc_html( emt_t( 'blog_eyebrow' ) ); ?></span>
+            <h2 class="emt-title"><?php echo esc_html( emt_t( 'blog_titulo' ) ); ?></h2>
         </header>
         <ul class="emt-blog-grid">
             <?php while ( $emt_blog_q->have_posts() ) : $emt_blog_q->the_post();
@@ -311,7 +311,7 @@ if ( $emt_tsts ) : ?>
     <div class="emt-container">
         <div class="emt-heading">
             <span class="emt-eyebrow"><?php echo esc_html( emt_t( 'tst_eyebrow' ) ); ?></span>
-            <h2><?php echo esc_html( emt_t( 'tst_titulo' ) ); ?></h2>
+            <h2 class="emt-title"><?php echo esc_html( emt_t( 'tst_titulo' ) ); ?></h2>
         </div>
         <div class="emt-testimonios__grid">
             <?php foreach ( array_slice( $emt_tsts, 0, 6 ) as $emt_tv ) : ?>
