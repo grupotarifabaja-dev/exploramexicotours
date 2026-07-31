@@ -23,7 +23,7 @@ add_action( 'init', function () {
         'tcs'      => array( 'ver' => 1, 'url' => 'https://upload.wikimedia.org/wikipedia/commons/9/99/TATA_Consultancy_Services_Logo_blue.svg', 'nombre' => 'TATA Consultancy Services' ),
         'wipro'    => array( 'ver' => 2, 'url' => 'https://upload.wikimedia.org/wikipedia/commons/a/a0/Wipro_Primary_Logo_Color_RGB.svg', 'nombre' => 'Wipro' ),
         'igt'      => array( 'ver' => 1, 'url' => 'https://upload.wikimedia.org/wikipedia/commons/3/31/IGT_logo.png', 'nombre' => 'IGT' ),
-        'rosewood' => array( 'ver' => 1, 'url' => 'https://upload.wikimedia.org/wikipedia/commons/d/db/Rosewood_hotel_resorts_logo.jpg', 'nombre' => 'Rosewood Hotels & Resorts' ),
+        'rosewood' => array( 'ver' => 2, 'url' => 'https://upload.wikimedia.org/wikipedia/commons/d/db/Rosewood_hotel_resorts_logo.jpg', 'nombre' => 'Rosewood Hotels & Resorts', 'sin_fondo' => true ),
     );
 
     require_once ABSPATH . 'wp-admin/includes/file.php';
@@ -64,7 +64,37 @@ add_action( 'init', function () {
             $salida[ $slug ] = array( 'ok' => false, 'error' => $tmp->get_error_message() );
             continue;
         }
-        $nombre_archivo = 'aval-' . $slug . '.' . strtolower( pathinfo( wp_parse_url( $f['url'], PHP_URL_PATH ), PATHINFO_EXTENSION ) );
+        $ext = strtolower( pathinfo( wp_parse_url( $f['url'], PHP_URL_PATH ), PATHINFO_EXTENSION ) );
+
+        // Fondo blanco -> transparente (para logos jpg): se convierte a PNG con GD.
+        if ( ! empty( $f['sin_fondo'] ) && in_array( $ext, array( 'jpg', 'jpeg', 'png' ), true ) && function_exists( 'imagecreatefromstring' ) ) {
+            $src = imagecreatefromstring( (string) file_get_contents( $tmp ) );
+            if ( $src ) {
+                $w = imagesx( $src ); $h = imagesy( $src );
+                $dst = imagecreatetruecolor( $w, $h );
+                imagealphablending( $dst, false ); imagesavealpha( $dst, true );
+                $transparente = imagecolorallocatealpha( $dst, 0, 0, 0, 127 );
+                for ( $y = 0; $y < $h; $y++ ) {
+                    for ( $x = 0; $x < $w; $x++ ) {
+                        $rgb = imagecolorat( $src, $x, $y );
+                        $r = ( $rgb >> 16 ) & 0xFF; $g = ( $rgb >> 8 ) & 0xFF; $b = $rgb & 0xFF;
+                        if ( $r > 242 && $g > 242 && $b > 242 ) {
+                            imagesetpixel( $dst, $x, $y, $transparente );
+                        } else {
+                            imagesetpixel( $dst, $x, $y, imagecolorallocate( $dst, $r, $g, $b ) );
+                        }
+                    }
+                }
+                $tmp_png = $tmp . '.png';
+                if ( imagepng( $dst, $tmp_png ) ) {
+                    @unlink( $tmp );
+                    $tmp = $tmp_png; $ext = 'png';
+                }
+                imagedestroy( $src ); imagedestroy( $dst );
+            }
+        }
+
+        $nombre_archivo = 'aval-' . $slug . '.' . $ext;
         $id = media_handle_sideload( array( 'name' => $nombre_archivo, 'tmp_name' => $tmp ), 0, $f['nombre'] );
         if ( is_wp_error( $id ) ) {
             @unlink( $tmp );
