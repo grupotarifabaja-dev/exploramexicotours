@@ -203,7 +203,7 @@ get_header();
                         <?php endif; ?>
                         <div class="emt-flotilla-card__body">
                             <?php if ( ! $has_img ) : ?>
-                                <div class="emt-flotilla-card__icon" aria-hidden="true"><?php echo esc_html( $v['icon'] ); ?></div>
+                                <div class="emt-flotilla-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11a2 2 0 0 1 2 2v7H3z"/><path d="M16 10h3.2a1 1 0 0 1 .8.4l1.7 2.3a1 1 0 0 1 .2.6V16h-2"/><circle cx="7" cy="17" r="1.8"/><circle cx="17.5" cy="17" r="1.8"/><path d="M9 17h6.5"/></svg></div>
                             <?php endif; ?>
                             <h3 class="emt-flotilla-card__name"><?php echo esc_html( $v['n'] ); ?></h3>
                             <p class="emt-flotilla-card__cap"><?php echo esc_html( $v['cap'] . ' ' . $L['pax'] ); ?></p>

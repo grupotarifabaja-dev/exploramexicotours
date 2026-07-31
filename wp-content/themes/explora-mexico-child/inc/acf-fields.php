@@ -234,19 +234,6 @@ function emt_acf_register_field_groups() {
             array( 'key' => 'field_emt_config_hero_bg_video', 'label' => 'Video de fondo del hero', 'name' => 'hero_bg_video', 'type' => 'file', 'return_format' => 'array', 'mime_types' => 'mp4,webm', 'instructions' => 'Video de fondo del hero de la portada (MP4 recomendado, sin audio, ligero). Si está vacío se usa la imagen de respaldo.' ),
             array( 'key' => 'field_emt_config_hero_bg_poster', 'label' => 'Imagen de respaldo del hero', 'name' => 'hero_bg_poster', 'type' => 'image', 'return_format' => 'array', 'instructions' => 'Se muestra mientras carga el video, en móvil y si el navegador no reproduce el video. Si no hay video ni imagen, el hero usa el degradado azul.' ),
 
-            array( 'key' => 'field_emt_config_tab_megamenu', 'label' => 'Mega-menú', 'name' => '', 'type' => 'tab', 'placement' => 'top' ),
-            array( 'key' => 'field_emt_config_mega_menu_destinos', 'label' => 'Mega-menú destinos', 'name' => 'mega_menu_destinos', 'type' => 'repeater', 'layout' => 'block', 'button_label' => 'Agregar destino', 'sub_fields' => array(
-                array( 'key' => 'field_emt_config_mm_destinos_nombre', 'label' => 'Nombre', 'name' => 'nombre', 'type' => 'text' ),
-                array( 'key' => 'field_emt_config_mm_destinos_imagen', 'label' => 'Imagen', 'name' => 'imagen', 'type' => 'image', 'return_format' => 'array' ),
-                array( 'key' => 'field_emt_config_mm_destinos_url', 'label' => 'URL', 'name' => 'url', 'type' => 'url' ),
-                array( 'key' => 'field_emt_config_mm_destinos_orden', 'label' => 'Orden', 'name' => 'orden', 'type' => 'number' ),
-            ) ),
-            array( 'key' => 'field_emt_config_mega_menu_experiencias', 'label' => 'Mega-menú experiencias', 'name' => 'mega_menu_experiencias', 'type' => 'repeater', 'layout' => 'block', 'button_label' => 'Agregar experiencia', 'sub_fields' => array(
-                array( 'key' => 'field_emt_config_mm_exp_nombre', 'label' => 'Nombre', 'name' => 'nombre', 'type' => 'text' ),
-                array( 'key' => 'field_emt_config_mm_exp_imagen', 'label' => 'Imagen', 'name' => 'imagen', 'type' => 'image', 'return_format' => 'array' ),
-                array( 'key' => 'field_emt_config_mm_exp_url', 'label' => 'URL', 'name' => 'url', 'type' => 'url' ),
-                array( 'key' => 'field_emt_config_mm_exp_orden', 'label' => 'Orden', 'name' => 'orden', 'type' => 'number' ),
-            ) ),
         ),
         'location' => array(
             array( array( 'param' => 'options_page', 'operator' => '==', 'value' => 'emt-config' ) ),
