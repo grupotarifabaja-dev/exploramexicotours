@@ -42,7 +42,8 @@
 .emt-transfer-quienes p { line-height: var(--emt-lh-relaxed); font-size: var(--emt-fs-md); color: var(--emt-color-text); margin: 0; }
 
 /* Servicios */
-.emt-transfer-servicios { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--emt-spacing-md); }
+.emt-transfer-servicios { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr; gap: var(--emt-spacing-md); }
+@media (min-width: 560px)  { .emt-transfer-servicios { grid-template-columns: repeat(2, 1fr); } }
 @media (min-width: 720px)  { .emt-transfer-servicios { grid-template-columns: repeat(3, 1fr); } }
 @media (min-width: 1024px) { .emt-transfer-servicios { grid-template-columns: repeat(4, 1fr); } }
 .emt-transfer-servicio {
