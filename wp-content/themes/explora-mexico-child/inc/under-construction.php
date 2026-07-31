@@ -10,9 +10,11 @@
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-// LANZADO (2026-07-31): el sitio es público en todos los dominios.
-// Para una ventana de mantenimiento futura, cambiar a true.
-define( 'EMT_UNDER_CONSTRUCTION', false );
+// Staging (host que empieza con "staging.") se ve SIN login para revisar el
+// rediseño; producción sigue protegida por el under construction.
+$emt_host = isset( $_SERVER['HTTP_HOST'] ) ? strtolower( (string) $_SERVER['HTTP_HOST'] ) : '';
+$emt_is_staging = ( strpos( $emt_host, 'staging.' ) === 0 );
+define( 'EMT_UNDER_CONSTRUCTION', ! $emt_is_staging );
 
 add_action( 'template_redirect', function() {
     if ( ! defined( 'EMT_UNDER_CONSTRUCTION' ) || ! EMT_UNDER_CONSTRUCTION ) return;
