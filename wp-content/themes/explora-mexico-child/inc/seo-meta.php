@@ -105,6 +105,33 @@ add_filter( 'get_canonical_url', function ( $url, $post ) {
 }, 10, 2 );
 
 /* ---------- 2. <title> bilingüe / override ---------- */
+
+/** Título propio de las rutas virtuales (transporte, evaluación, etc.), o '' si no aplica. */
+function emt_titulo_ruta_propia() {
+    $en    = function_exists( 'emt_current_lang' ) && emt_current_lang() === 'en';
+    $rutas = array(
+        'emt_transporte' => $en ? 'Explora Transfer · Tourist & Executive Transportation' : 'Explora Transfer · Transporte turístico y ejecutivo',
+        'emt_evaluacion' => $en ? 'How was your experience?' : '¿Cómo fue tu experiencia?',
+        'emt_nosotros'   => $en ? 'About us' : 'Nosotros',
+        'emt_cotizacion' => $en ? 'Get a group travel quote' : 'Cotiza tu viaje de grupo',
+        'emt_contacto'   => $en ? 'Contact' : 'Contacto',
+        'emt_legal'      => $en ? 'Legal information' : 'Información legal',
+        'emt_blog_list'  => 'Blog',
+    );
+    foreach ( $rutas as $var => $titulo ) {
+        if ( get_query_var( $var ) ) { return $titulo; }
+    }
+    return '';
+}
+
+// Vía de máxima precedencia: si otro plugin (p. ej. Elementor) resuelve el
+// título con pre_get_document_title, este filtro a prioridad 99 gana igual.
+add_filter( 'pre_get_document_title', function ( $title ) {
+    if ( is_admin() ) { return $title; }
+    $propio = emt_titulo_ruta_propia();
+    return $propio !== '' ? $propio . ' – ' . get_bloginfo( 'name' ) : $title;
+}, 99 );
+
 add_filter( 'document_title_parts', function ( $parts ) {
     if ( is_admin() ) { return $parts; }
 
