@@ -106,7 +106,29 @@ add_filter( 'get_canonical_url', function ( $url, $post ) {
 
 /* ---------- 2. <title> bilingüe / override ---------- */
 add_filter( 'document_title_parts', function ( $parts ) {
-    if ( is_singular() && ! is_admin() ) {
+    if ( is_admin() ) { return $parts; }
+
+    // Rutas propias (query vars): sin esto, el título del documento cae en el
+    // de la página asignada al blog ("Blog – ...") porque la query principal
+    // de estas URLs virtuales no resuelve a un contenido singular.
+    $emt_en    = function_exists( 'emt_current_lang' ) && emt_current_lang() === 'en';
+    $emt_rutas = array(
+        'emt_transporte' => $emt_en ? 'Explora Transfer · Tourist & Executive Transportation' : 'Explora Transfer · Transporte turístico y ejecutivo',
+        'emt_evaluacion' => $emt_en ? 'How was your experience?' : '¿Cómo fue tu experiencia?',
+        'emt_nosotros'   => $emt_en ? 'About us' : 'Nosotros',
+        'emt_cotizacion' => $emt_en ? 'Get a group travel quote' : 'Cotiza tu viaje de grupo',
+        'emt_contacto'   => $emt_en ? 'Contact' : 'Contacto',
+        'emt_legal'      => $emt_en ? 'Legal information' : 'Información legal',
+        'emt_blog_list'  => 'Blog',
+    );
+    foreach ( $emt_rutas as $emt_var => $emt_titulo ) {
+        if ( get_query_var( $emt_var ) ) {
+            $parts['title'] = $emt_titulo;
+            return $parts;
+        }
+    }
+
+    if ( is_singular() ) {
         $id = get_queried_object_id();
         if ( in_array( get_post_type( $id ), array( 'tour', 'post' ), true ) ) {
             $parts['title'] = emt_seo_title( $id );

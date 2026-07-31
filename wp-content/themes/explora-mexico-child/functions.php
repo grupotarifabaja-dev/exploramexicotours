@@ -42,13 +42,5 @@ require_once $emt_inc . 'blog-page.php';
 require_once $emt_inc . 'nosotros.php';
 require_once $emt_inc . 'legales.php';
 require_once $emt_inc . 'evaluacion.php';
-require_once $emt_inc . 'seed-trigger.php';
-require_once $emt_inc . 'blog-seed-trigger.php';
-require_once $emt_inc . 'gestor-trigger.php';
-require_once $emt_inc . 'reasignar-taxonomias.php';
-require_once $emt_inc . 'aplicar-traducciones.php';
-require_once $emt_inc . 'fix-itinerarios.php'; // TEMPORAL: quitar tras aplicarlo
-require_once $emt_inc . 'hero-video-trigger.php'; // TEMPORAL: quitar tras aplicarlo
-require_once $emt_inc . 'avales-logos.php'; // TEMPORAL: quitar tras aplicarlo
 require_once $emt_inc . 'blog-i18n.php';
 require_once $emt_inc . 'seo-meta.php';
