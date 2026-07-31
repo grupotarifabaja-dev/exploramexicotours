@@ -29,7 +29,23 @@ while ( have_posts() ) :
     $imagen_header = get_field( 'imagen_header', $id );
     $incluye   = emt_get_field( 'incluye', $id );
     $no_incl   = emt_get_field( 'no_incluye', $id );
-    $itin      = emt_get_field( 'itinerario', $id );
+    // Itinerario: en EN se fusiona fila a fila (el repetidor EN solo trae
+    // titulo_en/descripcion_en; dia/hora/icono se heredan del ES).
+    $itin = get_field( 'itinerario', $id );
+    if ( function_exists( 'emt_current_lang' ) && emt_current_lang() === 'en' && is_array( $itin ) ) {
+        $itin_en = get_field( 'itinerario_en', $id );
+        if ( is_array( $itin_en ) && $itin_en ) {
+            $itin_en = array_values( $itin_en );
+            $itin = array_values( $itin );
+            foreach ( $itin as $emt_ii => &$emt_pp ) {
+                if ( isset( $itin_en[ $emt_ii ] ) && is_array( $itin_en[ $emt_ii ] ) ) {
+                    if ( ! empty( $itin_en[ $emt_ii ]['titulo_en'] ) ) { $emt_pp['titulo'] = $itin_en[ $emt_ii ]['titulo_en']; }
+                    if ( ! empty( $itin_en[ $emt_ii ]['descripcion_en'] ) ) { $emt_pp['descripcion'] = $itin_en[ $emt_ii ]['descripcion_en']; }
+                }
+            }
+            unset( $emt_pp );
+        }
+    }
     $politica  = emt_get_field( 'politica_cancelacion', $id );
     $mapa      = get_field( 'mapa_embed', $id );
     $relacion  = get_field( 'tour_relacionados', $id );
