@@ -181,9 +181,18 @@ while ( have_posts() ) :
                     <?php if ( is_array( $itin ) && $itin ) : ?>
                         <section class="emt-tour-itin">
                             <h2><?php echo esc_html( emt_t( 'itinerario' ) ); ?></h2>
+                            <?php
+                            // El prefijo "Día N ·" solo aporta en tours de varios días.
+                            $emt_itin_dias = array();
+                            foreach ( $itin as $emt_ip ) {
+                                $emt_id_dia = (int) ( $emt_ip['dia'] ?? 0 );
+                                if ( $emt_id_dia > 0 ) { $emt_itin_dias[ $emt_id_dia ] = true; }
+                            }
+                            $emt_itin_multidia = count( $emt_itin_dias ) > 1;
+                            ?>
                             <?php foreach ( $itin as $paso ) : ?>
                                 <details class="emt-itin__item">
-                                    <summary><?php echo esc_html( trim( ( isset( $paso['dia'] ) ? emt_t( 'dia_label' ) . ' ' . $paso['dia'] . ' · ' : '' ) . ( $paso['hora'] ?? '' ) . ' ' . ( $paso['titulo'] ?? $paso['titulo_en'] ?? '' ) ) ); ?></summary>
+                                    <summary><?php echo esc_html( trim( ( $emt_itin_multidia && isset( $paso['dia'] ) ? emt_t( 'dia_label' ) . ' ' . $paso['dia'] . ' · ' : '' ) . ( $paso['hora'] ?? '' ) . ' ' . ( $paso['titulo'] ?? $paso['titulo_en'] ?? '' ) ) ); ?></summary>
                                     <?php if ( ! empty( $paso['descripcion'] ) || ! empty( $paso['descripcion_en'] ) ) : ?>
                                         <p><?php echo esc_html( $paso['descripcion'] ?? $paso['descripcion_en'] ); ?></p>
                                     <?php endif; ?>
