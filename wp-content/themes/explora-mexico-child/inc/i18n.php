@@ -72,6 +72,13 @@ add_filter( 'do_parse_request', function( $continue ) {
 add_filter( 'request', function( $vars ) {
     if ( emt_current_lang() === 'en' ) {
         $vars['lang'] = 'en';
+        // /en/ (home): con portada estática configurada, cualquier query var
+        // extra hace que WP resuelva la home como página de entradas (blog).
+        // Si tras quitar 'lang' no queda nada, forzamos la portada real.
+        $resto = array_diff_key( $vars, array( 'lang' => 1 ) );
+        if ( empty( $resto ) && get_option( 'show_on_front' ) === 'page' && (int) get_option( 'page_on_front' ) ) {
+            $vars['page_id'] = (int) get_option( 'page_on_front' );
+        }
     }
     return $vars;
 } );
