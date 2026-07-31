@@ -37,10 +37,14 @@
 
 /* Carrusel de logos "Confían en nosotros" (marquee continuo) */
 .emt-avales__inner { padding-block: var(--emt-spacing-lg) var(--emt-spacing-md); }
-.emt-avales__conf { display: flex; align-items: center; gap: var(--emt-spacing-md); padding-bottom: var(--emt-spacing-lg); }
-.emt-avales__conf .emt-avales__label { flex-shrink: 0; margin-right: 0; }
+.emt-avales__conf { display: flex; flex-direction: column; align-items: center; gap: var(--emt-spacing-sm); padding-bottom: var(--emt-spacing-lg); text-align: center; }
+.emt-avales__conf .emt-avales__label { margin-right: 0; }
+.emt-avales__conf .emt-avales__marquee { width: 100%; flex: none; }
 .emt-avales__marquee {
   flex: 1; min-width: 0; overflow: hidden;
+  /* Fondo igual al de la franja: el mask aísla el blending, así que los logos
+     con fondo blanco (jpg) necesitan multiplicar contra este color. */
+  background: var(--emt-gris-claro);
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
   mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
 }
@@ -57,23 +61,30 @@
 }
 .emt-aval-logo:hover { filter: grayscale(0); opacity: 1; }
 /* Ajustes por proporción de cada logo (cuadrados necesitan más alto) */
-.emt-aval-logo--tcs { height: 26px; }
+.emt-aval-logo--tcs { height: 38px; }
 .emt-aval-logo--igt { height: 34px; }
-.emt-aval-logo--wipro { height: 48px; }
-.emt-aval-logo--rosewood { height: 52px; }
+.emt-aval-logo--wipro { height: 46px; }
+.emt-aval-logo--rosewood { height: 56px; }
 @keyframes emt-marquee { to { transform: translateX(-50%); } }
 @media (max-width: 719px) {
-  .emt-avales__conf { flex-direction: column; align-items: stretch; gap: var(--emt-spacing-sm); text-align: center; }
-  .emt-aval-logo { height: 26px; }
-  .emt-aval-logo--tcs { height: 22px; }
+  .emt-aval-logo { height: 28px; }
+  .emt-aval-logo--tcs { height: 32px; }
   .emt-aval-logo--igt { height: 28px; }
   .emt-aval-logo--wipro { height: 40px; }
-  .emt-aval-logo--rosewood { height: 44px; }
+  .emt-aval-logo--rosewood { height: 48px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .emt-avales__track { animation: none; flex-wrap: wrap; width: auto; justify-content: center; }
   .emt-avales__track .emt-aval-logo[aria-hidden="true"] { display: none; }
   .emt-avales__marquee { -webkit-mask-image: none; mask-image: none; }
+}
+
+/* Certificaciones en el home (sustituye la banda de cifras) */
+.emt-home-certs { padding-block: var(--emt-spacing-xl); border-top: 1px solid var(--emt-color-border); background: var(--emt-blanco); }
+.emt-home-certs__label {
+  display: block; text-align: center; margin: 0 0 var(--emt-spacing-md);
+  color: var(--emt-color-text-muted); font-weight: var(--emt-fw-semibold);
+  font-size: var(--emt-fs-xs); text-transform: uppercase; letter-spacing: 0.08em;
 }
 
 .emt-home-section { padding-block: var(--emt-spacing-3xl); }

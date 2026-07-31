@@ -291,25 +291,11 @@ if ( $emt_blog_q->have_posts() ) :
 </section>
 <?php endif; ?>
 
-<!-- 5. Trayectoria (trust line) -->
-<section class="emt-trust">
-    <div class="emt-container emt-trust__grid">
-        <div class="emt-trust__item">
-            <span class="emt-trust__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
-            <span class="emt-trust__num" data-emt-count="15">15</span><span class="emt-trust__label"><?php echo esc_html( emt_t( 'trust_anios' ) ); ?></span>
-        </div>
-        <div class="emt-trust__item">
-            <span class="emt-trust__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 8 3 16 6 23 3 23 18 16 21 8 18 1 21"/><line x1="8" y1="3" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="21"/></svg></span>
-            <span class="emt-trust__num" data-emt-count="70">70</span><span class="emt-trust__label"><?php echo esc_html( emt_t( 'trust_tours' ) ); ?></span>
-        </div>
-        <div class="emt-trust__item">
-            <span class="emt-trust__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
-            <span class="emt-trust__num" data-emt-count="15">15</span><span class="emt-trust__label"><?php echo esc_html( emt_t( 'trust_destinos' ) ); ?></span>
-        </div>
-        <div class="emt-trust__item">
-            <span class="emt-trust__ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
-            <span class="emt-trust__num" data-emt-count="50" data-emt-suffix="k">50k</span><span class="emt-trust__label"><?php echo esc_html( emt_t( 'trust_viajeros' ) ); ?></span>
-        </div>
+<!-- 5. Certificaciones y reconocimientos (carrusel reutilizable de Nosotros/Transporte) -->
+<section class="emt-home-certs">
+    <div class="emt-container">
+        <span class="emt-home-certs__label"><?php echo ( $emt_lang === 'en' ) ? 'Certifications and recognitions' : 'Certificaciones y reconocimientos'; ?></span>
+        <?php include get_stylesheet_directory() . '/parts/certificaciones-carrusel.php'; ?>
     </div>
 </section>
 

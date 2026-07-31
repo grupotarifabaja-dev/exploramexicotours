@@ -20,10 +20,10 @@ add_action( 'init', function () {
 
     // Empresas de la lista del cliente (3.-Transporte.docx). Fuentes públicas.
     $fuentes = array(
-        'tcs'      => array( 'url' => 'https://upload.wikimedia.org/wikipedia/commons/9/99/TATA_Consultancy_Services_Logo_blue.svg', 'nombre' => 'TATA Consultancy Services' ),
-        'wipro'    => array( 'url' => 'https://upload.wikimedia.org/wikipedia/commons/8/80/Wipro_Logo_Black.svg', 'nombre' => 'Wipro' ),
-        'igt'      => array( 'url' => 'https://upload.wikimedia.org/wikipedia/commons/3/31/IGT_logo.png', 'nombre' => 'IGT' ),
-        'rosewood' => array( 'url' => 'https://upload.wikimedia.org/wikipedia/commons/d/db/Rosewood_hotel_resorts_logo.jpg', 'nombre' => 'Rosewood Hotels & Resorts' ),
+        'tcs'      => array( 'ver' => 1, 'url' => 'https://upload.wikimedia.org/wikipedia/commons/9/99/TATA_Consultancy_Services_Logo_blue.svg', 'nombre' => 'TATA Consultancy Services' ),
+        'wipro'    => array( 'ver' => 2, 'url' => 'https://upload.wikimedia.org/wikipedia/commons/a/a0/Wipro_Primary_Logo_Color_RGB.svg', 'nombre' => 'Wipro' ),
+        'igt'      => array( 'ver' => 1, 'url' => 'https://upload.wikimedia.org/wikipedia/commons/3/31/IGT_logo.png', 'nombre' => 'IGT' ),
+        'rosewood' => array( 'ver' => 1, 'url' => 'https://upload.wikimedia.org/wikipedia/commons/d/db/Rosewood_hotel_resorts_logo.jpg', 'nombre' => 'Rosewood Hotels & Resorts' ),
     );
 
     require_once ABSPATH . 'wp-admin/includes/file.php';
@@ -44,13 +44,14 @@ add_action( 'init', function () {
     $salida = array();
 
     foreach ( $fuentes as $slug => $f ) {
-        // ¿Ya importado?
-        $prev = get_posts( array(
+        // ¿Ya importado? (la clave incluye versión para poder reemplazar un logo)
+        $clave = $slug . '-v' . (int) $f['ver'];
+        $prev  = get_posts( array(
             'post_type'      => 'attachment',
             'posts_per_page' => 1,
             'fields'         => 'ids',
             'meta_key'       => '_emt_aval_origen',
-            'meta_value'     => $slug,
+            'meta_value'     => $clave,
         ) );
         if ( $prev ) {
             $logos[ $slug ]  = (int) $prev[0];
@@ -70,7 +71,7 @@ add_action( 'init', function () {
             $salida[ $slug ] = array( 'ok' => false, 'error' => $id->get_error_message() );
             continue;
         }
-        update_post_meta( (int) $id, '_emt_aval_origen', $slug );
+        update_post_meta( (int) $id, '_emt_aval_origen', $clave );
         update_post_meta( (int) $id, '_wp_attachment_image_alt', $f['nombre'] );
         $logos[ $slug ]  = (int) $id;
         $salida[ $slug ] = array( 'ok' => true, 'adjunto' => (int) $id, 'url' => wp_get_attachment_url( (int) $id ), 'accion' => 'importado' );
