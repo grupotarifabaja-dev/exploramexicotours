@@ -110,13 +110,25 @@ add_action( 'admin_init', function () {
         $cpt = get_post_type( (int) $_GET['post'] );
     }
 
-    $siempre   = array( 'index.php', 'profile.php', 'upload.php', 'media-new.php', 'async-upload.php', 'admin-ajax.php' );
+    $siempre   = array( 'profile.php', 'upload.php', 'media-new.php', 'async-upload.php', 'admin-ajax.php' );
     $de_cpt    = array( 'edit.php', 'post-new.php', 'post.php' );
     $permitido = in_array( $pagenow, $siempre, true )
         || ( in_array( $pagenow, $de_cpt, true ) && in_array( $cpt, array( 'tour', 'asesor' ), true ) );
 
     if ( ! $permitido ) {
-        wp_safe_redirect( admin_url( 'edit.php?post_type=tour' ) );
+        // Incluido el escritorio de wp-admin: el gestor vive en el panel del sitio.
+        wp_safe_redirect( home_url( '/panel/' ) );
         exit;
     }
 } );
+
+/* ============================================================
+   Al iniciar sesión, el Gestor EMT va directo al panel del
+   sitio (/panel/) en lugar del escritorio de WordPress.
+   ============================================================ */
+add_filter( 'login_redirect', function ( $redirect_to, $requested, $user ) {
+    if ( $user instanceof WP_User && in_array( 'emt_gestor', (array) $user->roles, true ) && ! user_can( $user, 'manage_options' ) ) {
+        return home_url( '/panel/' );
+    }
+    return $redirect_to;
+}, 10, 3 );
