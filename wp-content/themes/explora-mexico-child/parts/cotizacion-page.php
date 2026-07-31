@@ -87,6 +87,10 @@ get_header();
                 <form class="emt-cotiza-form" data-emt-cotiza-form
                       data-ajax="<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>"
                       data-nonce="<?php echo esc_attr( wp_create_nonce( 'emt_cotizacion' ) ); ?>"
+                      data-wa="<?php echo esc_attr( preg_replace( '/\D/', '', function_exists( 'get_field' ) ? ( get_field( 'wa_number', 'option' ) ?: '523310480670' ) : '523310480670' ) ); ?>"
+                      data-wa-titulo="<?php echo esc_attr( $lang === 'en' ? 'Hi! I would like a quote for a group trip:' : 'Hola, quiero cotizar un viaje de grupo:' ); ?>"
+                      data-wa-atendido="<?php echo esc_attr( function_exists( 'emt_ref_asesor_nombre' ) ? emt_ref_asesor_nombre() : '' ); ?>"
+                      data-wa-atendido-label="<?php echo esc_attr( $lang === 'en' ? 'Referred by' : 'Atendido por' ); ?>"
                       data-msg-error="<?php echo esc_attr( $L['f_error'] ); ?>"
                       data-msg-conexion="<?php echo esc_attr( $L['f_conexion'] ); ?>"
                       data-msg-enviando="<?php echo esc_attr( $L['f_enviando'] ); ?>"

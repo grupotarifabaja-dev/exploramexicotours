@@ -41,6 +41,8 @@
 .emt-nav__trigger {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  text-align: center; /* centrado también cuando el texto pasa a 2 líneas */
   gap: 6px;
   font-family: var(--emt-font-display);
   font-size: var(--emt-fs-sm);
@@ -88,6 +90,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  text-align: center; /* centrado también cuando el texto pasa a 2 líneas */
   font-family: var(--emt-font-display);
   font-weight: var(--emt-fw-semibold);
   font-size: var(--emt-fs-sm);

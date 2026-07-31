@@ -84,3 +84,15 @@ add_action( 'init', function () {
         $_COOKIE['emt_ref_asesor'] = $ref;
     }
 } );
+
+/**
+ * Nombre del asesor atribuido por la cookie ?ref (si existe y está publicado).
+ * Lo usan los formularios que redirigen a WhatsApp ("Atendido por").
+ */
+function emt_ref_asesor_nombre() {
+    if ( empty( $_COOKIE['emt_ref_asesor'] ) ) {
+        return '';
+    }
+    $p = get_page_by_path( sanitize_title( wp_unslash( $_COOKIE['emt_ref_asesor'] ) ), OBJECT, 'asesor' );
+    return ( $p && $p->post_status === 'publish' ) ? get_the_title( $p ) : '';
+}

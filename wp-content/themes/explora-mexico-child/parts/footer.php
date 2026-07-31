@@ -115,5 +115,8 @@ $creds = array(
             <span>Vibrante.</span> <span>Auténtico.</span> <span>Inspirador.</span> <span>Mexicano.</span>
         </p>
         <p class="emt-footer__copy">&copy; <?php echo esc_html( wp_date( 'Y' ) ); ?> Explora México Tours · <?php echo esc_html( $dir ); ?></p>
+        <a class="emt-footer__supra" href="https://supratecnia.com/" target="_blank" rel="noopener noreferrer" aria-label="Sitio desarrollado por SUPRATECNIA" title="Sitio desarrollado por SUPRATECNIA">
+            <img src="<?php echo esc_url( $emt_uri . '/assets/images/supratecnia.gif' ); ?>" alt="SUPRATECNIA" height="28" loading="lazy" decoding="async" />
+        </a>
     </div>
 </footer>

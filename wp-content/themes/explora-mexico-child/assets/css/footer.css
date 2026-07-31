@@ -106,3 +106,8 @@
 }
 .emt-footer__social--icons li a svg { width: 20px; height: 20px; }
 .emt-footer__social--icons li a:hover { background: var(--emt-turquesa); transform: translateY(-2px); }
+
+/* Crédito del estudio (GIF SUPRATECNIA, pequeño y discreto) */
+.emt-footer__supra { display: inline-flex; align-items: center; opacity: 0.75; transition: opacity var(--emt-transition-fast); }
+.emt-footer__supra:hover { opacity: 1; }
+.emt-footer__supra img { height: 28px; width: auto; display: block; }
