@@ -34,11 +34,11 @@ $precio    = function_exists( 'get_field' ) ? get_field( 'precio_desde', $id ) :
 $garantia  = function_exists( 'get_field' ) ? get_field( 'salida_garantizada', $id ) : false;
 $pickup    = function_exists( 'get_field' ) ? get_field( 'pickup_hotel', $id ) : false;
 
-// Términos.
-$destinos   = get_the_terms( $id, 'tour_destino' );
+// Términos (multi-destino y categoría principal).
 $categorias = get_the_terms( $id, 'tour_categoria' );
-$destino    = ( $destinos && ! is_wp_error( $destinos ) ) ? $destinos[0]->name : '';
-$categoria  = ( $categorias && ! is_wp_error( $categorias ) ) ? $categorias[0]->name : '';
+$destino    = function_exists( 'emt_tour_destino_texto' ) ? emt_tour_destino_texto( $id ) : '';
+$cat_ppal   = function_exists( 'emt_tour_categoria_principal' ) ? emt_tour_categoria_principal( $id ) : null;
+$categoria  = $cat_ppal ? $cat_ppal->name : ( ( $categorias && ! is_wp_error( $categorias ) ) ? $categorias[0]->name : '' );
 $tags       = ( $categorias && ! is_wp_error( $categorias ) ) ? wp_list_pluck( $categorias, 'name' ) : array();
 
 // Imagen (helper B7 con fallback a placeholder).

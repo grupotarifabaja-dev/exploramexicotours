@@ -57,3 +57,7 @@
 
 /* Otros asesores: fondo y ritmo los pone .emt-section--tint */
 .emt-asesor-otros .emt-title { font-size: var(--emt-fs-xl); }
+
+/* vCard: solo util en movil (agrega el contacto al telefono); oculto en desktop. */
+.emt-vcard-only-mobile { display: none; }
+@media (max-width: 640px) { .emt-vcard-only-mobile { display: inline-flex; } }

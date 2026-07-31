@@ -1,83 +1,98 @@
 <?php
 /**
- * Panel — sección Destinos.
- * El cliente elige qué destinos aparecen en la sección "Destinos imperdibles"
- * del inicio ("Destacado en home") y configura la portada de cada destino
- * (campo de término imagen_destino). Guardado vía AJAX (emt_panel_save_destinos)
- * con nonce + capability + sanitización.
+ * Panel — sección Clasificación (Destinos, Categorías y Experiencias).
  *
- * Los destinos (términos de tour_destino) se crean/nombran desde Tours; aquí
- * solo se marcan y se les pone portada.
+ * Cada término se gestiona en UNA sola fila: nombre (renombra al salir), portada
+ * (imagen editable, se guarda al elegirla) y — solo en Destinos — "Destacado en
+ * home". Todo se guarda al momento vía AJAX:
+ *   emt_panel_term_add / _rename / _delete / _portada / _destacado
  */
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-$destinos = get_terms( array(
-    'taxonomy'   => 'tour_destino',
-    'hide_empty' => false,
-    'parent'     => 0,
-    'orderby'    => 'name',
-    'order'      => 'ASC',
-) );
-if ( is_wp_error( $destinos ) ) { $destinos = array(); }
+/** Fila editable de un término: nombre + contador + portada (+ destacado en destinos). */
+if ( ! function_exists( 'emt_render_term_row' ) ) {
+    function emt_render_term_row( $t, $with_destacado = false ) {
+        $count  = (int) $t->count;
+        $img    = function_exists( 'get_field' ) ? get_field( 'imagen_destino', $t ) : null;
+        $img_id = is_array( $img ) ? (int) ( $img['ID'] ?? $img['id'] ?? 0 ) : 0;
+        $thumb  = $img_id ? wp_get_attachment_image_url( $img_id, 'medium' ) : '';
+        $dest   = $with_destacado ? ! empty( get_field( 'destacado', $t ) ) : false;
+        ?>
+        <div class="emt-term-row" data-term-id="<?php echo (int) $t->term_id; ?>">
+            <div class="emt-term-row__portada emt-image emt-image--xs" data-term-image>
+                <div class="emt-image__preview" data-image-preview data-term-portada-add title="Cambiar portada" role="button" tabindex="0"><?php if ( $thumb ) : ?><img src="<?php echo esc_url( $thumb ); ?>" alt="" /><?php endif; ?></div>
+                <input type="hidden" value="<?php echo $img_id; ?>" data-image-input />
+                <div class="emt-term-row__portada-acts">
+                    <button type="button" class="emt-term-row__mini" data-term-portada-add>Cambiar</button>
+                    <button type="button" class="emt-term-row__mini emt-term-row__mini--danger" data-term-portada-remove<?php echo $img_id ? '' : ' style="display:none;"'; ?>>Quitar</button>
+                </div>
+            </div>
+
+            <div class="emt-term-row__main">
+                <input type="text" class="emt-term-row__name" value="<?php echo esc_attr( $t->name ); ?>" data-term-name aria-label="Nombre" title="Haz clic para renombrar" />
+                <span class="emt-term-row__count"><?php echo $count; ?> tour<?php echo ( $count === 1 ) ? '' : 's'; ?></span>
+                <span class="emt-term-row__msg" data-term-msg></span>
+            </div>
+
+            <?php if ( $with_destacado ) : ?>
+                <label class="emt-term-row__dest">
+                    <input type="checkbox" data-term-destacado value="1"<?php checked( $dest ); ?> />
+                    <span>Destacado en home</span>
+                </label>
+            <?php endif; ?>
+
+            <button type="button" class="emt-panel__btn emt-panel__btn--sm emt-panel__btn--danger" data-term-delete>Eliminar</button>
+        </div>
+        <?php
+    }
+}
+
+/** Gestor completo de una taxonomía (crear + lista editable). */
+if ( ! function_exists( 'emt_render_term_manager' ) ) {
+    function emt_render_term_manager( $tax, $titulo, $ayuda, $ph, $with_destacado = false ) {
+        $terms = get_terms( array( 'taxonomy' => $tax, 'hide_empty' => false, 'orderby' => 'name', 'order' => 'ASC' ) );
+        if ( is_wp_error( $terms ) ) { $terms = array(); }
+        ?>
+        <div class="emt-panel-form__section emt-tax-manager" data-tax="<?php echo esc_attr( $tax ); ?>" data-has-destacado="<?php echo $with_destacado ? '1' : '0'; ?>">
+            <h2><?php echo esc_html( $titulo ); ?></h2>
+            <p class="emt-field__help" style="margin-bottom:var(--emt-spacing-md);"><?php echo esc_html( $ayuda ); ?> La portada se usa en el mega-menú y en la página del término.</p>
+            <div class="emt-tax-add">
+                <input type="text" class="emt-tax-add__input" placeholder="<?php echo esc_attr( $ph ); ?>" data-term-new aria-label="Nombre nuevo" />
+                <button type="button" class="emt-panel__btn emt-panel__btn--primary" data-term-add>Agregar</button>
+            </div>
+            <div class="emt-tax-list" data-tax-list>
+                <p class="emt-panel__muted" data-tax-empty<?php echo empty( $terms ) ? '' : ' style="display:none;"'; ?>>Aún no hay. Agrega el primero arriba.</p>
+                <?php foreach ( $terms as $t ) { emt_render_term_row( $t, $with_destacado ); } ?>
+            </div>
+        </div>
+        <?php
+    }
+}
 ?>
 <div class="emt-panel__head">
     <div>
-        <h1>Destinos</h1>
-        <p class="emt-panel__head-sub">Elige qué destinos se muestran en el inicio y ponles su portada. El nombre de cada destino se gestiona desde los tours.</p>
+        <h1>Clasificación</h1>
+        <p class="emt-panel__head-sub">Crea y organiza los <strong>destinos</strong>, <strong>categorías</strong> y <strong>experiencias</strong> con los que etiquetas tus tours. Cada cambio (nombre, portada, destacado) se guarda al momento.</p>
     </div>
 </div>
 
-<?php if ( empty( $destinos ) ) : ?>
-    <div class="emt-empty">
-        <p>Aún no hay destinos. Se crean al asignar un destino a un tour.</p>
-        <a class="emt-panel__btn emt-panel__btn--primary" href="<?php echo esc_url( emt_panel_url( 'tours/nuevo/' ) ); ?>">Crear un tour</a>
-    </div>
-<?php else : ?>
-<form id="emt-destinos-form" data-emt-form data-ajax-action="emt_panel_save_destinos" data-required-draft="" data-required-publish="">
-
-    <div class="emt-panel-form__section">
-        <h2>Destinos imperdibles del inicio</h2>
-        <p class="emt-field__help" style="margin-bottom:var(--emt-spacing-md);">Marca "Destacado en home" en los destinos que quieras mostrar (hasta 5). Si no marcas ninguno, el inicio mostrará automáticamente los destinos con más tours. Tamaño de portada sugerido: <strong>1200&times;1600 px</strong> (vertical 3:4).</p>
-
-        <div class="emt-destinos-admin">
-            <?php foreach ( $destinos as $d ) :
-                $dest_val   = get_field( 'destacado', $d );
-                $is_dest    = ! empty( $dest_val );
-                $img        = get_field( 'imagen_destino', $d );
-                $img_id     = is_array( $img ) ? (int) ( $img['ID'] ?? $img['id'] ?? 0 ) : 0;
-                $img_thumb  = $img_id ? wp_get_attachment_image_url( $img_id, 'medium' ) : '';
-                $tid        = (int) $d->term_id;
-                ?>
-                <div class="emt-destino-row">
-                    <div class="emt-destino-row__info">
-                        <span class="emt-destino-row__name"><?php echo esc_html( $d->name ); ?></span>
-                        <span class="emt-destino-row__count"><?php echo (int) $d->count; ?> tour<?php echo ( (int) $d->count === 1 ) ? '' : 's'; ?></span>
-                        <label class="emt-destino-row__toggle">
-                            <input type="hidden" name="destino_ids[]" value="<?php echo $tid; ?>" />
-                            <input type="checkbox" name="destacado[<?php echo $tid; ?>]" value="1"<?php checked( $is_dest ); ?> />
-                            <span>Destacado en home</span>
-                        </label>
-                    </div>
-                    <div class="emt-destino-row__portada">
-                        <div class="emt-image emt-image--sm" data-image>
-                            <div class="emt-image__preview" data-image-preview>
-                                <?php if ( $img_thumb ) : ?><img src="<?php echo esc_url( $img_thumb ); ?>" alt="" /><?php endif; ?>
-                            </div>
-                            <input type="hidden" name="imagen_destino[<?php echo $tid; ?>]" value="<?php echo $img_id; ?>" data-image-input />
-                            <div class="emt-image__actions">
-                                <button type="button" class="emt-panel__btn emt-panel__btn--sm" data-image-add>Portada</button>
-                                <button type="button" class="emt-panel__btn emt-panel__btn--sm emt-panel__btn--danger" data-image-remove<?php echo $img_id ? '' : ' style="display:none;"'; ?>>Quitar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            <?php endforeach; ?>
-        </div>
-    </div>
-
-    <div class="emt-panel-form__bar">
-        <span class="emt-panel-form__msg" data-form-msg></span>
-        <button type="submit" class="emt-panel__btn emt-panel__btn--primary" data-save="save">Guardar cambios</button>
-    </div>
-</form>
-<?php endif; ?>
+<?php
+emt_render_term_manager(
+    'tour_destino',
+    'Destinos',
+    'El lugar del tour (Jalisco, Chiapas, Oaxaca…). Un tour puede tener varios destinos si el recorrido cruza estados. Marca "Destacado en home" para mostrarlo en "Destinos imperdibles" del inicio (hasta 5).',
+    'Nombre del destino',
+    true // destinos: incluye "Destacado en home"
+);
+emt_render_term_manager(
+    'tour_categoria',
+    'Categorías',
+    'El tipo de tour (Cultural, Gastronómico, Aventura, Ecoturismo, Sol y playa…). Un tour puede tener hasta 2; la "Categoría principal" se elige en la ficha del tour.',
+    'Nombre de la categoría'
+);
+emt_render_term_manager(
+    'tour_experiencia',
+    'Experiencias',
+    'El tema u ocasión, transversal a las categorías (Pueblos Mágicos, Ruta del Tequila, Día de Muertos…). Un tour puede tener varias.',
+    'Nombre de la experiencia'
+);

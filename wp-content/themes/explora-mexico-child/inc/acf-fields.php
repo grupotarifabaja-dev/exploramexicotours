@@ -46,6 +46,7 @@ function emt_acf_register_field_groups() {
 
             // --- Tab: Precio y duración ---
             array( 'key' => 'field_emt_tour_tab_precio', 'label' => 'Precio y duración', 'name' => '', 'type' => 'tab', 'placement' => 'top' ),
+            array( 'key' => 'field_emt_tour_tipo_precio', 'label' => 'Modelo de precios', 'name' => 'tipo_precio', 'type' => 'select', 'choices' => array( 'ocupacion' => 'Por ocupación', 'vehiculo' => 'Por vehículo', 'consultar' => 'Sin precios (Consultar)' ), 'allow_null' => 1, 'return_format' => 'value', 'instructions' => 'Qué modelo de precios usa este tour. Vacío = auto según los datos capturados.' ),
             array( 'key' => 'field_emt_tour_precio_desde', 'label' => 'Precio desde (MXN)', 'name' => 'precio_desde', 'type' => 'number', 'required' => 0, 'instructions' => 'Se autocalcula como el menor de los 4 precios por ocupación si lo dejas vacío. Captura un valor solo para forzar un override manual.' ),
             array( 'key' => 'field_emt_tour_precio_desde_usd', 'label' => 'Precio desde (USD)', 'name' => 'precio_desde_usd', 'type' => 'number', 'required' => 0, 'instructions' => 'Para extranjeros' ),
 
@@ -59,6 +60,7 @@ function emt_acf_register_field_groups() {
             array( 'key' => 'field_emt_tour_precio_menor', 'label' => 'Precio Menor 6-12', 'name' => 'precio_menor', 'type' => 'number', 'required' => 0, 'wrapper' => array( 'width' => '60' ) ),
             array( 'key' => 'field_emt_tour_disp_menor', 'label' => 'Disponibilidad Menor', 'name' => 'disp_menor', 'type' => 'number', 'required' => 0, 'instructions' => 'Asientos', 'wrapper' => array( 'width' => '40' ) ),
             array( 'key' => 'field_emt_tour_precio_nota', 'label' => 'Nota de precios', 'name' => 'precio_nota', 'type' => 'textarea', 'rows' => 2, 'required' => 0, 'instructions' => 'Observaciones (p. ej. "máximo 4 por habitación incluyendo menores").' ),
+            array( 'key' => 'field_emt_tour_precio_nota_en', 'label' => 'Nota de precios (EN)', 'name' => 'precio_nota_en', 'type' => 'textarea', 'rows' => 2, 'required' => 0, 'instructions' => 'Traducción al inglés de la nota de precios. Vacío = se usa el español.' ),
 
             // Modelo alternativo: precios por capacidad de grupo/vehículo (p. ej. tours de Tequila).
             // Coexiste con el de ocupación: un tour usa uno u otro (o ninguno -> "Consultar precio").
@@ -119,7 +121,9 @@ function emt_acf_register_field_groups() {
             array( 'key' => 'field_emt_tour_pickup_hotel', 'label' => 'Pickup en hotel', 'name' => 'pickup_hotel', 'type' => 'true_false', 'default_value' => 0, 'ui' => 1, 'instructions' => 'Indicador destacado' ),
             array( 'key' => 'field_emt_tour_salida_garantizada', 'label' => 'Salida garantizada', 'name' => 'salida_garantizada', 'type' => 'true_false', 'default_value' => 0, 'ui' => 1, 'instructions' => 'Indicador destacado' ),
             array( 'key' => 'field_emt_tour_destacado', 'label' => 'Destacado', 'name' => 'destacado', 'type' => 'true_false', 'default_value' => 0, 'ui' => 1, 'instructions' => 'Para home' ),
+            array( 'key' => 'field_emt_tour_sin_menores', 'label' => 'No acepta menores', 'name' => 'sin_menores', 'type' => 'true_false', 'default_value' => 0, 'ui' => 1, 'instructions' => 'Actívalo si el tour NO admite menores (oculta el selector de menores en el cotizador).' ),
             array( 'key' => 'field_emt_tour_orden_destacado', 'label' => 'Orden destacado', 'name' => 'orden_destacado', 'type' => 'number', 'required' => 0, 'default_value' => 99, 'instructions' => 'Menor = primero' ),
+            array( 'key' => 'field_emt_tour_cat_principal', 'label' => 'Categoría principal', 'name' => 'categoria_principal', 'type' => 'taxonomy', 'taxonomy' => 'tour_categoria', 'field_type' => 'select', 'allow_null' => 1, 'add_term' => 0, 'save_terms' => 0, 'load_terms' => 0, 'return_format' => 'id', 'instructions' => 'Si el tour tiene varias categorías, esta es la que se muestra como etiqueta en tarjetas y listados. Vacío = la primera asignada.' ),
 
             // --- Tab: Relacionados ---
             array( 'key' => 'field_emt_tour_tab_relacionados', 'label' => 'Relacionados', 'name' => '', 'type' => 'tab', 'placement' => 'top' ),
@@ -230,19 +234,6 @@ function emt_acf_register_field_groups() {
             array( 'key' => 'field_emt_config_hero_bg_video', 'label' => 'Video de fondo del hero', 'name' => 'hero_bg_video', 'type' => 'file', 'return_format' => 'array', 'mime_types' => 'mp4,webm', 'instructions' => 'Video de fondo del hero de la portada (MP4 recomendado, sin audio, ligero). Si está vacío se usa la imagen de respaldo.' ),
             array( 'key' => 'field_emt_config_hero_bg_poster', 'label' => 'Imagen de respaldo del hero', 'name' => 'hero_bg_poster', 'type' => 'image', 'return_format' => 'array', 'instructions' => 'Se muestra mientras carga el video, en móvil y si el navegador no reproduce el video. Si no hay video ni imagen, el hero usa el degradado azul.' ),
 
-            array( 'key' => 'field_emt_config_tab_megamenu', 'label' => 'Mega-menú', 'name' => '', 'type' => 'tab', 'placement' => 'top' ),
-            array( 'key' => 'field_emt_config_mega_menu_destinos', 'label' => 'Mega-menú destinos', 'name' => 'mega_menu_destinos', 'type' => 'repeater', 'layout' => 'block', 'button_label' => 'Agregar destino', 'sub_fields' => array(
-                array( 'key' => 'field_emt_config_mm_destinos_nombre', 'label' => 'Nombre', 'name' => 'nombre', 'type' => 'text' ),
-                array( 'key' => 'field_emt_config_mm_destinos_imagen', 'label' => 'Imagen', 'name' => 'imagen', 'type' => 'image', 'return_format' => 'array' ),
-                array( 'key' => 'field_emt_config_mm_destinos_url', 'label' => 'URL', 'name' => 'url', 'type' => 'url' ),
-                array( 'key' => 'field_emt_config_mm_destinos_orden', 'label' => 'Orden', 'name' => 'orden', 'type' => 'number' ),
-            ) ),
-            array( 'key' => 'field_emt_config_mega_menu_experiencias', 'label' => 'Mega-menú experiencias', 'name' => 'mega_menu_experiencias', 'type' => 'repeater', 'layout' => 'block', 'button_label' => 'Agregar experiencia', 'sub_fields' => array(
-                array( 'key' => 'field_emt_config_mm_exp_nombre', 'label' => 'Nombre', 'name' => 'nombre', 'type' => 'text' ),
-                array( 'key' => 'field_emt_config_mm_exp_imagen', 'label' => 'Imagen', 'name' => 'imagen', 'type' => 'image', 'return_format' => 'array' ),
-                array( 'key' => 'field_emt_config_mm_exp_url', 'label' => 'URL', 'name' => 'url', 'type' => 'url' ),
-                array( 'key' => 'field_emt_config_mm_exp_orden', 'label' => 'Orden', 'name' => 'orden', 'type' => 'number' ),
-            ) ),
         ),
         'location' => array(
             array( array( 'param' => 'options_page', 'operator' => '==', 'value' => 'emt-config' ) ),
@@ -251,13 +242,29 @@ function emt_acf_register_field_groups() {
         'description' => 'Configuración global EMT (doc maestro §6.4). Registrado por código.',
     ) );
 
-    // Imagen por destino (term meta de tour_destino). Editable en wp-admin
-    // (Tours → Destinos → editar término). Usada en las cards de destinos del home.
+    // Portada del término (imagen editable) — Destinos, Categorías y Experiencias.
+    // Se usa en el mega-menú, la cabecera de la página del término y las cards del
+    // home (cascada en emt_destino_image_url: portada → foto de un tour → degradado).
     acf_add_local_field_group( array(
-        'key'    => 'group_emt_destino',
+        'key'    => 'group_emt_term_portada',
+        'title'  => 'Portada del término',
+        'fields' => array(
+            array( 'key' => 'field_emt_destino_imagen', 'label' => 'Portada (imagen)', 'name' => 'imagen_destino', 'type' => 'image', 'return_format' => 'array', 'instructions' => 'Foto representativa del término (destino, categoría o experiencia) para el mega-menú y su página. Si se deja vacía, se usa la foto de un tour.' ),
+        ),
+        'location' => array(
+            array( array( 'param' => 'taxonomy', 'operator' => '==', 'value' => 'tour_destino' ) ),
+            array( array( 'param' => 'taxonomy', 'operator' => '==', 'value' => 'tour_categoria' ) ),
+            array( array( 'param' => 'taxonomy', 'operator' => '==', 'value' => 'tour_experiencia' ) ),
+        ),
+        'active'      => true,
+        'description' => 'Portada por término (3 taxonomías). Registrado por código.',
+    ) );
+
+    // Destacado en home — SOLO Destinos (sección "Destinos imperdibles").
+    acf_add_local_field_group( array(
+        'key'    => 'group_emt_destino_destacado',
         'title'  => 'Destino',
         'fields' => array(
-            array( 'key' => 'field_emt_destino_imagen', 'label' => 'Imagen del destino', 'name' => 'imagen_destino', 'type' => 'image', 'return_format' => 'array', 'instructions' => 'Foto representativa del destino para las cards del home. Si se deja vacía, se usa la foto destacada de un tour del destino.' ),
             array( 'key' => 'field_emt_destino_destacado', 'label' => 'Destacado en home', 'name' => 'destacado', 'type' => 'true_false', 'default_value' => 0, 'ui' => 1, 'instructions' => 'Muestra este destino en la sección "Destinos imperdibles" del inicio. Si ninguno está marcado, el inicio usa los destinos con más tours.' ),
         ),
         'location' => array(

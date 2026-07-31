@@ -38,8 +38,9 @@
 .emt-btn--secondary { background: var(--emt-azul-brillante); color: var(--emt-blanco); }
 .emt-btn--secondary:hover { background: var(--emt-azul-profundo); transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0, 51, 102, 0.22); }
 
-.emt-btn--outline { background: transparent; border: 1.5px solid var(--emt-azul-brillante); color: var(--emt-azul-brillante); }
-.emt-btn--outline:hover { background: rgba(0, 87, 184, 0.08); transform: translateY(-2px); }
+/* .emt-btn.emt-btn--outline: doble clase para ganar a header.css (.emt-btn { border: 0 }) */
+.emt-btn.emt-btn--outline { background: transparent; border: 1.5px solid var(--emt-azul-brillante); color: var(--emt-azul-brillante); }
+.emt-btn.emt-btn--outline:hover { background: rgba(0, 87, 184, 0.08); transform: translateY(-2px); }
 
 /* Sobre secciones oscuras */
 .emt-btn--ghost { background: transparent; border: 1.5px solid rgba(255, 255, 255, 0.55); color: var(--emt-blanco); }
@@ -313,3 +314,67 @@
 
 /* Íconos inline de metadatos (reemplazan emojis en tours) */
 .emt-meta-icon { width: 1em; height: 1em; flex: none; vertical-align: -0.15em; opacity: 0.85; }
+
+/* Avatar placeholder: silueta gris cuando el asesor no tiene foto */
+.emt-avatar--placeholder { background: var(--emt-gris-claro); color: var(--emt-gris-medio); }
+.emt-avatar--placeholder svg { width: 60%; height: 60%; }
+
+/* ------------------------------------------------------------
+   CARRUSEL DE CERTIFICACIONES (marquee automático de logos)
+   ------------------------------------------------------------ */
+.emt-cert-marquee { overflow: hidden; width: 100%; padding-block: var(--emt-spacing-sm);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);
+          mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+.emt-cert-marquee__track { display: flex; align-items: center; gap: var(--emt-spacing-lg); width: max-content; animation: emt-cert-scroll 45s linear infinite; }
+.emt-cert-marquee:hover .emt-cert-marquee__track { animation-play-state: paused; }
+.emt-cert-item { flex: 0 0 auto; display: grid; place-items: center; height: 80px; padding: 0 10px; }
+.emt-cert-item img { height: 60px; width: auto; max-width: 200px; object-fit: contain; display: block; transition: transform 0.3s ease; }
+.emt-cert-item:hover img { transform: scale(1.18); }
+@keyframes emt-cert-scroll { from { transform: translateX(0); } to { transform: translateX(calc(-50% - (var(--emt-spacing-lg) / 2))); } }
+@media (prefers-reduced-motion: reduce) { .emt-cert-marquee__track { animation: none; flex-wrap: wrap; justify-content: center; width: auto; } .emt-cert-marquee { -webkit-mask-image: none; mask-image: none; } }
+
+
+/* "Ver todos" al cierre de secciones: pill visible con flecha */
+.emt-bento__more .emt-btn, .emt-home-blog__all .emt-btn {
+  border-radius: var(--emt-radius-pill); padding: 0.75rem 1.9rem; font-size: var(--emt-fs-base);
+}
+.emt-bento__more .emt-btn::after, .emt-home-blog__all .emt-btn::after { content: " \2192"; transition: transform var(--emt-transition-fast); display: inline-block; margin-left: 0.35rem; }
+.emt-bento__more .emt-btn:hover::after, .emt-home-blog__all .emt-btn:hover::after { transform: translateX(3px); }
+
+
+/* ============================================================
+   Línea serape animada — firma de todos los encabezados del sitio.
+   Deriva suavemente de lado a lado (ida y vuelta, muy lenta).
+   ============================================================ */
+@keyframes emt-serape-drift {
+  from { background-position: 0% 50%; }
+  to   { background-position: 100% 50%; }
+}
+.emt-hero,
+.emt-archive-hero,
+.emt-tour-hero,
+.emt-post-hero,
+.emt-nosotros-hero,
+.emt-transfer-hero { position: relative; }
+.emt-hero::before,
+.emt-archive-hero::before,
+.emt-tour-hero::before,
+.emt-post-hero::before,
+.emt-nosotros-hero::before,
+.emt-transfer-hero::before {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 4px;
+  z-index: 3;
+  pointer-events: none;
+  background: linear-gradient(90deg,
+    var(--emt-magenta), var(--emt-coral), var(--emt-ambar), var(--emt-turquesa),
+    var(--emt-ambar), var(--emt-coral), var(--emt-magenta));
+  background-size: 300% 100%;
+  animation: emt-serape-drift 14s ease-in-out infinite alternate;
+}
+@media (prefers-reduced-motion: reduce) {
+  .emt-hero::before, .emt-archive-hero::before, .emt-tour-hero::before,
+  .emt-post-hero::before, .emt-nosotros-hero::before, .emt-transfer-hero::before { animation: none; }
+}

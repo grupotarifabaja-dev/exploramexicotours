@@ -41,16 +41,17 @@ $tours = get_posts( array(
     <table class="emt-panel__table" id="emt-tours-table">
         <thead>
             <tr>
+                <th class="emt-panel__num-col">#</th>
                 <th>Tour</th>
                 <th>Destino</th>
                 <th>Desde</th>
                 <th>Duración</th>
-                <th>Estado</th>
+                <th>Activo</th>
                 <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
-            <?php foreach ( $tours as $t ) :
+            <?php $emt_row_n = 0; foreach ( $tours as $t ) : $emt_row_n++;
                 $tid     = $t->ID;
                 $thumb   = has_post_thumbnail( $tid ) ? get_the_post_thumbnail_url( $tid, 'thumbnail' ) : ( function_exists( 'emt_get_image_or_placeholder' ) ? emt_get_image_or_placeholder( $tid, 'thumbnail' ) : '' );
                 $dests   = get_the_terms( $tid, 'tour_destino' );
@@ -62,6 +63,7 @@ $tours = get_posts( array(
                 $st_cls  = ( $status === 'publish' ) ? 'publish' : 'draft';
                 ?>
                 <tr>
+                    <td class="emt-panel__num-col"><?php echo (int) $emt_row_n; ?></td>
                     <td>
                         <div style="display:flex;align-items:center;gap:12px;">
                             <img class="emt-panel__thumb" src="<?php echo esc_url( $thumb ); ?>" alt="" />
@@ -71,7 +73,13 @@ $tours = get_posts( array(
                     <td><?php echo esc_html( $destino ); ?></td>
                     <td><?php echo $precio ? esc_html( emt_format_price( $precio ) ) : '<span class="emt-panel__muted">Consultar precio</span>'; ?></td>
                     <td><?php echo $durac ? esc_html( $durac ) : '—'; ?></td>
-                    <td><span class="emt-panel__status emt-panel__status--<?php echo esc_attr( $st_cls ); ?>"><?php echo esc_html( $st_lbl ); ?></span></td>
+                    <td>
+                        <label class="emt-switch" title="Activar / desactivar en el sitio">
+                            <input type="checkbox" data-tour-estado data-id="<?php echo (int) $tid; ?>"<?php checked( $status === 'publish' ); ?> />
+                            <span class="emt-switch__track" aria-hidden="true"></span>
+                        </label>
+                        <span class="emt-panel__status emt-panel__status--<?php echo esc_attr( $st_cls ); ?>" data-estado-lbl><?php echo esc_html( $st_lbl ); ?></span>
+                    </td>
                     <td>
                         <div class="emt-panel__row-actions">
                             <a class="emt-panel__btn emt-panel__btn--sm" href="<?php echo esc_url( emt_panel_url( 'tours/editar/' . $tid . '/' ) ); ?>">Editar</a>

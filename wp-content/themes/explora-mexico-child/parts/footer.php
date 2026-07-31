@@ -87,9 +87,15 @@ $creds = array(
                 <li><?php echo esc_html( $dir ); ?></li>
             </ul>
             <?php if ( $redes ) : ?>
-                <ul class="emt-footer__social">
+                <?php $emt_social_svg = array(
+                    'facebook' => '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V7.9c0-.9.25-1.5 1.55-1.5h1.65V3.6c-.3-.04-1.3-.13-2.45-.13-2.4 0-4.05 1.47-4.05 4.17v2.26H7.5V13h2.7v8h3.3z"/></svg>',
+                    'instagram' => '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.2c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23a3.72 3.72 0 0 1-.9 1.38c-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.72 3.72 0 0 1-1.38-.9 3.72 3.72 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23C2.21 15.58 2.2 15.2 2.2 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.21 8.8 2.2 12 2.2m0 1.8c-3.15 0-3.5.01-4.74.07-1.08.05-1.67.23-2.06.38-.52.2-.89.44-1.28.83-.39.39-.63.76-.83 1.28-.15.39-.33.98-.38 2.06-.06 1.24-.07 1.59-.07 4.74s.01 3.5.07 4.74c.05 1.08.23 1.67.38 2.06.2.52.44.89.83 1.28.39.39.76.63 1.28.83.39.15.98.33 2.06.38 1.24.06 1.59.07 4.74.07s3.5-.01 4.74-.07c1.08-.05 1.67-.23 2.06-.38.52-.2.89-.44 1.28-.83.39-.39.63-.76.83-1.28.15-.39.33-.98.38-2.06.06-1.24.07-1.59.07-4.74s-.01-3.5-.07-4.74c-.05-1.08-.23-1.67-.38-2.06a2.9 2.9 0 0 0-.83-1.28 2.9 2.9 0 0 0-1.28-.83c-.39-.15-.98-.33-2.06-.38-1.24-.06-1.59-.07-4.74-.07zm0 3.06a4.94 4.94 0 1 1 0 9.88 4.94 4.94 0 0 1 0-9.88zm0 1.8a3.14 3.14 0 1 0 0 6.28 3.14 3.14 0 0 0 0-6.28zm5.15-2.02a1.15 1.15 0 1 1 0 2.3 1.15 1.15 0 0 1 0-2.3z"/></svg>',
+                    'tiktok' => '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.6 3c.36 1.94 1.6 3.32 3.56 3.6v2.62c-1.32.13-2.5-.24-3.72-1.08v5.71c0 4.2-3.63 6.56-6.98 5.06-2.66-1.19-3.63-4.44-2.06-6.94 1.2-1.91 3.35-2.74 5.63-2.24v2.72c-.34-.08-.66-.13-.98-.12-1.36.05-2.36 1.05-2.33 2.32.03 1.3 1.1 2.3 2.4 2.24 1.28-.05 2.18-1.05 2.18-2.42V3h2.3z"/></svg>',
+                    'youtube' => '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.6 7.2s-.2-1.36-.78-1.95c-.74-.79-1.57-.79-1.95-.84C16.14 4.2 12 4.2 12 4.2h-.01s-4.14 0-6.87.21c-.38.05-1.21.05-1.95.84C2.6 5.84 2.4 7.2 2.4 7.2S2.2 8.8 2.2 10.4v1.18c0 1.6.2 3.2.2 3.2s.2 1.36.77 1.95c.74.79 1.7.77 2.14.85 1.55.15 6.69.2 6.69.2s4.14-.01 6.87-.22c.38-.05 1.21-.05 1.95-.84.58-.59.78-1.95.78-1.95s.2-1.6.2-3.2V10.4c0-1.6-.2-3.2-.2-3.2zM9.98 14.6V8.9l5.3 2.87-5.3 2.83z"/></svg>',
+                ); ?>
+                <ul class="emt-footer__social emt-footer__social--icons">
                     <?php foreach ( $redes as $net => $url ) : ?>
-                        <li><a href="<?php echo esc_url( $url ); ?>" target="_blank" rel="noopener noreferrer" aria-label="<?php echo esc_attr( $redes_nombres[ $net ] ?? ucfirst( $net ) ); ?>"><?php echo esc_html( $redes_nombres[ $net ] ?? ucfirst( $net ) ); ?></a></li>
+                        <li><a href="<?php echo esc_url( $url ); ?>" target="_blank" rel="noopener noreferrer" aria-label="<?php echo esc_attr( $redes_nombres[ $net ] ?? ucfirst( $net ) ); ?>" title="<?php echo esc_attr( $redes_nombres[ $net ] ?? ucfirst( $net ) ); ?>"><?php echo $emt_social_svg[ $net ] ?? esc_html( $redes_nombres[ $net ] ?? ucfirst( $net ) ); // phpcs:ignore -- SVG estático del tema ?></a></li>
                     <?php endforeach; ?>
                 </ul>
             <?php endif; ?>
@@ -109,5 +115,8 @@ $creds = array(
             <span>Vibrante.</span> <span>Auténtico.</span> <span>Inspirador.</span> <span>Mexicano.</span>
         </p>
         <p class="emt-footer__copy">&copy; <?php echo esc_html( wp_date( 'Y' ) ); ?> Explora México Tours · <?php echo esc_html( $dir ); ?></p>
+        <a class="emt-footer__supra" href="https://supratecnia.com/" target="_blank" rel="noopener noreferrer" aria-label="Sitio desarrollado por SUPRATECNIA" title="Sitio desarrollado por SUPRATECNIA">
+            <img src="<?php echo esc_url( $emt_uri . '/assets/images/supratecnia.gif' ); ?>" alt="SUPRATECNIA" height="28" loading="lazy" decoding="async" />
+        </a>
     </div>
 </footer>

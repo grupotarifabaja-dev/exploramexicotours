@@ -28,11 +28,27 @@ require_once $emt_inc . 'security.php';
 require_once $emt_inc . 'template-helpers.php';
 require_once $emt_inc . 'seo-schema.php';
 require_once $emt_inc . 'asesor-functions.php';
+require_once $emt_inc . 'stats.php';
 require_once $emt_inc . 'tour-functions.php';
 require_once $emt_inc . 'tour-filters.php';
 require_once $emt_inc . 'roles.php';
 require_once $emt_inc . 'panel.php';
 require_once $emt_inc . 'panel-ajax.php';
 require_once $emt_inc . 'transfer.php';
+require_once $emt_inc . 'flotilla.php';
+require_once $emt_inc . 'cotizacion.php';
+require_once $emt_inc . 'contacto.php';
+require_once $emt_inc . 'blog-page.php';
 require_once $emt_inc . 'nosotros.php';
+require_once $emt_inc . 'legales.php';
+require_once $emt_inc . 'evaluacion.php';
 require_once $emt_inc . 'seed-trigger.php';
+require_once $emt_inc . 'blog-seed-trigger.php';
+require_once $emt_inc . 'gestor-trigger.php';
+require_once $emt_inc . 'reasignar-taxonomias.php';
+require_once $emt_inc . 'aplicar-traducciones.php';
+require_once $emt_inc . 'fix-itinerarios.php'; // TEMPORAL: quitar tras aplicarlo
+require_once $emt_inc . 'hero-video-trigger.php'; // TEMPORAL: quitar tras aplicarlo
+require_once $emt_inc . 'avales-logos.php'; // TEMPORAL: quitar tras aplicarlo
+require_once $emt_inc . 'blog-i18n.php';
+require_once $emt_inc . 'seo-meta.php';

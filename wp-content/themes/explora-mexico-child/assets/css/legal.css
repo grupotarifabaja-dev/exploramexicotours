@@ -1,0 +1,64 @@
+/* ============================================================
+   PÁGINAS LEGALES — Aviso de Privacidad y Términos y Condiciones
+   ============================================================ */
+
+.emt-legal-hero {
+  position: relative;
+  background: linear-gradient(135deg, var(--emt-azul-profundo), var(--emt-azul-brillante));
+  color: var(--emt-blanco);
+  padding: calc(var(--emt-spacing-2xl) + 20px) 0 var(--emt-spacing-2xl);
+  overflow: hidden;
+}
+/* Línea serape animada, misma firma que el resto de los encabezados */
+.emt-legal-hero::before {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 5px;
+  background: linear-gradient(90deg, var(--emt-rosa), #F58220, #FFC20E, var(--emt-turquesa), var(--emt-azul-brillante), var(--emt-rosa));
+  background-size: 200% 100%;
+  animation: emt-serape-drift 14s ease-in-out infinite alternate;
+}
+@media (prefers-reduced-motion: reduce) { .emt-legal-hero::before { animation: none; } }
+.emt-legal-hero .emt-eyebrow { color: rgba(255, 255, 255, 0.85); }
+.emt-legal-hero h1 {
+  font-family: var(--emt-font-display);
+  font-size: clamp(1.7rem, 4vw, 2.5rem);
+  font-weight: var(--emt-fw-black);
+  margin: 0.35rem 0 0;
+}
+
+.emt-legal__body {
+  max-width: 780px;
+  padding-top: var(--emt-spacing-xl);
+  padding-bottom: var(--emt-spacing-2xl);
+  font-size: var(--emt-fs-base);
+  line-height: 1.75;
+  color: var(--emt-gris-oscuro);
+}
+.emt-legal__body h2 {
+  font-family: var(--emt-font-display);
+  font-size: var(--emt-fs-lg);
+  color: var(--emt-azul-profundo);
+  margin: 2.2em 0 0.6em;
+  padding-bottom: 0.35em;
+  position: relative;
+}
+.emt-legal__body h2::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 56px; height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--emt-rosa), #FFC20E, var(--emt-turquesa));
+}
+.emt-legal__body h2:first-child { margin-top: 0; }
+.emt-legal__body p { margin: 0 0 1em; }
+.emt-legal__body ul { margin: 0 0 1.2em; padding-left: 1.4em; }
+.emt-legal__body li { margin-bottom: 0.4em; }
+.emt-legal__body a { color: var(--emt-azul-brillante); }
+.emt-legal__body strong { color: var(--emt-azul-profundo); }
+
+@media (max-width: 600px) {
+  .emt-legal__body { font-size: var(--emt-fs-sm); }
+}

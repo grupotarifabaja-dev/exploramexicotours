@@ -36,6 +36,34 @@ $hero_has_media  = ( $hero_video_url || $hero_poster_url );
         <p class="emt-hero__eyebrow"><?php echo esc_html( emt_t( 'hero_eyebrow' ) ); ?></p>
         <h1 class="emt-hero__title"><?php echo esc_html( emt_t( 'hero_title' ) ); ?></h1>
         <p class="emt-hero__sub"><?php echo esc_html( emt_t( 'hero_sub' ) ); ?></p>
+        <form class="emt-hero__search" action="<?php echo esc_url( home_url( $emt_prefix . '/tours/' ) ); ?>" method="get" role="search" data-hero-search>
+            <svg class="emt-hero__search-ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+            <input type="search" name="q" placeholder="<?php echo esc_attr( emt_t( 'hero_buscar_ph' ) ); ?>" aria-label="<?php echo esc_attr( emt_t( 'hero_buscar_ph' ) ); ?>" autocomplete="off" data-hero-search-input />
+            <button type="submit" class="emt-btn emt-btn--cta"><?php echo esc_html( emt_t( 'buscar' ) ); ?></button>
+            <div class="emt-hero__sug" data-hero-search-sug hidden></div>
+            <script type="application/json" data-hero-search-data><?php
+                // Sugerencias: términos con tours + títulos de tours (con su tipo para el dropdown).
+                $emt_sug = array();
+                $emt_sug_tipos = array(
+                    'tour_destino'     => emt_t( 'eyebrow_destino' ),
+                    'tour_experiencia' => emt_t( 'eyebrow_experiencia' ),
+                    'tour_categoria'   => emt_t( 'eyebrow_categoria' ),
+                );
+                foreach ( $emt_sug_tipos as $emt_sug_tax => $emt_sug_lbl ) {
+                    $emt_sug_terms = get_terms( array( 'taxonomy' => $emt_sug_tax, 'hide_empty' => true ) );
+                    if ( ! is_wp_error( $emt_sug_terms ) ) {
+                        foreach ( $emt_sug_terms as $emt_sug_t ) {
+                            $emt_sug[] = array( 'v' => $emt_sug_t->name, 't' => $emt_sug_lbl );
+                        }
+                    }
+                }
+                $emt_sug_tours = get_posts( array( 'post_type' => 'tour', 'post_status' => 'publish', 'posts_per_page' => -1, 'orderby' => 'title', 'order' => 'ASC' ) );
+                foreach ( $emt_sug_tours as $emt_sug_p ) {
+                    $emt_sug[] = array( 'v' => get_the_title( $emt_sug_p ), 't' => 'Tour' );
+                }
+                echo wp_json_encode( $emt_sug );
+            ?></script>
+        </form>
         <div class="emt-hero__cta">
             <a class="emt-btn emt-btn--cta" href="<?php echo esc_url( home_url( $emt_prefix . '/tours/' ) ); ?>"><?php echo esc_html( emt_t( 'ver_todos' ) ); ?></a>
             <a class="emt-btn emt-btn--secondary" href="<?php echo esc_url( home_url( $emt_prefix . '/cotizacion/' ) ); ?>"><?php echo esc_html( emt_t( 'cotizar_grupo' ) ); ?></a>
@@ -46,9 +74,43 @@ $hero_has_media  = ( $hero_video_url || $hero_poster_url );
 <!-- 1b. Franja de confianza (señales reales, sobria) -->
 <section class="emt-avales" aria-label="<?php echo esc_attr( emt_t( 'aval_titulo' ) ); ?>">
     <div class="emt-container emt-avales__inner">
-        <p class="emt-avales__item"><?php echo esc_html( emt_t( 'aval_anios' ) ); ?></p>
-        <p class="emt-avales__item"><?php echo esc_html( emt_t( 'aval_moderniza' ) ); ?></p>
-        <p class="emt-avales__item"><span class="emt-avales__label"><?php echo esc_html( emt_t( 'aval_confian' ) ); ?></span> TATA · Wipro · Rosewood Hotels · IGT · Wizeline</p>
+        <p class="emt-avales__item emt-avales__item--years">
+            <svg class="emt-avales__ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <?php echo esc_html( emt_t( 'aval_anios' ) ); ?>
+        </p>
+        <p class="emt-avales__item emt-avales__item--cert">
+            <svg class="emt-avales__ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+            <?php echo esc_html( emt_t( 'aval_moderniza' ) ); ?>
+        </p>
+    </div>
+    <?php
+    // Carrusel "Confían en nosotros": logos importados por el disparador
+    // emt_avales_logos (option slug => attachment_id). Empresas de la lista
+    // del cliente (3.-Transporte.docx). Si aún no hay logos, respaldo en texto.
+    $emt_avales_logos = get_option( 'emt_avales_logos' );
+    $emt_avales_logos = is_array( $emt_avales_logos ) ? array_filter( array_map( 'intval', $emt_avales_logos ) ) : array();
+    ?>
+    <div class="emt-container emt-avales__conf">
+        <span class="emt-avales__label"><?php echo esc_html( emt_t( 'aval_confian' ) ); ?></span>
+        <?php if ( $emt_avales_logos ) : ?>
+            <div class="emt-avales__marquee">
+                <div class="emt-avales__track">
+                    <?php for ( $emt_rep = 0; $emt_rep < 4; $emt_rep++ ) : ?>
+                        <?php foreach ( $emt_avales_logos as $emt_slug => $emt_aid ) :
+                            $emt_src = wp_get_attachment_image_url( $emt_aid, 'medium' );
+                            if ( ! $emt_src ) { $emt_src = wp_get_attachment_url( $emt_aid ); }
+                            if ( ! $emt_src ) { continue; }
+                            $emt_alt = get_post_meta( $emt_aid, '_wp_attachment_image_alt', true ) ?: get_the_title( $emt_aid ); ?>
+                            <img class="emt-aval-logo emt-aval-logo--<?php echo esc_attr( $emt_slug ); ?>" src="<?php echo esc_url( $emt_src ); ?>" alt="<?php echo esc_attr( $emt_alt ); ?>" loading="lazy" decoding="async" <?php echo $emt_rep > 0 ? 'aria-hidden="true"' : ''; ?> />
+                        <?php endforeach; ?>
+                    <?php endfor; ?>
+                </div>
+            </div>
+        <?php else : ?>
+            <p class="emt-avales__item emt-avales__brands">
+                <span class="emt-avales__brand">TATA</span><span class="emt-avales__brand">Wipro</span><span class="emt-avales__brand">Rosewood Hotels</span><span class="emt-avales__brand">IGT</span>
+            </p>
+        <?php endif; ?>
     </div>
 </section>
 
@@ -66,9 +128,9 @@ if ( empty( $destinos ) ) {
 if ( $destinos && ! is_wp_error( $destinos ) ) : ?>
 <section class="emt-home-section">
     <div class="emt-container">
-        <header class="emt-section-head">
-            <span class="emt-section-head__eyebrow"><?php echo esc_html( emt_t( 'a_donde_ir' ) ); ?></span>
-            <h2 class="emt-section-head__title"><?php echo esc_html( emt_t( 'destinos_destacados' ) ); ?></h2>
+        <header class="emt-heading">
+            <span class="emt-eyebrow"><?php echo esc_html( emt_t( 'a_donde_ir' ) ); ?></span>
+            <h2 class="emt-title"><?php echo esc_html( emt_t( 'destinos_destacados' ) ); ?></h2>
         </header>
         <div class="emt-carousel" data-carousel>
             <button type="button" class="emt-carousel__nav emt-carousel__nav--prev" data-carousel-prev aria-label="<?php echo esc_attr( emt_t( 'anterior' ) ); ?>">&#8249;</button>
@@ -153,10 +215,9 @@ if ( $emt_dest_ids ) : ?>
                     $t_en = get_field( 'titulo_en', $tid );
                     if ( ! empty( $t_en ) ) { $ttitle = $t_en; }
                 }
-                $tcats  = get_the_terms( $tid, 'tour_categoria' );
-                $tcat   = ( $tcats && ! is_wp_error( $tcats ) ) ? $tcats[0]->name : '';
-                $tdests = get_the_terms( $tid, 'tour_destino' );
-                $tdest  = ( $tdests && ! is_wp_error( $tdests ) ) ? $tdests[0]->name : '';
+                $tcat_t = function_exists( 'emt_tour_categoria_principal' ) ? emt_tour_categoria_principal( $tid ) : null;
+                $tcat   = $tcat_t ? $tcat_t->name : '';
+                $tdest  = function_exists( 'emt_tour_destino_texto' ) ? emt_tour_destino_texto( $tid ) : '';
                 $tdur   = function_exists( 'emt_get_field' ) ? emt_get_field( 'duracion_texto', $tid ) : '';
                 $tprice = function_exists( 'get_field' ) ? get_field( 'precio_desde', $tid ) : '';
                 $tsize  = isset( $emt_sizes[ $emt_bento_i ] ) ? ' ' . $emt_sizes[ $emt_bento_i ] : '';
@@ -199,9 +260,9 @@ if ( $emt_blog_q->have_posts() ) :
     ?>
 <section class="emt-home-section emt-home-blog">
     <div class="emt-container">
-        <header class="emt-section-head">
-            <span class="emt-section-head__eyebrow"><?php echo esc_html( emt_t( 'blog_eyebrow' ) ); ?></span>
-            <h2 class="emt-section-head__title"><?php echo esc_html( emt_t( 'blog_titulo' ) ); ?></h2>
+        <header class="emt-heading">
+            <span class="emt-eyebrow"><?php echo esc_html( emt_t( 'blog_eyebrow' ) ); ?></span>
+            <h2 class="emt-title"><?php echo esc_html( emt_t( 'blog_titulo' ) ); ?></h2>
         </header>
         <ul class="emt-blog-grid">
             <?php while ( $emt_blog_q->have_posts() ) : $emt_blog_q->the_post();
@@ -230,21 +291,54 @@ if ( $emt_blog_q->have_posts() ) :
 </section>
 <?php endif; ?>
 
-<!-- 5. Trayectoria (trust line) -->
-<section class="emt-trust">
-    <div class="emt-container emt-trust__grid">
-        <div class="emt-trust__item"><span class="emt-trust__num">15</span><span class="emt-trust__label"><?php echo esc_html( emt_t( 'trust_anios' ) ); ?></span></div>
-        <div class="emt-trust__item"><span class="emt-trust__num">70</span><span class="emt-trust__label"><?php echo esc_html( emt_t( 'trust_tours' ) ); ?></span></div>
-        <div class="emt-trust__item"><span class="emt-trust__num">15</span><span class="emt-trust__label"><?php echo esc_html( emt_t( 'trust_destinos' ) ); ?></span></div>
-        <div class="emt-trust__item"><span class="emt-trust__num">50k</span><span class="emt-trust__label"><?php echo esc_html( emt_t( 'trust_viajeros' ) ); ?></span></div>
+<!-- 5. Certificaciones y reconocimientos (carrusel reutilizable de Nosotros/Transporte) -->
+<section class="emt-home-certs">
+    <div class="emt-container">
+        <span class="emt-home-certs__label"><?php echo ( $emt_lang === 'en' ) ? 'Certifications and recognitions' : 'Certificaciones y reconocimientos'; ?></span>
+        <?php include get_stylesheet_directory() . '/parts/certificaciones-carrusel.php'; ?>
     </div>
 </section>
 
 <!-- 6. CTA cotización grupos -->
+<?php $emt_cta_wa = preg_replace( '/\D/', '', (string) ( function_exists( 'emt_opt' ) ? emt_opt( 'wa_number', '523310480670' ) : '523310480670' ) ); ?>
+<?php
+// 6b. Testimonios de viajeros (curados desde el panel; oculto si no hay).
+$emt_tsts = get_option( 'emt_testimonios' );
+$emt_tsts = is_array( $emt_tsts ) ? array_values( array_filter( $emt_tsts, function ( $t ) { return is_array( $t ) && ! empty( $t['texto'] ); } ) ) : array();
+$emt_tst_fuentes_lbl = array( 'facebook' => 'Facebook', 'google' => 'Google', 'tripadvisor' => 'TripAdvisor', 'otro' => '' );
+if ( $emt_tsts ) : ?>
+<section class="emt-testimonios">
+    <div class="emt-container">
+        <div class="emt-heading">
+            <span class="emt-eyebrow"><?php echo esc_html( emt_t( 'tst_eyebrow' ) ); ?></span>
+            <h2 class="emt-title"><?php echo esc_html( emt_t( 'tst_titulo' ) ); ?></h2>
+        </div>
+        <div class="emt-testimonios__grid">
+            <?php foreach ( array_slice( $emt_tsts, 0, 6 ) as $emt_tv ) : ?>
+                <blockquote class="emt-testimonio">
+                    <span class="emt-testimonio__stars" aria-label="<?php echo esc_attr( (int) $emt_tv['estrellas'] . '/5' ); ?>"><?php echo esc_html( str_repeat( '★', (int) $emt_tv['estrellas'] ) . str_repeat( '☆', 5 - (int) $emt_tv['estrellas'] ) ); ?></span>
+                    <p class="emt-testimonio__texto"><?php echo esc_html( $emt_tv['texto'] ); ?></p>
+                    <footer class="emt-testimonio__pie">
+                        <strong><?php echo esc_html( $emt_tv['nombre'] ?: emt_t( 'tst_anonimo' ) ); ?></strong>
+                        <?php $emt_tf = $emt_tst_fuentes_lbl[ $emt_tv['fuente'] ?? 'otro' ] ?? ''; if ( $emt_tf ) : ?>
+                            <span class="emt-testimonio__fuente"><?php echo esc_html( $emt_tf ); ?></span>
+                        <?php endif; ?>
+                    </footer>
+                </blockquote>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</section>
+<?php endif; ?>
+
 <section class="emt-cta-banner">
     <div class="emt-container emt-cta-banner__inner">
         <h2 class="emt-cta-banner__title"><?php echo esc_html( emt_t( 'cta_grupos_title' ) ); ?></h2>
-        <a class="emt-btn emt-btn--cta" href="<?php echo esc_url( home_url( $emt_prefix . '/cotizacion/' ) ); ?>"><?php echo esc_html( emt_t( 'cotizar_grupo' ) ); ?></a>
+        <p class="emt-cta-banner__sub"><?php echo esc_html( emt_t( 'cta_grupos_sub' ) ); ?></p>
+        <div class="emt-cta-banner__actions">
+            <a class="emt-btn emt-btn--cta emt-cta-banner__main" href="<?php echo esc_url( home_url( $emt_prefix . '/cotizacion/' ) ); ?>"><?php echo esc_html( emt_t( 'cotizar_grupo' ) ); ?></a>
+            <a class="emt-btn emt-cta-banner__wa" href="https://wa.me/<?php echo esc_attr( $emt_cta_wa ); ?>" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+        </div>
     </div>
 </section>
 

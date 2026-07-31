@@ -60,7 +60,7 @@ function emt_enqueue_site_assets() {
     }
 
     $deps   = array( wp_style_is( 'emt-components', 'enqueued' ) ? 'emt-components' : 'emt-tokens' );
-    $styles = array( 'header', 'mega-menu', 'footer', 'tour-card', 'asesor-card', 'lang-switcher', 'whatsapp-float', 'breadcrumbs' );
+    $styles = array( 'header', 'mega-menu', 'footer', 'tour-card', 'asesor-card', 'lang-switcher', 'whatsapp-float', 'breadcrumbs', 'archive-hero' );
     foreach ( $styles as $s ) {
         $file = "$dir/assets/css/$s.css";
         if ( file_exists( $file ) ) {
@@ -73,6 +73,17 @@ function emt_enqueue_site_assets() {
         if ( file_exists( $file ) ) {
             wp_enqueue_script( "emt-$j", "$uri/assets/js/$j.js", array(), emt_asset_ver( $file ), true );
         }
+    }
+
+    // WhatsApp con flujo guiado (§9.3).
+    if ( file_exists( "$dir/assets/js/wa-guide.js" ) ) {
+        wp_enqueue_script( 'emt-wa-guide', "$uri/assets/js/wa-guide.js", array(), emt_asset_ver( "$dir/assets/js/wa-guide.js" ), true );
+    }
+
+    // Beacon de estadísticas propias (clicks a WhatsApp / cotizador / llamadas).
+    if ( file_exists( "$dir/assets/js/emt-stats.js" ) ) {
+        wp_enqueue_script( 'emt-stats', "$uri/assets/js/emt-stats.js", array(), emt_asset_ver( "$dir/assets/js/emt-stats.js" ), true );
+        wp_localize_script( 'emt-stats', 'EMTStats', array( 'url' => admin_url( 'admin-ajax.php' ) ) );
     }
 }
 add_action( 'wp_enqueue_scripts', 'emt_enqueue_site_assets', 20 );
@@ -103,6 +114,9 @@ function emt_enqueue_template_assets() {
     if ( is_singular( 'asesor' ) ) {
         $map[] = 'asesor-single';
     }
+    if ( get_query_var( 'emt_blog_list' ) || is_singular( 'post' ) || is_category() || is_tag() || is_date() || is_author() || is_search() ) {
+        $map[] = 'blog';
+    }
 
     $tpl_deps = array( wp_style_is( 'emt-components', 'enqueued' ) ? 'emt-components' : 'emt-tokens' );
     foreach ( $map as $m ) {
@@ -128,20 +142,55 @@ function emt_enqueue_template_assets() {
 
     if ( is_singular( 'tour' ) && file_exists( "$dir/assets/js/tour-gallery.js" ) ) {
         wp_enqueue_script( 'emt-tour-gallery', "$uri/assets/js/tour-gallery.js", array(), emt_asset_ver( "$dir/assets/js/tour-gallery.js" ), true );
+        wp_enqueue_script( 'emt-tour-cotizar', "$uri/assets/js/tour-cotizar.js", array(), emt_asset_ver( "$dir/assets/js/tour-cotizar.js" ), true );
     }
 
     if ( is_front_page() && file_exists( "$dir/assets/js/hero-video.js" ) ) {
         wp_enqueue_script( 'emt-hero-video', "$uri/assets/js/hero-video.js", array(), emt_asset_ver( "$dir/assets/js/hero-video.js" ), true );
     }
 
+    if ( get_query_var( 'emt_evaluacion' ) ) {
+        if ( file_exists( "$dir/assets/css/legal.css" ) ) {
+            wp_enqueue_style( 'emt-legal', "$uri/assets/css/legal.css", array( wp_style_is( 'emt-components', 'enqueued' ) ? 'emt-components' : 'emt-tokens' ), emt_asset_ver( "$dir/assets/css/legal.css" ) );
+        }
+        if ( file_exists( "$dir/assets/css/evaluacion.css" ) ) {
+            wp_enqueue_style( 'emt-evaluacion', "$uri/assets/css/evaluacion.css", array( wp_style_is( 'emt-components', 'enqueued' ) ? 'emt-components' : 'emt-tokens' ), emt_asset_ver( "$dir/assets/css/evaluacion.css" ) );
+        }
+        if ( file_exists( "$dir/assets/js/evaluacion.js" ) ) {
+            wp_enqueue_script( 'emt-evaluacion', "$uri/assets/js/evaluacion.js", array(), emt_asset_ver( "$dir/assets/js/evaluacion.js" ), true );
+            wp_localize_script( 'emt-evaluacion', 'EMTEval', array( 'ajax' => admin_url( 'admin-ajax.php' ) ) );
+        }
+    }
+    if ( get_query_var( 'emt_legal' ) && file_exists( "$dir/assets/css/legal.css" ) ) {
+        wp_enqueue_style( 'emt-legal', "$uri/assets/css/legal.css", array( wp_style_is( 'emt-components', 'enqueued' ) ? 'emt-components' : 'emt-tokens' ), emt_asset_ver( "$dir/assets/css/legal.css" ) );
+    }
     if ( get_query_var( 'emt_nosotros' ) && file_exists( "$dir/assets/css/nosotros.css" ) ) {
         wp_enqueue_style( 'emt-nosotros', "$uri/assets/css/nosotros.css", array( wp_style_is( 'emt-components', 'enqueued' ) ? 'emt-components' : 'emt-tokens' ), emt_asset_ver( "$dir/assets/css/nosotros.css" ) );
     }
 
     if ( is_front_page() && file_exists( "$dir/assets/js/home-carousel.js" ) ) {
         wp_enqueue_script( 'emt-home-carousel', "$uri/assets/js/home-carousel.js", array(), emt_asset_ver( "$dir/assets/js/home-carousel.js" ), true );
+        if ( file_exists( "$dir/assets/js/hero-search.js" ) ) {
+            wp_enqueue_script( 'emt-hero-search', "$uri/assets/js/hero-search.js", array(), emt_asset_ver( "$dir/assets/js/hero-search.js" ), true );
+        }
     }
 
+    if ( get_query_var( 'emt_contacto' ) ) {
+        if ( file_exists( "$dir/assets/css/contacto.css" ) ) {
+            wp_enqueue_style( 'emt-contacto', "$uri/assets/css/contacto.css", array( wp_style_is( 'emt-components', 'enqueued' ) ? 'emt-components' : 'emt-tokens' ), emt_asset_ver( "$dir/assets/css/contacto.css" ) );
+        }
+        if ( file_exists( "$dir/assets/js/contacto-form.js" ) ) {
+            wp_enqueue_script( 'emt-contacto-form', "$uri/assets/js/contacto-form.js", array(), emt_asset_ver( "$dir/assets/js/contacto-form.js" ), true );
+        }
+    }
+    if ( get_query_var( 'emt_cotizacion' ) ) {
+        if ( file_exists( "$dir/assets/css/cotizacion.css" ) ) {
+            wp_enqueue_style( 'emt-cotizacion', "$uri/assets/css/cotizacion.css", array( wp_style_is( 'emt-components', 'enqueued' ) ? 'emt-components' : 'emt-tokens' ), emt_asset_ver( "$dir/assets/css/cotizacion.css" ) );
+        }
+        if ( file_exists( "$dir/assets/js/cotizacion-form.js" ) ) {
+            wp_enqueue_script( 'emt-cotizacion-form', "$uri/assets/js/cotizacion-form.js", array(), emt_asset_ver( "$dir/assets/js/cotizacion-form.js" ), true );
+        }
+    }
     if ( get_query_var( 'emt_transporte' ) ) {
         if ( file_exists( "$dir/assets/css/transfer.css" ) ) {
             wp_enqueue_style( 'emt-transfer', "$uri/assets/css/transfer.css", array( wp_style_is( 'emt-components', 'enqueued' ) ? 'emt-components' : 'emt-tokens' ), emt_asset_ver( "$dir/assets/css/transfer.css" ) );

@@ -13,6 +13,16 @@
 # "latest" cambie el core sin avisar). Ajustable al core que corra producción.
 FROM wordpress:6.8-php8.3-apache
 
+# Límites de subida de PHP: el default (2 MB) no alcanza para los videos del
+# hero (~5–10 MB) ni fotos en alta resolución. 64M da margen de sobra.
+RUN { \
+        echo 'upload_max_filesize = 64M'; \
+        echo 'post_max_size = 64M'; \
+        echo 'memory_limit = 256M'; \
+        echo 'max_execution_time = 300'; \
+        echo 'max_input_time = 300'; \
+    } > /usr/local/etc/php/conf.d/emt-uploads.ini
+
 # Copia del child theme en DOS ubicaciones dentro de la imagen:
 #  1) /usr/src/wordpress/... -> el entrypoint oficial copia /usr/src/wordpress a
 #     /var/www/html en el PRIMER arranque (volumen vacío), llevándose el theme.

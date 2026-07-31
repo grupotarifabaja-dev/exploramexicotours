@@ -97,17 +97,7 @@ $servicios = ( $lang === 'en' )
     : array( 'Transporte ejecutivo regular y de lujo', 'Transporte turístico', 'Transporte de personal', 'Transporte escolar', 'Transporte por horas', 'Traslados desde o al aeropuerto', 'Tours locales', 'Traslados para eventos sociales', 'Traslados personalizados', 'Renta de aeronaves', 'Servicios de seguridad y guardaespaldas', 'Renta de yates y embarcaciones' );
 
 // 'img': fotos reales en assets/images/flotilla/ (principal + opcional secundaria al hover).
-$flotilla = array(
-    array( 'n' => 'Mercedes Benz Sprinter Lux', 'cap' => 20, 'icon' => '🚐', 'img' => array( 'sprinter-lux-1.jpg', 'sprinter-lux-2.jpg' ), 'feats_es' => 'Asientos reclinables, mesa de trabajo con portavasos, A/C, Smart TV, Bluetooth, audio tipo cine, cargadores USB y tipo C, aislante térmico, espacio para maletas, ventanas panorámicas.', 'feats_en' => 'Reclining seats, work table with cup holders, A/C, Smart TV, Bluetooth, cinema-grade audio, USB & USB-C chargers, thermal insulation, luggage space, panoramic windows.' ),
-    array( 'n' => 'Mercedes Benz Sprinter Regular', 'cap' => 20, 'icon' => '🚐', 'img' => array( 'sprinter-regular-1.jpg', 'sprinter-regular-2.jpg' ), 'feats_es' => 'Asientos reclinables, A/C, TV y DVD, espacio para maletas, ventanas.', 'feats_en' => 'Reclining seats, A/C, TV & DVD, luggage space, windows.' ),
-    array( 'n' => 'Autobús (Irizar, Volvo, Marcopolo, Neobus)', 'cap' => '46–50', 'icon' => '🚌', 'img' => array( 'autobus-irizar-1.jpg' ), 'feats_es' => 'A/C, TV, DVD, audio, cargadores, maletero interior, espacio para maletas, 1 o 2 puertas, ventanas panorámicas.', 'feats_en' => 'A/C, TV, DVD, audio, chargers, interior luggage rack, luggage space, 1 or 2 doors, panoramic windows.' ),
-    array( 'n' => 'Toyota Hiace / Urban / Transit', 'cap' => 12, 'icon' => '🚐', 'img' => array( 'hiace-1.jpg' ), 'feats_es' => 'Asientos reclinables, A/C, TV, DVD, audio, parrilla porta equipaje (según unidad).', 'feats_en' => 'Reclining seats, A/C, TV, DVD, audio, roof luggage rack (per unit).' ),
-    array( 'n' => 'Suburban línea 2019', 'cap' => 6, 'icon' => '🚙', 'img' => array( 'suburban-2019-1.jpg', 'suburban-2019-2.jpg' ), 'feats_es' => 'A/C, vidrios y seguros eléctricos, DVD, vestiduras en piel, cajuela para maletas.', 'feats_en' => 'A/C, power windows & locks, DVD, leather upholstery, luggage trunk.' ),
-    array( 'n' => 'Suburban línea nueva 2023', 'cap' => 6, 'icon' => '🚙', 'img' => array( 'suburban-nueva-1.jpg', 'suburban-nueva-2.jpg' ), 'feats_es' => 'A/C, vidrios y seguros eléctricos, DVD, vestiduras en piel, cajuela.', 'feats_en' => 'A/C, power windows & locks, DVD, leather upholstery, trunk.' ),
-    array( 'n' => 'Camry 2023', 'cap' => 4, 'icon' => '🚗', 'img' => array( 'camry-1.jpg', 'camry-2.jpg' ), 'feats_es' => 'A/C, vidrios/seguros eléctricos, vestiduras en tela, cajuela, Bluetooth.', 'feats_en' => 'A/C, power windows/locks, fabric upholstery, trunk, Bluetooth.' ),
-    array( 'n' => 'Versa 2025', 'cap' => 3, 'icon' => '🚗', 'img' => array( 'versa-1.jpg' ), 'feats_es' => 'A/C, vidrios/seguros eléctricos, vestiduras en tela, cajuela, CarPlay, Bluetooth.', 'feats_en' => 'A/C, power windows/locks, fabric upholstery, trunk, CarPlay, Bluetooth.' ),
-    array( 'n' => 'Mini SUV Suzuki o Mitsubishi 2020', 'cap' => '6 (4 c/equipaje)', 'icon' => '🚙', 'img' => array( 'mini-suv-1.jpg' ), 'feats_es' => 'A/C, vestiduras en tela, parrilla exterior, cajuela para bolsa de mano, CarPlay, Bluetooth.', 'feats_en' => 'A/C, fabric upholstery, exterior rack, carry-on trunk, CarPlay, Bluetooth.' ),
-);
+$flotilla = emt_flotilla_fabrica(); // fuente única (inc/flotilla.php)
 
 $clientes = array( 'HCL Technologies', 'Wizeline', 'Wipro', 'TATA Consultancy Services', 'IGT', 'Rosewood Hotels', 'Aeries Tech', 'Tequileño', 'Nimbus', 'Sealed Air Corp', 'Diversey', 'Secretaría de Turismo de Jalisco', 'Casa Maestri', 'Arcos', 'Slalom', 'Greymatters', 'El Cristiano Tequila' );
 
@@ -122,12 +112,49 @@ $tipos_servicio = ( $lang === 'en' )
 // Base de los assets de flotilla (fotos reales + logo Explora Transfer).
 $emt_flotilla_base = trailingslashit( get_stylesheet_directory_uri() ) . 'assets/images/flotilla/';
 
+// Flotilla configurable desde el panel (Configuración > Flotilla de transporte).
+// Si el equipo capturó unidades, se usan esas; si no, la lista de fábrica de arriba.
+$emt_flo_cfg = get_option( 'emt_flotilla' );
+if ( is_array( $emt_flo_cfg ) && $emt_flo_cfg ) {
+    $flotilla = array();
+    foreach ( $emt_flo_cfg as $fr ) {
+        if ( ! is_array( $fr ) || empty( $fr['nombre'] ) ) { continue; }
+        $urls = array();
+        foreach ( array( 'foto', 'foto2' ) as $fk ) {
+            $aid = (int) ( $fr[ $fk ] ?? 0 );
+            if ( $aid ) {
+                $u = wp_get_attachment_image_url( $aid, 'large' );
+                if ( $u ) { $urls[] = $u; }
+            }
+        }
+        $flotilla[] = array(
+            'n'        => $fr['nombre'],
+            'cap'      => $fr['capacidad'] ?? '',
+            'icon'     => '🚐',
+            'img_urls' => $urls,
+            'feats_es' => $fr['feats'] ?? '',
+            'feats_en' => ( $fr['feats_en'] ?? '' ) !== '' ? $fr['feats_en'] : ( $fr['feats'] ?? '' ),
+        );
+    }
+} else {
+    // Normaliza la lista de fábrica al mismo formato (URLs completas).
+    foreach ( $flotilla as &$emt_fv ) {
+        $emt_fv['img_urls'] = array();
+        foreach ( (array) ( $emt_fv['img'] ?? array() ) as $emt_ff ) {
+            $emt_fv['img_urls'][] = $emt_flotilla_base . $emt_ff;
+        }
+    }
+    unset( $emt_fv );
+}
+
 get_header();
 ?>
 <main class="emt-transfer">
 
     <!-- Hero -->
-    <section class="emt-transfer-hero">
+    <?php $emt_hdr = function_exists( 'emt_page_header_image_url' ) ? emt_page_header_image_url( 'transporte', 'large' ) : ''; ?>
+    <section class="emt-transfer-hero<?php echo $emt_hdr ? ' has-hero-photo' : ''; ?>">
+        <?php if ( $emt_hdr ) : ?><div class="emt-hero-photo" aria-hidden="true"><img src="<?php echo esc_url( $emt_hdr ); ?>" alt="" /></div><?php endif; ?>
         <div class="emt-container emt-transfer-hero__inner">
             <p class="emt-transfer-hero__eyebrow"><?php echo esc_html( $L['hero_eyebrow'] ); ?></p>
             <h1 class="emt-transfer-hero__title">
@@ -164,19 +191,19 @@ get_header();
             <h2><?php echo esc_html( $L['flotilla_t'] ); ?></h2>
             <p class="emt-transfer-section__sub"><?php echo esc_html( $L['flotilla_sub'] ); ?></p>
             <div class="emt-transfer-flotilla">
-                <?php foreach ( $flotilla as $v ) : $has_img = ! empty( $v['img'] ); ?>
+                <?php foreach ( $flotilla as $v ) : $has_img = ! empty( $v['img_urls'] ); ?>
                     <article class="emt-flotilla-card<?php echo $has_img ? ' emt-flotilla-card--foto' : ''; ?>">
                         <?php if ( $has_img ) : ?>
                             <figure class="emt-flotilla-card__media">
-                                <img class="emt-flotilla-card__img" src="<?php echo esc_url( $emt_flotilla_base . $v['img'][0] ); ?>" alt="<?php echo esc_attr( $v['n'] ); ?>" loading="lazy" decoding="async" />
-                                <?php if ( ! empty( $v['img'][1] ) ) : ?>
-                                    <img class="emt-flotilla-card__img emt-flotilla-card__img--alt" src="<?php echo esc_url( $emt_flotilla_base . $v['img'][1] ); ?>" alt="" aria-hidden="true" loading="lazy" decoding="async" />
+                                <img class="emt-flotilla-card__img" src="<?php echo esc_url( $v['img_urls'][0] ); ?>" alt="<?php echo esc_attr( $v['n'] ); ?>" loading="lazy" decoding="async" />
+                                <?php if ( ! empty( $v['img_urls'][1] ) ) : ?>
+                                    <img class="emt-flotilla-card__img emt-flotilla-card__img--alt" src="<?php echo esc_url( $v['img_urls'][1] ); ?>" alt="" aria-hidden="true" loading="lazy" decoding="async" />
                                 <?php endif; ?>
                             </figure>
                         <?php endif; ?>
                         <div class="emt-flotilla-card__body">
                             <?php if ( ! $has_img ) : ?>
-                                <div class="emt-flotilla-card__icon" aria-hidden="true"><?php echo esc_html( $v['icon'] ); ?></div>
+                                <div class="emt-flotilla-card__icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="40" height="40" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11a2 2 0 0 1 2 2v7H3z"/><path d="M16 10h3.2a1 1 0 0 1 .8.4l1.7 2.3a1 1 0 0 1 .2.6V16h-2"/><circle cx="7" cy="17" r="1.8"/><circle cx="17.5" cy="17" r="1.8"/><path d="M9 17h6.5"/></svg></div>
                             <?php endif; ?>
                             <h3 class="emt-flotilla-card__name"><?php echo esc_html( $v['n'] ); ?></h3>
                             <p class="emt-flotilla-card__cap"><?php echo esc_html( $v['cap'] . ' ' . $L['pax'] ); ?></p>
@@ -206,11 +233,7 @@ get_header();
     <section class="emt-transfer-section">
         <div class="emt-container">
             <h2><?php echo esc_html( $L['cert_t'] ); ?></h2>
-            <ul class="emt-transfer-certs">
-                <?php foreach ( $certs as $c ) : ?>
-                    <li><?php echo esc_html( $c ); ?></li>
-                <?php endforeach; ?>
-            </ul>
+            <?php include get_stylesheet_directory() . '/parts/certificaciones-carrusel.php'; ?>
         </div>
     </section>
 
@@ -229,6 +252,10 @@ get_header();
             <form class="emt-transfer-form" data-emt-transfer-form
                   data-ajax="<?php echo esc_url( admin_url( 'admin-ajax.php' ) ); ?>"
                   data-nonce="<?php echo esc_attr( wp_create_nonce( 'emt_transfer' ) ); ?>"
+                  data-wa="<?php echo esc_attr( preg_replace( '/\D/', '', function_exists( 'get_field' ) ? ( get_field( 'wa_number', 'option' ) ?: '523310480670' ) : '523310480670' ) ); ?>"
+                  data-wa-titulo="<?php echo esc_attr( $lang === 'en' ? 'Hi! I would like a transportation quote:' : 'Hola, quiero cotizar transporte:' ); ?>"
+                  data-wa-atendido="<?php echo esc_attr( function_exists( 'emt_ref_asesor_nombre' ) ? emt_ref_asesor_nombre() : '' ); ?>"
+                  data-wa-atendido-label="<?php echo esc_attr( $lang === 'en' ? 'Referred by' : 'Atendido por' ); ?>"
                   data-msg-error="<?php echo esc_attr( $L['f_error'] ); ?>"
                   data-msg-conexion="<?php echo esc_attr( $L['f_conexion'] ); ?>"
                   data-msg-enviando="<?php echo esc_attr( $L['f_enviando'] ); ?>"

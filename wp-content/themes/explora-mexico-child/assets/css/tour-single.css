@@ -61,7 +61,16 @@
 @media (min-width: 1024px) { .emt-tour-body { grid-template-columns: 2fr 1fr; align-items: start; } }
 
 .emt-tour-main > section { margin-top: var(--emt-spacing-xl); }
-.emt-tour-main h2 { font-family: var(--emt-font-display); font-size: var(--emt-fs-md); font-weight: var(--emt-fw-semibold); color: var(--emt-azul-profundo); margin: 0 0 var(--emt-spacing-md); }
+.emt-tour-main h2 { font-family: var(--emt-font-display); font-size: var(--emt-fs-lg); font-weight: var(--emt-fw-bold); color: var(--emt-azul-profundo); margin: 0 0 var(--emt-spacing-md); position: relative; padding-bottom: 0.55rem; }
+.emt-tour-main h2::after { content: ""; position: absolute; left: 0; bottom: 0; width: 44px; height: 4px; border-radius: 2px; background: var(--emt-serape); }
+.emt-tour-main > section { padding-top: var(--emt-spacing-lg); border-top: 1px solid var(--emt-color-border); }
+.emt-tour-politica__details { border: 1px solid var(--emt-color-border); border-radius: var(--emt-radius-md); background: var(--emt-gris-claro); }
+.emt-tour-politica__details summary { cursor: pointer; padding: 0.85rem 1.1rem; font-weight: var(--emt-fw-semibold); color: var(--emt-azul-brillante); list-style: none; display: flex; align-items: center; gap: 0.5rem; }
+.emt-tour-politica__details summary::-webkit-details-marker { display: none; }
+.emt-tour-politica__details summary::before { content: "+"; font-family: var(--emt-font-display); font-weight: var(--emt-fw-bold); width: 1.35rem; height: 1.35rem; border-radius: 50%; background: var(--emt-azul-brillante); color: #fff; display: inline-flex; align-items: center; justify-content: center; font-size: 0.95rem; flex-shrink: 0; }
+.emt-tour-politica__details[open] summary::before { content: "\2212"; }
+.emt-tour-politica__body { padding: 0 1.1rem 1rem; color: var(--emt-color-text); font-size: var(--emt-fs-sm); line-height: 1.75; }
+.emt-tour-politica__body p { margin-top: 0; }
 .emt-tour-desc { font-size: var(--emt-fs-base); line-height: var(--emt-lh-relaxed); }
 .emt-list, .emt-itin__item summary { font-size: var(--emt-fs-base); }
 .emt-itin__item { border: 1px solid var(--emt-color-border); border-radius: var(--emt-radius-md); padding: var(--emt-spacing-md); margin-bottom: var(--emt-spacing-sm); }
@@ -136,3 +145,23 @@
   .emt-tour-body { display: flex; flex-direction: column; }
   .emt-tour-aside { order: -1; }
 }
+
+/* Responsive: las tablas de precios se desplazan horizontalmente si no caben
+   (pantallas angostas), en vez de desbordar la página. */
+.emt-tour-precios { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.emt-precios-tabla { min-width: 320px; }
+
+/* ---------- Cotizador de la tarjeta de reserva ---------- */
+.emt-cotizador { display: flex; flex-direction: column; gap: var(--emt-spacing-sm); }
+.emt-cotizador__toggle { width: 100%; }
+.emt-cotizador__form { display: flex; flex-direction: column; gap: var(--emt-spacing-sm); background: var(--emt-gris-claro); border: 1px solid var(--emt-color-border); border-radius: var(--emt-radius-md); padding: var(--emt-spacing-md); }
+.emt-cotizador__form[hidden] { display: none; } /* cerrado hasta pulsar Cotizar / Consultar disponibilidad */
+.emt-cotizador__row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--emt-spacing-sm); }
+.emt-cotizador__field label { display: block; font-size: var(--emt-fs-xs); font-weight: var(--emt-fw-semibold); color: var(--emt-azul-profundo); margin-bottom: 3px; }
+.emt-cotizador__field input { width: 100%; padding: 0.5rem 0.65rem; border: 1px solid var(--emt-color-border); border-radius: var(--emt-radius-sm); font-size: var(--emt-fs-sm); font-family: var(--emt-font-body); background: #fff; }
+.emt-cotizador__field input:focus { border-color: var(--emt-azul-brillante); outline: none; box-shadow: 0 0 0 3px rgba(0,87,184,0.12); }
+.emt-cotizador__total { margin: 0; font-family: var(--emt-font-display); font-weight: var(--emt-fw-bold); color: var(--emt-azul-profundo); font-size: var(--emt-fs-base); }
+.emt-cotizador__nota { margin: 0; font-size: var(--emt-fs-xs); color: var(--emt-color-text-muted); }
+.emt-cotizador__enviar { width: 100%; }
+.emt-tour-aside .emt-btn--whatsapp { background: #25D366; color: var(--emt-blanco); }
+.emt-tour-aside .emt-btn--whatsapp:hover { background: #1da851; transform: translateY(-2px); }

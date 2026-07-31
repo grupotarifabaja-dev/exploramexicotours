@@ -67,7 +67,17 @@ function emt_panel_save_tour() {
     update_field( 'politica_cancelacion_en', wp_kses_post( wp_unslash( $_POST['politica_cancelacion_en'] ?? '' ) ), $post_id );
     update_field( 'excerpt_en', sanitize_textarea_field( wp_unslash( $_POST['excerpt_en'] ?? '' ) ), $post_id );
     update_field( 'peek_url', esc_url_raw( wp_unslash( $_POST['peek_url'] ?? '' ) ), $post_id );
-    update_field( 'mapa_embed', esc_url_raw( wp_unslash( $_POST['mapa_embed'] ?? '' ) ), $post_id );
+    // Mapa: acepta el <iframe> completo de Google Maps o solo la URL (extrae el src).
+    $mapa_raw = trim( (string) wp_unslash( $_POST['mapa_embed'] ?? '' ) );
+    if ( $mapa_raw && stripos( $mapa_raw, '<iframe' ) !== false && preg_match( '/src=["\']([^"\']+)["\']/', $mapa_raw, $mm ) ) {
+        $mapa_raw = $mm[1];
+    }
+    update_field( 'mapa_embed', esc_url_raw( $mapa_raw ), $post_id );
+
+    // Modelo de precios (ocupacion | vehiculo | consultar).
+    $tipo_p = sanitize_key( $_POST['tipo_precio'] ?? '' );
+    if ( ! in_array( $tipo_p, array( 'ocupacion', 'vehiculo', 'consultar' ), true ) ) { $tipo_p = ''; }
+    update_field( 'tipo_precio', $tipo_p, $post_id );
 
     // Números (vacío => '' para que el autocalc funcione en precio_desde).
     $nums = array( 'precio_desde', 'duracion_horas', 'precio_dbl', 'disp_dbl', 'precio_tpl', 'disp_tpl', 'precio_cuadpl', 'disp_cuadpl', 'precio_menor', 'disp_menor' );
@@ -81,6 +91,7 @@ function emt_panel_save_tour() {
     update_field( 'salida_garantizada', empty( $_POST['salida_garantizada'] ) ? 0 : 1, $post_id );
     update_field( 'pickup_hotel', empty( $_POST['pickup_hotel'] ) ? 0 : 1, $post_id );
     update_field( 'destacado', empty( $_POST['destacado'] ) ? 0 : 1, $post_id );
+    update_field( 'sin_menores', empty( $_POST['acepta_menores'] ) ? 1 : 0, $post_id );
     $orden_dest = $_POST['orden_destacado'] ?? '';
     update_field( 'orden_destacado', ( $orden_dest === '' ) ? 99 : max( 0, (int) $orden_dest ), $post_id );
 
@@ -178,11 +189,21 @@ function emt_panel_save_tour() {
     $imagen_header = (int) ( $_POST['imagen_header'] ?? 0 );
     update_field( 'imagen_header', $imagen_header ?: '', $post_id );
 
-    // Taxonomías.
-    $destino = (int) ( $_POST['destino'] ?? 0 );
-    wp_set_object_terms( $post_id, $destino ? array( $destino ) : array(), 'tour_destino' );
-    $cat = (int) ( $_POST['categoria'] ?? 0 );
-    wp_set_object_terms( $post_id, $cat ? array( $cat ) : array(), 'tour_categoria' );
+    // Taxonomías (multi-destino y multi-categoría con principal).
+    $dest = array_filter( array_map( 'intval', (array) ( $_POST['destinos'] ?? array() ) ) );
+    if ( ! $dest && ! empty( $_POST['destino'] ) ) { $dest = array( (int) $_POST['destino'] ); } // compat
+    wp_set_object_terms( $post_id, $dest, 'tour_destino' );
+
+    $cats = array_filter( array_map( 'intval', (array) ( $_POST['categorias'] ?? array() ) ) );
+    if ( ! $cats && ! empty( $_POST['categoria'] ) ) { $cats = array( (int) $_POST['categoria'] ); } // compat
+    wp_set_object_terms( $post_id, $cats, 'tour_categoria' );
+
+    // Categoría principal: debe ser una de las asignadas; si no, la primera.
+    $cat_ppal = (int) ( $_POST['categoria_principal'] ?? 0 );
+    if ( $cat_ppal && ! in_array( $cat_ppal, $cats, true ) ) { $cat_ppal = 0; }
+    if ( ! $cat_ppal && count( $cats ) > 1 ) { $cat_ppal = $cats[0]; }
+    update_field( 'categoria_principal', $cat_ppal ?: '', $post_id );
+
     $exp = array_map( 'intval', (array) ( $_POST['experiencias'] ?? array() ) );
     wp_set_object_terms( $post_id, $exp, 'tour_experiencia' );
 
@@ -211,6 +232,27 @@ add_action( 'wp_ajax_emt_panel_delete_tour', function () {
     }
     wp_trash_post( $id );
     wp_send_json_success( array( 'msg' => 'Tour enviado a la papelera.' ) );
+} );
+
+/** Activar / desactivar un tour desde la lista (publish <-> draft). */
+add_action( 'wp_ajax_emt_panel_tour_estado', function () {
+    emt_panel_guard( 'edit_tours' );
+    $id     = (int) ( $_POST['id'] ?? 0 );
+    $activo = ! empty( $_POST['activo'] );
+    if ( ! $id || get_post_type( $id ) !== 'tour' || ! current_user_can( 'edit_post', $id ) ) {
+        wp_send_json_error( array( 'msg' => 'No puedes modificar este tour.' ), 403 );
+    }
+    if ( $activo && ! current_user_can( 'publish_tours' ) ) {
+        wp_send_json_error( array( 'msg' => 'No tienes permiso para publicar.' ), 403 );
+    }
+    $r = wp_update_post( array( 'ID' => $id, 'post_status' => $activo ? 'publish' : 'draft' ), true );
+    if ( is_wp_error( $r ) ) {
+        wp_send_json_error( array( 'msg' => 'No se pudo cambiar el estado.' ), 500 );
+    }
+    wp_send_json_success( array(
+        'status' => get_post_status( $id ),
+        'msg'    => $activo ? 'Tour activado (visible en el sitio).' : 'Tour desactivado (oculto del sitio).',
+    ) );
 } );
 
 /* ============================================================
@@ -344,6 +386,45 @@ function emt_panel_save_config() {
     update_field( 'hero_seasonal_cta_text', sanitize_text_field( wp_unslash( $_POST['hero_seasonal_cta_text'] ?? '' ) ), 'option' );
     update_field( 'hero_seasonal_cta_url', esc_url_raw( wp_unslash( $_POST['hero_seasonal_cta_url'] ?? '' ) ), 'option' );
 
+    // Fotos de encabezado por página (IDs de adjunto, 0 = ninguna).
+    foreach ( array( 'nosotros', 'asesores', 'contacto', 'cotizacion', 'transporte', 'blog' ) as $emt_hk ) {
+        update_option( 'emt_hdr_' . $emt_hk, (int) ( $_POST[ 'hdr_' . $emt_hk ] ?? 0 ) );
+    }
+
+    // Flotilla de transporte (repetidor: nombre, capacidad, características ES/EN, 2 fotos).
+    $flo_in  = (array) ( $_POST['flotilla'] ?? array() );
+    $flo_out = array();
+    foreach ( $flo_in as $fr ) {
+        if ( ! is_array( $fr ) ) { continue; }
+        $nombre = sanitize_text_field( wp_unslash( $fr['nombre'] ?? '' ) );
+        if ( $nombre === '' ) { continue; }
+        $flo_out[] = array(
+            'nombre'    => $nombre,
+            'capacidad' => sanitize_text_field( wp_unslash( $fr['capacidad'] ?? '' ) ),
+            'feats'     => sanitize_textarea_field( wp_unslash( $fr['feats'] ?? '' ) ),
+            'feats_en'  => sanitize_textarea_field( wp_unslash( $fr['feats_en'] ?? '' ) ),
+            'foto'      => (int) ( $fr['foto'] ?? 0 ),
+            'foto2'     => (int) ( $fr['foto2'] ?? 0 ),
+        );
+    }
+    update_option( 'emt_flotilla', $flo_out, false );
+
+    // Testimonios de viajeros (repetidor: nombre, estrellas, fuente, texto).
+    $tst_in  = (array) ( $_POST['testimonios'] ?? array() );
+    $tst_out = array();
+    foreach ( $tst_in as $tr ) {
+        if ( ! is_array( $tr ) ) { continue; }
+        $texto = sanitize_textarea_field( wp_unslash( $tr['texto'] ?? '' ) );
+        if ( $texto === '' ) { continue; }
+        $tst_out[] = array(
+            'nombre'    => sanitize_text_field( wp_unslash( $tr['nombre'] ?? '' ) ),
+            'estrellas' => min( 5, max( 1, (int) ( $tr['estrellas'] ?? 5 ) ) ),
+            'fuente'    => in_array( $tr['fuente'] ?? '', array( 'facebook', 'google', 'tripadvisor', 'otro' ), true ) ? $tr['fuente'] : 'otro',
+            'texto'     => $texto,
+        );
+    }
+    update_option( 'emt_testimonios', $tst_out, false );
+
     wp_send_json_success( array( 'msg' => 'Configuración guardada.' ) );
 }
 
@@ -374,3 +455,194 @@ function emt_panel_save_destinos() {
 
     wp_send_json_success( array( 'msg' => 'Destinos actualizados.' ) );
 }
+
+
+/* ============================================================
+   BLOG — guardar / eliminar entradas desde el panel del cliente
+   Acceso: misma capability que da entrada al panel (edit_tours).
+   ============================================================ */
+add_action( 'wp_ajax_emt_panel_save_post', 'emt_panel_save_post' );
+function emt_panel_save_post() {
+    emt_panel_guard(); // edit_tours
+
+    $post_id = isset( $_POST['post_id'] ) ? (int) $_POST['post_id'] : 0;
+    $titulo  = sanitize_text_field( wp_unslash( $_POST['titulo'] ?? '' ) );
+    if ( $titulo === '' ) {
+        wp_send_json_error( array( 'msg' => 'El título es obligatorio.', 'field' => 'titulo' ), 400 );
+    }
+
+    $status    = ( ( $_POST['status'] ?? '' ) === 'publish' ) ? 'publish' : 'draft';
+    $contenido = wp_kses_post( wp_unslash( $_POST['contenido'] ?? '' ) );
+
+    if ( $status === 'publish' && trim( wp_strip_all_tags( $contenido ) ) === '' ) {
+        wp_send_json_error( array( 'msg' => 'Para publicar, escribe el contenido del artículo.', 'field' => 'contenido' ), 400 );
+    }
+
+    $data = array(
+        'post_type'    => 'post',
+        'post_title'   => $titulo,
+        'post_content' => $contenido,
+        'post_excerpt' => sanitize_textarea_field( wp_unslash( $_POST['extracto'] ?? '' ) ),
+        'post_status'  => $status,
+    );
+
+    if ( $post_id ) {
+        if ( get_post_type( $post_id ) !== 'post' ) {
+            wp_send_json_error( array( 'msg' => 'Artículo no válido.' ), 403 );
+        }
+        $data['ID'] = $post_id;
+        wp_update_post( $data );
+    } else {
+        $data['post_author'] = get_current_user_id();
+        $post_id = wp_insert_post( $data, true );
+        if ( is_wp_error( $post_id ) ) {
+            wp_send_json_error( array( 'msg' => 'No se pudo guardar.' ), 500 );
+        }
+    }
+
+    // Imagen destacada.
+    $img = (int) ( $_POST['imagen'] ?? 0 );
+    if ( $img ) {
+        set_post_thumbnail( $post_id, $img );
+    } else {
+        delete_post_thumbnail( $post_id );
+    }
+
+    // Categoría (una, por nombre) + etiquetas (CSV). Se crean si no existen.
+    $cat = sanitize_text_field( wp_unslash( $_POST['categoria'] ?? '' ) );
+    if ( $cat !== '' ) {
+        wp_set_object_terms( $post_id, array( $cat ), 'category', false );
+    }
+    $tags_raw = sanitize_text_field( wp_unslash( $_POST['etiquetas'] ?? '' ) );
+    $tags     = array_values( array_filter( array_map( 'trim', explode( ',', $tags_raw ) ) ) );
+    wp_set_object_terms( $post_id, $tags, 'post_tag', false );
+
+    // Traducciones al inglés (post meta). La web en /en/ las usa con respaldo al español.
+    update_post_meta( $post_id, 'titulo_en', sanitize_text_field( wp_unslash( $_POST['titulo_en'] ?? '' ) ) );
+    update_post_meta( $post_id, 'excerpt_en', sanitize_textarea_field( wp_unslash( $_POST['extracto_en'] ?? '' ) ) );
+    update_post_meta( $post_id, 'contenido_en', wp_kses_post( wp_unslash( $_POST['contenido_en'] ?? '' ) ) );
+
+    wp_send_json_success( array(
+        'id'      => $post_id,
+        'status'  => get_post_status( $post_id ),
+        'msg'     => ( $status === 'publish' ) ? 'Artículo publicado.' : 'Borrador guardado.',
+        'editUrl' => emt_panel_url( 'blog/editar/' . $post_id . '/' ),
+        'listUrl' => emt_panel_url( 'blog/' ),
+    ) );
+}
+
+add_action( 'wp_ajax_emt_panel_delete_post', function () {
+    emt_panel_guard(); // edit_tours
+    $id = (int) ( $_POST['id'] ?? 0 );
+    if ( ! $id || get_post_type( $id ) !== 'post' ) {
+        wp_send_json_error( array( 'msg' => 'Artículo no válido.' ), 403 );
+    }
+    wp_trash_post( $id );
+    wp_send_json_success( array( 'msg' => 'Artículo enviado a la papelera.' ) );
+} );
+
+/* ============================================================
+   CLASIFICACIÓN — crear / renombrar / eliminar términos de las
+   taxonomías de tours (Destinos, Categorías, Experiencias) desde el panel.
+   Acceso: misma capability que da entrada al panel (edit_tours).
+   ============================================================ */
+
+/** Taxonomías que el cliente puede gestionar desde el panel. */
+function emt_panel_client_taxonomies() {
+    return array( 'tour_destino', 'tour_categoria', 'tour_experiencia' );
+}
+
+/** Valida y devuelve la taxonomía del POST, o corta con error. */
+function emt_panel_term_tax() {
+    $tax = sanitize_key( $_POST['taxonomy'] ?? '' );
+    if ( ! in_array( $tax, emt_panel_client_taxonomies(), true ) ) {
+        wp_send_json_error( array( 'msg' => 'Clasificación no válida.' ), 400 );
+    }
+    return $tax;
+}
+
+add_action( 'wp_ajax_emt_panel_term_add', function () {
+    emt_panel_guard( 'edit_tours' );
+    $tax  = emt_panel_term_tax();
+    $name = sanitize_text_field( wp_unslash( $_POST['name'] ?? '' ) );
+    if ( $name === '' ) {
+        wp_send_json_error( array( 'msg' => 'Escribe un nombre.' ), 400 );
+    }
+    $res = wp_insert_term( $name, $tax );
+    if ( is_wp_error( $res ) ) {
+        $msg = ( $res->get_error_code() === 'term_exists' ) ? 'Ya existe uno con ese nombre.' : 'No se pudo crear.';
+        wp_send_json_error( array( 'msg' => $msg ), 400 );
+    }
+    $term = get_term( (int) $res['term_id'], $tax );
+    wp_send_json_success( array(
+        'term_id' => (int) $res['term_id'],
+        'name'    => ( $term && ! is_wp_error( $term ) ) ? $term->name : $name,
+        'count'   => 0,
+        'msg'     => 'Creado.',
+    ) );
+} );
+
+add_action( 'wp_ajax_emt_panel_term_rename', function () {
+    emt_panel_guard( 'edit_tours' );
+    $tax  = emt_panel_term_tax();
+    $tid  = (int) ( $_POST['term_id'] ?? 0 );
+    $name = sanitize_text_field( wp_unslash( $_POST['name'] ?? '' ) );
+    if ( $name === '' ) {
+        wp_send_json_error( array( 'msg' => 'El nombre no puede quedar vacío.' ), 400 );
+    }
+    $term = $tid ? get_term( $tid, $tax ) : null;
+    if ( ! $term || is_wp_error( $term ) ) {
+        wp_send_json_error( array( 'msg' => 'Elemento no encontrado.' ), 404 );
+    }
+    $res = wp_update_term( $tid, $tax, array( 'name' => $name ) );
+    if ( is_wp_error( $res ) ) {
+        $msg = ( $res->get_error_code() === 'duplicate_term_slug' || $res->get_error_code() === 'term_exists' ) ? 'Ya existe uno con ese nombre.' : 'No se pudo renombrar.';
+        wp_send_json_error( array( 'msg' => $msg ), 400 );
+    }
+    wp_send_json_success( array( 'msg' => 'Guardado' ) );
+} );
+
+add_action( 'wp_ajax_emt_panel_term_delete', function () {
+    emt_panel_guard( 'edit_tours' );
+    $tax = emt_panel_term_tax();
+    $tid = (int) ( $_POST['term_id'] ?? 0 );
+    $term = $tid ? get_term( $tid, $tax ) : null;
+    if ( ! $term || is_wp_error( $term ) ) {
+        wp_send_json_error( array( 'msg' => 'Elemento no encontrado.' ), 404 );
+    }
+    $res = wp_delete_term( $tid, $tax );
+    if ( is_wp_error( $res ) || ! $res ) {
+        wp_send_json_error( array( 'msg' => 'No se pudo eliminar.' ), 400 );
+    }
+    wp_send_json_success( array( 'msg' => 'Eliminado.' ) );
+} );
+
+/* ============================================================
+   CLASIFICACIÓN — portada por término (3 taxonomías) + destacado (solo destino).
+   Guardado inmediato desde cada fila del gestor de clasificación.
+   ============================================================ */
+add_action( 'wp_ajax_emt_panel_term_portada', function () {
+    emt_panel_guard( 'edit_tours' );
+    $tax = emt_panel_term_tax();
+    $tid = (int) ( $_POST['term_id'] ?? 0 );
+    $img = (int) ( $_POST['image_id'] ?? 0 );
+    $term = $tid ? get_term( $tid, $tax ) : null;
+    if ( ! $term || is_wp_error( $term ) ) {
+        wp_send_json_error( array( 'msg' => 'Elemento no encontrado.' ), 404 );
+    }
+    update_field( 'imagen_destino', $img ?: '', $term );
+    $thumb = $img ? wp_get_attachment_image_url( $img, 'medium' ) : '';
+    wp_send_json_success( array( 'msg' => $img ? 'Portada guardada' : 'Portada quitada', 'thumb' => $thumb ?: '' ) );
+} );
+
+add_action( 'wp_ajax_emt_panel_term_destacado', function () {
+    emt_panel_guard( 'edit_tours' );
+    $tid = (int) ( $_POST['term_id'] ?? 0 );
+    $on  = empty( $_POST['on'] ) ? 0 : 1;
+    $term = $tid ? get_term( $tid, 'tour_destino' ) : null;
+    if ( ! $term || is_wp_error( $term ) ) {
+        wp_send_json_error( array( 'msg' => 'Destino no encontrado.' ), 404 );
+    }
+    update_field( 'destacado', $on, $term );
+    wp_send_json_success( array( 'msg' => $on ? 'Destacado activado' : 'Destacado quitado' ) );
+} );

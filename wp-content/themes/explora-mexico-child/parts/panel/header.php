@@ -2,7 +2,7 @@
 /** Panel — barra superior (logo + usuario + Ver sitio + Salir). */
 if ( ! defined( 'ABSPATH' ) ) exit;
 $user = wp_get_current_user();
-$logo = get_stylesheet_directory_uri() . '/assets/images/explora-logo.png';
+$logo = get_stylesheet_directory_uri() . '/assets/images/explora-logo-blanco.png';
 ?>
 <header class="emt-panel__topbar">
     <a class="emt-panel__brand" href="<?php echo esc_url( emt_panel_url() ); ?>">

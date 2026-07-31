@@ -43,6 +43,27 @@ function emt_tour_precios( $post_id ) {
  * @param int $post_id
  * @return array<int,array{capacidad:string,vehiculo:string,precio:?float}>
  */
+/**
+ * Traduce el nombre de vehículo (modelo) al inglés para la ficha en /en/.
+ * Vocabulario controlado; si no coincide, aplica reglas simples (Sedán→Sedan, " o "→" or ").
+ */
+function emt_vehiculo_en( $v ) {
+    $map = array(
+        'Sedán' => 'Sedan',
+        'Sedán Full Size' => 'Full-size Sedan',
+        'Sedan Full Size' => 'Full-size Sedan',
+        'Suburban' => 'Suburban',
+        'Toyota o Urban' => 'Toyota or Urban',
+        'Toyota/Urban' => 'Toyota/Urban',
+        'Sprinter' => 'Sprinter',
+        'Sprinter regular' => 'Regular Sprinter',
+        'Van' => 'Van',
+        'Camioneta' => 'Van',
+    );
+    if ( isset( $map[ $v ] ) ) { return $map[ $v ]; }
+    return str_replace( array( 'Sedán', ' o ' ), array( 'Sedan', ' or ' ), $v );
+}
+
 function emt_tour_precios_vehiculo( $post_id ) {
     if ( ! function_exists( 'get_field' ) ) {
         return array();
@@ -55,6 +76,9 @@ function emt_tour_precios_vehiculo( $post_id ) {
             continue;
         }
         $p = $r['precio'] ?? '';
+        if ( function_exists( 'emt_current_lang' ) && emt_current_lang() === 'en' && $veh !== '' ) {
+            $veh = emt_vehiculo_en( $veh );
+        }
         $rows[] = array(
             'capacidad' => $cap,
             'vehiculo'  => $veh,

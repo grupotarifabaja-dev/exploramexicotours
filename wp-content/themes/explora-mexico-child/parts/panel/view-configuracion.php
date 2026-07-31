@@ -109,8 +109,156 @@ $hp_url = is_array( $hp ) ? ( $hp['sizes']['medium'] ?? $hp['url'] ?? '' ) : '';
         </div>
     </div>
 
+    <div class="emt-panel-form__section">
+        <h2>Fotos de encabezado de páginas</h2>
+        <p class="emt-field__help" style="margin-bottom:var(--emt-spacing-md);">Imagen opcional para la cabecera de cada página. Si la dejas vacía, se usa el encabezado con degradado. Tamaño sugerido: <strong>1920&times;640 px</strong> (horizontal).</p>
+        <div class="emt-grid-2">
+            <?php
+            $emt_hdr_pages = array( 'nosotros' => 'Nosotros', 'asesores' => 'Asesores', 'contacto' => 'Contacto', 'cotizacion' => 'Cotización', 'transporte' => 'Transporte', 'blog' => 'Blog' );
+            foreach ( $emt_hdr_pages as $emt_hk => $emt_hlbl ) :
+                $emt_hid  = (int) get_option( 'emt_hdr_' . $emt_hk, 0 );
+                $emt_hurl = $emt_hid ? wp_get_attachment_image_url( $emt_hid, 'medium' ) : '';
+                ?>
+                <div class="emt-field">
+                    <label><?php echo esc_html( $emt_hlbl ); ?></label>
+                    <div class="emt-image" data-image>
+                        <div class="emt-image__preview" data-image-preview><?php if ( $emt_hurl ) : ?><img src="<?php echo esc_url( $emt_hurl ); ?>" alt="" /><?php endif; ?></div>
+                        <input type="hidden" name="hdr_<?php echo esc_attr( $emt_hk ); ?>" value="<?php echo $emt_hid; ?>" data-image-input />
+                        <div class="emt-image__actions">
+                            <button type="button" class="emt-panel__btn emt-panel__btn--sm" data-image-add>Subir / elegir</button>
+                            <button type="button" class="emt-panel__btn emt-panel__btn--sm emt-panel__btn--danger" data-image-remove<?php echo $emt_hid ? '' : ' style="display:none;"'; ?>>Quitar</button>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+
+    <div class="emt-panel-form__section">
+        <h2>Flotilla de transporte</h2>
+        <p class="emt-field__help" style="margin-bottom:var(--emt-spacing-md);">Las unidades que se muestran en la página de <strong>Transporte</strong>. Puedes agregar, quitar o editar vehículos; la segunda foto (opcional) aparece al pasar el mouse sobre la tarjeta. Si dejas la lista vacía, se muestra la flotilla original de fábrica.</p>
+        <div id="emt-flotilla" data-repeater="flotilla">
+            <?php
+            if ( function_exists( 'emt_flotilla_migrar' ) ) { emt_flotilla_migrar(); }
+            $emt_flo = get_option( 'emt_flotilla' );
+            if ( ! is_array( $emt_flo ) ) { $emt_flo = array(); }
+            $emt_fi = 0;
+            foreach ( $emt_flo as $emt_fv ) :
+                if ( ! is_array( $emt_fv ) ) { continue; }
+                $emt_f1  = (int) ( $emt_fv['foto'] ?? 0 );
+                $emt_f2  = (int) ( $emt_fv['foto2'] ?? 0 );
+                $emt_u1  = $emt_f1 ? wp_get_attachment_image_url( $emt_f1, 'thumbnail' ) : '';
+                $emt_u2  = $emt_f2 ? wp_get_attachment_image_url( $emt_f2, 'thumbnail' ) : '';
+                ?>
+                <div class="emt-repeater__item" data-row>
+                    <div class="emt-repeater__item-head"><strong>Vehículo</strong><button type="button" class="emt-repeater__remove" data-remove>Quitar</button></div>
+                    <div class="emt-grid-2">
+                        <div class="emt-field"><label>Nombre</label><input type="text" name="flotilla[<?php echo $emt_fi; ?>][nombre]" value="<?php echo esc_attr( $emt_fv['nombre'] ?? '' ); ?>" placeholder="Mercedes Benz Sprinter Lux" /></div>
+                        <div class="emt-field"><label>Capacidad (pax)</label><input type="text" name="flotilla[<?php echo $emt_fi; ?>][capacidad]" value="<?php echo esc_attr( $emt_fv['capacidad'] ?? '' ); ?>" placeholder="20 o 46–50" /></div>
+                    </div>
+                    <div class="emt-field"><label>Características</label><textarea name="flotilla[<?php echo $emt_fi; ?>][feats]" placeholder="A/C, asientos reclinables, espacio para maletas…"><?php echo esc_textarea( $emt_fv['feats'] ?? '' ); ?></textarea></div>
+                    <div class="emt-field"><label>Características (EN)</label><textarea name="flotilla[<?php echo $emt_fi; ?>][feats_en]" placeholder="A/C, reclining seats… (vacío = se usa el español)"><?php echo esc_textarea( $emt_fv['feats_en'] ?? '' ); ?></textarea></div>
+                    <div class="emt-grid-2">
+                        <div class="emt-field"><label>Foto principal</label>
+                            <div class="emt-image" data-image>
+                                <div class="emt-image__preview" data-image-preview><?php if ( $emt_u1 ) : ?><img src="<?php echo esc_url( $emt_u1 ); ?>" alt="" /><?php endif; ?></div>
+                                <input type="hidden" name="flotilla[<?php echo $emt_fi; ?>][foto]" value="<?php echo $emt_f1; ?>" data-image-input />
+                                <div class="emt-image__actions">
+                                    <button type="button" class="emt-panel__btn emt-panel__btn--sm" data-image-add>Subir / elegir</button>
+                                    <button type="button" class="emt-panel__btn emt-panel__btn--sm emt-panel__btn--danger" data-image-remove<?php echo $emt_f1 ? '' : ' style="display:none;"'; ?>>Quitar</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="emt-field"><label>Foto al pasar el mouse (opcional)</label>
+                            <div class="emt-image" data-image>
+                                <div class="emt-image__preview" data-image-preview><?php if ( $emt_u2 ) : ?><img src="<?php echo esc_url( $emt_u2 ); ?>" alt="" /><?php endif; ?></div>
+                                <input type="hidden" name="flotilla[<?php echo $emt_fi; ?>][foto2]" value="<?php echo $emt_f2; ?>" data-image-input />
+                                <div class="emt-image__actions">
+                                    <button type="button" class="emt-panel__btn emt-panel__btn--sm" data-image-add>Subir / elegir</button>
+                                    <button type="button" class="emt-panel__btn emt-panel__btn--sm emt-panel__btn--danger" data-image-remove<?php echo $emt_f2 ? '' : ' style="display:none;"'; ?>>Quitar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <?php $emt_fi++; endforeach; ?>
+        </div>
+        <button type="button" class="emt-panel__btn" data-repeater-add="flotilla">+ Agregar vehículo</button>
+    </div>
+
+    <div class="emt-panel-form__section">
+        <h2>Testimonios de viajeros</h2>
+        <p class="emt-field__help" style="margin-bottom:var(--emt-spacing-md);">Recomendaciones que se muestran en el inicio. Copia aquí las mejores reseñas de <strong>Facebook</strong> o <strong>Google</strong> (nombre, texto y estrellas). Si la lista está vacía, la sección no aparece en el sitio.</p>
+        <div id="emt-testimonios" data-repeater="testimonios">
+            <?php
+            $emt_tst = get_option( 'emt_testimonios' );
+            if ( ! is_array( $emt_tst ) ) { $emt_tst = array(); }
+            $emt_ti = 0;
+            $emt_tst_fuentes = array( 'facebook' => 'Facebook', 'google' => 'Google', 'tripadvisor' => 'TripAdvisor', 'otro' => 'Otro' );
+            foreach ( $emt_tst as $emt_tv ) :
+                if ( ! is_array( $emt_tv ) ) { continue; }
+                ?>
+                <div class="emt-repeater__item" data-row>
+                    <div class="emt-repeater__item-head"><strong>Testimonio</strong><button type="button" class="emt-repeater__remove" data-remove>Quitar</button></div>
+                    <div class="emt-grid-3">
+                        <div class="emt-field"><label>Nombre del viajero</label><input type="text" name="testimonios[<?php echo $emt_ti; ?>][nombre]" value="<?php echo esc_attr( $emt_tv['nombre'] ?? '' ); ?>" placeholder="María G." /></div>
+                        <div class="emt-field"><label>Calificación</label><select name="testimonios[<?php echo $emt_ti; ?>][estrellas]"><?php for ( $emt_es = 5; $emt_es >= 3; $emt_es-- ) : ?><option value="<?php echo $emt_es; ?>" <?php selected( (int) ( $emt_tv['estrellas'] ?? 5 ), $emt_es ); ?>><?php echo $emt_es; ?> estrellas</option><?php endfor; ?></select></div>
+                        <div class="emt-field"><label>Fuente</label><select name="testimonios[<?php echo $emt_ti; ?>][fuente]"><?php foreach ( $emt_tst_fuentes as $emt_fk => $emt_fl ) : ?><option value="<?php echo $emt_fk; ?>" <?php selected( $emt_tv['fuente'] ?? 'facebook', $emt_fk ); ?>><?php echo $emt_fl; ?></option><?php endforeach; ?></select></div>
+                    </div>
+                    <div class="emt-field"><label>Texto de la recomendación</label><textarea name="testimonios[<?php echo $emt_ti; ?>][texto]" placeholder="Excelente servicio, el tour a Tequila superó nuestras expectativas…"><?php echo esc_textarea( $emt_tv['texto'] ?? '' ); ?></textarea></div>
+                </div>
+            <?php $emt_ti++; endforeach; ?>
+        </div>
+        <button type="button" class="emt-panel__btn" data-repeater-add="testimonios">+ Agregar testimonio</button>
+    </div>
+
     <div class="emt-panel-form__bar">
         <span class="emt-panel-form__msg" data-form-msg></span>
         <button type="submit" class="emt-panel__btn emt-panel__btn--primary" data-save="save">Guardar cambios</button>
     </div>
 </form>
+<template id="emt-tpl-flotilla">
+    <div class="emt-repeater__item" data-row>
+        <div class="emt-repeater__item-head"><strong>Vehículo</strong><button type="button" class="emt-repeater__remove" data-remove>Quitar</button></div>
+        <div class="emt-grid-2">
+            <div class="emt-field"><label>Nombre</label><input type="text" data-name="flotilla|__i__|nombre" placeholder="Mercedes Benz Sprinter Lux" /></div>
+            <div class="emt-field"><label>Capacidad (pax)</label><input type="text" data-name="flotilla|__i__|capacidad" placeholder="20 o 46–50" /></div>
+        </div>
+        <div class="emt-field"><label>Características</label><textarea data-name="flotilla|__i__|feats" placeholder="A/C, asientos reclinables, espacio para maletas…"></textarea></div>
+        <div class="emt-field"><label>Características (EN)</label><textarea data-name="flotilla|__i__|feats_en" placeholder="A/C, reclining seats… (vacío = se usa el español)"></textarea></div>
+        <div class="emt-grid-2">
+            <div class="emt-field"><label>Foto principal</label>
+                <div class="emt-image" data-image>
+                    <div class="emt-image__preview" data-image-preview></div>
+                    <input type="hidden" data-name="flotilla|__i__|foto" value="0" data-image-input />
+                    <div class="emt-image__actions">
+                        <button type="button" class="emt-panel__btn emt-panel__btn--sm" data-image-add>Subir / elegir</button>
+                        <button type="button" class="emt-panel__btn emt-panel__btn--sm emt-panel__btn--danger" data-image-remove style="display:none;">Quitar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="emt-field"><label>Foto al pasar el mouse (opcional)</label>
+                <div class="emt-image" data-image>
+                    <div class="emt-image__preview" data-image-preview></div>
+                    <input type="hidden" data-name="flotilla|__i__|foto2" value="0" data-image-input />
+                    <div class="emt-image__actions">
+                        <button type="button" class="emt-panel__btn emt-panel__btn--sm" data-image-add>Subir / elegir</button>
+                        <button type="button" class="emt-panel__btn emt-panel__btn--sm emt-panel__btn--danger" data-image-remove style="display:none;">Quitar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template id="emt-tpl-testimonios">
+    <div class="emt-repeater__item" data-row>
+        <div class="emt-repeater__item-head"><strong>Testimonio</strong><button type="button" class="emt-repeater__remove" data-remove>Quitar</button></div>
+        <div class="emt-grid-3">
+            <div class="emt-field"><label>Nombre del viajero</label><input type="text" data-name="testimonios|__i__|nombre" placeholder="María G." /></div>
+            <div class="emt-field"><label>Calificación</label><select data-name="testimonios|__i__|estrellas"><option value="5">5 estrellas</option><option value="4">4 estrellas</option><option value="3">3 estrellas</option></select></div>
+            <div class="emt-field"><label>Fuente</label><select data-name="testimonios|__i__|fuente"><option value="facebook">Facebook</option><option value="google">Google</option><option value="tripadvisor">TripAdvisor</option><option value="otro">Otro</option></select></div>
+        </div>
+        <div class="emt-field"><label>Texto de la recomendación</label><textarea data-name="testimonios|__i__|texto" placeholder="Excelente servicio, el tour a Tequila superó nuestras expectativas…"></textarea></div>
+    </div>
+</template>

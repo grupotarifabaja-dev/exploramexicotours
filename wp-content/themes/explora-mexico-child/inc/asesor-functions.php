@@ -79,5 +79,20 @@ add_action( 'init', function () {
     $ref = sanitize_title( wp_unslash( $_GET['ref'] ) );
     if ( $ref ) {
         setcookie( 'emt_ref_asesor', $ref, time() + 30 * DAY_IN_SECONDS, defined( 'COOKIEPATH' ) ? COOKIEPATH : '/', defined( 'COOKIE_DOMAIN' ) ? COOKIE_DOMAIN : '' );
+        // Disponible ya en esta misma petición (la primera visita con ?ref
+        // también debe llevar la atribución en el cotizador/WhatsApp).
+        $_COOKIE['emt_ref_asesor'] = $ref;
     }
 } );
+
+/**
+ * Nombre del asesor atribuido por la cookie ?ref (si existe y está publicado).
+ * Lo usan los formularios que redirigen a WhatsApp ("Atendido por").
+ */
+function emt_ref_asesor_nombre() {
+    if ( empty( $_COOKIE['emt_ref_asesor'] ) ) {
+        return '';
+    }
+    $p = get_page_by_path( sanitize_title( wp_unslash( $_COOKIE['emt_ref_asesor'] ) ), OBJECT, 'asesor' );
+    return ( $p && $p->post_status === 'publish' ) ? get_the_title( $p ) : '';
+}
