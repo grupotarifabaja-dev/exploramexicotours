@@ -1,24 +1,33 @@
 <?php
 /**
- * MODO UNDER CONSTRUCTION
+ * MODO UNDER CONSTRUCTION / PROTECCIÓN DE STAGING
  *
- * Mientras esta constante esté en true, todo el sitio público redirige a la
- * página plantilla "under-construction" salvo para administradores logueados.
+ * PRODUCCIÓN (exploramexicotours.com): pública desde el lanzamiento
+ * (2026-07-31). Para una ventana de mantenimiento futura, forzar true abajo.
  *
- * Para desactivar y lanzar el sitio real: cambiar a false o eliminar.
+ * STAGING (host que empieza con "staging."): es ambiente interno de pruebas.
+ * Los visitantes anónimos ven la plantilla under-construction y NUNCA el
+ * sitio de prueba; cualquier usuario logueado (admin o gestor) lo ve normal
+ * para poder revisar. Además, staging siempre manda cabecera y meta noindex
+ * para que los buscadores no lo indexen ni compita con producción.
  */
 
 if ( ! defined( 'ABSPATH' ) ) exit;
 
-// LANZADO (2026-07-31): el sitio es público en todos los dominios.
-// Para una ventana de mantenimiento futura, cambiar a true.
-define( 'EMT_UNDER_CONSTRUCTION', false );
+/** True si esta petición llegó por el dominio de staging. */
+function emt_is_staging_host() {
+    $host = isset( $_SERVER['HTTP_HOST'] ) ? strtolower( (string) $_SERVER['HTTP_HOST'] ) : '';
+    return strpos( $host, 'staging.' ) === 0;
+}
+
+// Candado por dominio: staging oculto para anónimos; producción pública.
+define( 'EMT_UNDER_CONSTRUCTION', emt_is_staging_host() );
 
 add_action( 'template_redirect', function() {
     if ( ! defined( 'EMT_UNDER_CONSTRUCTION' ) || ! EMT_UNDER_CONSTRUCTION ) return;
 
-    // Admins logueados ven el sitio normal para poder trabajar
-    if ( current_user_can( 'manage_options' ) ) return;
+    // Cualquier usuario logueado (admin o gestor) ve el sitio para revisar.
+    if ( is_user_logged_in() ) return;
 
     // Permitir wp-admin, wp-login y AJAX
     if ( is_admin() ) return;
@@ -33,3 +42,21 @@ add_action( 'template_redirect', function() {
         exit;
     }
 });
+
+/* Staging jamás se indexa (aplica a toda respuesta, logueado o no). */
+add_action( 'send_headers', function () {
+    if ( emt_is_staging_host() ) {
+        header( 'X-Robots-Tag: noindex, nofollow', true );
+    }
+} );
+add_action( 'wp_head', function () {
+    if ( emt_is_staging_host() ) {
+        echo '<meta name="robots" content="noindex, nofollow" />' . "\n";
+    }
+}, 0 );
+add_filter( 'robots_txt', function ( $output ) {
+    if ( emt_is_staging_host() ) {
+        return "User-agent: *\nDisallow: /\n";
+    }
+    return $output;
+}, 99 );
