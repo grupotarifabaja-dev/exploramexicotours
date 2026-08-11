@@ -18,6 +18,7 @@ $emt_certs = array(
     array( 'barrancas-del-cobre.png', 'Especialista en destino Barrancas del Cobre' ),
     array( 'tequillier.png', 'Técnico Tequilero «Tequillier»' ),
     array( 'turismo.png', 'Turismo' ),
+    array( 'afeet-jalisco.png', 'AFEET Jalisco — Asociación de Ejecutivas de Empresas Turísticas' ),
 );
 ?>
 <div class="emt-cert-marquee" aria-label="Certificaciones y reconocimientos">
