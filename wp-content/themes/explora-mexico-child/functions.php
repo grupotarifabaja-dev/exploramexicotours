@@ -44,3 +44,4 @@ require_once $emt_inc . 'legales.php';
 require_once $emt_inc . 'evaluacion.php';
 require_once $emt_inc . 'blog-i18n.php';
 require_once $emt_inc . 'seo-meta.php';
+require_once $emt_inc . 'analytics.php';
