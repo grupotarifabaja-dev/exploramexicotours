@@ -11,7 +11,7 @@
 #
 # La versión de WordPress se fija por tag para builds reproducibles (evita que un
 # "latest" cambie el core sin avisar). Ajustable al core que corra producción.
-FROM wordpress:6.8-php8.3-apache
+FROM wordpress:7.1-php8.3-apache
 
 # Límites de subida de PHP: el default (2 MB) no alcanza para los videos del
 # hero (~5–10 MB) ni fotos en alta resolución. 64M da margen de sobra.
